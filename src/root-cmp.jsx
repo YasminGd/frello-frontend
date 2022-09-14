@@ -1,25 +1,17 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import routes from './routes'
+import { AppHeader } from './cmps/app-header.jsx'
 
 function App() {
   return (
     <div className="app">
-      {/* <AppHeader /> */}
+      <AppHeader />
       <main className="container">
-        {/* <Routes>
-            <Route path='' element={<ToyApp />}></Route>
-            <Route path='statistics' element={<MyChart />}></Route>
-            <Route path='about' element={<About />}></Route>
-            <Route path='toy/:id' element={<ToyDetails />}></Route>
-            <Route path='toy/edit' element={<ToyEdit />}></Route>
-            <Route path='toy/edit/:id' element={<ToyEdit />}></Route>
-            <Route path='login' element={<Login />}></Route>
-            <Route path='user' element={<UserDetails />}></Route>
-        </Routes> */}
-        <h1>Hi</h1>
-
-        <h3>Hello bar</h3>
-        <h3>Hello yasmin</h3>
+        <Routes>
+          {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
+          {/* <Route path="user/:id" element={<UserDetails />} /> */}
+        </Routes>
       </main>
     </div>
   )

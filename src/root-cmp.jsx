@@ -1,11 +1,11 @@
-import React from 'react'  
+import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
     <div className="app">
-            {/* <AppHeader /> */}
-    <main className="container">
+      {/* <AppHeader /> */}
+      <main className="container">
         {/* <Routes>
             <Route path='' element={<ToyApp />}></Route>
             <Route path='statistics' element={<MyChart />}></Route>
@@ -17,9 +17,11 @@ function App() {
             <Route path='user' element={<UserDetails />}></Route>
         </Routes> */}
         <h1>Hi</h1>
-    </main>
-</div>
-  )  
+
+        <h3>Hello bar</h3>
+      </main>
+    </div>
+  )
 }
 
-export default App  
+export default App

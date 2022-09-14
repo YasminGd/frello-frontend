@@ -1,7 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import routes from './routes'
 import { AppHeader } from './cmps/app-header.jsx'
+import { Home } from './pages/home'
+import { Workspace } from './pages/workspace'
+import './assets/styles/main.scss'
+import { Board } from './pages/board'
 
 function App() {
   return (
@@ -9,8 +12,10 @@ function App() {
       <AppHeader />
       <main className="container">
         <Routes>
-          {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
           {/* <Route path="user/:id" element={<UserDetails />} /> */}
+          <Route path="" element={<Home />} />
+          <Route path="workspace" element={<Workspace />} />
+          <Route path="board/*" element={<Board />} />
         </Routes>
       </main>
     </div>

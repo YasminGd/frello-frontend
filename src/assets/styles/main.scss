@@ -15,3 +15,25 @@
 @import 'pages/home';
 @import 'pages/task-details';
 @import 'pages/workspace';
+
+// COMPONENTS
+@import 'cmps/app-header';
+@import 'cmps/board-header';
+@import 'cmps/board-list';
+@import 'cmps/board-preview';
+@import 'cmps/edit-task-list';
+@import 'cmps/edit-task-preview';
+@import 'cmps/edit-task-details';
+@import 'cmps/group-list';
+@import 'cmps/group-preview';
+@import 'cmps/side-menu';
+@import 'cmps/task-activity';
+@import 'cmps/task-activity-list';
+@import 'cmps/task-activity-preview';
+@import 'cmps/task-comment';
+@import 'cmps/task-comment-list';
+@import 'cmps/task-comment-preview';
+@import 'cmps/task-description';
+@import 'cmps/task-list';
+@import 'cmps/task-preview';
+@import 'cmps/task-title';

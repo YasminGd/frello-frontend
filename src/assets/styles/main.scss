@@ -9,3 +9,9 @@
 @import 'basics/helpers';
 @import 'basics/base';
 @import 'basics/layout';
+
+// PAGES
+@import 'pages/board';
+@import 'pages/home';
+@import 'pages/task-details';
+@import 'pages/workspace';

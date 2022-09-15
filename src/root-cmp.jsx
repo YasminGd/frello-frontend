@@ -5,6 +5,7 @@ import { Home } from './pages/home'
 import { Workspace } from './pages/workspace'
 import './assets/styles/main.scss'
 import { Board } from './pages/board'
+import { LoginSignup } from './cmps/login-signup.jsx'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           {/* <Route path="user/:id" element={<UserDetails />} /> */}
           <Route path="" element={<Home />} />
+          <Route path="user/:status" element={<LoginSignup />} />
           <Route path="workspace" element={<Workspace />} />
           <Route path="board/*" element={<Board />} />
         </Routes>

@@ -1,7 +1,10 @@
 export const AppHeader = () => {
   return (
     <section className="app-header">
-      <h1>App header</h1>
+      <div className="main-logo">
+        <img src="" alt="" />
+        <h1>Frello</h1>
+      </div>
     </section>
   )
 }

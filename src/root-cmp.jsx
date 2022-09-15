@@ -17,7 +17,7 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="user/:status" element={<LoginSignup />} />
           <Route path="workspace" element={<Workspace />} />
-          <Route path="board/:boardId*" element={<Board />} />
+          <Route path="board/:boardId/*" element={<Board />} />
         </Routes>
       </main>
     </div>

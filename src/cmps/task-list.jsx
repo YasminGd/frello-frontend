@@ -1,7 +1,10 @@
 import { TaskPreview } from './task-preview.jsx'
 
-export const TaskList = () => {
+export const TaskList = ({ tasks }) => {
+    console.log(tasks)
     return <section className="task-list">
-        <TaskPreview />
+        {
+            tasks.map(task => <TaskPreview task={task} />)
+        }
     </section>
 }

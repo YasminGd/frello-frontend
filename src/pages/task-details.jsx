@@ -17,6 +17,12 @@ export const TaskDetails = () => {
     const group = board.groups.find(group => group.id === groupId)
     const task = group.tasks.find(task => task.id === taskId)
 
+    const handleChange = ({ target }) => {
+        const { value } = target
+
+        setTitleTxt(value)
+    }
+
     const onGoBack = () => {
         navigate(-1)
     }
@@ -26,7 +32,7 @@ export const TaskDetails = () => {
             <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
             <div className="task-header">
                 <GrCreditCard className="header-icon" />
-                <textarea name="" value={titleTxt}></textarea>
+                <textarea name="" value={titleTxt} onChange={handleChange}></textarea>
                 <div className="sub-title">in list {group.title}</div>
             </div>
             <div className="task-body">

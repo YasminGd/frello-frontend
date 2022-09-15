@@ -34,7 +34,7 @@ export const Board = () => {
       <BoardHeader />
       <GroupList board={board} addItem={addItem} />
       <Routes>
-        <Route path="task/:id" element={<TaskDetails />} />
+        <Route path=":groupId/:taskId" element={<TaskDetails />} />
       </Routes>
     </section>
   )

@@ -1,0 +1,21 @@
+.screen {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000000a3;
+}
+
+.task-details {
+    background-color: #f4f5f7;
+    z-index: 10;
+    border-radius: 2px;
+    width: 768px;
+    opacity: 1;
+    height: 700px;
+    position: fixed;
+    left: 50%;
+    top: -200px;
+    transform: translate(-50%, 50%);
+}

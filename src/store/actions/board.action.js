@@ -23,18 +23,17 @@ export function getActionUpdateBoard(board) {
 }
 
 export function loadBoards() {
-    return async (dispatch) => {
-        try {
-            const boards = await boardService.query()
-            console.log('Boards from LocalStorage:', boards)
-            dispatch({
-                type: 'SET_BOARDS',
-                boards,
-            })
-        } catch (err) {
-            console.log('Cannot load boards', err)
-        }
+  return async (dispatch) => {
+    try {
+      const boards = await boardService.query()
+      dispatch({
+        type: 'SET_BOARDS',
+        boards,
+      })
+    } catch (err) {
+      console.log('Cannot load boards', err)
     }
+  }
 }
 
 export function removeBoard(boardId) {
@@ -61,16 +60,14 @@ export function addBoard(board) {
 }
 
 export function updateBoard(board) {
-    return async (dispatch) => {
-        try {
-            console.log(board)
-            const savedBoard = await boardService.save(board)
-            console.log(`savedBoard:`, savedBoard)
-            dispatch(getActionUpdateBoard(savedBoard))
-        } catch (err) {
-            console.log('Cannot update board', err)
-        }
+  return async (dispatch) => {
+    try {
+      const savedBoard = await boardService.save(board)
+      dispatch(getActionUpdateBoard(savedBoard))
+    } catch (err) {
+      console.log('Cannot update board', err)
     }
+  }
 }
 
 // export function addToBoard(board) {

@@ -186,7 +186,6 @@ export const boardService = {
 async function query(filterBy) {
   try {
     let boards = await storageService.query(STORAGE_KEY)
-    console.log(`boards:`, boards)
     if (!boards || !boards.length) {
       console.log('inside if')
       storageService.postMany(STORAGE_KEY, gBoards)
@@ -248,5 +247,6 @@ async function removeItem(groupId, taskId, boardId) {
   }
   return board
 }
+
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

@@ -37,7 +37,7 @@ export const Workspace = () => {
             <h3>Recently viewed</h3>
           </div>
           <div className="boards-container">
-            <BoardList boards={boards} />
+            <BoardList boards={boards} onToggleStarred={onToggleStarred} />
           </div>
         </section>
       </section>

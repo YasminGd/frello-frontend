@@ -185,7 +185,6 @@ export const boardService = {
 async function query(filterBy) {
   try {
     let boards = await storageService.query(STORAGE_KEY)
-    console.log(`boards:`, boards)
     if (!boards || !boards.length) {
       console.log('inside if')
       storageService.postMany(STORAGE_KEY, gBoards)
@@ -193,7 +192,7 @@ async function query(filterBy) {
     }
 
     return boards
-  } catch (err) {}
+  } catch (err) { }
 }
 
 function getById(boardId) {
@@ -230,7 +229,7 @@ async function addItem({ title, groupId, boardId }) {
     const group = board.groups.find(group => group.id === groupId)
     group.tasks.push({ title, id: utilService.makeId() })
   } else {
-    board.groups.push({ title, id: utilService.makeId(), tasks:[] })
+    board.groups.push({ title, id: utilService.makeId(), tasks: [] })
   }
   return board
 }

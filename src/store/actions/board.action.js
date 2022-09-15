@@ -26,7 +26,6 @@ export function loadBoards() {
   return async (dispatch) => {
     try {
       const boards = await boardService.query()
-      console.log('Boards from LocalStorage:', boards)
       dispatch({
         type: 'SET_BOARDS',
         boards,
@@ -63,9 +62,7 @@ export function addBoard(board) {
 export function updateBoard(board) {
   return async (dispatch) => {
     try {
-      console.log(board)
       const savedBoard = await boardService.save(board)
-      console.log(`savedBoard:`, savedBoard)
       dispatch(getActionUpdateBoard(savedBoard))
     } catch (err) {
       console.log('Cannot update board', err)

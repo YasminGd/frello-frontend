@@ -29,7 +29,7 @@ export const Board = () => {
       <BoardHeader />
       <GroupList board={board} />
       <Routes>
-        <Route path="task/:id" element={<TaskDetails />} />
+        <Route path=":groupId/:taskId" element={<TaskDetails />} />
       </Routes>
     </section>
   )

@@ -200,5 +200,6 @@ async function update(title, groupId, boardId) {
   group.tasks.push({ title, id: utilService.makeId() })
   return board
 }
+
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

@@ -1,5 +1,4 @@
 import { boardService } from "../../services/board.service.js"
-import { userService } from "../../services/user.service.js"
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {

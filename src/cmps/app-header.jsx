@@ -1,16 +1,33 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 const logo = require('../assets/img/logo-frello.png')
 
 export const AppHeader = () => {
+  const location = useLocation()
+  console.log(`location:`, location.pathname)
+
+  const getStyleClass = () => {
+    let styleClass
+    if (location.pathname === '/') styleClass = 'home-header'
+    else if (location.pathname === '/user/login' || location.pathname === '/user/signup') styleClass = 'login-header'
+
+    return styleClass
+  }
+
+  const styleClass = getStyleClass()
   return (
-    <section className="app-header">
+    <section className={`app-header ${styleClass}`}>
       <div className="main-logo">
         <img src={logo} alt="" />
         <h1>Frello</h1>
       </div>
       <nav className="home-nav">
-        <Link className="login" to={'user/login'}>Log in</Link>
-        <Link className="signup" to={'user/signup'}>Get Frello for free</Link>
+        <Link className="login" to={'user/login'}>
+          Log in
+        </Link>
+        <Link className="signup" to={'user/signup'}>
+          Get Frello for free
+        </Link>
       </nav>
     </section>
   )

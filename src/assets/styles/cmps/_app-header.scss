@@ -7,15 +7,21 @@
   transition: background-color 0.5s ease 0s, box-shadow 0.5s ease 0s;
   transition-property: background-color, box-shadow;
   transition-duration: 0.5s, 0.5s;
-  &:hover {
-    box-shadow: rgb(9 30 66 / 15%) 0px 0.5rem 1rem 0px;
-  }
+  position: relative;
+  z-index: 100;
 
   .main-logo {
+    h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      line-height: 30px;
+    }
+
     img {
       margin-right: 7px;
       width: 22px;
     }
+
     font-family: CharlieDisplay-bold;
     display: flex;
     align-items: center;
@@ -45,5 +51,18 @@
         background-color: #0747a6;
       }
     }
+  }
+
+  &.home-header {
+    background-color: #fff;
+    height: 60px;
+
+    &:hover {
+      box-shadow: rgb(9 30 66 / 15%) 0px 0.5rem 1rem 0px;
+    }
+  }
+
+  &.login-header {
+    display: none;
   }
 }

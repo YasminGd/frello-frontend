@@ -1,11 +1,10 @@
 import { GroupPreview } from './group-preview.jsx'
 
-export const GroupList = () => {
+export const GroupList = ({ board }) => {
+    console.log(board);
     return <section className="group-list">
-        <GroupPreview />
-        <GroupPreview />
-        <GroupPreview />
-        <GroupPreview />
-        <h1>group list</h1>
+        {
+            board.groups.map(group =>  <GroupPreview group={group} /> )
+        }
     </section>
 }

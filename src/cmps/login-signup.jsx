@@ -6,6 +6,7 @@ import * as Yup from "yup"
 // import { useDispatch } from "react-redux"
 import { NavLink, useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
+const logo = require('../assets/img/logo-frello.png')
 
 export const LoginSignup = () => {
     const params = useParams()
@@ -62,67 +63,71 @@ export const LoginSignup = () => {
         ev.target.classList.remove("focus")
     }
 
-    const formTxt = (status === 'login') ? 'Log in' : 'Sign up'
+    const formTxt = (status === 'login') ? 'Log in to Frello' : 'Sign up for your account'
 
     return (
-        <form className="signup-form" onSubmit={formik.handleSubmit}>
-            <h5>{formTxt} to Frello</h5>
+        <section className="form-container">
+            <div className="form-logo">
+                <img src={logo} alt="" />
+                <h1>Frello</h1>
+            </div>
+            <form className="signup-form" onSubmit={formik.handleSubmit}>
+                <h5>{formTxt}</h5>
 
+                {status === 'signup' && < React.Fragment >
+                    <input
+                        id="fullname"
+                        name="fullname"
+                        type="text"
+                        onChange={formik.handleChange}
+                        onFocus={handleFocus}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.fullname}
+                        placeholder="Enter full name"
+                    />
+                    {formik.touched.fullname && formik.errors.fullname ? (
+                        <span className="error">{formik.errors.fullname}</span>
+                    ) : <span>&nbsp;</span>}
+                </React.Fragment>}
 
-
-            {status === 'signup' && < React.Fragment >
                 <input
-                    id="fullname"
-                    name="fullname"
+                    id="username"
+                    name="username"
                     type="text"
                     onChange={formik.handleChange}
                     onFocus={handleFocus}
                     onBlur={formik.handleBlur}
-                    value={formik.values.fullname}
-                    placeholder="Enter full name"
+                    value={formik.values.username}
+                    placeholder="Enter user name"
+
                 />
-                {formik.touched.fullname && formik.errors.fullname ? (
-                    <span className="error">{formik.errors.fullname}</span>
-                ) : <span>&nbsp;</span>}
-            </React.Fragment>}
+                {
+                    formik.touched.username && formik.errors.username ? (
+                        <span className="error">{formik.errors.username}</span>
+                    ) : <span>&nbsp;</span>
+                }
 
-            <input
-                id="username"
-                name="username"
-                type="text"
-                onChange={formik.handleChange}
-                onFocus={handleFocus}
-                onBlur={formik.handleBlur}
-                value={formik.values.username}
-                placeholder="Enter user name"
+                <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    onChange={formik.handleChange}
+                    onFocus={handleFocus}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.password}
+                    placeholder="Enter password"
+                />
+                {
+                    formik.touched.password && formik.errors.password ? (
+                        <span className="error">{formik.errors.password}</span>
+                    ) : <span>&nbsp;</span>
+                }
 
-            />
-            {
-                formik.touched.username && formik.errors.username ? (
-                    <span className="error">{formik.errors.username}</span>
-                ) : <span>&nbsp;</span>
-            }
-
-            <input
-                id="password"
-                name="password"
-                type="password"
-                onChange={formik.handleChange}
-                onFocus={handleFocus}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
-                placeholder="Enter password"
-            />
-            {
-                formik.touched.password && formik.errors.password ? (
-                    <span className="error">{formik.errors.password}</span>
-                ) : <span>&nbsp;</span>
-            }
-
-            <button type="submit">{formTxt}</button>
-            {status === 'login' && <NavLink to={'/user/signup'}>Don't have an account yet? Sign up</NavLink>}
-            {status === 'signup' && <NavLink to={'/user/login'}>Already have an account? Login</NavLink>}
-        </form >
+                <button type="submit">{formTxt}</button>
+                {status === 'login' && <NavLink to={'/user/signup'}>Sign up for an account</NavLink>}
+                {status === 'signup' && <NavLink to={'/user/login'}>Already have an account? Log In</NavLink>}
+            </form >
+        </section>
     )
 }
 

@@ -1,43 +1,44 @@
-:root {
-  --gray-800: #2d3748;
-  --gray-700: #4a5568;
-  --gray-500: #a0aec0;
-  --gray-400: #cbd5e0;
-  --gray-300: #e2e8f0;
-  --gray-200: #edf2f7;
-  --gray-100: #f7fafc;
-  --gray-custom: #ebecf0;
-  --red-100: #fff5f5;
-  --red-200: #fed7d7;
-  --red-300: #feb2b2;
-  --red-400: #fc8181;
-  --red-500: #f56565;
-  --red-600: #e53e3e;
-  --red-700: #c53030;
-  --red-800: #9b2c2c;
-  --red-900: #742a2a;
-  --blue-100: #ebf8ff;
-  --blue-200: #bee3f8;
-  --blue-300: #90cdf4;
-  --blue-400: #63b3ed;
-  --blue-500: #4299e1;
-  --blue-600: #3182ce;
-  --blue-700: #2b6cb0;
-  --blue-800: #2c5282;
-  --blue-900: #2a4365;
-  --white: white;
-  --red: #f56565;
-  --text-decoration-color: var(--blue-400);
-  --text-color: var(--gray-800);
-  --focus-ring-color: var(--blue-600);
-  --hover-color: var(--gray-custom);
+$gray800: #2d3748;
+$gray700: #4a5568;
+$gray500: #a0aec0;
+$gray400: #cbd5e0;
+$gray100: #f7fafc;
+$gray: #dfe1e5;
+$gray-light: #fafbfc;
+$red600: #e53e3e;
+$blue400: #63b3ed;
+$blue600: #3182ce;
+$red: #f56565;
+$grayCustom: #ebecf0;
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-logo {
+    font-family: CharlieDisplay-bold;
+
+    width: 40px;
+    height: 40px;
+    display: flex;
+    margin-right: 170px;
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+
+    img {
+      margin-right: 20px;
+    }
+
+    h1 {
+      font-size: 3.1em;
+      letter-spacing: 1px;
+    }
+  }
 }
 
-/* Form
-––––––––––––––––––––––––––––––––– */
-
 .signup-form {
-  margin: auto;
   margin-top: 50px;
   margin-bottom: 50px;
   display: flex;
@@ -66,54 +67,44 @@
     font-size: 0.9em;
     transition: bottom 0.2s;
     cursor: text;
-    color: var(--gray-500);
+    color: $gray500;
   }
-  input.focus + .dynamic-placeholder {
-    bottom: 55px;
-    left: 5px;
-    font-size: 0.8em;
+
+  a {
+    margin: auto;
+    color: #0052cc;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
-label {
-  font-weight: bold;
-  display: flex;
-}
-
-input[type='password'],
 input[type='password'],
 input[type='email'],
 input[type='text'],
 input[type='number'] {
   padding: 0.65rem 0.5rem;
   font-size: 1rem;
-  border: 2px solid var(--gray-400);
-  background-color: var(--gray-100);
-  color: var(--gray-800);
+  border: 2px solid $gray;
+  background-color: $gray-light;
+  color: $gray800;
   border-radius: 5px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  color: var(--gray-500);
+  color: $gray500;
   display: block;
   width: 316px;
   height: 40px;
-  transition: background-color 0.5s;
-
-  &:hover {
-    background-color: var(--gray-400);
-  }
+  transition: background-color, border-color 0.5s;
 
   &:focus {
     background-color: white;
+    border-color: $blue-main;
   }
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+input:focus {
   outline: none;
-  border: 2px solid var(--focus-ring-color);
+  border: 2px solid black;
 }
 
 input[type='submit'],
@@ -123,33 +114,27 @@ button {
   padding: 0.5rem 1.25rem;
   font-size: 1rem;
   border-radius: 10px;
-  background-color: var(--gray-700);
-  border: 2px solid var(--gray-700);
+  background-color: $gray700;
   color: white;
   text-decoration: none;
   font-weight: bold;
   margin-bottom: 1rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   display: inline-block;
-  line-height: initial;
   transition: background-color 200ms ease-in-out, border 200ms ease-in-out,
     transform 200ms ease-in-out;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
 .error {
   font-size: 12px;
-  color: var(--red-600);
+  color: $red600;
   margin-bottom: 15px;
   margin-top: 3px;
 }
 
 button[type='submit'] {
   margin-top: 1rem;
+  border: none;
+  font-size: 0.95em;
   background-color: #0052cc;
   color: white;
   border-radius: 5px;

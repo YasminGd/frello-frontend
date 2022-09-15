@@ -16,7 +16,7 @@ const board = {
     fullname: 'Abi Abambi',
     imgUrl: 'http://some-img',
   },
-  style: {},
+  style: { background: 'url("https://techcrunch.com/wp-content/uploads/2020/11/GettyImages-1150039017.jpg?w=1390&crop=1") center center / cover' },
   labels: [
     {
       id: 'l101',
@@ -127,7 +127,21 @@ const board = {
     },
   ],
 }
-const gBoards = [board, { _id: 'b102', title: 'Second board' }]
+const gBoards = [
+  board,
+  {
+    _id: 'b102',
+    title: 'Second board',
+    style: { background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/ef2b36f0a6fced5b25ba500c55ae3016/photo-1513185041617-8ab03f83d6c5.jpg") center center / cover' },
+  },
+  {
+    _id: 'b103',
+    title: 'Second board',
+    style: {
+      backgroundColor: 'rgb(81, 152, 57)',
+    },
+  },
+]
 
 ;(() => {
   boardChannel.addEventListener('message', (ev) => {

@@ -6,6 +6,5 @@ export const GroupList = ({ board }) => {
         {
             board.groups.map(group =>  <GroupPreview group={group} /> )
         }
-        <h1>group list</h1>
     </section>
 }

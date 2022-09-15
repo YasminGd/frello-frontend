@@ -15,11 +15,11 @@ export const Board = () => {
 
   useEffect(() => {
     dispatch(loadBoards())
-    setTimeout(() =>dispatch({
+    setTimeout(() => dispatch({
       type: 'SET_BOARD',
       boardId: params.boardId
-    }),3000 )
-    
+    }), 300)
+
   }, [])
   // const board = useSelector(state => state.boardModule.boards.filter(board => board._id === ))
 

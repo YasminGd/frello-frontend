@@ -54,7 +54,7 @@ function saveTask(boardId, groupId, task, activity) {
     // return task
 }
 
-//!!!!!!!!!! Do you only send the full board when communicating with the backend?
+//!! Do you only send the full board when communicating with the backend?
 
 
 const board = {

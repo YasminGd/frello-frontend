@@ -7,5 +7,8 @@ export const GroupPreview = ({ group }) => {
             <p>{group.title}</p>
         </section>
         <TaskList tasks={group.tasks} />
+        <button className="add-task-button">
+        Add a card
+      </button>
     </section>
 }

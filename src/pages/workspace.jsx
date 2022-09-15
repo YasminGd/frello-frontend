@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadBoards } from '../store/actions/board.action'
+import { loadBoards, updateBoard } from '../store/actions/board.action'
 import { BoardList } from '../cmps/board-list'
 import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai'
 
@@ -10,7 +10,14 @@ export const Workspace = () => {
 
   useEffect(() => {
     dispatch(loadBoards())
-  })
+  }, [])
+
+  const onToggleStarred = (ev, boardId) => {
+    ev.preventDefault()
+    const board = boards.find((board) => board._id === boardId)
+    board.isStarred = !board.isStarred
+    dispatch(updateBoard(board))
+  }
 
   return (
     <section className="workspace">
@@ -21,7 +28,7 @@ export const Workspace = () => {
             <h3>Starred boards</h3>
           </div>
           <div className="boards-container">
-            <BoardList boards={boards} />
+            <BoardList boards={boards} onToggleStarred={onToggleStarred} />
           </div>
         </section>
         <section className="recent-boards">

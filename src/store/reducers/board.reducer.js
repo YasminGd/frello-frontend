@@ -26,7 +26,8 @@ export function boardReducer(state = initialState, action) {
 
     case 'UPDATE_BOARD':
       boards = state.boards.map((board) => (board._id === action.board._id ? action.board : board))
-      newState = { ...state,board: action.board, boards }
+      newState = { ...state, boards }
+      if (state.board) newState = { ...state, board: action.board }
       break
 
     case 'UNDO_REMOVE_BOARD':

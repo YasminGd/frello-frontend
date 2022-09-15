@@ -22,11 +22,9 @@ export const Board = () => {
 
   }, [])
 
-  const addItem = (title, groupId) => {
-    dispatch(addItemToBoard(title, groupId, board._id))
+  const addItem = ({ title, groupId }) => {
+    dispatch(addItemToBoard({ title, groupId, boardId: board._id }))
   }
-
-  // const board = useSelector(state => state.boardModule.boards.filter(board => board._id === ))
 
   if (!board) return <h1>Loading</h1>
   return (

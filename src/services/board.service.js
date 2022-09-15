@@ -12,12 +12,13 @@ const board = {
   title: 'Robot dev proj',
   archivedAt: 1589983468418,
   createdAt: 1589983468418,
+  isStarred: false,
   createdBy: {
     _id: 'u101',
     fullname: 'Abi Abambi',
     imgUrl: 'http://some-img',
   },
-  style: { background: 'url("https://techcrunch.com/wp-content/uploads/2020/11/GettyImages-1150039017.jpg?w=1390&crop=1") center center / cover' },
+  style: { background: 'url("https://techcrunch.com/wp-content/uploads/2020/11/GettyImages-1150039017.jpg?w=1390&crop=1")' },
   labels: [
     {
       id: 'l101',
@@ -133,14 +134,35 @@ const gBoards = [
   {
     _id: 'b102',
     title: 'Second board',
-    style: { background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/ef2b36f0a6fced5b25ba500c55ae3016/photo-1513185041617-8ab03f83d6c5.jpg") center center / cover' },
+    style: { background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/ef2b36f0a6fced5b25ba500c55ae3016/photo-1513185041617-8ab03f83d6c5.jpg")' },
+    isStarred: false,
   },
   {
     _id: 'b103',
-    title: 'Second board',
+    title: 'Third board',
     style: {
+      background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/656x960/4fef784b2b03ad256991ab304fcdac2e/photo-1662715593284-14fdf66c1202.jpg")',
       backgroundColor: 'rgb(81, 152, 57)',
     },
+    isStarred: true,
+  },
+  {
+    _id: 'b104',
+    title: 'Fourth board',
+    style: {
+      background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/386209d5ee33d0c24fc340a53f16cfe4/photo-1663011109441-6948af4a0b80.jpg")',
+      backgroundColor: 'rgb(81, 152, 57)',
+    },
+    isStarred: false,
+  },
+  {
+    _id: 'b105',
+    title: 'Fifth board',
+    style: {
+      background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/f7d6fa45ef3ecdf5429c9ce73175f5a2/photo-1660551772352-0855c10356b1.jpg")',
+      backgroundColor: 'rgb(81, 152, 57)',
+    },
+    isStarred: true,
   },
 ]
 
@@ -155,19 +177,23 @@ export const boardService = {
   getById,
   save,
   remove,
-  update
+  addItem
 }
 
 // window.cs = boardService
 
 async function query(filterBy) {
-  let boards = storageService.query(STORAGE_KEY)
-  if (!boards || !boards.length) {
-    storageService.postMany(STORAGE_KEY, gBoards)
-    boards = gBoards
-  }
+  try {
+    let boards = await storageService.query(STORAGE_KEY)
+    console.log(`boards:`, boards)
+    if (!boards || !boards.length) {
+      console.log('inside if')
+      storageService.postMany(STORAGE_KEY, gBoards)
+      boards = gBoards
+    }
 
-  return boards
+    return boards
+  } catch (err) {}
 }
 
 function getById(boardId) {
@@ -183,9 +209,12 @@ async function remove(boardId) {
 async function save(board) {
   var savedBoard
   if (board._id) {
+    console.log('INSIDE PUT')
+    console.log(`board:`, board)
     savedBoard = await storageService.put(STORAGE_KEY, board)
     // boardChannel.postMessage(getActionUpdateBoard(savedBoard))
   } else {
+    console.log('INSIDE POST')
     // Later, owner is set by the backend
     // board.owner = userService.getLoggedinUser()
     savedBoard = await storageService.post(STORAGE_KEY, board)
@@ -194,10 +223,15 @@ async function save(board) {
   return savedBoard
 }
 
-async function update(title, groupId, boardId) {
+async function addItem({ title, groupId, boardId }) {
+  //get from the store?
   const board = await boardService.getById(boardId)
-  const group = board.groups.find(group => group.id === groupId)
-  group.tasks.push({ title, id: utilService.makeId() })
+  if (groupId) {
+    const group = board.groups.find(group => group.id === groupId)
+    group.tasks.push({ title, id: utilService.makeId() })
+  } else {
+    board.groups.push({ title, id: utilService.makeId(), tasks:[] })
+  }
   return board
 }
 

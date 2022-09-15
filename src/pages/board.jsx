@@ -1,11 +1,27 @@
 import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
 import { BoardHeader } from '../cmps/board-header.jsx'
+import { GroupList } from '../cmps/group-list.jsx'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from "react-router-dom"
 
 export const Board = () => {
+  const params = useParams()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({
+      type: 'SET_BOARD',
+      boardId: params.boardId
+    })
+  }, [])
+  // const board = useSelector(state => state.boardModule.boards.filter(board => board._id === ))
+
   return (
     <section className="board">
       <BoardHeader />
+      <GroupList />
       <Routes>
         <Route path="task/:id" element={<TaskDetails />} />
       </Routes>

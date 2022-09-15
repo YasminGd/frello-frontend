@@ -1,11 +1,11 @@
 .task-preview {
     border-radius: 3px;
     background-color: white;
-    padding: 6px 8px;
-    box-shadow: var(--ds-shadow-raised, 0 1px 0 #091e4240);
+    padding: 8px 8px;
+    box-shadow: 0 1px 0 #091e4240;
 
     &:hover {
         cursor: pointer;
-        background-color: #091e420a;
+        background-color: #F4F4F8;
     }
 }

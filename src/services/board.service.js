@@ -1,4 +1,5 @@
 import { storageService } from './async-storage.service.js'
+import { utilService } from './util.service.js'
 // import { getActionRemoveBoard, getActionAddBoard, getActionUpdateBoard } from '../store/board.actions.js'
 import { store } from '../store/store'
 
@@ -165,17 +166,18 @@ const gBoards = [
   },
 ]
 
-;(() => {
-  boardChannel.addEventListener('message', (ev) => {
-    store.dispatch(ev.data)
-  })
-})()
+  ; (() => {
+    boardChannel.addEventListener('message', (ev) => {
+      store.dispatch(ev.data)
+    })
+  })()
 
 export const boardService = {
   query,
   getById,
   save,
   remove,
+  addItem
 }
 
 // window.cs = boardService
@@ -221,5 +223,16 @@ async function save(board) {
   return savedBoard
 }
 
+async function addItem({ title, groupId, boardId }) {
+  //get from the store?
+  const board = await boardService.getById(boardId)
+  if (groupId) {
+    const group = board.groups.find(group => group.id === groupId)
+    group.tasks.push({ title, id: utilService.makeId() })
+  } else {
+    board.groups.push({ title, id: utilService.makeId(), tasks:[] })
+  }
+  return board
+}
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

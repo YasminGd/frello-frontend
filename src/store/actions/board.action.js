@@ -91,6 +91,13 @@ export function removeFromBoard(boardId) {
   }
 }
 
+export function addItemToBoard({ title, groupId, boardId }) {
+  return async (dispatch) => {
+    const updatedBoard = await boardService.addItem({ title, groupId, boardId })
+    dispatch(updateBoard(updatedBoard))
+  }
+}
+
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
 // export function onRemoveBoardOptimistic(boardId) {

@@ -15,7 +15,7 @@ function App() {
           {/* <Route path="user/:id" element={<UserDetails />} /> */}
           <Route path="" element={<Home />} />
           <Route path="workspace" element={<Workspace />} />
-          <Route path="board/*" element={<Board />} />
+          <Route path="board/:boardId*" element={<Board />} />
         </Routes>
       </main>
     </div>

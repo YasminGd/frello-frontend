@@ -1,13 +1,18 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
+import { IoCloseOutline } from 'react-icons/io5'
 
 export const TaskDetails = () => {
-    // return <section className="task-details">
-    //     <h1>task details</h1>
-    // </section>
+    const navigate = useNavigate()
 
-return <React.Fragment>
-    <section className="task-details">
-    </section>
-    <section className="screen"></section>
-</React.Fragment>
+    const onGoBack = () => {
+        navigate(-1)
+    }
+
+    return <React.Fragment>
+        <section className="task-details">
+            <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
+        </section>
+        <section onClick={onGoBack} className="screen"></section>
+    </React.Fragment>
 }

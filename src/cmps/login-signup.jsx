@@ -66,7 +66,9 @@ export const LoginSignup = () => {
 
     return (
         <form className="signup-form" onSubmit={formik.handleSubmit}>
-            <h5>{formTxt} for your account</h5>
+            <h5>{formTxt} to Frello</h5>
+
+
 
             {status === 'signup' && < React.Fragment >
                 <input
@@ -76,10 +78,9 @@ export const LoginSignup = () => {
                     onChange={formik.handleChange}
                     onFocus={handleFocus}
                     onBlur={formik.handleBlur}
-                    onBlurCapture={(ev) => { onBlur(ev, 'fullname') }}
                     value={formik.values.fullname}
+                    placeholder="Enter full name"
                 />
-                <label className="dynamic-placeholder" htmlFor="fullname">Full name</label>
                 {formik.touched.fullname && formik.errors.fullname ? (
                     <span className="error">{formik.errors.fullname}</span>
                 ) : <span>&nbsp;</span>}
@@ -92,30 +93,15 @@ export const LoginSignup = () => {
                 onChange={formik.handleChange}
                 onFocus={handleFocus}
                 onBlur={formik.handleBlur}
-                onBlurCapture={(ev) => { onBlur(ev, 'username') }}
                 value={formik.values.username}
+                placeholder="Enter user name"
+
             />
-            <label className="dynamic-placeholder" htmlFor="username">User name</label>
             {
                 formik.touched.username && formik.errors.username ? (
                     <span className="error">{formik.errors.username}</span>
                 ) : <span>&nbsp;</span>
             }
-
-            {/* <input
-                id="email"
-                name="email"
-                type="email"
-                onChange={formik.handleChange}
-                onFocus={handleFocus}
-                onBlur={formik.handleBlur}
-                onBlurCapture={(ev) => { onBlur(ev, 'email') }}
-                value={formik.values.email}
-            />
-            <label className="dynamic-placeholder" htmlFor="email">Email address</label>
-            {formik.touched.email && formik.errors.email ? (
-                <span className="error">{formik.errors.email}</span>
-            ) : <span>&nbsp;</span>} */}
 
             <input
                 id="password"
@@ -124,10 +110,9 @@ export const LoginSignup = () => {
                 onChange={formik.handleChange}
                 onFocus={handleFocus}
                 onBlur={formik.handleBlur}
-                onBlurCapture={(ev) => { onBlur(ev, 'password') }}
                 value={formik.values.password}
+                placeholder="Enter password"
             />
-            <label className="dynamic-placeholder" htmlFor="password">Password</label>
             {
                 formik.touched.password && formik.errors.password ? (
                     <span className="error">{formik.errors.password}</span>

@@ -1,6 +1,47 @@
 .app-header {
+  font-family: CharlieText-regular;
   background-color: #026aa7;
-  height: 44px;
-  padding: 6px 4px;
-  border-bottom: 1px solid hsla(0, 0%, 100%, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.5s ease 0s, box-shadow 0.5s ease 0s;
+  transition-property: background-color, box-shadow;
+  transition-duration: 0.5s, 0.5s;
+  &:hover {
+    box-shadow: rgb(9 30 66 / 15%) 0px 0.5rem 1rem 0px;
+  }
+
+  .main-logo {
+    img {
+      margin-right: 7px;
+    }
+    font-family: CharlieDisplay-bold;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+  }
+
+  .home-nav {
+    font-size: 1.25em;
+    display: flex;
+    align-items: center;
+    & > * {
+      padding: 8px 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .login {
+      color: #172a4d;
+    }
+
+    .signup {
+      background-color: #2a62f6;
+      color: white;
+      &:hover {
+        background-color: #0747a6;
+      }
+    }
+  }
 }

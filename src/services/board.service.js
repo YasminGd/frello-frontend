@@ -177,7 +177,8 @@ export const boardService = {
   getById,
   save,
   remove,
-  addItem
+  addItem,
+  removeItem
 }
 
 // window.cs = boardService
@@ -193,7 +194,7 @@ async function query(filterBy) {
     }
 
     return boards
-  } catch (err) {}
+  } catch (err) { }
 }
 
 function getById(boardId) {
@@ -223,14 +224,27 @@ async function save(board) {
   return savedBoard
 }
 
-async function addItem({ title, groupId, boardId }) {
+async function addItem(title, groupId, boardId) {
   //get from the store?
   const board = await boardService.getById(boardId)
   if (groupId) {
     const group = board.groups.find(group => group.id === groupId)
     group.tasks.push({ title, id: utilService.makeId() })
   } else {
-    board.groups.push({ title, id: utilService.makeId(), tasks:[] })
+    board.groups.push({ title, id: utilService.makeId(), tasks: [] })
+  }
+  return board
+}
+
+async function removeItem(groupId, taskId, boardId) {
+  //get from the store?
+  const board = await boardService.getById(boardId)
+  if (taskId) {
+    const group = board.groups.find(group => group.id === groupId)
+    console.log(group.tasks);
+    group.tasks = group.tasks.filter(task => task.id !== taskId)
+  } else {
+    board.groups = board.groups.filter(group => group.id !== groupId)
   }
   return board
 }

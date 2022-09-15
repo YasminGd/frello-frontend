@@ -4,4 +4,29 @@
     height: calc(100% - 52px);
     align-items: flex-start;
     gap: 8px;
+    line-height: 20px;
+
+    .add-task-button{
+        height: 40px;
+        border: none;   
+        width: 100%;
+        text-align: start;
+        padding: 8px 6px;
+        transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+        font-size: 14px;
+        width: 272px;
+        border-radius: 3px;
+        border: none;
+        background-color: #ffffff3d;
+        color: white;
+
+        &:before {
+            content: "\002B";
+            margin-right: 4px;
+        }
+
+        &:hover {
+            background-color: #ffffff52;
+        }
+    }
 }

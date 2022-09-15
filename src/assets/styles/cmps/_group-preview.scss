@@ -2,28 +2,56 @@
     background-color: #ebecf0;
     width: 272px;
     border-radius: 3px;
-    padding: 8px;
     font-size: 0.875rem;
 
     .group-title {
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
         color: #172b4d;
-        padding: 6px;
+        padding-top: 4px;
+        padding-left: 14px;
+        padding-right: 4px;
         font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+            border: none;
+            padding: 6px;
+            border-radius: 3px;
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
+            line-height: 20px;
+
+            &:hover {
+                background-color: #091e4214;
+
+            }
+        }
 
         &:hover {
             cursor: pointer;
         }
     }
 
+    .add-new {
+        margin-top: 6px;
+        width: 100%;
+        padding: 0;
+
+        input {
+            padding-bottom: 45px;
+        }
+    }
+
     .add-task-button {
         height: 30px;
-        border: none;   
         width: 100%;
-        text-align: start;
-        font-size: 14px;
-        border-radius: 3px;
-        margin-top: 9px;
+        margin-top: 6px;
+        color: #5e6c84;
+        background-color: transparent;
+        transition: none;
 
         &:before {
             content: "\002B";

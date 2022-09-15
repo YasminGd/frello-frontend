@@ -1,0 +1,30 @@
+.board-preview {
+  width: 194px;
+  height: 96px;
+  color: #fff;
+  font-size: 0.8547em;
+  border-radius: 3px;
+
+  .board-preview-details {
+    position: relative;
+
+    h3 {
+      padding: 8px;
+    }
+
+    .board-star {
+      display: none;
+      position: absolute;
+      right: 5px;
+      bottom: -58px;
+
+      .starred {
+        color: #eed847;
+      }
+    }
+  }
+
+  &:hover .board-star {
+    display: block;
+  }
+}

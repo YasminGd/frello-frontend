@@ -1,4 +1,4 @@
-import { boardService } from "../../services/board.service.js"
+import { boardService } from '../../services/board.service.js'
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -50,30 +50,26 @@ export function removeBoard(boardId) {
 }
 
 export function addBoard(board) {
-  return (dispatch) => {
-    boardService
-      .save(board)
-      .then((savedBoard) => {
-        console.log('Added Board', savedBoard)
-        dispatch(getActionAddBoard(savedBoard))
-      })
-      .catch((err) => {
-        console.log('Cannot add board', err)
-      })
+  return async (dispatch) => {
+    try {
+      const savedBoard = await boardService.save(board)
+      dispatch(getActionAddBoard(savedBoard))
+    } catch (err) {
+      console.log(`cannot add board:`, err)
+    }
   }
 }
 
 export function updateBoard(board) {
-  return (dispatch) => {
-    boardService
-      .save(board)
-      .then((savedBoard) => {
-        console.log('Updated Board:', savedBoard)
-        dispatch(getActionUpdateBoard(savedBoard))
-      })
-      .catch((err) => {
-        console.log('Cannot save board', err)
-      })
+  return async (dispatch) => {
+    try {
+      console.log(board)
+      const savedBoard = await boardService.save(board)
+      console.log(`savedBoard:`, savedBoard)
+      dispatch(getActionUpdateBoard(savedBoard))
+    } catch (err) {
+      console.log('Cannot update board', err)
+    }
   }
 }
 

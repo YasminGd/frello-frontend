@@ -155,7 +155,7 @@ export const boardService = {
   getById,
   save,
   remove,
-  update
+  addItem
 }
 
 // window.cs = boardService
@@ -194,10 +194,15 @@ async function save(board) {
   return savedBoard
 }
 
-async function update(title, groupId, boardId) {
+async function addItem({ title, groupId, boardId }) {
+  //get from the store?
   const board = await boardService.getById(boardId)
-  const group = board.groups.find(group => group.id === groupId)
-  group.tasks.push({ title, id: utilService.makeId() })
+  if (groupId) {
+    const group = board.groups.find(group => group.id === groupId)
+    group.tasks.push({ title, id: utilService.makeId() })
+  } else {
+    board.groups.push({ title, id: utilService.makeId(), tasks:[] })
+  }
   return board
 }
 // TEST DATA

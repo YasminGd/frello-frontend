@@ -64,7 +64,6 @@ export function addBoard(board) {
 }
 
 export function updateBoard(board) {
-    console.log(board);
     return (dispatch) => {
         boardService
             .save(board)
@@ -96,9 +95,9 @@ export function removeFromBoard(boardId) {
     }
 }
 
-export function addItemToBoard(title, groupId, boardId) {
+export function addItemToBoard({ title, groupId, boardId }) {
     return async (dispatch) => {
-        const updatedBoard = await boardService.update(title, groupId, boardId)
+        const updatedBoard = await boardService.addItem({ title, groupId, boardId })
         dispatch(updateBoard(updatedBoard))
     }
 }

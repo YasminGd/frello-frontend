@@ -14,7 +14,7 @@ export const GroupPreview = ({ group, addItem }) => {
         <section className="group-title">
             <p>{group.title}</p>
         </section>
-        <TaskList tasks={group.tasks} />
+        <TaskList tasks={group.tasks} groupId={group.id}/>
         {
             isAddOpen ? <AddNew onToggleAdd={onToggleAdd} addItem={addItem} groupId={group.id}/> :
                 <button className="add-task-button" onClick={onToggleAdd}>

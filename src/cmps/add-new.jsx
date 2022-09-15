@@ -9,15 +9,17 @@ export const AddNew = ({ onToggleAdd, addItem, groupId }) => {
 
     const onAdd = (ev) => {
         ev.preventDefault()
-        addItem(title, groupId)
+        if(!title) return
+        //send this as an object?
+        addItem({ title, groupId })
     }
 
     return (
         <section className="add-new">
             <form onSubmit={onAdd}>
-            <input type="text" placeholder="Enter a title for this card..." value={title} onChange={handleChange} />
-            <button>Add card</button>
-            <button onClick={onToggleAdd}>X</button>
+                <input type="text" placeholder="Enter a title for this card..." value={title} onChange={handleChange} />
+                <button>Add card</button>
+                <button onClick={onToggleAdd}>X</button>
             </form>
         </section>
     )

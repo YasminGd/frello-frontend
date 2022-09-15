@@ -3,7 +3,7 @@ export const AppHeader = () => {
     <section className="app-header">
       <div className="main-logo">
         <img src="" alt="" />
-        <h1>Frello</h1>
+        {/* <h1>Frello</h1> */}
       </div>
     </section>
   )

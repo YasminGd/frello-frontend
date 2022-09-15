@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
+import { BoardHeader } from '../cmps/board-header.jsx'
 
 export const Board = () => {
   return (
     <section className="board">
-      <h1>Board App</h1>
+      <BoardHeader />
       <Routes>
         <Route path="task/:id" element={<TaskDetails />} />
       </Routes>

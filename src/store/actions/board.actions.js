@@ -86,6 +86,7 @@ export function addToBoard(board) {
         })
     }
 }
+
 export function removeFromBoard(boardId) {
     return (dispatch) => {
         dispatch({

@@ -2,7 +2,7 @@ import { useState } from "react"
 
 export const Cover = ({ task, onUpdateTask }) => {
   const [selectedColor, setSelectedColor] = useState(task.style ? task.style.bgColor : '')
-  const [selectedCover, setSelectedCover] = useState('')
+  const [selectedCover, setSelectedCover] = useState(task.style ? task.style.coverStyle : '')
 
   const colors = ['#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4', '#172B4D']
 
@@ -21,8 +21,16 @@ export const Cover = ({ task, onUpdateTask }) => {
   const onUpdateCover = (color) => {
     if (selectedColor === color) return
     if (task.style) task.style.bgColor = color
-    else task.style = { bgColor: color }
+    else task.style = { bgColor: color, coverStyle: 'not fully covered' }
     setSelectedColor(color)
+    onUpdateTask(task)
+  }
+
+  const onUpdateCoverStyle = (coverStyle) => {
+    if (selectedCover === coverStyle) return
+    if (task.style) task.style.coverStyle = coverStyle
+    else task.style = { bgColor: '', coverStyle: coverStyle }
+    setSelectedCover(coverStyle)
     onUpdateTask(task)
   }
 
@@ -34,9 +42,9 @@ export const Cover = ({ task, onUpdateTask }) => {
     <section className="options">
       <p>Size</p>
       <section className="visual-options">
-        <div className={`not-covered-visual-option ${selectedCover === 'not covered' ? 'border' : ''}`}
+        <div className={`not-covered-visual-option ${selectedCover === 'not fully covered' && selectedColor ? 'border' : ''}`}
           style={{ backgroundColor: coverBackgroundColor }}
-          onClick={() => setSelectedCover('not covered')}>
+          onClick={() => onUpdateCoverStyle('not fully covered')}>
           <div className="bottom-main">
             <div className={`bottom-title`}
               style={{ background: notCoveredItemsColor }}
@@ -55,9 +63,9 @@ export const Cover = ({ task, onUpdateTask }) => {
             > </div>
           </div>
         </div>
-        <div className={`covered-visual-option ${selectedCover === 'covered' ? 'border' : ''}`}
+        <div className={`covered-visual-option ${selectedCover === 'fully covered' && selectedColor ? 'border' : ''}`}
           style={{ backgroundColor: coverBackgroundColor }}
-          onClick={() => setSelectedCover('covered')}>
+          onClick={() => onUpdateCoverStyle('fully covered')}>
           <div className={`bottom-title`}
             style={{ backgroundColor: coveredItemsColor }}
           > </div>
@@ -66,6 +74,7 @@ export const Cover = ({ task, onUpdateTask }) => {
           > </div>
         </div>
       </section>
+      {selectedColor && <button className="option-button" onClick={() => onUpdateCover(null)}>Remove cover</button>}
     </section>
     <section className="options">
       <p>Colors</p>

@@ -11,6 +11,18 @@
         gap: 10px;
         margin-bottom: 21px;
 
+        .option-button {
+            background-color: #091e420a;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 0;
+            margin-bottom: -4px;
+
+            &:hover {
+                background-color: #091e4214;
+            }
+        }        
+
         .visual-options {
             height: 64px;
             display: flex;

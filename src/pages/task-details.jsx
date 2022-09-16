@@ -10,6 +10,7 @@ import { ImAttachment } from "react-icons/im"
 import { boardService } from "../services/board.service"
 import { useDispatch } from "react-redux"
 import { ActionModal } from "../cmps/action-modal"
+import { updateTask } from "../store/actions/task.action"
 
 export const TaskDetails = () => {
     const navigate = useNavigate()
@@ -28,8 +29,13 @@ export const TaskDetails = () => {
         setTitleTxt(value)
     }
 
+    const handleUserKeyPress = (ev) => {
+        if (ev.key === "Enter" && !ev.shiftKey) ev.target.blur()
+    }
+
     const setTaskTitle = () => {
-        // dispatch()
+        task.title = titleTxt
+        dispatch(updateTask(groupId, taskId, task))
     }
 
     const onGoBack = () => {
@@ -48,9 +54,11 @@ export const TaskDetails = () => {
                 <textarea name=""
                     value={titleTxt}
                     onChange={handleChange}
+                    onKeyPress={handleUserKeyPress}
                     onBlur={setTaskTitle} />
                 <div className="sub-title">in list {group.title}</div>
             </section>
+
             <div className="task-body">
                 <section className="task-content">
                     <section className="task-description">
@@ -69,6 +77,7 @@ export const TaskDetails = () => {
                     <button className="btn-sidebar"><ImAttachment className="icon" />Attachments</button>
                 </section>
             </div>
+
         </section>
         {actionModal && <ActionModal />}
         <section onClick={onGoBack} className="screen"></section>

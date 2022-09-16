@@ -1,4 +1,3 @@
 export const Cover = () => {
-    return <section className="cover">Hi</section>
-  }
-  
+  return <section className="cover">Cover</section>
+}

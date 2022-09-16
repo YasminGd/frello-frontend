@@ -78,7 +78,7 @@ export const TaskDetails = () => {
             <button className="btn-sidebar"><BsCheck2Square className="icon" />Checklist</button>
             <button className="btn-sidebar"><AiOutlineClockCircle className="icon" />Dates</button>
             <button className="btn-sidebar"onClick={() => onOpenActionModal('Cover')}><TbRectangle className="icon" />Cover</button>
-            <button className="btn-sidebar" onClick={() => onOpenActionModal('Attach from...')}><ImAttachment className="icon" />Attachments</button>
+            <button className="btn-sidebar" onClick={() => onOpenActionModal('Attach from...')}><ImAttachment className="icon" />Attachment</button>
           </section>
         </div>
 

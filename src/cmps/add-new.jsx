@@ -18,7 +18,6 @@ export const AddNew = ({ onToggleAdd, addItem, groupId }) => {
     const onAdd = (ev) => {
         if (ev) ev.preventDefault()
         if (!title) return
-        //send this as an object?
         addItem(title, groupId)
         setTitle('')
         onToggleAdd()

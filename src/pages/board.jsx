@@ -5,7 +5,9 @@ import { GroupList } from '../cmps/group-list.jsx'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom"
-import { loadBoards, addItemToBoard, removeItemFromBoard } from '../store/actions/board.action'
+import { loadBoards } from '../store/actions/board.action'
+import { addTask, removeTask } from '../store/actions/task.action'
+import { addGroup, removeGroup } from '../store/actions/group.action'
 
 
 export const Board = () => {
@@ -23,11 +25,13 @@ export const Board = () => {
   }, [])
 
   const addItem = (title, groupId) => {
-    dispatch(addItemToBoard(title, groupId, board._id))
+    if (groupId) dispatch(addTask(title, groupId, board._id))
+    else dispatch(addGroup(title))
   }
 
   const removeItem = (groupId, taskId) => {
-    dispatch(removeItemFromBoard(groupId, taskId, board._id))
+    if (taskId) dispatch(removeTask(groupId, taskId))
+    else dispatch(removeGroup(groupId))
   }
 
   if (!board) return <h1>Loading</h1>

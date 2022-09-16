@@ -81,13 +81,13 @@ export const TaskDetails = () => {
                 </section>}
                 <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
                 <section className="task-header">
-                    <GrCreditCard className="header-icon" />
                     <textarea name=""
                         value={titleTxt}
                         onChange={handleChange}
                         onKeyPress={handleUserKeyPress}
                         onBlur={setTaskTitle} />
                     <div className="sub-title">in list {group.title}</div>
+                    <GrCreditCard className="header-icon" />
                 </section>
 
                 <div className="task-body">

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import { SiTrello } from 'react-icons/si'
 const logo = require('../assets/img/logo-frello.png')
 
 export const AppHeader = () => {
@@ -13,15 +14,19 @@ export const AppHeader = () => {
     return styleClass
   }
 
+  const styleClass = getStyleClass()
+  console.log(styleClass);
+
   return (
-    <section className={`app-header ${getStyleClass()}`}>
+    <section className={`app-header ${styleClass}`}>
       <Link to="/workspace">
         <div className="main-logo">
-          <img src={logo} alt="" />
+          <SiTrello />
+          {/* <img src={logo} alt="" /> */}
           <h1>Frello</h1>
         </div>
       </Link>
-      <nav className="home-nav">
+      <nav className={`home-nav ${styleClass ? '' : 'none'}`}>
         <Link className="login" to={'user/login'}>
           Log in
         </Link>

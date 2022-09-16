@@ -1,5 +1,39 @@
 .board-header {
     height: 52px;
-    padding: 8px 4px 8px 12px;
+    padding: 8px 4px 8px 16px;
     position: relative;
+
+    &>* {
+        margin-bottom: 12px;
+        height: 32px;
+    }
+
+    input {
+        width: auto;
+    }
+
+    textarea {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 32px;
+        padding: 0 4px;
+        // border-radius: 3px;
+        // padding-top: 2px;
+        max-width: auto;
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.32);
+        }
+
+        &:focus {
+            background-color: #fff;
+            color: #172b4d;
+        }
+
+        &:focus:hover {
+            cursor: text;
+        }
+    }
 }

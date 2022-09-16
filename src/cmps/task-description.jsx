@@ -8,6 +8,7 @@ export const TaskDescription = ({ task, groupId }) => {
     const dispatch = useDispatch()
     const [isBtnsDesc, setIsBtnsDesc] = useState(false)
     const [descTxt, setDescTxt] = useState(task.description)
+    const [modalHeight, setModalHeight] = useState({ height: '56px' })
     const initialDesc = useRef(task.description)
 
     const handleChange = ({ target }) => {
@@ -27,12 +28,14 @@ export const TaskDescription = ({ task, groupId }) => {
     }
 
     const handleDescChange = (ev, isCancel) => {
-        setTimeout(() => setIsBtnsDesc(false), 200)
+        setTimeout(() => {
+            setIsBtnsDesc(false)
+            setModalHeight({ height: '56px' })
+        }, 150)
         setTaskDesc(isCancel)
     }
 
     const bgStyle = task.description ? { backgroundColor: 'transparent' } : {}
-
     return (
         <section className="task-description">
             <div className="description-header">
@@ -41,15 +44,18 @@ export const TaskDescription = ({ task, groupId }) => {
             </div>
             <div className="description-body">
                 <textarea
-                    style={bgStyle}
+                    style={{ ...bgStyle, ...modalHeight }}
                     placeholder="Add a more detailed description..."
-                    onFocus={() => { setIsBtnsDesc(true) }}
-                    onBlurCapture={handleDescChange}
+                    onFocus={() => {
+                        setModalHeight({ height: '108px' })
+                        setIsBtnsDesc(true)
+                    }}
+                    onBlur={handleDescChange}
                     onChange={handleChange}
                     value={descTxt}>
                 </textarea>
                 {isBtnsDesc && <div className="btns-container">
-                    <button onClick={setTaskDesc} className="btn-save">Save</button>
+                    <button className="btn-save">Save</button>
                     <button onClick={(ev) => handleDescChange(ev, true)}
                         className="btn-cancel">Cancel</button>
                 </div>}

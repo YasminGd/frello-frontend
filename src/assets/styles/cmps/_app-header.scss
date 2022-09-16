@@ -9,11 +9,20 @@
   transition-duration: 0.5s, 0.5s;
   position: relative;
   z-index: 100;
+  color: white;
+  min-height: 44px;
 
   .main-logo {
+    border-radius: 3px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
     h1 {
-      font-size: 1.8rem;
-      letter-spacing: 1px;
+      margin-left: 6px;
+      font-size: 1.4rem;
+      // letter-spacing: 1px;
       line-height: 30px;
     }
 
@@ -25,19 +34,27 @@
     font-family: CharlieDisplay-bold;
     display: flex;
     align-items: center;
-    padding-left: 16px;
+    padding:0 6px;
+    margin-left: 6px;
   }
 
   .home-nav {
     font-size: 1.25em;
     display: flex;
     align-items: center;
+    gap: 4px;
 
-    & > * {
-      padding: 8px 24px;
+    &.none {
+      display: none;
+    }
+
+    &>* {
+      padding: 0px 22px;
       height: 44px;
       display: flex;
       align-items: center;
+      font-size: 1.2rem;
+
     }
 
     .login {
@@ -47,6 +64,8 @@
     .signup {
       background-color: $blue-main;
       color: white;
+      padding-right: 10px;
+
       &:hover {
         background-color: #0747a6;
       }
@@ -55,8 +74,21 @@
 
   &.home-header {
     background-color: #fff;
-    .home-nav > * {
+
+    .home-nav>* {
       height: 60px;
+    }
+
+    .main-logo {
+      font-size: 22px;
+      margin-left: 10px;
+      color: #095ed8;
+
+      h1 {
+        color: black;
+        font-size: 30px;
+        margin-left: 11px;
+      }
     }
 
     &:hover {

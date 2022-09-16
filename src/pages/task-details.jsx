@@ -1,7 +1,7 @@
-import React from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { IoCloseOutline } from 'react-icons/io5'
 import { GrCreditCard } from "react-icons/gr"
 import { BsPerson, BsCheck2Square } from "react-icons/bs"
@@ -13,21 +13,21 @@ import { ActionModal } from "../cmps/action-modal"
 import { updateTask } from "../store/actions/task.action"
 
 export const TaskDetails = () => {
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const { groupId, taskId } = useParams()
-    const board = useSelector(state => state.boardModule.board)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { groupId, taskId } = useParams()
+  const board = useSelector((state) => state.boardModule.board)
 
-    const group = board.groups.find(group => group.id === groupId)
-    const task = group.tasks.find(task => task.id === taskId)
-    const [titleTxt, setTitleTxt] = useState(task.title)
-    const [actionModal, setActionModal] = useState(null)
-    console.log('TaskDetails ~ actionModal', actionModal)
+  const group = board.groups.find((group) => group.id === groupId)
+  const task = group.tasks.find((task) => task.id === taskId)
+  const [titleTxt, setTitleTxt] = useState(task.title)
+  const [actionModal, setActionModal] = useState(null)
+  console.log('TaskDetails ~ actionModal', actionModal)
 
-    const handleChange = ({ target }) => {
-        const { value } = target
-        setTitleTxt(value)
-    }
+  const handleChange = ({ target }) => {
+    const { value } = target
+    setTitleTxt(value)
+  }
 
     const handleUserKeyPress = (ev) => {
         if (ev.key === "Enter" && !ev.shiftKey) ev.target.blur()
@@ -38,13 +38,13 @@ export const TaskDetails = () => {
         dispatch(updateTask(groupId, taskId, task))
     }
 
-    const onGoBack = () => {
-        navigate(-1)
-    }
+  const onGoBack = () => {
+    navigate(-1)
+  }
 
-    const onOpenActionModal = (type) => {
-
-    }
+  const onOpenActionModal = (type) => {
+    setActionModal(type)
+  }
 
     return <React.Fragment>
         <section className="task-details">
@@ -82,4 +82,5 @@ export const TaskDetails = () => {
         {actionModal && <ActionModal />}
         <section onClick={onGoBack} className="screen"></section>
     </React.Fragment>
+  )
 }

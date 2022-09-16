@@ -12,6 +12,7 @@ import { boardService } from '../services/board.service'
 import { useDispatch } from 'react-redux'
 import { ActionModal } from '../cmps/action-modal'
 import { updateTask } from '../store/actions/task.action'
+import { TaskDescription } from "../cmps/task-description"
 
 export const TaskDetails = () => {
     const navigate = useNavigate()
@@ -58,9 +59,9 @@ export const TaskDetails = () => {
     }
 
     const onOpenActionModal = (type, ref) => {
-        if (actionModal) return setActionModal(null)
+        if (actionModal?.type === type) return setActionModal(null)
         const rect = ref.current.getBoundingClientRect()
-        const pos = { bottom: rect.bottom, left: rect.left }
+        const pos = { bottom: rect.bottom + 8, left: rect.left }
         setActionModal({ type, pos })
     }
 
@@ -81,12 +82,7 @@ export const TaskDetails = () => {
 
                 <div className="task-body">
                     <section className="task-content">
-                        <section className="task-description">
-                            <div className="description-header">
-                                {/* stopped here for desc*/}
-                            </div>
-                            <div className="description-body"></div>
-                        </section>
+                        <TaskDescription />
                     </section>
 
                     <section className="task-sidebar">
@@ -95,6 +91,7 @@ export const TaskDetails = () => {
                         {actionBtns.map(btn => (
                             <button className="btn-sidebar"
                                 onClick={() => onOpenActionModal(btn.type, btn.ref)}
+                                key={btn.type}
                                 ref={btn.ref}>
                                 {btn.iconCmp}
                                 {btn.type}
@@ -106,7 +103,8 @@ export const TaskDetails = () => {
             </section>
 
             {console.log('actionModal: ', actionModal)}
-            {actionModal && <ActionModal data={actionModal} />}
+            {actionModal && <ActionModal data={actionModal} task={task} />}
             <section onClick={onGoBack} className="screen"></section>
         </React.Fragment>
+    )
 }

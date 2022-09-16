@@ -1,9 +1,14 @@
+import { IoCloseOutline } from 'react-icons/io5'
 
-export const ActionModal = () => {
-
-    return (
-        <section className="action-modal">
-            <h1>action modal</h1>
-        </section>
-    )
+export const ActionModal = ({ type }) => {
+  return (
+    <section className="action-modal">
+      <div className="title-container">
+        <p>{type}</p>
+        <span>
+          <IoCloseOutline />
+        </span>
+      </div>
+    </section>
+  )
 }

@@ -11,7 +11,7 @@ export const GroupList = ({ board, addItem, removeItem }) => {
 
     return <section className="group-list">
         {
-            board.groups.map(group => <GroupPreview group={group} addItem={addItem} removeItem={removeItem}/>)
+            board.groups.map(group => <GroupPreview key={group.id} group={group} addItem={addItem} removeItem={removeItem} />)
         }
         {
             isAddOpen ? <AddNew onToggleAdd={onToggleAdd} addItem={addItem} /> :

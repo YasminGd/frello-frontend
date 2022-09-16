@@ -4,7 +4,6 @@ const logo = require('../assets/img/logo-frello.png')
 
 export const AppHeader = () => {
   const location = useLocation()
-  console.log(`location:`, location.pathname)
 
   const getStyleClass = () => {
     let styleClass
@@ -14,13 +13,14 @@ export const AppHeader = () => {
     return styleClass
   }
 
-  const styleClass = getStyleClass()
   return (
-    <section className={`app-header ${styleClass}`}>
-      <div className="main-logo">
-        <img src={logo} alt="" />
-        <h1>Frello</h1>
-      </div>
+    <section className={`app-header ${getStyleClass()}`}>
+      <Link to="/workspace">
+        <div className="main-logo">
+          <img src={logo} alt="" />
+          <h1>Frello</h1>
+        </div>
+      </Link>
       <nav className="home-nav">
         <Link className="login" to={'user/login'}>
           Log in

@@ -1,4 +1,5 @@
 import { IoCloseOutline } from 'react-icons/io5'
+import { Cover } from './action-modal-cmps/Cover'
 
 export const ActionModal = ({ type }) => {
   const getActionCmp = (type) => {
@@ -18,6 +19,8 @@ export const ActionModal = ({ type }) => {
           <IoCloseOutline />
         </span>
       </div>
+      <Cover />
     </section>
   )
 }
+

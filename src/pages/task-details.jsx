@@ -7,6 +7,7 @@ import { GrCreditCard } from 'react-icons/gr'
 import { BsPerson, BsCheck2Square } from 'react-icons/bs'
 import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
 import { ImAttachment } from 'react-icons/im'
+import { TbRectangle } from 'react-icons/tb'
 import { boardService } from '../services/board.service'
 import { useDispatch } from 'react-redux'
 import { ActionModal } from '../cmps/action-modal'
@@ -49,39 +50,40 @@ export const TaskDetails = () => {
   //prettier-ignore
   return (
     <React.Fragment>
-        <section className="task-details">
-            <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
-            <section className="task-header">
-                <GrCreditCard className="header-icon" />
-                <textarea name=""
-                    value={titleTxt}
-                    onChange={handleChange}
-                    onKeyPress={handleUserKeyPress}
-                    onBlur={setTaskTitle} />
-                <div className="sub-title">in list {group.title}</div>
-            </section>
-
-            <div className="task-body">
-                <section className="task-content">
-                    <section className="task-description">
-                        <div className="description-header">
-                            {/* stopped here for desc*/}
-                        </div>
-                        <div className="description-body"></div>
-                    </section>
-                </section>
-                <section className="task-sidebar">
-                    <h3 className="sidebar-title">Add to card</h3>
-                    <button className="btn-sidebar"><BsPerson className="icon" />Members</button>
-                    <button className="btn-sidebar"><AiOutlineTag className="icon" />Labels</button>
-                    <button className="btn-sidebar"><BsCheck2Square className="icon" />Checklist</button>
-                    <button className="btn-sidebar"><AiOutlineClockCircle className="icon" />Dates</button>
-                    <button className="btn-sidebar" onClick={() => onOpenActionModal('Attach from...')}><ImAttachment className="icon" />Attachments</button>
-                </section>
-            </div>
-
+      <section className="task-details">
+        <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
+        <section className="task-header">
+          <GrCreditCard className="header-icon" />
+          <textarea name=""
+            value={titleTxt}
+            onChange={handleChange}
+            onKeyPress={handleUserKeyPress}
+            onBlur={setTaskTitle} />
+          <div className="sub-title">in list {group.title}</div>
         </section>
-        {actionModal && <ActionModal type={actionModal}/>}
-        <section onClick={onGoBack} className="screen"></section>
-    </React.Fragment>
+
+        <div className="task-body">
+          <section className="task-content">
+            <section className="task-description">
+              <div className="description-header">
+                {/* stopped here for desc*/}
+              </div>
+              <div className="description-body"></div>
+            </section>
+          </section>
+          <section className="task-sidebar">
+            <h3 className="sidebar-title">Add to card</h3>
+            <button className="btn-sidebar"><BsPerson className="icon" />Members</button>
+            <button className="btn-sidebar"><AiOutlineTag className="icon" />Labels</button>
+            <button className="btn-sidebar"><BsCheck2Square className="icon" />Checklist</button>
+            <button className="btn-sidebar"><AiOutlineClockCircle className="icon" />Dates</button>
+            <button className="btn-sidebar"onClick={() => onOpenActionModal('Cover')}><TbRectangle className="icon" />Cover</button>
+            <button className="btn-sidebar" onClick={() => onOpenActionModal('Attach from...')}><ImAttachment className="icon" />Attachments</button>
+          </section>
+        </div>
+
+      </section>
+      {actionModal && <ActionModal type={actionModal} />}
+      <section onClick={onGoBack} className="screen"></section>
+    </React.Fragment>)
 }

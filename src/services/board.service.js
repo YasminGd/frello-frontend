@@ -210,7 +210,6 @@ async function save(board) {
   var savedBoard
   if (board._id) {
     console.log('INSIDE PUT')
-    console.log(`board:`, board)
     savedBoard = await storageService.put(STORAGE_KEY, board)
     // boardChannel.postMessage(getActionUpdateBoard(savedBoard))
   } else {
@@ -240,7 +239,6 @@ async function removeItem(groupId, taskId, boardId) {
   const board = await boardService.getById(boardId)
   if (taskId) {
     const group = board.groups.find(group => group.id === groupId)
-    console.log(group.tasks);
     group.tasks = group.tasks.filter(task => task.id !== taskId)
   } else {
     board.groups = board.groups.filter(group => group.id !== groupId)

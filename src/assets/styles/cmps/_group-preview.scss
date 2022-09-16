@@ -1,6 +1,6 @@
 .group-preview {
     background-color: #ebecf0;
-    width: 272px;
+    min-width: 272px;
     border-radius: 3px;
     font-size: 0.875rem;
 
@@ -14,7 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-
+        
         button {
             border: none;
             padding: 6px;
@@ -23,6 +23,7 @@
             height: 32px;
             font-size: 16px;
             line-height: 20px;
+            background-color: transparent;
 
             &:hover {
                 background-color: #091e4214;
@@ -37,10 +38,10 @@
 
     .add-new {
         margin: 0;
-        width: 100%;
         padding: 8px;
         padding-top: 0;
-        input {
+        textarea {
+            height: 65px;
             padding-top: 7px;
             padding-bottom: 42px;
             margin-bottom: 8px;
@@ -54,14 +55,15 @@
 
     .add-task-button {
         height: auto;
+        min-width: calc(100% - 40px);
         width: calc(100% - 20px);
+        margin: auto;
         // margin-top: 4px;
+        margin-left: 10px;
         color: #5e6c84;
         background-color: transparent;
         transition: none;
         padding-bottom: 5px;
-        margin-left: 10px;
-        margin-right: 10px;
         margin-bottom: 8px;
 
         &:before {

@@ -38,7 +38,6 @@
 
     .add-new {
         margin: 0;
-        width: 100%;
         padding: 8px;
         padding-top: 0;
         textarea {
@@ -56,14 +55,15 @@
 
     .add-task-button {
         height: auto;
+        min-width: calc(100% - 40px);
         width: calc(100% - 20px);
+        margin: auto;
         // margin-top: 4px;
+        margin-left: 10px;
         color: #5e6c84;
         background-color: transparent;
         transition: none;
         padding-bottom: 5px;
-        margin-left: 10px;
-        margin-right: 16    px;
         margin-bottom: 8px;
 
         &:before {

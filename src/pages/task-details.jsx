@@ -57,9 +57,9 @@ export const TaskDetails = () => {
     dispatch(updateTask(groupId, task))
   }
 
-  const onUpdateTask = (task) => {
-    dispatch(updateTask(taskId, task))
-  }
+    const onUpdateTask = (task) => {
+        dispatch(updateTask(groupId, task))
+    }
 
   const onGoBack = () => {
     navigate(-1)

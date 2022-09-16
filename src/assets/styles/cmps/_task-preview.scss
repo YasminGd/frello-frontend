@@ -1,9 +1,20 @@
 .task-preview {
     border-radius: 3px;
     background-color: white;
-    padding: 6px 8px;
     box-shadow: 0 1px 0 #091e4240;
     margin: 0 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    .cover-color {
+        height: 33px;   
+    }
+
+    .task-body {
+        padding: 6px 8px;
+        word-break: break-word;
+
+    }
 
     &:hover {
         cursor: pointer;

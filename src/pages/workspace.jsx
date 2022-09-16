@@ -19,6 +19,10 @@ export const Workspace = () => {
     dispatch(updateBoard(board))
   }
 
+  const getStarredBoards = () => {
+    return boards.filter((board) => board.isStarred)
+  }
+
   return (
     <section className="workspace">
       <section className="all-boards">
@@ -28,7 +32,7 @@ export const Workspace = () => {
             <h3>Starred boards</h3>
           </div>
           <div className="boards-container">
-            <BoardList boards={boards} onToggleStarred={onToggleStarred} />
+            <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} />
           </div>
         </section>
         <section className="recent-boards">

@@ -1,8 +1,36 @@
 .action-modal {
   position: fixed;
-  right: 50%;
+  right: 30%;
   top: 50%;
   height: 200px;
-  background-color: yellow;
-  z-index: 2000;
+  width: 304px;
+  background-color: #fff;
+  border-radius: 3px;
+  z-index: 200;
+
+  .title-container {
+    color: #5e6c84;
+    height: 40px;
+    font-size: 0.875rem;
+    text-align: center;
+    line-height: 40px;
+    margin: 0 12px;
+    border-bottom: 1px solid #091e4221;
+
+    p {
+      display: inline-block;
+    }
+
+    span {
+      position: absolute;
+      font-size: 1.2rem;
+      right: 7px;
+      color: #6b778c;
+
+      &:hover {
+        cursor: pointer;
+        color: #172b4d;
+      }
+    }
+  }
 }

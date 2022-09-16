@@ -11,3 +11,30 @@ export function updateTask(groupId, taskId, task) {
         }
     }
 }
+
+export function addTask(title, groupId) {
+    return async (dispatch, getState) => {
+        try {
+         const board = getState().boardModule.board
+        const savedBoard = await taskService.add(title, groupId, board)
+        dispatch({ type: 'UPDATE_BOARD', board: savedBoard })   
+        }
+        catch {
+
+        }
+    }
+}
+
+export function removeTask(groupId, taskId) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const savedBoard = await taskService.remove(groupId, taskId, board)
+            const newBoard = {...savedBoard}
+            dispatch({ type: 'UPDATE_BOARD', board: newBoard })
+        }
+        catch {
+
+        }
+    }
+}

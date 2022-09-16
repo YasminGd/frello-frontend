@@ -12,18 +12,19 @@ import { boardService } from '../services/board.service'
 import { useDispatch } from 'react-redux'
 import { ActionModal } from '../cmps/action-modal'
 import { updateTask } from '../store/actions/task.action'
+import { TaskDescription } from "../cmps/task-description"
 
 export const TaskDetails = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { groupId, taskId } = useParams()
-  const board = useSelector((state) => state.boardModule.board)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { groupId, taskId } = useParams()
+    const board = useSelector((state) => state.boardModule.board)
 
-  const group = board.groups.find((group) => group.id === groupId)
-  const task = group.tasks.find((task) => task.id === taskId)
+    const group = board.groups.find((group) => group.id === groupId)
+    const task = group.tasks.find((task) => task.id === taskId)
 
-  const [titleTxt, setTitleTxt] = useState(task.title)
-  const [actionModal, setActionModal] = useState(null)
+    const [titleTxt, setTitleTxt] = useState(task.title)
+    const [actionModal, setActionModal] = useState(null)
 
   // Refs for action modal position calculation
   const btnAttachmentRef = useRef()
@@ -42,75 +43,76 @@ export const TaskDetails = () => {
     { type: 'Cover', ref: btnCoverRef, iconCmp: <TbRectangle className="icon" /> },
   ]
 
-  const handleChange = ({ target }) => {
-    const { value } = target
-    setTitleTxt(value)
-  }
+    const handleChange = ({ target }) => {
+        const { value } = target
+        setTitleTxt(value)
+    }
 
-  const handleUserKeyPress = (ev) => {
-    if (ev.key === 'Enter' && !ev.shiftKey) ev.target.blur()
-  }
+    const handleUserKeyPress = (ev) => {
+        if (ev.key === 'Enter' && !ev.shiftKey) ev.target.blur()
+    }
 
-  const setTaskTitle = () => {
-    task.title = titleTxt
-    dispatch(updateTask(groupId, taskId, task))
-  }
+    const setTaskTitle = () => {
+        task.title = titleTxt
+        dispatch(updateTask(groupId, taskId, task))
+    }
 
-  const onGoBack = () => {
-    navigate(-1)
-  }
+    const onGoBack = () => {
+        navigate(-1)
+    }
 
-  const onOpenActionModal = (type, ref) => {
-    if (actionModal) return setActionModal(null)
-    const rect = ref.current.getBoundingClientRect()
-    const pos = { bottom: rect.bottom, left: rect.left }
-    setActionModal({ type, pos })
-  }
+    const onOpenActionModal = (type, ref) => {
+        if (actionModal?.type === type) return setActionModal(null)
+        const rect = ref.current.getBoundingClientRect()
+        const pos = { bottom: rect.bottom + 8, left: rect.left }
+        setActionModal({ type, pos })
+    }
 
-  //prettier-ignore
-  return (
-    <React.Fragment>
-      <section className="task-details">
-        <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
-        <section className="task-header">
-          <GrCreditCard className="header-icon" />
-          <textarea name=""
-            value={titleTxt}
-            onChange={handleChange}
-            onKeyPress={handleUserKeyPress}
-            onBlur={setTaskTitle} />
-          <div className="sub-title">in list {group.title}</div>
-        </section>
+    //prettier-ignore
+    return (
+        <React.Fragment>
+            <section className="task-details">
+                <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
+                <section className="task-header">
+                    <GrCreditCard className="header-icon" />
+                    <textarea name=""
+                        value={titleTxt}
+                        onChange={handleChange}
+                        onKeyPress={handleUserKeyPress}
+                        onBlur={setTaskTitle} />
+                    <div className="sub-title">in list {group.title}</div>
+                </section>
 
-        <div className="task-body">
-          <section className="task-content">
-            <section className="task-description">
-              <div className="description-header">
-                {/* stopped here for desc*/}
-              </div>
-              <div className="description-body"></div>
-            </section>
-          </section>
+                <div className="task-body">
+                    <section className="task-content">
+                        <section className="task-description">
+                            <div className="description-header">
+                                {/* stopped here for desc*/}
+                            </div>
+                            <div className="description-body"></div>
+                        </section>
+                    </section>
 
           <section className="task-sidebar">
             <h3 className="sidebar-title">Add to card</h3>
 
-            {actionBtns.map(btn => (
-              <button className="btn-sidebar"
-                onClick={() => onOpenActionModal(btn.type, btn.ref)}
-                ref={btn.ref}>
-                {btn.iconCmp}
-                {btn.type}
-              </button>
-            ))}
-          </section>
-        </div>
+                        {actionBtns.map(btn => (
+                            <button className="btn-sidebar"
+                                onClick={() => onOpenActionModal(btn.type, btn.ref)}
+                                key={btn.type}
+                                ref={btn.ref}>
+                                {btn.iconCmp}
+                                {btn.type}
+                            </button>
+                        ))}
+                    </section>
+                </div>
 
       </section>
 
-      {console.log('actionModal: ', actionModal)}
-      {actionModal && <ActionModal data={actionModal} />}
-      <section onClick={onGoBack} className="screen"></section>
-    </React.Fragment>
-  )
+            {console.log('actionModal: ', actionModal)}
+            {actionModal && <ActionModal data={actionModal} task={task} />}
+            <section onClick={onGoBack} className="screen"></section>
+        </React.Fragment>
+    )
 }

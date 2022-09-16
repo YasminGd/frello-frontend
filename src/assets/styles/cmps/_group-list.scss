@@ -1,18 +1,21 @@
 .group-list {
     padding-left: 28px;
+    padding-right: 28px;
     display: flex;
+    flex-wrap: nowrap;
     height: calc(100% - 52px);
     align-items: flex-start;
     gap: 8px;
     line-height: 20px;
+    overflow-x: scroll;
 
-    .add-task-button{
+    .add-task-button {
         height: 40px;
-        border: none;   
-        width: 100%;
+        border: none;
+        min-width: 272px;
         text-align: start;
         padding: 8px 6px;
-        transition: background 85ms ease-in,opacity 40ms ease-in,border-color 85ms ease-in;
+        transition: background 85ms ease-in, opacity 40ms ease-in, border-color 85ms ease-in;
         font-size: 14px;
         width: 272px;
         border-radius: 3px;

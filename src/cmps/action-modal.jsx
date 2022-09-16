@@ -5,15 +5,13 @@ import { Attachment } from './action-modal-cmps/Attachment'
 export const ActionModal = ({ data, task, onUpdateTask }) => {
   const { type, pos } = data
   const modalStyle = { left: pos.left + 'px', top: pos.bottom + 'px' }
-  console.log(`type:`, type)
 
   const getActionCmp = (type) => {
-    console.log(type);
     switch (type) {
-      case 'Attach from...':
+      case 'Attachment':
         return <Attachment />
       case 'Cover':
-        return <Cover task={task} onUpdateTask={onUpdateTask}/>
+        return <Cover task={task} onUpdateTask={onUpdateTask} />
 
       default:
         break
@@ -22,9 +20,9 @@ export const ActionModal = ({ data, task, onUpdateTask }) => {
   return (
     <section className="action-modal" style={modalStyle}>
       <div className="title-container">
-        <p>{type}</p>
+        <p>{type === 'Attachment' ? 'Attach from...' : type}</p>
         <span>
-          <IoCloseOutline />
+          <IoCloseOutline onClick={() => setActionModal(null)} />
         </span>
       </div>
       {getActionCmp(type)}

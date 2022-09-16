@@ -12,68 +12,68 @@ import { boardService } from '../services/board.service'
 import { useDispatch } from 'react-redux'
 import { ActionModal } from '../cmps/action-modal'
 import { updateTask } from '../store/actions/task.action'
-import { TaskDescription } from "../cmps/task-description"
+import { TaskDescription } from '../cmps/task-description'
 
 export const TaskDetails = () => {
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const { groupId, taskId } = useParams()
-    const board = useSelector((state) => state.boardModule.board)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { groupId, taskId } = useParams()
+  const board = useSelector((state) => state.boardModule.board)
 
-    const group = board.groups.find((group) => group.id === groupId)
-    const task = group.tasks.find((task) => task.id === taskId)
+  const group = board.groups.find((group) => group.id === groupId)
+  const task = group.tasks.find((task) => task.id === taskId)
 
-    const [titleTxt, setTitleTxt] = useState(task.title)
-    const [actionModal, setActionModal] = useState(null)
+  const [titleTxt, setTitleTxt] = useState(task.title)
+  const [actionModal, setActionModal] = useState(null)
 
-    // Refs for action modal position calculation
-    const btnAttachmentRef = useRef()
-    const btnMembersRef = useRef()
-    const btnLabelsRef = useRef()
-    const btnChecklistRef = useRef()
-    const btnDatesRef = useRef()
-    const btnCoverRef = useRef()
+  // Refs for action modal position calculation
+  const btnAttachmentRef = useRef()
+  const btnMembersRef = useRef()
+  const btnLabelsRef = useRef()
+  const btnChecklistRef = useRef()
+  const btnDatesRef = useRef()
+  const btnCoverRef = useRef()
 
-    const actionBtns = [
-        { type: 'Members', ref: btnMembersRef, iconCmp: <BsPerson className="icon" /> },
-        { type: 'Labels', ref: btnLabelsRef, iconCmp: <AiOutlineTag className="icon" /> },
-        { type: 'Checklist', ref: btnChecklistRef, iconCmp: <BsCheck2Square className="icon" /> },
-        { type: 'Dates', ref: btnDatesRef, iconCmp: <AiOutlineClockCircle className="icon" /> },
-        { type: 'Attachment', ref: btnAttachmentRef, iconCmp: <ImAttachment className="icon" /> },
-        { type: 'Cover', ref: btnCoverRef, iconCmp: <TbRectangle className="icon" /> },
-    ]
+  const actionBtns = [
+    { type: 'Members', ref: btnMembersRef, iconCmp: <BsPerson className="icon" /> },
+    { type: 'Labels', ref: btnLabelsRef, iconCmp: <AiOutlineTag className="icon" /> },
+    { type: 'Checklist', ref: btnChecklistRef, iconCmp: <BsCheck2Square className="icon" /> },
+    { type: 'Dates', ref: btnDatesRef, iconCmp: <AiOutlineClockCircle className="icon" /> },
+    { type: 'Attachment', ref: btnAttachmentRef, iconCmp: <ImAttachment className="icon" /> },
+    { type: 'Cover', ref: btnCoverRef, iconCmp: <TbRectangle className="icon" /> },
+  ]
 
-    const handleChange = ({ target }) => {
-        const { value } = target
-        setTitleTxt(value)
-    }
+  const handleChange = ({ target }) => {
+    const { value } = target
+    setTitleTxt(value)
+  }
 
-    const handleUserKeyPress = (ev) => {
-        if (ev.key === 'Enter' && !ev.shiftKey) ev.target.blur()
-    }
+  const handleUserKeyPress = (ev) => {
+    if (ev.key === 'Enter' && !ev.shiftKey) ev.target.blur()
+  }
 
-    const setTaskTitle = () => {
-        task.title = titleTxt
-        dispatch(updateTask(groupId, task))
-    }
+  const setTaskTitle = () => {
+    task.title = titleTxt
+    dispatch(updateTask(groupId, task))
+  }
 
     const onUpdateTask = (task) => {
         dispatch(updateTask(groupId, task))
     }
 
-    const onGoBack = () => {
-        navigate(-1)
-    }
+  const onGoBack = () => {
+    navigate(-1)
+  }
 
-    const onOpenActionModal = (type, ref) => {
-        if (actionModal?.type === type) return setActionModal(null)
-        const rect = ref.current.getBoundingClientRect()
-        const pos = { bottom: rect.bottom + 8, left: rect.left }
-        setActionModal({ type, pos })
-    }
+  const onOpenActionModal = (type, ref) => {
+    if (actionModal?.type === type) return setActionModal(null)
+    const rect = ref.current.getBoundingClientRect()
+    const pos = { bottom: rect.bottom + 8, left: rect.left }
+    setActionModal({ type, pos })
+  }
 
-    //prettier-ignore
-    return (
+  //prettier-ignore
+  return (
         <React.Fragment>
             <section className="task-details">
                 {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
@@ -111,7 +111,10 @@ export const TaskDetails = () => {
 
             </section>
 
-            {actionModal && <ActionModal data={actionModal} task={task} onUpdateTask={onUpdateTask}/>}
+            {actionModal && <ActionModal onUpdateTask={onUpdateTask}
+                                         setActionModal={setActionModal}
+                                         data={actionModal}
+                                         task={task} />}
             <section onClick={onGoBack} className="screen"></section>
         </React.Fragment>
     )

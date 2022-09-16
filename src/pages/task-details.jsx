@@ -1,13 +1,12 @@
 import React from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useRef } from "react"
 import { useSelector } from "react-redux"
 import { IoCloseOutline } from 'react-icons/io5'
 import { GrCreditCard } from "react-icons/gr"
 import { BsPerson, BsCheck2Square } from "react-icons/bs"
 import { AiOutlineTag, AiOutlineClockCircle } from "react-icons/ai"
 import { ImAttachment } from "react-icons/im"
-import { boardService } from "../services/board.service"
 import { useDispatch } from "react-redux"
 import { ActionModal } from "../cmps/action-modal"
 import { updateTask } from "../store/actions/task.action"
@@ -20,9 +19,23 @@ export const TaskDetails = () => {
 
     const group = board.groups.find(group => group.id === groupId)
     const task = group.tasks.find(task => task.id === taskId)
+
     const [titleTxt, setTitleTxt] = useState(task.title)
     const [actionModal, setActionModal] = useState(null)
-    console.log('TaskDetails ~ actionModal', actionModal)
+
+    // Refs for action modal position calculation
+    const btnAttachmentRef = useRef()
+    const btnMembersRef = useRef()
+    const btnLabelsRef = useRef()
+    const btnChecklistRef = useRef()
+    const btnDatesRef = useRef()
+    const actionBtns = [
+        { type: 'Members', ref: btnMembersRef, iconCmp: <BsPerson className="icon" /> },
+        { type: 'Labels', ref: btnLabelsRef, iconCmp: <AiOutlineTag className="icon" /> },
+        { type: 'Checklist', ref: btnChecklistRef, iconCmp: <BsCheck2Square className="icon" /> },
+        { type: 'Dates', ref: btnDatesRef, iconCmp: <AiOutlineClockCircle className="icon" /> },
+        { type: 'Attachment', ref: btnAttachmentRef, iconCmp: <ImAttachment className="icon" /> }
+    ]
 
     const handleChange = ({ target }) => {
         const { value } = target
@@ -42,8 +55,11 @@ export const TaskDetails = () => {
         navigate(-1)
     }
 
-    const onOpenActionModal = (type) => {
-
+    const onOpenActionModal = (type, ref) => {
+        if (actionModal) return setActionModal(null)
+        const rect = ref.current.getBoundingClientRect()
+        const pos = { bottom: rect.bottom, left: rect.left }
+        setActionModal({ type, pos })
     }
 
     return <React.Fragment>
@@ -68,18 +84,25 @@ export const TaskDetails = () => {
                         <div className="description-body"></div>
                     </section>
                 </section>
+
                 <section className="task-sidebar">
                     <h3 className="sidebar-title">Add to card</h3>
-                    <button className="btn-sidebar"><BsPerson className="icon" />Members</button>
-                    <button className="btn-sidebar"><AiOutlineTag className="icon" />Labels</button>
-                    <button className="btn-sidebar"><BsCheck2Square className="icon" />Checklist</button>
-                    <button className="btn-sidebar"><AiOutlineClockCircle className="icon" />Dates</button>
-                    <button className="btn-sidebar"><ImAttachment className="icon" />Attachments</button>
+
+                    {actionBtns.map(btn => (
+                        <button className="btn-sidebar"
+                            onClick={() => onOpenActionModal(btn.type, btn.ref)}
+                            ref={btn.ref}>
+                            {btn.iconCmp}
+                            {btn.type}
+                        </button>
+                    ))}
                 </section>
             </div>
 
         </section>
-        {actionModal && <ActionModal />}
+
+        {console.log('actionModal: ', actionModal)}
+        {actionModal && <ActionModal data={actionModal} />}
         <section onClick={onGoBack} className="screen"></section>
     </React.Fragment>
 }

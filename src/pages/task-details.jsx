@@ -32,12 +32,15 @@ export const TaskDetails = () => {
     const btnLabelsRef = useRef()
     const btnChecklistRef = useRef()
     const btnDatesRef = useRef()
+    const btnCoverRef = useRef()
+
     const actionBtns = [
         { type: 'Members', ref: btnMembersRef, iconCmp: <BsPerson className="icon" /> },
         { type: 'Labels', ref: btnLabelsRef, iconCmp: <AiOutlineTag className="icon" /> },
         { type: 'Checklist', ref: btnChecklistRef, iconCmp: <BsCheck2Square className="icon" /> },
         { type: 'Dates', ref: btnDatesRef, iconCmp: <AiOutlineClockCircle className="icon" /> },
         { type: 'Attachment', ref: btnAttachmentRef, iconCmp: <ImAttachment className="icon" /> },
+        { type: 'Cover', ref: btnCoverRef, iconCmp: <TbRectangle className="icon" /> },
     ]
 
     const handleChange = ({ target }) => {

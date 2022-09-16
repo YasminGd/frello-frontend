@@ -8,6 +8,7 @@ export const ActionModal = ({ data }) => {
   console.log(`type:`, type)
 
   const getActionCmp = (type) => {
+    console.log(type);
     switch (type) {
       case 'Attach from...':
         return <Attachment />
@@ -26,7 +27,7 @@ export const ActionModal = ({ data }) => {
           <IoCloseOutline />
         </span>
       </div>
-      {getActionCmp()}
+      {getActionCmp(type)}
     </section>
   )
 }

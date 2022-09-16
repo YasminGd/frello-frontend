@@ -136,6 +136,7 @@ const gBoards = [
     title: 'Second board',
     style: { background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/ef2b36f0a6fced5b25ba500c55ae3016/photo-1513185041617-8ab03f83d6c5.jpg")' },
     isStarred: false,
+    groups: []
   },
   {
     _id: 'b103',
@@ -145,6 +146,7 @@ const gBoards = [
       backgroundColor: 'rgb(81, 152, 57)',
     },
     isStarred: true,
+    groups: []
   },
   {
     _id: 'b104',
@@ -154,6 +156,7 @@ const gBoards = [
       backgroundColor: 'rgb(81, 152, 57)',
     },
     isStarred: false,
+    groups: []
   },
   {
     _id: 'b105',
@@ -163,6 +166,7 @@ const gBoards = [
       backgroundColor: 'rgb(81, 152, 57)',
     },
     isStarred: true,
+    groups: []
   },
 ]
 

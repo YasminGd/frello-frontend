@@ -58,7 +58,7 @@ export const TaskDetails = () => {
     }
 
     const onUpdateTask = (task) => {
-        dispatch(updateTask(taskId, task))
+        dispatch(updateTask(groupId, task))
     }
 
     const onGoBack = () => {
@@ -111,7 +111,7 @@ export const TaskDetails = () => {
 
             </section>
 
-            {actionModal && <ActionModal data={actionModal} task={task} />}
+            {actionModal && <ActionModal data={actionModal} task={task} onUpdateTask={onUpdateTask}/>}
             <section onClick={onGoBack} className="screen"></section>
         </React.Fragment>
     )

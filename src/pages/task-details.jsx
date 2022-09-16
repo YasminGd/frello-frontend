@@ -54,7 +54,7 @@ export const TaskDetails = () => {
 
     const setTaskTitle = () => {
         task.title = titleTxt
-        dispatch(updateTask(groupId, taskId, task))
+        dispatch(updateTask(groupId, task))
     }
 
     const onGoBack = () => {
@@ -85,7 +85,7 @@ export const TaskDetails = () => {
 
                 <div className="task-body">
                     <section className="task-content">
-                        <TaskDescription task={task} />
+                        <TaskDescription task={task} groupId={groupId} />
                     </section>
 
                     <section className="task-sidebar">
@@ -105,7 +105,6 @@ export const TaskDetails = () => {
 
             </section>
 
-            {console.log('actionModal: ', actionModal)}
             {actionModal && <ActionModal data={actionModal} task={task} />}
             <section onClick={onGoBack} className="screen"></section>
         </React.Fragment>

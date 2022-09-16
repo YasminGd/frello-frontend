@@ -3,14 +3,14 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { IoCloseOutline } from 'react-icons/io5'
-import { GrCreditCard } from "react-icons/gr"
-import { BsPerson, BsCheck2Square } from "react-icons/bs"
-import { AiOutlineTag, AiOutlineClockCircle } from "react-icons/ai"
-import { ImAttachment } from "react-icons/im"
-import { boardService } from "../services/board.service"
-import { useDispatch } from "react-redux"
-import { ActionModal } from "../cmps/action-modal"
-import { updateTask } from "../store/actions/task.action"
+import { GrCreditCard } from 'react-icons/gr'
+import { BsPerson, BsCheck2Square } from 'react-icons/bs'
+import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
+import { ImAttachment } from 'react-icons/im'
+import { boardService } from '../services/board.service'
+import { useDispatch } from 'react-redux'
+import { ActionModal } from '../cmps/action-modal'
+import { updateTask } from '../store/actions/task.action'
 
 export const TaskDetails = () => {
   const navigate = useNavigate()
@@ -29,14 +29,14 @@ export const TaskDetails = () => {
     setTitleTxt(value)
   }
 
-    const handleUserKeyPress = (ev) => {
-        if (ev.key === "Enter" && !ev.shiftKey) ev.target.blur()
-    }
+  const handleUserKeyPress = (ev) => {
+    if (ev.key === 'Enter' && !ev.shiftKey) ev.target.blur()
+  }
 
-    const setTaskTitle = () => {
-        task.title = titleTxt
-        dispatch(updateTask(groupId, taskId, task))
-    }
+  const setTaskTitle = () => {
+    task.title = titleTxt
+    dispatch(updateTask(groupId, taskId, task))
+  }
 
   const onGoBack = () => {
     navigate(-1)
@@ -46,7 +46,9 @@ export const TaskDetails = () => {
     setActionModal(type)
   }
 
-    return <React.Fragment>
+  //prettier-ignore
+  return (
+    <React.Fragment>
         <section className="task-details">
             <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
             <section className="task-header">
@@ -74,12 +76,12 @@ export const TaskDetails = () => {
                     <button className="btn-sidebar"><AiOutlineTag className="icon" />Labels</button>
                     <button className="btn-sidebar"><BsCheck2Square className="icon" />Checklist</button>
                     <button className="btn-sidebar"><AiOutlineClockCircle className="icon" />Dates</button>
-                    <button className="btn-sidebar"><ImAttachment className="icon" />Attachments</button>
+                    <button className="btn-sidebar" onClick={() => onOpenActionModal('Attach from...')}><ImAttachment className="icon" />Attachments</button>
                 </section>
             </div>
 
         </section>
-        {actionModal && <ActionModal />}
+        {actionModal && <ActionModal type={actionModal}/>}
         <section onClick={onGoBack} className="screen"></section>
     </React.Fragment>
 }

@@ -2,14 +2,14 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
 
-export const ActionModal = ({ data }) => {
+export const ActionModal = ({ data, setActionModal }) => {
   const { type, pos } = data
   const modalStyle = { left: pos.left + 'px', top: pos.bottom + 'px' }
   console.log(`type:`, type)
 
   const getActionCmp = (type) => {
     switch (type) {
-      case 'Attach from...':
+      case 'Attachment':
         return <Attachment />
       case 'Cover':
         return <Cover />
@@ -19,14 +19,14 @@ export const ActionModal = ({ data }) => {
     }
   }
   return (
-    <section className="action-modal">
+    <section className="action-modal" style={modalStyle}>
       <div className="title-container">
-        <p>{type}</p>
+        <p>{type === 'Attachment' ? 'Attach from...' : type}</p>
         <span>
-          <IoCloseOutline />
+          <IoCloseOutline onClick={() => setActionModal(null)} />
         </span>
       </div>
-      {getActionCmp()}
+      {getActionCmp(type)}
     </section>
   )
 }

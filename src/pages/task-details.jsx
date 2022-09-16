@@ -106,7 +106,7 @@ export const TaskDetails = () => {
             </section>
 
             {console.log('actionModal: ', actionModal)}
-            {actionModal && <ActionModal data={actionModal} />}
+            {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}
             <section onClick={onGoBack} className="screen"></section>
         </React.Fragment>
     )

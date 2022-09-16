@@ -12,14 +12,18 @@
   background-color: #f4f5f7;
   z-index: 10;
   border-radius: 2px;
-  min-width: 762px;
+  min-width: 768px;
   height: 100vh;
   position: fixed;
-  left: 50%;
-  top: -410px;
+  left: 49.7%;
+  bottom: 455px;
   transform: translate(-50%, 50%);
   display: flex;
   flex-direction: column;
+
+  .cover-color {
+    height: 145px;
+  }
 
   .close-task-details {
     position: absolute;
@@ -41,7 +45,7 @@
     height: 60px;
     margin-left: 48px;
     margin-right: 40px;
-    margin-top: 18px;
+    margin-top: 15px;
     margin-bottom: 13px;
 
     textarea {
@@ -110,8 +114,8 @@
       }
 
       .btn-sidebar {
-        padding: 5px 12px;
-        margin-top: 8px;
+        padding: 4px 9px;
+        margin-top: 9px;
         font-size: 14px;
         background-color: $background-gray;
         border: none;

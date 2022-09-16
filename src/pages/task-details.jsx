@@ -57,6 +57,10 @@ export const TaskDetails = () => {
         dispatch(updateTask(groupId, task))
     }
 
+    const onUpdateTask = (task) => {
+        dispatch(updateTask(groupId, taskId, task))
+    }
+
     const onGoBack = () => {
         navigate(-1)
     }
@@ -72,6 +76,8 @@ export const TaskDetails = () => {
     return (
         <React.Fragment>
             <section className="task-details">
+                {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
+                </section>}
                 <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
                 <section className="task-header">
                     <GrCreditCard className="header-icon" />

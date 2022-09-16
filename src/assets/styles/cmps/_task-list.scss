@@ -4,4 +4,8 @@
     flex-direction: column;
     gap: 9px;
     margin-bottom: 7px;
+    overflow-x: hidden;
+    max-height: calc(100vh - 44px - 52px - 108px);
+    overflow-y: auto;
+
 }

@@ -20,7 +20,7 @@ export const ActionModal = ({ data, task, onUpdateTask }) => {
     }
   }
   return (
-    <section className="action-modal">
+    <section className="action-modal" style={modalStyle}>
       <div className="title-container">
         <p>{type}</p>
         <span>

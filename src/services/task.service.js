@@ -13,9 +13,9 @@ export const taskService = {
     // remove,
 }
 
-async function update(board, groupId, taskId, task) {
+async function update(board, groupId, task) {
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
-    const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+    const taskIdx = board.groups[groupIdx].tasks.findIndex(currTask => currTask.id === task.id)
     board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
 
     try {
@@ -35,7 +35,7 @@ async function add(title, groupId, board) {
     } catch (err) {
         console.log('cannot add task', err)
     }
-    
+
     return board
 }
 

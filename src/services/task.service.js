@@ -1,9 +1,12 @@
 import { storageService } from "./async-storage.service"
 import { boardService } from "./board.service"
+import { utilService } from "./util.service"
 const STORAGE_KEY = 'board'
 
 export const taskService = {
-    update
+    update,
+    add,
+    remove
     // query,
     // getById,
     // save,
@@ -23,3 +26,28 @@ async function update(board, groupId, taskId, task) {
 
 }
 
+async function add(title, groupId, board) {
+    const group = board.groups.find(group => group.id === groupId)
+    group.tasks.push({ title, id: utilService.makeId() })
+
+    try {
+        return await storageService.put(STORAGE_KEY, board)
+    } catch (err) {
+        console.log('cannot add task', err)
+    }
+    
+    return board
+}
+
+async function remove(groupId, taskId, board) {
+    const group = board.groups.find(group => group.id === groupId)
+    group.tasks = group.tasks.filter(task => task.id !== taskId)
+
+    try {
+        return await storageService.put(STORAGE_KEY, board)
+    } catch (err) {
+        console.log('cannot delete task', err)
+    }
+
+    return board
+}

@@ -177,8 +177,8 @@ export const boardService = {
   getById,
   save,
   remove,
-  addItem,
-  removeItem
+  // addItem,
+  // removeItem
 }
 
 // window.cs = boardService
@@ -222,29 +222,30 @@ async function save(board) {
   return savedBoard
 }
 
-async function addItem(title, groupId, boardId) {
-  //get from the store?
-  const board = await boardService.getById(boardId)
-  if (groupId) {
-    const group = board.groups.find(group => group.id === groupId)
-    group.tasks.push({ title, id: utilService.makeId() })
-  } else {
-    board.groups.push({ title, id: utilService.makeId(), tasks: [] })
-  }
-  return board
-}
+// async function addItem(title, groupId, boardId) {
+//   //get from the store?
+//   const board = await boardService.getById(boardId)
+//   if (groupId) {
+//     const group = board.groups.find(group => group.id === groupId)
+//     group.tasks.push({ title, id: utilService.makeId() })
+//   } else {
+//     board.groups.push({ title, id: utilService.makeId(), tasks: [] })
+//   }
+//   return board
+// }
 
-async function removeItem(groupId, taskId, boardId) {
-  //get from the store?
-  const board = await boardService.getById(boardId)
-  if (taskId) {
-    const group = board.groups.find(group => group.id === groupId)
-    group.tasks = group.tasks.filter(task => task.id !== taskId)
-  } else {
-    board.groups = board.groups.filter(group => group.id !== groupId)
-  }
-  return board
-}
+// async function removeItem(groupId, taskId, boardId) {
+//   //get from the store?
+//   const board = await boardService.getById(boardId)
+//   if (taskId) {
+//     const group = board.groups.find(group => group.id === groupId)
+//     console.log(group.tasks);
+//     group.tasks = group.tasks.filter(task => task.id !== taskId)
+//   } else {
+//     board.groups = board.groups.filter(group => group.id !== groupId)
+//   }
+//   return board
+// }
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

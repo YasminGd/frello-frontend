@@ -1,7 +1,7 @@
 export const taskService = {
-    query,
-    getById,
-    save,
-    remove,
+    // query,
+    // getById,
+    // save,
+    // remove,
 }
 

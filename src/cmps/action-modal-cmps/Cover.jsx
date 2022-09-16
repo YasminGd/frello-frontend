@@ -1,7 +1,3 @@
 export const Cover = () => {
-    return <section className="cover">
-        <p>Size</p>
-        <p>Colors</p>
-    </section>
-  }
-  
+  return <section className="cover">Cover</section>
+}

@@ -1,7 +1,7 @@
-import React from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { useState, useRef } from "react"
-import { useSelector } from "react-redux"
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
 import { IoCloseOutline } from 'react-icons/io5'
 import { GrCreditCard } from 'react-icons/gr'
 import { BsPerson, BsCheck2Square } from 'react-icons/bs'
@@ -20,8 +20,8 @@ export const TaskDetails = () => {
     const { groupId, taskId } = useParams()
     const board = useSelector((state) => state.boardModule.board)
 
-    const group = board.groups.find(group => group.id === groupId)
-    const task = group.tasks.find(task => task.id === taskId)
+    const group = board.groups.find((group) => group.id === groupId)
+    const task = group.tasks.find((task) => task.id === taskId)
 
     const [titleTxt, setTitleTxt] = useState(task.title)
     const [actionModal, setActionModal] = useState(null)
@@ -37,7 +37,7 @@ export const TaskDetails = () => {
         { type: 'Labels', ref: btnLabelsRef, iconCmp: <AiOutlineTag className="icon" /> },
         { type: 'Checklist', ref: btnChecklistRef, iconCmp: <BsCheck2Square className="icon" /> },
         { type: 'Dates', ref: btnDatesRef, iconCmp: <AiOutlineClockCircle className="icon" /> },
-        { type: 'Attachment', ref: btnAttachmentRef, iconCmp: <ImAttachment className="icon" /> }
+        { type: 'Attachment', ref: btnAttachmentRef, iconCmp: <ImAttachment className="icon" /> },
     ]
 
     const handleChange = ({ target }) => {

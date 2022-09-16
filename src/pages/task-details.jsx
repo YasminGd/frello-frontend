@@ -82,5 +82,4 @@ export const TaskDetails = () => {
         {actionModal && <ActionModal />}
         <section onClick={onGoBack} className="screen"></section>
     </React.Fragment>
-  )
 }

@@ -1,7 +1,7 @@
 import { GrTextAlignFull } from 'react-icons/gr'
 import { useState } from "react"
 
-export const TaskDescription = () => {
+export const TaskDescription = ({ task }) => {
 
     const [isBtnsDesc, setIsBtnsDesc] = useState(false)
     const [titleTxt, setTitleTxt] = useState(task.title)

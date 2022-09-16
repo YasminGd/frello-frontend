@@ -82,7 +82,7 @@ export const TaskDetails = () => {
 
                 <div className="task-body">
                     <section className="task-content">
-                        <TaskDescription />
+                        <TaskDescription task={task} />
                     </section>
 
                     <section className="task-sidebar">

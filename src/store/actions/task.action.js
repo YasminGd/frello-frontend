@@ -4,7 +4,7 @@ export function updateTask(groupId, task) {
     return async (dispatch, getState) => {
         try {
             const board = getState().boardModule.board
-            const savedBoard = await taskService.update(board, groupId, taskId, task)
+            const savedBoard = await taskService.update(board, groupId, task)
             const newBoard = { ...savedBoard }
             dispatch({ type: 'UPDATE_BOARD', board: newBoard })
         } catch (err) {

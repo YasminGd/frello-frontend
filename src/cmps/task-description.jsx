@@ -27,7 +27,7 @@ export const TaskDescription = ({ task, groupId }) => {
     }
 
     const handleDescChange = (ev, isCancel) => {
-        setTimeout(() => setIsBtnsDesc(false), 100)
+        setTimeout(() => setIsBtnsDesc(false), 200)
         setTaskDesc(isCancel)
     }
 

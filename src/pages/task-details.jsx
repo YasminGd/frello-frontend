@@ -58,7 +58,7 @@ export const TaskDetails = () => {
     }
 
     const onUpdateTask = (task) => {
-        dispatch(updateTask(groupId, taskId, task))
+        dispatch(updateTask(taskId, task))
     }
 
     const onGoBack = () => {

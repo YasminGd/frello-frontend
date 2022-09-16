@@ -1,11 +1,13 @@
 .group-list {
     padding-left: 28px;
     display: flex;
+    flex-wrap: nowrap;
     height: calc(100% - 52px);
     align-items: flex-start;
     gap: 8px;
     line-height: 20px;
-
+    overflow-x: scroll;
+    
     .add-task-button{
         height: 40px;
         border: none;   

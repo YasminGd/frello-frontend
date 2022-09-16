@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { cloudinaryService } from '../../services/cloudinary.service'
+import { addImg } from '../../store/actions/task.action'
 
-export const Attachment = () => {
+export const Attachment = ({ task, groupId }) => {
   const [attachedLink, setAttachedLink] = useState('')
+  const dispatch = useDispatch()
 
   const onAttachLink = () => {
     const url = attachedLink
@@ -11,14 +14,22 @@ export const Attachment = () => {
     console.log(`url:`, url)
   }
 
-  const onUploadFile = async (ev) => {
-    const url = await cloudinaryService.uploadImg(ev)
-    console.log(`url:`, url)
+  const onUploadImg = async (ev) => {
+    try {
+      const url = await cloudinaryService.uploadImg(ev)
+      onAddImg(url)
+    } catch (err) {
+      console.log('Error on upload file to Cloudinary', err)
+    }
+  }
+
+  const onAddImg = (imgUrl) => {
+    dispatch(addImg(imgUrl, task, groupId))
   }
 
   return (
     <section className="attachment">
-      <input type="file" onChange={onUploadFile} />
+      <input type="file" onChange={onUploadImg} />
       <p>Computer</p>
 
       <div className="seperator"></div>

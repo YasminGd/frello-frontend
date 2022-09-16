@@ -2,14 +2,14 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
 
-export const ActionModal = ({ data, task, onUpdateTask, setActionModal }) => {
+export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId }) => {
   const { type, pos } = data
   const modalStyle = { left: pos.left + 'px', top: pos.bottom + 'px' }
 
   const getActionCmp = (type) => {
     switch (type) {
       case 'Attachment':
-        return <Attachment />
+        return <Attachment task={task} onUpdateTask={onUpdateTask} groupId={groupId} />
       case 'Cover':
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 

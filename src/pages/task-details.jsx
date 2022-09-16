@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux'
 import { ActionModal } from '../cmps/action-modal'
 import { updateTask } from '../store/actions/task.action'
 import { TaskDescription } from '../cmps/task-description'
+import { TaskAttachments } from '../cmps/task-attachments'
 
 export const TaskDetails = () => {
   const navigate = useNavigate()
@@ -57,9 +58,9 @@ export const TaskDetails = () => {
     dispatch(updateTask(groupId, task))
   }
 
-    const onUpdateTask = (task) => {
-        dispatch(updateTask(groupId, task))
-    }
+  const onUpdateTask = (task) => {
+    dispatch(updateTask(groupId, task))
+  }
 
   const onGoBack = () => {
     navigate(-1)
@@ -92,6 +93,7 @@ export const TaskDetails = () => {
                 <div className="task-body">
                     <section className="task-content">
                         <TaskDescription task={task} groupId={groupId} />
+                        {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId}/>}
                     </section>
 
                     <section className="task-sidebar">
@@ -114,7 +116,8 @@ export const TaskDetails = () => {
             {actionModal && <ActionModal onUpdateTask={onUpdateTask}
                                          setActionModal={setActionModal}
                                          data={actionModal}
-                                         task={task} />}
+                                         task={task}
+                                         groupId={groupId} />}
             <section onClick={onGoBack} className="screen"></section>
         </React.Fragment>
     )

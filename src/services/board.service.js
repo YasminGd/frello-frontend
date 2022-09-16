@@ -47,10 +47,12 @@ const board = {
         {
           id: 'c101',
           title: 'Replace logo',
+          attachments: [],
         },
         {
           id: 'c102',
           title: 'Add Samples',
+          attachments: [],
         },
       ],
       style: {},
@@ -63,12 +65,14 @@ const board = {
           id: 'c103',
           title: 'Do that',
           archivedAt: 1589983468418,
+          attachments: [],
         },
         {
           id: 'c104',
           title: 'Help me',
           status: 'in-progress',
           description: 'description',
+          attachments: [],
           comments: [
             {
               id: 'ZdPnm',
@@ -166,11 +170,11 @@ const gBoards = [
   },
 ]
 
-  ; (() => {
-    boardChannel.addEventListener('message', (ev) => {
-      store.dispatch(ev.data)
-    })
-  })()
+;(() => {
+  boardChannel.addEventListener('message', (ev) => {
+    store.dispatch(ev.data)
+  })
+})()
 
 export const boardService = {
   query,
@@ -193,7 +197,7 @@ async function query(filterBy) {
     }
 
     return boards
-  } catch (err) { }
+  } catch (err) {}
 }
 
 function getById(boardId) {

@@ -69,56 +69,58 @@ export const TaskDetails = () => {
   const onOpenActionModal = (type, ref) => {
     if (actionModal?.type === type) return setActionModal(null)
     const rect = ref.current.getBoundingClientRect()
+    console.log(rect);
     const pos = { bottom: rect.bottom + 8, left: rect.left }
     setActionModal({ type, pos })
   }
 
   //prettier-ignore
   return (
-        <React.Fragment>
-            <section className="task-details">
-                {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
-                </section>}
-                <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
-                <section className="task-header">
-                    <textarea name=""
-                        value={titleTxt}
-                        onChange={handleChange}
-                        onKeyPress={handleUserKeyPress}
-                        onBlur={setTaskTitle} />
-                    <div className="sub-title">in list {group.title}</div>
-                    <GrCreditCard className="header-icon" />
-                </section>
-
-                <div className="task-body">
-                    <section className="task-content">
-                        <TaskDescription task={task} groupId={groupId} />
-                        {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId}/>}
-                    </section>
-
-                    <section className="task-sidebar">
-                        <h3 className="sidebar-title">Add to card</h3>
-
-                        {actionBtns.map(btn => (
-                            <button className="btn-sidebar"
-                                onClick={() => onOpenActionModal(btn.type, btn.ref)}
-                                key={btn.type}
-                                ref={btn.ref}>
-                                {btn.iconCmp}
-                                {btn.type}
-                            </button>
-                        ))}
-                    </section>
-                </div>
-
+    <React.Fragment>
+      <section onClick={onGoBack} className="screen">
+        <section className="task-details-container">
+          <section className="task-details" onClick={(ev) => ev.stopPropagation()}>
+            {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
+            </section>}
+            <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
+            <section className="task-header">
+              <textarea name=""
+                value={titleTxt}
+                onChange={handleChange}
+                onKeyPress={handleUserKeyPress}
+                onBlur={setTaskTitle} />
+              <div className="sub-title">in list {group.title}</div>
+              <GrCreditCard className="header-icon" />
             </section>
 
-            {actionModal && <ActionModal onUpdateTask={onUpdateTask}
-                                         setActionModal={setActionModal}
-                                         data={actionModal}
-                                         task={task}
-                                         groupId={groupId} />}
-            <section onClick={onGoBack} className="screen"></section>
-        </React.Fragment>
-    )
+            <div className="task-body">
+              <section className="task-content">
+                <TaskDescription task={task} groupId={groupId} />
+                {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
+              </section>
+
+              <section className="task-sidebar">
+                <h3 className="sidebar-title">Add to card</h3>
+
+                {actionBtns.map(btn => (
+                  <button className="btn-sidebar"
+                    onClick={() => onOpenActionModal(btn.type, btn.ref)}
+                    key={btn.type}
+                    ref={btn.ref}>
+                    {btn.iconCmp}
+                    {btn.type}
+                  </button>
+                ))}
+              </section>
+            </div>
+          </section>
+        </section>
+        {actionModal && <ActionModal onUpdateTask={onUpdateTask}
+          setActionModal={setActionModal}
+          data={actionModal}
+          task={task}
+          groupId={groupId} />}
+      </section>
+    </React.Fragment>
+  )
 }

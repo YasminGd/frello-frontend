@@ -31,7 +31,7 @@ export const ActionModal = ({
     }
   }
   return (
-    <section className="action-modal" style={modalStyle}>
+    <section className="action-modal" style={modalStyle} onClick={ev => ev.stopPropagation()}>
       <div className="title-container">
         <p>{type === 'Attachment' ? 'Attach from...' : type}</p>
         <span>

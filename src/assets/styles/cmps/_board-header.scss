@@ -1,39 +1,80 @@
 .board-header {
     height: 52px;
-    padding: 8px 4px 8px 16px;
+    padding: 8px 4px 8px 30px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     &>* {
         margin-bottom: 12px;
+        margin-top: 10px;
         height: 32px;
     }
 
-    input {
-        width: auto;
+    .left {
+        input {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 32px;
+            padding: 0 4px;
+            border-radius: 3px;
+            // padding-top: 2px;
+            max-width: auto;
+            text-align: center;
+            border: none;
+            background-color: transparent;
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(255, 255, 255, 0.32);
+            }
+
+            &:focus {
+                background-color: #fff;
+                color: #172b4d;
+                box-shadow: inset 0 0 0 2px $blue-500;
+                outline: none;
+                border-radius: 0;
+            }
+
+            &:focus:hover {
+                cursor: text;
+            }
+        }
     }
 
-    textarea {
-        color: white;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 32px;
-        padding: 0 4px;
-        // border-radius: 3px;
-        // padding-top: 2px;
-        max-width: auto;
+    .right {
+        margin-top: 10px;
+        margin-right: 4px;
 
-        &:hover {
-            cursor: pointer;
-            background-color: rgba(255, 255, 255, 0.32);
-        }
+        button {
+            transition: .1s ease;
+            background-color: #ffffff3d;
+            border-radius: 3px;
+            border: none;
+            color: #fff;
+            cursor: default;
+            font-size: 14px;
+            line-height: 32px;
+            max-width: 400px;
+            overflow: hidden;
+            position: relative;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 0;
+            padding-right: 12px;
+            padding-left: 9px;
 
-        &:focus {
-            background-color: #fff;
-            color: #172b4d;
-        }
-
-        &:focus:hover {
-            cursor: text;
+            &:hover {
+                cursor: pointer;
+                background-color: #ffffff52;
+            }
         }
     }
 }

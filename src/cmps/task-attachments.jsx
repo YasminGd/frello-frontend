@@ -2,6 +2,7 @@ import { GrAttachment } from 'react-icons/gr'
 import { useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateTask } from '../store/actions/task.action'
+import { AttachmentPreview } from './attachment-preview'
 
 export const TaskAttachments = ({ task, groupId }) => {
   const dispatch = useDispatch()
@@ -14,7 +15,18 @@ export const TaskAttachments = ({ task, groupId }) => {
         <h3>Attachments</h3>
         <GrAttachment />
       </div>
-      <div className="attachments-body">{attachments && <h1>THERE ARE ATTACHMENTS</h1>}</div>
+
+      <div className="attachments-body">
+        {attachments &&
+          attachments.map((attachment) => (
+            <AttachmentPreview
+              key={attachment.id}
+              task={task}
+              attachment={attachment}
+              groupId={groupId}
+            />
+          ))}
+      </div>
     </section>
   )
 }

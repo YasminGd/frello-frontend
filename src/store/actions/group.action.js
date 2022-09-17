@@ -7,8 +7,8 @@ export function addGroup(title) {
             const savedBoard = await groupService.add(title, board)
             dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
         }
-        catch {
-
+        catch (err) {
+            console.log('Cannot add group', err)
         }
     }
 }
@@ -18,11 +18,25 @@ export function removeGroup(groupId) {
         try {
             const board = getState().boardModule.board
             const savedBoard = await groupService.remove(groupId, board)
-            const newBoard = {...savedBoard}
+            const newBoard = { ...savedBoard }
             dispatch({ type: 'UPDATE_BOARD', board: newBoard })
         }
-        catch {
+        catch (err) {
+            console.log('Cannot remove group', err)
+        }
+    }
+}
 
+export function updateGroupTitle(groupId, title) {
+    return async (dispatch, getState) => {
+        try {
+            const board = getState().boardModule.board
+            const savedBoard = await groupService.updateGroupTitle(board, groupId, title)
+            const newBoard = { ...savedBoard }
+            dispatch({ type: 'UPDATE_BOARD', board: newBoard })
+        }
+        catch (err) {
+            console.log('Cannot remove group', err)
         }
     }
 }

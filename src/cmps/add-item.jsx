@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useRef, useState } from "react"
 import { GrClose } from 'react-icons/gr'
 
-export const AddNew = ({ onToggleAdd, addItem, groupId }) => {
+export const AddItem = ({ onToggleAdd, addItem, groupId }) => {
     const [title, setTitle] = useState('')
 
     const inputRef = useRef()
@@ -30,7 +30,7 @@ export const AddNew = ({ onToggleAdd, addItem, groupId }) => {
     }
 
     return (
-        <section className="add-new">
+        <section className="add-item">
             <form onSubmit={onAdd}>
                 <textarea
                     type="text"

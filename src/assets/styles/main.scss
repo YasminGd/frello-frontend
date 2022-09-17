@@ -31,6 +31,7 @@
 @import 'cmps/task-activity';
 @import 'cmps/task-activity-list';
 @import 'cmps/task-activity-preview';
+@import 'cmps/attachment-preview';
 // comments will go into activities
 @import 'cmps/task-comment';
 @import 'cmps/task-comment-list';
@@ -40,8 +41,9 @@
 @import 'cmps/task-list';
 @import 'cmps/task-preview';
 @import 'cmps/task-title';
-@import 'cmps/add-new';
+@import 'cmps/add-item';
 @import 'cmps/action-modal';
+@import 'cmps/dynamic-textarea';
 
 // COMPONENTS-ACTION MODAL
 @import 'cmps/action-modal-cmps/cover';

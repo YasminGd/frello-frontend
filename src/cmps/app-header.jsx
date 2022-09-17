@@ -15,7 +15,6 @@ export const AppHeader = () => {
   }
 
   const styleClass = getStyleClass()
-  console.log(styleClass);
 
   return (
     <section className={`app-header ${styleClass}`}>

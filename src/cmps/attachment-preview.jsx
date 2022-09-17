@@ -1,10 +1,21 @@
 import { useDispatch } from 'react-redux'
 import { utilService } from '../services/util.service'
+import { updateTask } from '../store/actions/task.action'
 
-export const AttachmentPreview = ({ attachment }) => {
+export const AttachmentPreview = ({ task, attachment, groupId }) => {
   const dispatch = useDispatch()
 
-  console.log(`attachment:`, attachment)
+  const onDeleteAttachment = () => {
+    const { id } = attachment
+    const taskToUpdate = {
+      ...task,
+      attachments: task.attachments.filter(
+        (attachment) => attachment.id !== id
+      ),
+    }
+    dispatch(updateTask(groupId, taskToUpdate))
+  }
+
   return (
     <section className="attachment-preview">
       <a
@@ -18,7 +29,9 @@ export const AttachmentPreview = ({ attachment }) => {
         <span className="attachment-options">
           <span>Added {utilService.timeSince(attachment.createdAt)}</span>
           <span> - </span>
-          <span className="delete-attachment">Delete</span>
+          <span onClick={onDeleteAttachment} className="delete-attachment">
+            Delete
+          </span>
         </span>
       </p>
     </section>

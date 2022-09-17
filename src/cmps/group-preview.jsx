@@ -3,6 +3,7 @@ import { AddItem } from './add-item.jsx'
 import { TaskList } from './task-list.jsx'
 import { DynamicTextarea } from './dynamic-textarea.jsx'
 import { BsThreeDots } from 'react-icons/bs'
+import { AiOutlinePlus } from 'react-icons/ai'
 
 export const GroupPreview = ({ group, addItem, removeItem, provided }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
@@ -42,7 +43,7 @@ export const GroupPreview = ({ group, addItem, removeItem, provided }) => {
         />
       ) : (
         <button className="add-task-button" onClick={onToggleAdd}>
-          Add a card
+          <span><AiOutlinePlus />Add a card</span>
         </button>
       )}
     </section>

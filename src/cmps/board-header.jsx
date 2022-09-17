@@ -11,7 +11,7 @@ export const BoardHeader = () => {
     const board = useSelector((state) => state.boardModule.board)
     const [boardTitle, setBoardTitle] = useState(board.title)
     const [width, setWidth] = useState(displayTextWidth(boardTitle))
-    const [sideMenuWidth, setSideMenuWidth] = useState({ width: '-339px' })
+    const [sideMenuWidth, setSideMenuWidth] = useState({ width: '0px' })
 
     const dispatch = useDispatch()
 

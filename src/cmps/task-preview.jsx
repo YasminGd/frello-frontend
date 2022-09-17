@@ -15,6 +15,7 @@ export const TaskPreview = ({ task, groupId, removeItem, provided }) => {
     return (!task.style || (task.style && task.style.coverStyle !== 'fully covered'))
   }
 
+
   const toRender = renderOptions()
   return (
     <Link

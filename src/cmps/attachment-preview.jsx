@@ -1,3 +1,4 @@
+import { BsSquareHalf } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { utilService } from '../services/util.service'
 import { updateTask } from '../store/actions/task.action'
@@ -51,7 +52,15 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
         </section>
         <span className="attachment-options">
           <span onClick={onMakeCover} className="make-attachment-cover">
+            <section className="svg-holder">
+              <BsSquareHalf
+                className="icon"
+                style={{
+                  transform: 'rotate(0.75turn) translateY(-20%) translateX(22%)',
+                }}
+              />
             {task.style?.coverImg === attachment.url ? 'Remove cover' : 'Make cover'}
+            </section>
           </span>
         </span>
       </section>

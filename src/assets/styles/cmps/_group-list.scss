@@ -14,7 +14,8 @@
         border: none;
         min-width: 272px;
         text-align: start;
-        padding: 8px 6px;
+        // padding: 8px 6px;
+        padding: 0px 8px 0px 6px;
         transition: background 85ms ease-in, opacity 40ms ease-in, border-color 85ms ease-in;
         font-size: 14px;
         width: 272px;
@@ -22,13 +23,17 @@
         border: none;
         background-color: #ffffff3d;
         color: white;
-        padding-left: 20px;
+        // padding-left: 20px;
 
-        &:before {
-            content: "\002B";
-            margin-right: 4px;
+        span {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 6px 8px;
+            gap: 6px;
+
         }
-
+        
         &:hover {
             background-color: #ffffff52;
         }

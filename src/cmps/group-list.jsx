@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { AddItem } from './add-item.jsx'
 import { GroupPreview } from './group-preview.jsx'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { AiOutlinePlus } from 'react-icons/ai'
 
 export const GroupList = ({ board, addItem, removeItem }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
@@ -36,7 +37,7 @@ export const GroupList = ({ board, addItem, removeItem }) => {
             <AddItem onToggleAdd={onToggleAdd} addItem={addItem} />
           ) : (
             <button className="add-task-button" onClick={onToggleAdd}>
-              Add another list
+              <span><AiOutlinePlus/>Add another list</span>
             </button>
           )}
         </section>

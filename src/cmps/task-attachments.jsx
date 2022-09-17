@@ -19,7 +19,12 @@ export const TaskAttachments = ({ task, groupId }) => {
       <div className="attachments-body">
         {attachments &&
           attachments.map((attachment) => (
-            <AttachmentPreview key={attachment.id} attachment={attachment} />
+            <AttachmentPreview
+              key={attachment.id}
+              task={task}
+              attachment={attachment}
+              groupId={groupId}
+            />
           ))}
       </div>
     </section>

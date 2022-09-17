@@ -37,10 +37,9 @@ export const Board = () => {
     else dispatch(removeGroup(groupId))
   }
 
-  const onDragStart = () => {
+  const onDragStart = () => {}
 
-  }
-
+  //prettier-ignore
   const onDragEnd = (result) => {
     console.log('onDragEnd ~ result', result)
     // reorder out column
@@ -57,17 +56,42 @@ export const Board = () => {
       return
     }
 
+    const newBoard = { ...board }
+    const newBoardGroups = Array.from(newBoard.groups)
+
     if (type === 'group') {
-      const newBoard = { ...board }
-      const newBoardGroups = Array.from(newBoard.groups)
       newBoardGroups.splice(source.index, 1)
       newBoardGroups.splice(destination.index, 0, newBoard.groups[source.index])
 
       newBoard.groups = newBoardGroups
       dispatch(updateBoard(newBoard))
-
+      
     } else if (type === 'task') {
+      
+      const prevGroupIdx = newBoardGroups.findIndex(group => group.id === source.droppableId)
+      const newGroupIdx = newBoardGroups.findIndex(group => group.id === destination.droppableId)
 
+      const prevGroup = newBoardGroups[prevGroupIdx]
+      const newGroup = newBoardGroups[newGroupIdx]
+
+      if(prevGroupIdx === newGroupIdx) {
+
+        if(destination.index < source.index) {
+          newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+          prevGroup.tasks.splice(source.index + 1, 1)
+        } else {
+          newGroup.tasks.splice(destination.index + 1, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+          prevGroup.tasks.splice(source.index, 1)
+        }
+        
+      } else {
+        newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+        prevGroup.tasks.splice(source.index, 1)
+      }
+
+      newBoard.groups[newGroupIdx] = newGroup
+      newBoard.groups[prevGroupIdx] = prevGroup
+      dispatch(updateBoard(newBoard))
     }
   }
 

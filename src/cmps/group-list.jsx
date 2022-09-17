@@ -36,7 +36,7 @@ export const GroupList = ({ board, addItem, removeItem }) => {
             <AddItem onToggleAdd={onToggleAdd} addItem={addItem} />
           ) : (
             <button className="add-task-button" onClick={onToggleAdd}>
-              Add a card
+              Add another list
             </button>
           )}
         </section>

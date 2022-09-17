@@ -7,12 +7,32 @@
     flex-shrink: 0;
 
     .cover-color {
-        height: 33px;   
+        min-height: 33px;
+        background-size: 100% auto;
+
+        &.img {
+            margin-bottom: -5px;
+            position: relative;
+
+            div {
+                position: absolute;
+                bottom: 0;
+            }
+        }
     }
 
     .task-body {
         padding: 6px 8px;
         word-break: break-word;
+
+        .task-preview-icons {
+            font-size: 12px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 6px 3px;
+            gap: 6px;
+        }
 
     }
 

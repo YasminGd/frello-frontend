@@ -16,6 +16,18 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
     dispatch(updateTask(groupId, taskToUpdate))
   }
 
+  const onMakeCover = () => {
+    if (task.style) {
+      if (task.style.coverImg === attachment.url) task.style.coverImg = null
+      else {
+        task.style.coverImg = attachment.url
+        task.style.bgColor = null
+      }
+    }
+    else task.style = { coverImg: attachment.url }
+    dispatch(updateTask(groupId, task))
+  }
+
   return (
     <section className="attachment-preview">
       <a
@@ -31,6 +43,10 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
           <span> - </span>
           <span onClick={onDeleteAttachment} className="delete-attachment">
             Delete
+          </span>
+          <span> - </span>
+          <span onClick={onMakeCover} className="delete-attachment">
+            {task.style?.coverImg === attachment.url ? 'Remove cover': 'Make cover'}
           </span>
         </span>
       </p>

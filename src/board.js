@@ -69,12 +69,12 @@ export var board = {
           attachments: [],
         },
         {
-          id: 'c103',
+          id: 'c104',
           title: 'Data model approval',
-          attachments: [{ id: 'aa101', name: 'Attachment Image', createdAt: Date.now(), url: "" }],
+          attachments: [{ id: 'aa101', name: 'Attachment Image', createdAt: Date.now(), url: "https://images.unsplash.com/photo-1526253038957-bce54e05968e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" }],
         },
         {
-          id: 'c103',
+          id: 'c105',
           title: 'Database implementation',
           attachments: [],
         },
@@ -137,7 +137,7 @@ export var board = {
           },
         },
         {
-          id: 'c106',
+          id: 'c105',
           title: 'Build basic CRUD',
           archivedAt: 1589983468418,
           attachments: [],
@@ -207,7 +207,7 @@ export var board = {
           title: 'connecting to PWA',
           status: 'in-progress',
           description: 'description',
-          attachments: [{ id: 'aa10122', name: 'Attachment Image', createdAt: Date.now(), url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fsevaa.com%2Fapp%2Fuploads%2F2018%2F09%2Ffeatured-image-PWA.png&imgrefurl=https%3A%2F%2Fsevaa.com%2Fblog%2F2018%2F10%2Fprogressive-web-app%2F&tbnid=DmoAnoDpObC2rM&vet=12ahUKEwiNh_761Zv6AhUaQ_EDHX9lClAQMygAegUIARDDAQ..i&docid=qWYbIIeRhL-waM&w=1090&h=520&q=connecting%20PWA&ved=2ahUKEwiNh_761Zv6AhUaQ_EDHX9lClAQMygAegUIARDDAQ" }],
+          attachments: [{ id: 'aa10122', name: 'Attachment Image', createdAt: Date.now(), url: "https://sevaa.com/app/uploads/2018/09/featured-image-PWA.png" }],
           comments: [
             {
               id: 'ZdPnm',
@@ -307,10 +307,10 @@ export var board = {
           },
         },
         {
-          id: 'c103',
+          id: 'c105',
           title: 'Add node.js modules',
           archivedAt: 1589983468418,
-          attachments: [{ id: 'aa101', name: 'Attachment Image', createdAt: Date.now(), url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fcloudinary-res.cloudinary.com%2Fimage%2Fupload%2Fnodejs-plain.svg&imgrefurl=https%3A%2F%2Fcloudinary.com%2Fdocumentation%2Fnode_integration&tbnid=pBeh49j3PZjhmM&vet=12ahUKEwicx4C415v6AhWEyoUKHXaPDgsQMygPegUIARCqAQ..i&docid=1SLdOpbOm00EmM&w=800&h=800&q=node.js&ved=2ahUKEwicx4C415v6AhWEyoUKHXaPDgsQMygPegUIARCqAQ" }],
+          attachments: [{ id: 'aa101', name: 'Attachment Image', createdAt: Date.now(), url: "https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png" }],
         },
       ],
       style: {},
@@ -374,7 +374,7 @@ export var board = {
           },
         },
         {
-          id: 'c106',
+          id: 'c105',
           title: 'End day CR wihh devs and team leader',
           archivedAt: 1589983468418,
           attachments: [],
@@ -383,7 +383,7 @@ export var board = {
           },
         },
         {
-          id: 'c107',
+          id: 'c106',
           title: 'Automation tests',
           archivedAt: 1589983468418,
           attachments: [],
@@ -447,7 +447,7 @@ export var board = {
           },
         },
         {
-          id: 'c103',
+          id: 'c105',
           title: 'Make a login system',
           archivedAt: 1589983468418,
           attachments: [],

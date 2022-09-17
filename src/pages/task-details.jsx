@@ -80,8 +80,10 @@ export const TaskDetails = () => {
       <section onClick={onGoBack} className="screen">
         <section className="task-details-container">
           <section className="task-details" onClick={(ev) => ev.stopPropagation()}>
-            {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
+            {task.style?.coverImg && <section className="cover-color img">
+              <img src={task.style.coverImg} />
             </section>}
+            {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>}
             <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
             <section className="task-header">
               <textarea name=""

@@ -20,8 +20,11 @@ export const Cover = ({ task, onUpdateTask }) => {
 
   const onUpdateCover = (color) => {
     if (selectedColor === color) return
-    if (task.style) task.style.bgColor = color
-    else task.style = { bgColor: color, coverStyle: 'not fully covered' }
+    if (task.style) {
+      task.style.bgColor = color
+      task.style.coverImg = null
+    }
+    else task.style = { bgColor: color }
     setSelectedColor(color)
     onUpdateTask(task)
   }
@@ -29,7 +32,7 @@ export const Cover = ({ task, onUpdateTask }) => {
   const onUpdateCoverStyle = (coverStyle) => {
     if (selectedCover === coverStyle) return
     if (task.style) task.style.coverStyle = coverStyle
-    else task.style = { bgColor: '', coverStyle: coverStyle }
+    else task.style = { coverStyle: coverStyle }
     setSelectedCover(coverStyle)
     onUpdateTask(task)
   }

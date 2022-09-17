@@ -26,7 +26,9 @@ export const DynamicTextarea = ({ type, entity, style, groupId }) => {
 
     return (
         <section className="dynamic-textarea">
-            <textarea name=""
+            <textarea 
+                spellCheck ="false"
+                name=""
                 style={style}
                 value={txt}
                 onChange={handleChange}

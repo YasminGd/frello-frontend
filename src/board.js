@@ -335,7 +335,7 @@ export var board = {
           title: 'Add node.js modules',
           archivedAt: 1589983468418,
           attachments: [{ id: 'aa101', name: 'Attachment Image', createdAt: Date.now(), url: "https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png" }],
-          style: { coverImg: 'https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png'}
+          style: { coverImg: 'https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png' }
         },
       ],
       style: {},
@@ -354,11 +354,11 @@ export var board = {
           },
         },
         {
-          id: 'tt2',
+          id: 'ttt2',
           title: 'Bug search',
           description: 'description',
-          attachments: [{ id: 'bb102', name: 'Attachment Image', createdAt: Date.now(), url: "https://st2.depositphotos.com/47577860/45954/v/1600/depositphotos_459542140-stock-illustration-bug-bug-search-development-icon.jpg"}],
-          style: { coverImg: 'https://st2.depositphotos.com/47577860/45954/v/1600/depositphotos_459542140-stock-illustration-bug-bug-search-development-icon.jpg'},
+          attachments: [{ id: 'bb102', name: 'Attachment Image', createdAt: Date.now(), url: "https://st2.depositphotos.com/47577860/45954/v/1600/depositphotos_459542140-stock-illustration-bug-bug-search-development-icon.jpg" }],
+          style: { coverImg: 'https://st2.depositphotos.com/47577860/45954/v/1600/depositphotos_459542140-stock-illustration-bug-bug-search-development-icon.jpg' },
           comments: [
             {
               id: 'ZdPnm',
@@ -398,7 +398,7 @@ export var board = {
           },
         },
         {
-          id: 'tt3',
+          id: 'ttt3',
           title: 'End day CR wihh devs and team leader',
           archivedAt: 1589983468418,
           attachments: [],

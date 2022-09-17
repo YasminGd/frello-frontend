@@ -1,5 +1,6 @@
 import { utilService } from './services/util.service'
 
+//prettier-ignore
 export var board = {
   _id: 'b101',
   title: 'Demo Data',
@@ -333,6 +334,7 @@ export var board = {
           title: 'Add node.js modules',
           archivedAt: 1589983468418,
           attachments: [{ id: 'aa101', name: 'Attachment Image', createdAt: Date.now(), url: "https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png" }],
+          style: { coverImg: 'https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png'}
         },
       ],
       style: {},
@@ -353,9 +355,9 @@ export var board = {
         {
           id: 'tt2',
           title: 'Bug search',
-          status: 'in-progress',
           description: 'description',
-          attachments: [],
+          attachments: [{ id: 'bb102', name: 'Attachment Image', createdAt: Date.now(), url: "https://st2.depositphotos.com/47577860/45954/v/1600/depositphotos_459542140-stock-illustration-bug-bug-search-development-icon.jpg"}],
+          style: { coverImg: 'https://st2.depositphotos.com/47577860/45954/v/1600/depositphotos_459542140-stock-illustration-bug-bug-search-development-icon.jpg'},
           comments: [
             {
               id: 'ZdPnm',
@@ -392,9 +394,6 @@ export var board = {
             fullname: 'Tal Tarablus',
             imgUrl:
               'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-          },
-          style: {
-            bgColor: '#26de81',
           },
         },
         {

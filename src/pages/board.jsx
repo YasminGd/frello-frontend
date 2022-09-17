@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
 import { BoardHeader } from '../cmps/board-header.jsx'
 import { GroupList } from '../cmps/group-list.jsx'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { loadBoards, updateBoard } from '../store/actions/board.action'
@@ -37,9 +37,14 @@ export const Board = () => {
     else dispatch(removeGroup(groupId))
   }
 
+  const onDragStart = () => {
+
+  }
+
   const onDragEnd = (result) => {
+    console.log('onDragEnd ~ result', result)
     // reorder out column
-    const { destination, source, draggableId } = result
+    const { destination, source, type, draggableId } = result
 
     if (!destination) {
       return
@@ -52,12 +57,18 @@ export const Board = () => {
       return
     }
 
-    const newBoardGroups = Array.from(board.groups)
-    newBoardGroups.splice(source.index, 1)
-    newBoardGroups.splice(destination.index, 0, board.groups[source.index])
+    if (type === 'group') {
+      const newBoard = { ...board }
+      const newBoardGroups = Array.from(newBoard.groups)
+      newBoardGroups.splice(source.index, 1)
+      newBoardGroups.splice(destination.index, 0, newBoard.groups[source.index])
 
-    board.groups = newBoardGroups
-    dispatch(updateBoard(board))
+      newBoard.groups = newBoardGroups
+      dispatch(updateBoard(newBoard))
+
+    } else if (type === 'task') {
+
+    }
   }
 
   if (!board) return <h1>Loading</h1>

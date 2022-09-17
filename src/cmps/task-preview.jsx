@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { TaskPreviewIcons } from './task-preview-icons'
 
-export const TaskPreview = ({ task, groupId, removeItem }) => {
+export const TaskPreview = ({ task, groupId, removeItem, provided }) => {
   const getCoverStyle = () => {
     if (task.style?.coverStyle) {
       if (task.style.coverStyle === 'fully covered') {
@@ -19,14 +19,18 @@ export const TaskPreview = ({ task, groupId, removeItem }) => {
   }
 
   return (
-    <Link to={`${groupId}/${task.id}`} className="task-preview">
+    <Link
+      to={`${groupId}/${task.id}`}
+      className="task-preview"
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      ref={provided.innerRef}
+    >
       {task.style?.coverImg && <section className="cover-color img">
-        <img src={task.style.coverImg}/>
-        {
-          task.style.coverStyle === 'fully-covered' ? 
-          <div>{task.title}</div> :
-          ''
-        }
+        <img src={task.style.coverImg} />
+        {task.style.coverStyle === 'fully-covered' ?
+          <div>{task.title}</div> : ''}
+
       </section>}
       {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>}
       <section className="task-body" style={{ backgroundColor: getCoverStyle() }}>

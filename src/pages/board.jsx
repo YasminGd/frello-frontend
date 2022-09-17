@@ -9,6 +9,7 @@ import { loadBoards, updateBoard } from '../store/actions/board.action'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { addTask, removeTask } from '../store/actions/task.action'
 import { addGroup, removeGroup } from '../store/actions/group.action'
+import { boardService } from '../services/board.service.js'
 
 export const Board = () => {
   const board = useSelector((state) => state.boardModule.board)
@@ -37,62 +38,21 @@ export const Board = () => {
     else dispatch(removeGroup(groupId))
   }
 
-  const onDragStart = () => {}
+  const onDragStart = () => { }
 
   //prettier-ignore
   const onDragEnd = (result) => {
-    console.log('onDragEnd ~ result', result)
-    // reorder out column
-    const { destination, source, type, draggableId } = result
+    const { destination, source, type } = result
 
-    if (!destination) {
-      return
-    }
+    if (!destination) return
 
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return
-    }
+    // if position is same as before return
+    if (destination.droppableId === source.droppableId &&
+      destination.index === source.index) return
 
     const newBoard = { ...board }
-    const newBoardGroups = Array.from(newBoard.groups)
-
-    if (type === 'group') {
-      newBoardGroups.splice(source.index, 1)
-      newBoardGroups.splice(destination.index, 0, newBoard.groups[source.index])
-
-      newBoard.groups = newBoardGroups
-      dispatch(updateBoard(newBoard))
-      
-    } else if (type === 'task') {
-      
-      const prevGroupIdx = newBoardGroups.findIndex(group => group.id === source.droppableId)
-      const newGroupIdx = newBoardGroups.findIndex(group => group.id === destination.droppableId)
-
-      const prevGroup = newBoardGroups[prevGroupIdx]
-      const newGroup = newBoardGroups[newGroupIdx]
-
-      if(prevGroupIdx === newGroupIdx) {
-
-        if(destination.index < source.index) {
-          newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
-          prevGroup.tasks.splice(source.index + 1, 1)
-        } else {
-          newGroup.tasks.splice(destination.index + 1, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
-          prevGroup.tasks.splice(source.index, 1)
-        }
-        
-      } else {
-        newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
-        prevGroup.tasks.splice(source.index, 1)
-      }
-
-      newBoard.groups[newGroupIdx] = newGroup
-      newBoard.groups[prevGroupIdx] = prevGroup
-      dispatch(updateBoard(newBoard))
-    }
+    const updatedBoard = boardService.handleDragEnd(newBoard, destination, source, type)
+    dispatch(updateBoard(updatedBoard))
   }
 
   if (!board) return <h1>Loading</h1>

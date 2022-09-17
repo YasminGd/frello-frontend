@@ -99,7 +99,7 @@ export var board = {
           attachments: [],
         },
         {
-          id: 'c104',
+          id: 'c1002',
           title: 'Create front services',
           status: 'in-progress',
           description: 'description',
@@ -153,7 +153,7 @@ export var board = {
           },
         },
         {
-          id: 'c105',
+          id: 't1003',
           title: 'Build basic CRUD',
           archivedAt: 1589983468418,
           attachments: [],
@@ -174,7 +174,7 @@ export var board = {
           memberIds: ['u103'],
         },
         {
-          id: 'c104',
+          id: 'c2',
           title: 'functional testing for app header',
           status: 'in-progress',
           description: 'description',
@@ -221,7 +221,7 @@ export var board = {
           },
         },
         {
-          id: 'c105',
+          id: 'c3',
           title: 'connecting to PWA',
           status: 'in-progress',
           description: 'description',
@@ -283,7 +283,7 @@ export var board = {
           attachments: [],
         },
         {
-          id: 'c104',
+          id: 'c22',
           title: 'https://www.npmjs.com/package/react-beautiful-dnd',
           status: 'in-progress',
           description: 'description',
@@ -342,7 +342,7 @@ export var board = {
       title: 'QA',
       tasks: [
         {
-          id: 'c103',
+          id: 'tt1',
           title: 'Meeting with head manager for planning the code progress',
           archivedAt: 1589983468418,
           attachments: [],
@@ -351,7 +351,7 @@ export var board = {
           },
         },
         {
-          id: 'c104',
+          id: 'tt2',
           title: 'Bug search',
           status: 'in-progress',
           description: 'description',
@@ -398,7 +398,7 @@ export var board = {
           },
         },
         {
-          id: 'c105',
+          id: 'tt3',
           title: 'End day CR wihh devs and team leader',
           archivedAt: 1589983468418,
           attachments: [],
@@ -407,7 +407,7 @@ export var board = {
           },
         },
         {
-          id: 'c106',
+          id: 'tt4',
           title: 'Automation tests',
           archivedAt: 1589983468418,
           attachments: [],
@@ -426,7 +426,7 @@ export var board = {
           attachments: [],
         },
         {
-          id: 'c104',
+          id: 'tt2',
           title: 'Finish making more customization options',
           status: 'in-progress',
           description: 'description',
@@ -473,7 +473,7 @@ export var board = {
           },
         },
         {
-          id: 'c105',
+          id: 'tt3',
           title: 'Make a login system',
           archivedAt: 1589983468418,
           attachments: [],

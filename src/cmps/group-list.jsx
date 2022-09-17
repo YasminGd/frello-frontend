@@ -21,13 +21,14 @@ export const GroupList = ({ board, addItem, removeItem }) => {
         >
           {board.groups.map((group, index) => (
             <Draggable draggableId={group.id} key={group.id} index={index}>
-              {(provided) => (
+              {(provided, snapshot) => (
                 <GroupPreview
                   provided={provided}
                   key={group.id}
                   group={group}
                   addItem={addItem}
                   removeItem={removeItem}
+                  isDragging={snapshot.isDragging}
                 />
               )}
             </Draggable>

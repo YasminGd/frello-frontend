@@ -5,7 +5,8 @@ import { DynamicTextarea } from './dynamic-textarea.jsx'
 import { BsThreeDots } from 'react-icons/bs'
 import { AiOutlinePlus } from 'react-icons/ai'
 
-export const GroupPreview = ({ group, addItem, removeItem, provided }) => {
+//prettier-ignore
+export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
 
   const onToggleAdd = () => {
@@ -16,7 +17,7 @@ export const GroupPreview = ({ group, addItem, removeItem, provided }) => {
 
   return (
     <section
-      className="group-preview"
+      className={`group-preview ${isDragging ? 'dragging' : ''}`}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
       ref={provided.innerRef}

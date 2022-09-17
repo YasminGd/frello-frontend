@@ -5,6 +5,10 @@
   border-radius: 3px;
   font-size: 0.875rem;
 
+  &.dragging {
+    background-color: #ebecf0e7;
+  }
+
   .group-title {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
       Ubuntu, Droid Sans, Helvetica Neue, sans-serif;

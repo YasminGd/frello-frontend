@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { IoCloseOutline } from 'react-icons/io5'
 import { GrCreditCard } from 'react-icons/gr'
-import { BsPerson, BsCheck2Square } from 'react-icons/bs'
+import { BsPerson, BsCheck2Square, BsSquareHalf } from 'react-icons/bs'
 import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
 import { ImAttachment } from 'react-icons/im'
 import { TbRectangle } from 'react-icons/tb'
@@ -36,12 +36,43 @@ export const TaskDetails = () => {
   const btnCoverRef = useRef()
 
   const actionBtns = [
-    { type: 'Members', ref: btnMembersRef, iconCmp: <BsPerson className="icon" /> },
-    { type: 'Labels', ref: btnLabelsRef, iconCmp: <AiOutlineTag className="icon" /> },
-    { type: 'Checklist', ref: btnChecklistRef, iconCmp: <BsCheck2Square className="icon" /> },
-    { type: 'Dates', ref: btnDatesRef, iconCmp: <AiOutlineClockCircle className="icon" /> },
-    { type: 'Attachment', ref: btnAttachmentRef, iconCmp: <ImAttachment className="icon" /> },
-    { type: 'Cover', ref: btnCoverRef, iconCmp: <TbRectangle className="icon" /> },
+    {
+      type: 'Members',
+      ref: btnMembersRef,
+      iconCmp: <BsPerson className="icon" />,
+    },
+    {
+      type: 'Labels',
+      ref: btnLabelsRef,
+      iconCmp: <AiOutlineTag className="icon" />,
+    },
+    {
+      type: 'Checklist',
+      ref: btnChecklistRef,
+      iconCmp: <BsCheck2Square className="icon" />,
+    },
+    {
+      type: 'Dates',
+      ref: btnDatesRef,
+      iconCmp: <AiOutlineClockCircle className="icon" />,
+    },
+    {
+      type: 'Attachment',
+      ref: btnAttachmentRef,
+      iconCmp: <ImAttachment className="icon" />,
+    },
+    {
+      type: 'Cover',
+      ref: btnCoverRef,
+      iconCmp: (
+        <BsSquareHalf
+          className="icon"
+          style={{
+            transform: 'rotate(0.75turn) translateY(-20%) translateX(22%)',
+          }}
+        />
+      ),
+    },
   ]
 
   const handleChange = ({ target }) => {
@@ -69,7 +100,7 @@ export const TaskDetails = () => {
   const onOpenActionModal = (type, ref) => {
     if (actionModal?.type === type) return setActionModal(null)
     const rect = ref.current.getBoundingClientRect()
-    console.log(rect);
+    console.log(rect)
     const pos = { bottom: rect.bottom + 8, left: rect.left }
     setActionModal({ type, pos })
   }

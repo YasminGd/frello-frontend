@@ -1,5 +1,4 @@
 import { storageService } from './async-storage.service.js'
-import { utilService } from './util.service.js'
 // import { getActionRemoveBoard, getActionAddBoard, getActionUpdateBoard } from '../store/board.actions.js'
 import { store } from '../store/store'
 import { board } from '../board.js'
@@ -71,7 +70,6 @@ async function query(filterBy) {
   try {
     let boards = await storageService.query(STORAGE_KEY)
     if (!boards || !boards.length) {
-      console.log('inside if')
       storageService.postMany(STORAGE_KEY, gBoards)
       boards = gBoards
     }
@@ -146,31 +144,6 @@ function handleDragEnd(newBoard, destination, source, type) {
     return newBoard
   }
 }
-
-// async function addItem(title, groupId, boardId) {
-//   //get from the store?
-//   const board = await boardService.getById(boardId)
-//   if (groupId) {
-//     const group = board.groups.find(group => group.id === groupId)
-//     group.tasks.push({ title, id: utilService.makeId() })
-//   } else {
-//     board.groups.push({ title, id: utilService.makeId(), tasks: [] })
-//   }
-//   return board
-// }
-
-// async function removeItem(groupId, taskId, boardId) {
-//   //get from the store?
-//   const board = await boardService.getById(boardId)
-//   if (taskId) {
-//     const group = board.groups.find(group => group.id === groupId)
-//     console.log(group.tasks);
-//     group.tasks = group.tasks.filter(task => task.id !== taskId)
-//   } else {
-//     board.groups = board.groups.filter(group => group.id !== groupId)
-//   }
-//   return board
-// }
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

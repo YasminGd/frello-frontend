@@ -79,6 +79,7 @@ export var board = {
           id: 'c104',
           title: 'Data model approval',
           attachments: [{ id: 'aa101', name: 'Attachment Image', createdAt: Date.now(), url: "https://images.unsplash.com/photo-1526253038957-bce54e05968e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" }],
+          style: { coverImg: "https://images.unsplash.com/photo-1526253038957-bce54e05968e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" }
         },
         {
           id: 'c105',
@@ -149,7 +150,7 @@ export var board = {
               'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
           },
           style: {
-            bgColor: '#FFAF3F',
+            coverImg: 'https://trello.com/1/cards/6321cbc1e641a404ee3f1eb6/attachments/6321cd334f784b036ea3c662/download/images.jpeg'
           },
         },
         {
@@ -264,7 +265,7 @@ export var board = {
               'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
           },
           style: {
-            bgColor: '#F5DE29',
+            coverImg: "https://sevaa.com/app/uploads/2018/09/featured-image-PWA.png"
           },
         },
       ],

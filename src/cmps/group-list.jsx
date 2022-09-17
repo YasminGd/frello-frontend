@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { AddNew } from './add-new.jsx';
+import { useState } from 'react'
+import { AddItem } from './add-item.jsx'
 import { GroupPreview } from './group-preview.jsx'
 
 export const GroupList = ({ board, addItem, removeItem }) => {
@@ -14,7 +14,7 @@ export const GroupList = ({ board, addItem, removeItem }) => {
             board.groups.map(group => <GroupPreview key={group.id} group={group} addItem={addItem} removeItem={removeItem} />)
         }
         {
-            isAddOpen ? <AddNew onToggleAdd={onToggleAdd} addItem={addItem} /> :
+            isAddOpen ? <AddItem onToggleAdd={onToggleAdd} addItem={addItem} /> :
                 <button className="add-task-button" onClick={onToggleAdd}>
                     Add a card
                 </button>

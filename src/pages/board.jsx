@@ -55,7 +55,7 @@ export const Board = () => {
     dispatch(updateBoard(updatedBoard))
   }
 
-  if (!board) return <h1>Loading</h1>
+  if (!board) return 
   return (
     <section className="board">
       <BoardHeader />

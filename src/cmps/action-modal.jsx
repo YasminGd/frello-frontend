@@ -1,6 +1,7 @@
 import { IoCloseOutline } from 'react-icons/io5'
 import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
+import { BoardSideMenu } from './board-side-menu'
 
 export const ActionModal = ({
   data,
@@ -25,6 +26,9 @@ export const ActionModal = ({
         )
       case 'Cover':
         return <Cover task={task} onUpdateTask={onUpdateTask} />
+
+      case 'Menu':
+        return <BoardSideMenu />
 
       default:
         break

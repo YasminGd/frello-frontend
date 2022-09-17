@@ -77,4 +77,10 @@
             }
         }
     }
+
+    .action-modal {
+        position: absolute;
+        margin-top: -4px;
+        height: calc(100vh - 44px);
+    }
 }

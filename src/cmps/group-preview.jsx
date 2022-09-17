@@ -11,7 +11,7 @@ export const GroupPreview = ({ group, addItem, removeItem, provided }) => {
     setIsAddOpen(!isAddOpen)
   }
 
-    const textareaStyle = { width: "100%", height: "32px", fontSize: "14px" }
+  const textareaStyle = { width: "100%", height: "32px", fontSize: "14px" }
 
   return (
     <section
@@ -21,7 +21,6 @@ export const GroupPreview = ({ group, addItem, removeItem, provided }) => {
       ref={provided.innerRef}
     >
       <section className="group-title">
-        {/* <p>{group.title}</p> */}
         <DynamicTextarea
           entity={group}
           type={'group'}

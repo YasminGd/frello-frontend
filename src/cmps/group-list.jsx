@@ -11,7 +11,7 @@ export const GroupList = ({ board, addItem, removeItem }) => {
   }
 
   return (
-    <Droppable droppableId={board._id} direction="horizontal">
+    <Droppable droppableId={board._id} direction="horizontal" type="group">
       {(provided) => (
         <section
           className="group-list"

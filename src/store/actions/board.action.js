@@ -2,24 +2,24 @@ import { boardService } from '../../services/board.service.js'
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
-    return {
-        type: 'REMOVE_BOARD',
-        boardId,
-    }
+  return {
+    type: 'REMOVE_BOARD',
+    boardId,
+  }
 }
 
 export function getActionAddBoard(board) {
-    return {
-        type: 'ADD_BOARD',
-        board,
-    }
+  return {
+    type: 'ADD_BOARD',
+    board,
+  }
 }
 
 export function getActionUpdateBoard(board) {
-    return {
-        type: 'UPDATE_BOARD',
-        board,
-    }
+  return {
+    type: 'UPDATE_BOARD',
+    board,
+  }
 }
 
 export function loadBoards() {
@@ -37,34 +37,38 @@ export function loadBoards() {
 }
 
 export function removeBoard(boardId) {
-    return async (dispatch) => {
-        try {
-            await boardService.remove(boardId)
-            console.log('Deleted Succesfully!')
-            dispatch(getActionRemoveBoard(boardId))
-        } catch (err) {
-            console.log('Cannot remove board', err)
-        }
+  return async (dispatch) => {
+    try {
+      await boardService.remove(boardId)
+      console.log('Deleted Succesfully!')
+      dispatch(getActionRemoveBoard(boardId))
+    } catch (err) {
+      console.log('Cannot remove board', err)
     }
+  }
 }
 
 export function addBoard(board) {
-    return async (dispatch) => {
-        try {
-            const savedBoard = await boardService.save(board)
-            dispatch(getActionAddBoard(savedBoard))
-        } catch (err) {
-            console.log(`cannot add board:`, err)
-        }
-    }
-}
-
-export function updateBoard(board) {
   return async (dispatch) => {
     try {
       const savedBoard = await boardService.save(board)
-      dispatch(getActionUpdateBoard(savedBoard))
+      dispatch(getActionAddBoard(savedBoard))
     } catch (err) {
+      console.log(`cannot add board:`, err)
+    }
+  }
+}
+
+export function updateBoard(board) {
+  return async (dispatch, getState) => {
+    const prevBoard = { ...getState().boardModule.board }
+    dispatch(getActionUpdateBoard(board))
+
+    try {
+      await boardService.save(board)
+    }
+    catch (err) {
+      dispatch(getActionUpdateBoard(prevBoard))
       console.log('Cannot update board', err)
     }
   }
@@ -89,17 +93,17 @@ export function updateBoard(board) {
 // }
 
 export function addItemToBoard(title, groupId, boardId) {
-    return async (dispatch) => {
-        const updatedBoard = await boardService.addItem(title, groupId, boardId)
-        dispatch(updateBoard(updatedBoard))
-    }
+  return async (dispatch) => {
+    const updatedBoard = await boardService.addItem(title, groupId, boardId)
+    dispatch(updateBoard(updatedBoard))
+  }
 }
 
 export function removeItemFromBoard(groupId, taskId, boardId) {
-    return async (dispatch) => {
-        const updatedBoard = await boardService.removeItem(groupId, taskId, boardId)
-        dispatch(updateBoard(updatedBoard))
-    }
+  return async (dispatch) => {
+    const updatedBoard = await boardService.removeItem(groupId, taskId, boardId)
+    dispatch(updateBoard(updatedBoard))
+  }
 }
 
 // Demo for Optimistic Mutation

@@ -1,7 +1,6 @@
 const initialState = {
   boards: [],
   board: null
-  //last action
 }
 export function boardReducer(state = initialState, action) {
   let newState = state
@@ -39,6 +38,7 @@ export function boardReducer(state = initialState, action) {
       break
 
     default:
+      return state
   }
   // For debug:
   window.boardState = newState

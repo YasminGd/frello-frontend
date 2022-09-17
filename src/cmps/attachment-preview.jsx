@@ -1,3 +1,4 @@
+import { BsSquareHalf } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { utilService } from '../services/util.service'
 import { updateTask } from '../store/actions/task.action'
@@ -6,6 +7,7 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
   const dispatch = useDispatch()
 
   const onDeleteAttachment = () => {
+    if (task.style.coverImg === attachment.url) task.style.coverImg = null
     const { id } = attachment
     const taskToUpdate = {
       ...task,
@@ -18,7 +20,10 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
 
   const onMakeCover = () => {
     if (task.style) {
-      if (task.style.coverImg === attachment.url) task.style.coverImg = null
+      if (task.style.coverImg === attachment.url) {
+        task.style.coverImg = null
+        task.style.coverStyle = 'not fully covered'
+      }
       else {
         task.style.coverImg = attachment.url
         task.style.bgColor = null
@@ -36,20 +41,29 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
         href={attachment.url}
         target={'_blank'}
       ></a>
-      <p className="attachment-details">
-        <span className="attachment-name">{attachment.name}</span>
-        <span className="attachment-options">
+      <section className="attachment-details">
+        <section className="attachment-name-and-options">
+          <span className="attachment-name">{attachment.name}</span>
           <span>Added {utilService.timeSince(attachment.createdAt)}</span>
           <span> - </span>
           <span onClick={onDeleteAttachment} className="delete-attachment">
             Delete
           </span>
-          <span> - </span>
-          <span onClick={onMakeCover} className="delete-attachment">
-            {task.style?.coverImg === attachment.url ? 'Remove cover': 'Make cover'}
+        </section>
+        <span className="attachment-options">
+          <span onClick={onMakeCover} className="make-attachment-cover">
+            <section className="svg-holder">
+              <BsSquareHalf
+                className="icon"
+                style={{
+                  transform: 'rotate(0.75turn) translateY(-20%) translateX(22%)',
+                }}
+              />
+            {task.style?.coverImg === attachment.url ? 'Remove cover' : 'Make cover'}
+            </section>
           </span>
         </span>
-      </p>
+      </section>
     </section>
   )
 }

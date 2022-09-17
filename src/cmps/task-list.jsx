@@ -15,6 +15,7 @@ export const TaskList = ({ tasks, groupId, removeItem }) => {
                                     provided={provided}
                                     key={task.id}
                                     task={task}
+                                    groupId={groupId}
                                     removeItem={removeItem}
                                 />
                             )}
@@ -24,12 +25,5 @@ export const TaskList = ({ tasks, groupId, removeItem }) => {
                 </section>
             )}
         </Droppable>
-        // tasks.map((task, index) =>
-        //     <TaskPreview
-        //         key={task.id}
-        //         provided={provided}
-        //         task={task}
-        //         groupId={groupId}
-        //         removeItem={removeItem} />)
     )
 }

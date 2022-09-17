@@ -19,7 +19,9 @@ export function addTask(title, groupId) {
       const board = getState().boardModule.board
       const savedBoard = await taskService.add(title, groupId, board)
       dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
-    } catch {}
+    } catch (err) {
+      console.log('Cannot add task', err)
+    }
   }
 }
 
@@ -43,6 +45,8 @@ export function removeTask(groupId, taskId) {
       const savedBoard = await taskService.remove(groupId, taskId, board)
       const newBoard = { ...savedBoard }
       dispatch({ type: 'UPDATE_BOARD', board: newBoard })
-    } catch {}
+    } catch (err) {
+      console.log('Cannot remove task', err)
+    }
   }
 }

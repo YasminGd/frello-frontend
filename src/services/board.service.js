@@ -2,137 +2,12 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 // import { getActionRemoveBoard, getActionAddBoard, getActionUpdateBoard } from '../store/board.actions.js'
 import { store } from '../store/store'
+import { board } from '../board.js'
 
 // This file demonstrates how to use a BroadcastChannel to notify other browser tabs
 
 const STORAGE_KEY = 'board'
 const boardChannel = new BroadcastChannel('boardChannel')
-const board = {
-  _id: 'b101',
-  title: 'Robot dev proj',
-  archivedAt: 1589983468418,
-  createdAt: 1589983468418,
-  isStarred: false,
-  createdBy: {
-    _id: 'u101',
-    fullname: 'Abi Abambi',
-    imgUrl: 'http://some-img',
-  },
-  style: { background: 'url("https://techcrunch.com/wp-content/uploads/2020/11/GettyImages-1150039017.jpg?w=1390&crop=1")' },
-  labels: [
-    {
-      id: 'l101',
-      title: 'Done',
-      color: '#61bd4f',
-    },
-    {
-      id: 'l102',
-      title: 'Progress',
-      color: '#61bd33',
-    },
-  ],
-  members: [
-    {
-      _id: 'u101',
-      fullname: 'Tal Tarablus',
-      imgUrl: 'https://www.google.com',
-    },
-  ],
-  groups: [
-    {
-      id: 'g101',
-      title: 'Group 1',
-      archivedAt: 1589983468418,
-      tasks: [
-        {
-          id: 'c101',
-          title: 'Replace logo',
-          attachments: [],
-        },
-        {
-          id: 'c102',
-          title: 'Add Samples',
-          attachments: [],
-        },
-      ],
-      style: {},
-    },
-    {
-      id: 'g102',
-      title: 'Group 2',
-      tasks: [
-        {
-          id: 'c103',
-          title: 'Do that',
-          archivedAt: 1589983468418,
-          attachments: [],
-        },
-        {
-          id: 'c104',
-          title: 'Help me',
-          status: 'in-progress',
-          description: 'description',
-          attachments: [],
-          comments: [
-            {
-              id: 'ZdPnm',
-              txt: 'also @yaronb please CR this',
-              createdAt: 1590999817436.0,
-              byMember: {
-                _id: 'u101',
-                fullname: 'Tal Tarablus',
-                imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-              },
-            },
-          ],
-          checklists: [
-            {
-              id: 'YEhmF',
-              title: 'Checklist',
-              todos: [
-                {
-                  id: '212jX',
-                  title: 'To Do 1',
-                  isDone: false,
-                },
-              ],
-            },
-          ],
-          memberIds: ['u101'],
-          labelIds: ['l101', 'l102'],
-          createdAt: 1590999730348,
-          dueDate: 16156215211,
-          byMember: {
-            _id: 'u101',
-            username: 'Tal',
-            fullname: 'Tal Tarablus',
-            imgUrl: 'http://res.cloudinary.com/shaishar9/image/upload/v1590850482/j1glw3c9jsoz2py0miol.jpg',
-          },
-          style: {
-            bgColor: '#26de81',
-          },
-        },
-      ],
-      style: {},
-    },
-  ],
-  activities: [
-    {
-      id: 'a101',
-      txt: 'Changed Color',
-      createdAt: 154514,
-      byMember: {
-        _id: 'u101',
-        fullname: 'Abi Abambi',
-        imgUrl: 'http://some-img',
-      },
-      task: {
-        id: 'c101',
-        title: 'Replace Logo',
-      },
-    },
-  ],
-}
 const gBoards = [
   board,
   {
@@ -174,11 +49,11 @@ const gBoards = [
   },
 ]
 
-;(() => {
-  boardChannel.addEventListener('message', (ev) => {
-    store.dispatch(ev.data)
-  })
-})()
+  ; (() => {
+    boardChannel.addEventListener('message', (ev) => {
+      store.dispatch(ev.data)
+    })
+  })()
 
 export const boardService = {
   query,
@@ -201,7 +76,7 @@ async function query(filterBy) {
     }
 
     return boards
-  } catch (err) {}
+  } catch (err) { }
 }
 
 function getById(boardId) {

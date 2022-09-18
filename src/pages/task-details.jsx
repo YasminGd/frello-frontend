@@ -10,6 +10,7 @@ import { updateTask } from '../store/actions/task.action'
 import { TaskDescription } from '../cmps/task-description'
 import { TaskAttachments } from '../cmps/task-attachments'
 import { TaskDetailsSidebar } from '../cmps/task-details-sidebar'
+import { TaskDetailsOverview } from '../cmps/task-details-overview'
 
 export const TaskDetails = () => {
   const navigate = useNavigate()
@@ -76,6 +77,7 @@ export const TaskDetails = () => {
 
             <div className="task-body">
               <section className="task-content">
+                {/* <TaskDetailsOverview task={task}/> */}
                 <TaskDescription task={task} groupId={groupId} />
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
               </section>

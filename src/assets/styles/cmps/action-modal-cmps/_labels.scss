@@ -96,3 +96,45 @@
     font-size: 14 px;
   }
 }
+
+.green-light {
+  background-color: hsla(110, 46%, 60%, 0.3);
+  &:hover {
+    background-color: hsla(110, 46%, 60%, 0.5);
+  }
+}
+
+.yellow-light {
+  background-color: hsla(53, 91%, 56%, 0.3);
+  &:hover {
+    background-color: hsla(53, 91%, 56%, 0.5);
+  }
+}
+
+.orange-light {
+  background-color: hsla(35, 100%, 62%, 0.3);
+  &:hover {
+    background-color: hsla(35, 100%, 62%, 0.5);
+  }
+}
+
+.red-light {
+  background-color: hsla(7, 81%, 66%, 0.3);
+  &:hover {
+    background-color: hsla(7, 81%, 66%, 0.5);
+  }
+}
+
+.purple-light {
+  background-color: hsla(284, 63%, 73%, 0.3);
+  &:hover {
+    background-color: hsla(284, 63%, 73%, 0.5);
+  }
+}
+
+.dark-blue-light {
+  background-color: hsla(202, 55%, 58%, 0.3);
+  &:hover {
+    background-color: hsla(202, 55%, 58%, 0.5);
+  }
+}

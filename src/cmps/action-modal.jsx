@@ -5,7 +5,7 @@ import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
 import { BoardSideMenu } from './board-side-menu'
 import { CheckList } from './action-modal-cmps/check-list'
-import { Dates } from './action-modal-cmps/Dates'
+import { Dates } from './action-modal-cmps/dates'
 import { Labels } from './action-modal-cmps/labels'
 
 export const ActionModal = ({
@@ -16,9 +16,9 @@ export const ActionModal = ({
   groupId,
 }) => {
 
-  const [isEdit, setIsEdit] = useState(null)
-  const onToggleEdit = () => {
-    setIsEdit(prevState => !prevState)
+  const [isLabelsEdit, setIsLabelsEdit] = useState(null)
+  const onToggleLabelEdit = () => {
+    setIsLabelsEdit(prevState => !prevState)
   }
 
   const { type, pos } = data
@@ -32,7 +32,7 @@ export const ActionModal = ({
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
       case 'Labels':
-        return <Labels task={task} groupId={groupId} onToggleEdit={onToggleEdit} isEdit={isEdit} />
+        return <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
 
       case 'Checklist':
         return <CheckList />
@@ -64,7 +64,7 @@ export const ActionModal = ({
     <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()}>
       <div className="title-container">
         <p>{title}</p>
-        {isEdit && <IoChevronBack className="edit-go-back" onClick={onToggleEdit} />}
+        {isLabelsEdit && <IoChevronBack className="edit-go-back" onClick={onToggleLabelEdit} />}
         <span>
           <IoCloseOutline onClick={() => setActionModal(null)} />
         </span>

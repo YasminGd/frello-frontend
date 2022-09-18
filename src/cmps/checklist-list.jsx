@@ -22,10 +22,11 @@ export const CheckListList = ({ task, groupId }) => {
             {
                 task.checklists.map(checkList =>
                     <ChecklistPreview
+                        key={checkList.id}
                         checkList={checkList}
                         updateTodo={updateTodo}
                         deleteChecklist={deleteChecklist}
-                         />)
+                    />)
             }
         </section>
     )

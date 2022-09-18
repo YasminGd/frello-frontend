@@ -15,43 +15,50 @@ export var board = {
   style: {
     background:
       'url("https://techcrunch.com/wp-content/uploads/2020/11/GettyImages-1150039017.jpg?w=1390&crop=1")',
+    isLabelsLarge: true
   },
   labels: [
     {
       id: 'l101',
       title: 'Done',
       color: '#7BC86C',
-      class: 'green-light'
+      class: 'green-light',
+      previewClass: 'green-darker'
     },
     {
       id: 'l102',
       title: 'Progress',
       color: '#F5DE29',
-      class: 'yellow-light'
+      class: 'yellow-light',
+      previewClass: 'yellow-darker'
     },
     {
       id: 'l103',
       title: 'Todo',
       color: '#FFAF3F',
-      class: 'orange-light'
+      class: 'orange-light',
+      previewClass: 'orange-darker'
     },
     {
       id: 'l104',
       title: 'Todo',
       color: '#EF7664',
       class: 'red-light',
+      previewClass: 'red-darker'
     },
     {
       id: 'l105',
       title: 'Later',
       color: '#CD8DE5',
-      class: 'purple-light'
+      class: 'purple-light',
+      previewClass: 'purple-darker'
     },
     {
       id: 'l106',
       title: 'Important',
       color: '#5BA4CF',
-      class: 'dark-blue-light'
+      class: 'dark-blue-light',
+      previewClass: 'dark-blue-darker'
     },
   ],
   members: [

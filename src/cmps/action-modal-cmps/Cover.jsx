@@ -31,7 +31,7 @@ export const Cover = ({ task, onUpdateTask }) => {
   }
 
   const onUpdateCoverStyle = (coverStyle) => {
-    if (selectedCover === coverStyle || (!task?.style.coverImg && !selectedColor)) return
+    if (selectedCover === coverStyle || (!task?.style?.coverImg && !selectedColor)) return
     if (task.style) task.style.coverStyle = coverStyle
     else task.style = { coverStyle: coverStyle }
     setSelectedCover(coverStyle)
@@ -84,7 +84,9 @@ export const Cover = ({ task, onUpdateTask }) => {
       <p>Colors</p>
       <section className="colors">
         {
-          colors.map(color => <button className={`${color === selectedColor ? 'border' : ''} color`}
+          colors.map(color => <button
+            key={color}
+            className={`${color === selectedColor ? 'border' : ''} color`}
             onClick={() => onUpdateCover(color)}
             style={{ backgroundColor: color }}>
 

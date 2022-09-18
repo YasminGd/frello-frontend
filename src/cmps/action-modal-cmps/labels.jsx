@@ -1,11 +1,10 @@
 import { GrFormEdit } from 'react-icons/gr'
 import { useSelector, useDispatch } from 'react-redux'
-import { utilService } from '../../services/util.service'
 import { updateTask } from '../../store/actions/task.action'
-import React, { useState } from 'react'
+import React from 'react'
 import { EditLabel } from './edit-label'
 
-export const Labels = ({ task, groupId, onToggleEdit, isEdit }) => {
+export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
 
     const dispatch = useDispatch()
     const boardLabels = useSelector(state => state.boardModule.board.labels)
@@ -25,7 +24,7 @@ export const Labels = ({ task, groupId, onToggleEdit, isEdit }) => {
 
     return (
         <section className="labels">
-            {isEdit ? <EditLabel onToggleEdit={onToggleEdit} /> :
+            {isLabelsEdit ? <EditLabel onToggleLabelEdit={onToggleLabelEdit} /> :
                 <React.Fragment>
                     <div className="">
                         <input onChange={handleChange} autoFocus className="search-label" type="text" placeholder="Search labels…" value="" />
@@ -47,7 +46,7 @@ export const Labels = ({ task, groupId, onToggleEdit, isEdit }) => {
                                         </div>
                                     </div>
                                 </label>
-                                <button onClick={onToggleEdit} className="color"><GrFormEdit /></button>
+                                <button onClick={onToggleLabelEdit} className="color"><GrFormEdit /></button>
                             </li>
                         ))}
                     </ul>

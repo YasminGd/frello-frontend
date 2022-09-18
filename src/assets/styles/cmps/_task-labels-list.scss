@@ -3,10 +3,74 @@
   display: flex;
   gap: 4px;
   margin-bottom: 4px;
+  flex-wrap: wrap;
 
   .task-labels-preview {
     height: 8px;
     border-radius: 4px;
-    width: 40px;
+    min-width: 40px;
+    transition: all 1s ease-out;
+    display: flex;
+    align-items: center;
+    padding-inline-end: 8px;
+  }
+
+  .large {
+    // transform: scaleX(2);
+    height: 16px;
+    min-width: 56px;
+  }
+
+  .color-circle {
+    height: 8px;
+    width: 8px;
+    background-color: black;
+    border-radius: 50%;
+    margin: 4px;
+  }
+
+  .label-title {
+    font-size: 12px;
+  }
+}
+
+.green-darker {
+  background-color: hsla(110, 46%, 60%);
+  &:hover {
+    background-color: darken($color: hsla(110, 46%, 60%), $amount: 12%);
+  }
+}
+
+.yellow-darker {
+  background-color: hsla(53, 91%, 56%);
+  &:hover {
+    background-color: darken($color: hsla(53, 91%, 56%), $amount: 12%);
+  }
+}
+.orange-darker {
+  background-color: hsla(35, 100%, 62%);
+  &:hover {
+    background-color: darken($color: hsla(35, 100%, 62%), $amount: 12%);
+  }
+}
+
+.red-darker {
+  background-color: hsla(7, 81%, 66%);
+  &:hover {
+    background-color: darken($color: hsla(7, 81%, 66%), $amount: 12%);
+  }
+}
+
+.purple-darker {
+  background-color: hsla(284, 63%, 73%);
+  &:hover {
+    background-color: darken($color: hsla(284, 63%, 73%), $amount: 12%);
+  }
+}
+
+.dark-blue-darker {
+  background-color: hsla(202, 55%, 58%);
+  &:hover {
+    background-color: darken($color: hsla(202, 55%, 58%), $amount: 12%);
   }
 }

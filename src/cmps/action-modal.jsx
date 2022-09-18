@@ -4,8 +4,8 @@ import { IoChevronBack } from "react-icons/io5"
 import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
 import { BoardSideMenu } from './board-side-menu'
-import { getByTitle } from '@testing-library/react'
 import { CheckList } from './action-modal-cmps/check-list'
+import { Dates } from './action-modal-cmps/Dates'
 import { Labels } from './action-modal-cmps/labels'
 
 export const ActionModal = ({
@@ -27,14 +27,7 @@ export const ActionModal = ({
   const getActionCmp = (type) => {
     switch (type) {
       case 'Attachment':
-        return (
-          <Attachment
-            task={task}
-            setActionModal={setActionModal}
-            onUpdateTask={onUpdateTask}
-            groupId={groupId}
-          />
-        )
+        return <Attachment task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
       case 'Cover':
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
@@ -43,6 +36,9 @@ export const ActionModal = ({
 
       case 'Checklist':
         return <CheckList />
+
+      case 'Dates':
+        return <Dates task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
 
       default:
         break
@@ -65,7 +61,7 @@ export const ActionModal = ({
   const title = getTitle()
 
   return (
-    <section className="action-modal" style={modalStyle} onClick={ev => ev.stopPropagation()}>
+    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()}>
       <div className="title-container">
         <p>{title}</p>
         {isEdit && <IoChevronBack className="edit-go-back" onClick={onToggleEdit} />}

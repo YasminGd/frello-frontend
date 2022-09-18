@@ -40,7 +40,11 @@
 @import 'cmps/add-item';
 @import 'cmps/dynamic-textarea';
 @import 'cmps/task-details-sidebar';
-@import 'cmps/task-labels-list';
+@import 'cmps/checklist-list';
+@import 'cmps/checklist-preview';
+@import 'cmps/todo-list';
+@import 'cmps/todo-preview';
+@import 'cmps/task-details-overview';
 
 // COMPONENTS-ACTION MODAL
 @import 'cmps/action-modal';
@@ -49,3 +53,4 @@
 @import 'cmps/action-modal-cmps/labels';
 @import 'cmps/action-modal-cmps/edit-label';
 @import 'cmps/action-modal-cmps/check-list';
+@import 'cmps/action-modal-cmps/dates';

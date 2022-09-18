@@ -4,6 +4,7 @@ import { Attachment } from './action-modal-cmps/Attachment'
 import { BoardSideMenu } from './board-side-menu'
 import { CheckList } from './action-modal-cmps/check-list'
 import { Dates } from './action-modal-cmps/Dates'
+import { Labels } from './action-modal-cmps/labels'
 
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId }) => {
   const { type, pos } = data

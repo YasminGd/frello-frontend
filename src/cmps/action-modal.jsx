@@ -30,8 +30,8 @@ export const ActionModal = ({
       case 'Cover':
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
-      case 'Labels':
-        return <Labels />
+      // case 'Labels':
+      //   return <Labels />
 
       case 'Checklist':
         return <CheckList />

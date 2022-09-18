@@ -1,3 +1,5 @@
 export const AddTodo = () => {
-    return <h1>Add todo</h1>
+    return <section className="add-todo">
+        <input />
+    </section>
 } 

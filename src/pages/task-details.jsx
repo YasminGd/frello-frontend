@@ -77,7 +77,7 @@ export const TaskDetails = () => {
 
             <div className="task-body">
               <section className="task-content">
-                {/* <TaskDetailsOverview task={task}/> */}
+                <TaskDetailsOverview onOpenActionModal={onOpenActionModal} task={task} groupId={groupId}/>
                 <TaskDescription task={task} groupId={groupId} />
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
                 {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}

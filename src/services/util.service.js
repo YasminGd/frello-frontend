@@ -5,12 +5,12 @@ export const utilService = {
   delay,
   timeSince,
   isImage,
+  dueDateFormat,
 }
 
 function makeId(length = 6) {
   var txt = ''
-  var possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
   for (var i = 0; i < length; i++) {
     txt += possible.charAt(Math.floor(Math.random() * possible.length))
@@ -77,4 +77,19 @@ function timeSince(date) {
 
 function isImage(url) {
   return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url)
+}
+
+function dueDateFormat(dueDate) {
+  const currYear = new Date().getFullYear()
+  const dueYear = new Date(dueDate).getFullYear()
+  let strDate = ''
+  strDate += `${new Date(dueDate).toLocaleString('en-US', { day: 'numeric' })} `
+  strDate += `${new Date(dueDate).toLocaleString('en-US', { month: 'short' })} at `
+  if (dueYear !== currYear) {
+    strDate += `${dueYear} `
+  }
+  strDate += `${new Date(dueDate)
+    .toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    .toLocaleUpperCase()}`
+  return strDate
 }

@@ -11,18 +11,23 @@ export const Dates = ({ task, groupId, setActionModal }) => {
   const onAddDueDate = () => {
     const dueDate = new Date(selectedDate).getTime()
 
-    console.log(`dueDate:`, dueDate)
-    task.dueDate = dueDate
+    if (task.dueDate) {
+      task.dueDate.date = dueDate
+    } else {
+      task.dueDate = {
+        date: dueDate,
+        isDone: false,
+      }
+    }
+
     dispatch(updateTask(groupId, task))
     setActionModal(null)
-    console.log(`task:`, task)
   }
 
   const onRemoveDueDate = () => {
     task.dueDate = null
     dispatch(updateTask(groupId, task))
     setActionModal(null)
-    console.log(`task:`, task)
   }
 
   return (

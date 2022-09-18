@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
+import { IoChevronBack } from "react-icons/io5"
 import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
 import { BoardSideMenu } from './board-side-menu'
 import { getByTitle } from '@testing-library/react'
 import { CheckList } from './action-modal-cmps/check-list'
+import { Labels } from './action-modal-cmps/labels'
 
 export const ActionModal = ({
   data,
@@ -12,6 +15,11 @@ export const ActionModal = ({
   setActionModal,
   groupId,
 }) => {
+
+  const [isEdit, setIsEdit] = useState(null)
+  const onToggleEdit = () => {
+    setIsEdit(prevState => !prevState)
+  }
 
   const { type, pos } = data
   const modalStyle = { left: pos.left + 'px', top: pos.bottom + 'px' }
@@ -31,7 +39,7 @@ export const ActionModal = ({
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
       case 'Labels':
-        return <Labels />
+        return <Labels task={task} groupId={groupId} onToggleEdit={onToggleEdit} isEdit={isEdit} />
 
       case 'Checklist':
         return <CheckList />
@@ -60,6 +68,7 @@ export const ActionModal = ({
     <section className="action-modal" style={modalStyle} onClick={ev => ev.stopPropagation()}>
       <div className="title-container">
         <p>{title}</p>
+        {isEdit && <IoChevronBack className="edit-go-back" onClick={onToggleEdit} />}
         <span>
           <IoCloseOutline onClick={() => setActionModal(null)} />
         </span>

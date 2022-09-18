@@ -2,24 +2,66 @@
   background-color: #7bc86c;
 }
 
+.green-light {
+  background-color: hsla(110, 46%, 60%, 0.5);
+  &:hover {
+    background-color: hsla(110, 46%, 60%, 0.7);
+  }
+}
+
 .yellow {
   background-color: #f5dd29;
+}
+
+.yellow-light {
+  background-color: hsla(53, 91%, 56%, 0.5);
+  &:hover {
+    background-color: hsla(53, 91%, 56%, 0.7);
+  }
 }
 
 .orange {
   background-color: #ffaf3f;
 }
 
+.orange-light {
+  background-color: hsla(35, 100%, 62%, 0.5);
+  &:hover {
+    background-color: hsla(35, 100%, 62%, 0.7);
+  }
+}
+
 .red {
   background-color: #ef7564;
+}
+
+.red-light {
+  background-color: hsla(7, 81%, 66%, 0.5);
+  &:hover {
+    background-color: hsla(7, 81%, 66%, 0.7);
+  }
 }
 
 .purple {
   background-color: #cd8de5;
 }
 
+.purple-light {
+  background-color: hsla(284, 63%, 73%, 0.5);
+  &:hover {
+    background-color: hsla(284, 63%, 73%, 0.7);
+  }
+}
+
 .dark-blue {
   background-color: #5ba4cf;
+}
+
+.dark-blue-light {
+  background-color: hsla(202, 55%, 58%, 0.5);
+  &:hover {
+    background-color: hsla(202, 55%, 58%, 0.7);
+  }
 }
 
 .blue {
@@ -49,4 +91,3 @@
 .white {
   background-color: white;
 }
-

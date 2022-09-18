@@ -40,9 +40,12 @@
 @import 'cmps/add-item';
 @import 'cmps/dynamic-textarea';
 @import 'cmps/task-details-sidebar';
+@import 'cmps/task-labels-list';
 
 // COMPONENTS-ACTION MODAL
 @import 'cmps/action-modal';
 @import 'cmps/action-modal-cmps/cover';
 @import 'cmps/action-modal-cmps/attachment';
+@import 'cmps/action-modal-cmps/labels';
+@import 'cmps/action-modal-cmps/edit-label';
 @import 'cmps/action-modal-cmps/check-list';

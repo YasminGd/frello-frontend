@@ -84,7 +84,7 @@ export const Cover = ({ task, onUpdateTask }) => {
       <p>Colors</p>
       <section className="colors">
         {
-          colors.map(color => <button className={`${color === selectedColor ? 'border' : ''}`}
+          colors.map(color => <button className={`${color === selectedColor ? 'border' : ''} color`}
             onClick={() => onUpdateCover(color)}
             style={{ backgroundColor: color }}>
 

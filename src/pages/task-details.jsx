@@ -48,7 +48,6 @@ export const TaskDetails = () => {
   const onOpenActionModal = (type, ref) => {
     if (actionModal?.type === type) return setActionModal(null)
     const rect = ref.current.getBoundingClientRect()
-    console.log(rect)
     const pos = { bottom: rect.bottom + 8, left: rect.left }
     setActionModal({ type, pos })
   }

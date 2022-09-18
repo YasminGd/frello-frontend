@@ -38,10 +38,11 @@
 @import 'cmps/task-preview';
 @import 'cmps/task-title';
 @import 'cmps/add-item';
-@import 'cmps/action-modal';
 @import 'cmps/dynamic-textarea';
 @import 'cmps/task-details-sidebar';
 
 // COMPONENTS-ACTION MODAL
+@import 'cmps/action-modal';
 @import 'cmps/action-modal-cmps/cover';
 @import 'cmps/action-modal-cmps/attachment';
+@import 'cmps/action-modal-cmps/labels';

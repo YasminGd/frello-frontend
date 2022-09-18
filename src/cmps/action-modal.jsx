@@ -12,6 +12,7 @@ export const ActionModal = ({
   setActionModal,
   groupId,
 }) => {
+
   const { type, pos } = data
   const modalStyle = { left: pos.left + 'px', top: pos.bottom + 'px' }
 
@@ -29,8 +30,8 @@ export const ActionModal = ({
       case 'Cover':
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
-      case 'Menu':
-        return <BoardSideMenu />
+      case 'Labels':
+        return <Labels />
 
       case 'Checklist':
         return <CheckList />

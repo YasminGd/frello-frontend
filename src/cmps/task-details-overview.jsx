@@ -3,6 +3,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { utilService } from '../services/util.service'
 import { updateTask } from '../store/actions/task.action'
+import { TaskLabelsOverview } from './task-labels-overview'
 
 export const TaskDetailsOverview = ({ task, groupId, onOpenActionModal }) => {
   const dispatch = useDispatch()
@@ -16,7 +17,6 @@ export const TaskDetailsOverview = ({ task, groupId, onOpenActionModal }) => {
 
     const then = new Date(task.dueDate.date)
     const now = new Date()
-
     const msBetweenDates = then.getTime() - now.getTime()
     const hoursBetweenDates = msBetweenDates / (60 * 60 * 1000)
 
@@ -40,6 +40,11 @@ export const TaskDetailsOverview = ({ task, groupId, onOpenActionModal }) => {
 
   return (
     <section className="task-details-overview">
+      <section className="members-labels-container">
+        {task.labelIds && task.labelIds.length && <TaskLabelsOverview onOpenActionModal={onOpenActionModal} labelIds={task.labelIds} />}
+        {//*!! Here will go Members overview!!!*}
+        }
+      </section>
       {task.dueDate && (
         <div className="due-date">
           <h3>Due Date</h3>

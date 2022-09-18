@@ -1,6 +1,7 @@
 .action-modal {
   position: fixed;
-  width: 304px;
+  min-width: 304px;
+  max-width: 310px;
   background-color: #fff;
   border-radius: 3px;
   z-index: 300;
@@ -27,7 +28,7 @@
     }
   }
 
-  button:not(.color) {
+  .btn {
     border: none;
     padding: 6px 12px;
     font-size: 0.875rem;
@@ -50,7 +51,6 @@
       background-color: #0079bf;
     }
   }
-
 
   .title-container {
     color: #5e6c84;

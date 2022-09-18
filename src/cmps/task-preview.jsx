@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom'
+import { TaskLabelsList } from './task-labels-list'
 import { TaskPreviewIcons } from './task-preview-icons'
 
-export const TaskPreview = ({ task, groupId, removeItem, provided, isDragging }) => {
+export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
   const getCoverStyle = () => {
-    if (task.style?.coverStyle) {
-      if (task.style.coverStyle === 'fully covered') {
-        return task.style.bgColor ? task.style.bgColor : ''
-      }
+    if (task.style?.coverStyle && task.style.coverStyle === 'fully covered') {
+      return task.style.bgColor ? task.style.bgColor : ''
     }
     return ''
   }
@@ -33,6 +32,7 @@ export const TaskPreview = ({ task, groupId, removeItem, provided, isDragging })
         <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>
       )}
       <section className="task-body" style={{ backgroundColor: getCoverStyle() }}>
+        {task.labelIds && task.labelIds.length && <TaskLabelsList labelIds={task.labelIds} />}
         {task.title}
         {toRender && <TaskPreviewIcons task={task} />}
       </section>

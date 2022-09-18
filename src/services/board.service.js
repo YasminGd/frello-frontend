@@ -139,6 +139,7 @@ function handleDragEnd(newBoard, destination, source, type) {
       newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
       prevGroup.tasks.splice(source.index, 1)
     }
+
     newBoard.groups[newGroupIdx] = newGroup
     newBoard.groups[prevGroupIdx] = prevGroup
     return newBoard

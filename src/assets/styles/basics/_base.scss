@@ -25,6 +25,11 @@ img {
   width: 100%;
 }
 
+ul {
+  list-style: none;
+  padding-inline-start: 30px;
+}
+
 p {
   margin: 0;
 }
@@ -46,6 +51,7 @@ button {
   font-family: inherit;
   cursor: pointer;
   border: none;
+  border-radius: 3px;
 }
 
 a {

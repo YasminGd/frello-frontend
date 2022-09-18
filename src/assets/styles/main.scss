@@ -45,6 +45,9 @@
 @import 'cmps/todo-list';
 @import 'cmps/todo-preview';
 @import 'cmps/task-details-overview';
+@import 'cmps/task-labels-list';
+@import 'cmps/task-labels-overview';
+@import 'cmps/task-details-header';
 @import 'cmps/add-todo';
 @import 'cmps/edit-todo';
 @import 'cmps/edit-title';
@@ -53,5 +56,7 @@
 @import 'cmps/action-modal';
 @import 'cmps/action-modal-cmps/cover';
 @import 'cmps/action-modal-cmps/attachment';
+@import 'cmps/action-modal-cmps/labels';
+@import 'cmps/action-modal-cmps/edit-label';
 @import 'cmps/action-modal-cmps/check-list';
 @import 'cmps/action-modal-cmps/dates';

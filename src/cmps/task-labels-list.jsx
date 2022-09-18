@@ -1,0 +1,38 @@
+import React from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { updateBoard } from "../store/actions/board.action"
+
+export const TaskLabelsList = ({ labelIds }) => {
+    const dispatch = useDispatch()
+    const board = useSelector(state => state.boardModule.board)
+    const boardLabels = board.labels
+    let isLabelsLarge = board.style.isLabelsLarge
+    const labelsToRender = boardLabels.filter(label => labelIds.includes(label.id))
+
+    const toggleLabelsSize = (ev) => {
+        console.log('toggleLabelsSize ~ ev', ev)
+        ev.preventDefault()
+        board.style.isLabelsLarge = !isLabelsLarge
+        // isLabelsLarge = !isLabelsLarge
+        dispatch(updateBoard({ ...board }))
+    }
+
+    const labelsStyle = isLabelsLarge ? 'large' : ''
+    return (
+        <section className="task-labels-list">
+            {labelsToRender.map(label => (
+                <div
+                    onClick={toggleLabelsSize}
+                    className={`task-labels-preview ${isLabelsLarge ? label.class : label.previewClass} ${labelsStyle}`}
+                    key={label.id}>
+                    {isLabelsLarge &&
+                        <React.Fragment>
+                            <div style={{ backgroundColor: label.color }} className="color-circle"></div>
+                            <span className="label-title">{label.title}</span>
+                        </React.Fragment>
+                    }
+                </div>
+            ))}
+        </section>
+    )
+}

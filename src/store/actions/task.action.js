@@ -63,3 +63,16 @@ export function removeTask(groupId, taskId) {
     }
   }
 }
+
+export function addNewTodo(title, checkListId, taskId, groupId) {
+  return async (dispatch, getState) => {
+    try {
+      const board = getState().boardModule.board
+      const savedBoard = await taskService.addTodo(title, checkListId, groupId, taskId, board)
+      const newBoard = { ...savedBoard }
+      dispatch({ type: 'UPDATE_BOARD', board: newBoard })
+    } catch (err) {
+      console.log('Cannot add todo', err)
+    }
+  }
+}

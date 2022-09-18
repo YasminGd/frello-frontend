@@ -1,34 +1,61 @@
 import { useState } from "react"
 import { BsCheck2Square } from "react-icons/bs"
+import { useDispatch } from "react-redux"
 import { AddTodo } from "./add-todo"
+import { EditTitle } from "./edit-title"
 import { TodoList } from "./todo-list"
 
-export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist }) => {
-    const [isAddTodo, setIsAddTodo] = useState(false)
+export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist, addTodo, updateChecklist }) => {
+    const [isAddTodoOpen, setIsAddTodoOpen] = useState(false)
+    const [isEditTitleOpen, setIsEditTitleOpen] = useState(false)
 
     const onAddTodo = () => {
-        setIsAddTodo(!isAddTodo)
+        setIsAddTodoOpen(!isAddTodoOpen)
     }
+
+    const editTitle = (title) => {
+        checkList.title = title
+        updateChecklist(checkList)
+    }
+
+    const toggleTitleEdit = () => {
+        setIsEditTitleOpen(!isEditTitleOpen)
+    }
+
+    const getCompletionPercentage = () => {
+        const todosLength = checkList.todos.length
+        if(todosLength === 0) return 0
+        const completedTodosLength = checkList.todos.filter(todo => todo.isDone).length
+
+        return (completedTodosLength * 100 / todosLength).toFixed(0)
+    }
+
+    const completionPercentage = getCompletionPercentage()
 
     return (<section className="checklist-preview">
         <section className="checklist-header">
             <section className="left">
-                <BsCheck2Square />
-                <h3>{checkList.title}</h3>
+                {/* <div className="svg-holder"> */}
+                    <BsCheck2Square />
+                {/* </div> */}
+                {isEditTitleOpen ? <EditTitle editTitle={editTitle} itemTitle={checkList.title} toggleTitleEdit={toggleTitleEdit} /> : <h3 onClick={toggleTitleEdit}>{checkList.title}</h3>}
             </section>
-            <section className="right">
-                <button className="button-link" onClick={() => deleteChecklist(checkList.id)}>Delete</button>
-            </section>
+            {!isEditTitleOpen &&
+                <section className="right">
+                    <button className="button-link" onClick={() => deleteChecklist(checkList.id)}>Delete</button>
+                </section>}
         </section>
         <section className="checklist-status">
-            <p>0%</p>
-            <div className="completion-bar"></div>
+            <p>{`${completionPercentage}%`}</p>
+            <div className="completion-bar">
+                <div className={`percentage-bar ${completionPercentage === '100' ? 'done' : ''}`} style={{ width: `${completionPercentage}%` }}></div>
+            </div>
         </section>
         {checkList.todos && checkList.todos.length > 0 && <TodoList todos={checkList.todos} checkListId={checkList.id} updateTodo={updateTodo} />}
-        <section className="add-todo">
-            {isAddTodo ?
-                <AddTodo /> :
-                <button className="add-todo-button" onClick={onAddTodo}>Add an item</button>
+        <section className="add-todo-option">
+            {isAddTodoOpen ?
+                <AddTodo addTodo={addTodo} checkListId={checkList.id} closeModal={onAddTodo} /> :
+                <button className="add-todo-button" onClick={onAddTodo} >Add an item</button>
             }
         </section>
     </section>)

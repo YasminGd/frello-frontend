@@ -1,17 +1,52 @@
 .todo-preview {
+    position: relative;
     border-radius: 3px;
-    height: 36px;
+    min-height: 36px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 6px 0px;
-    gap: 20px;
+    // padding: 6px 0px;
     padding-left: 6px;
     transition-duration: .14s;
-    transition-property: transform,opacity,height,padding,margin;
+    transition-property: transform, opacity, height, padding, margin;
     transition-timing-function: ease-in;
+    flex-wrap: wrap;
 
     &:hover {
         background-color: #091e420a;
+    }
+
+    input {
+        margin-right: 20px;
+    }
+
+    .title {
+        flex: 1;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    p {}
+
+    textarea {
+
+        &.crossed-out {
+            text-decoration-line: line-through;
+        }
+
+        &:focus {
+            margin-top: 1px;
+            padding-left: 12px;
+            margin-bottom: 5px;
+            height: 55px;
+            font-weight: 400;
+            font-size: 14px;
+        }
     }
 }

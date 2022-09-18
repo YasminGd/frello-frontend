@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { BsCheck2Square } from "react-icons/bs"
-import { AddItem } from "./add-item"
 import { AddTodo } from "./add-todo"
-import { TodoList } from "./TodoList"
+import { TodoList } from "./todo-list"
 
 export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist }) => {
     const [isAddTodo, setIsAddTodo] = useState(false)

@@ -21,31 +21,37 @@ export var board = {
       id: 'l101',
       title: 'Done',
       color: '#7BC86C',
+      class: 'green-light'
     },
     {
       id: 'l102',
       title: 'Progress',
       color: '#F5DE29',
+      class: 'yellow-light'
     },
     {
       id: 'l103',
-      title: 'Progress',
+      title: 'Todo',
       color: '#FFAF3F',
+      class: 'orange-light'
     },
     {
       id: 'l104',
-      title: 'Progress',
+      title: 'Todo',
       color: '#EF7664',
+      class: 'red-light',
     },
     {
       id: 'l105',
-      title: 'Progress',
+      title: 'Later',
       color: '#CD8DE5',
+      class: 'purple-light'
     },
     {
       id: 'l106',
-      title: 'Progress',
+      title: 'Important',
       color: '#5BA4CF',
+      class: 'dark-blue-light'
     },
   ],
   members: [

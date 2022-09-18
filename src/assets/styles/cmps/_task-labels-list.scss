@@ -1,0 +1,12 @@
+.task-labels-list {
+  width: 100%;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+
+  .task-labels-preview {
+    height: 8px;
+    border-radius: 4px;
+    width: 40px;
+  }
+}

@@ -14,6 +14,7 @@ import { ActionModal } from '../cmps/action-modal'
 import { updateTask } from '../store/actions/task.action'
 import { TaskDescription } from '../cmps/task-description'
 import { TaskAttachments } from '../cmps/task-attachments'
+import { CheckListList } from '../cmps/checklist-list'
 
 export const TaskDetails = () => {
   const navigate = useNavigate()
@@ -130,6 +131,7 @@ export const TaskDetails = () => {
               <section className="task-content">
                 <TaskDescription task={task} groupId={groupId} />
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
+                {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
               </section>
 
               <section className="task-sidebar">

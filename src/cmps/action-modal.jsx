@@ -2,6 +2,8 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
 import { BoardSideMenu } from './board-side-menu'
+import { getByTitle } from '@testing-library/react'
+import { CheckList } from './action-modal-cmps/check-list'
 
 export const ActionModal = ({
   data,
@@ -30,14 +32,33 @@ export const ActionModal = ({
       case 'Menu':
         return <BoardSideMenu />
 
+      case 'Checklist':
+        return <CheckList />
+
       default:
         break
     }
   }
+
+  const getTitle = () => {
+    switch (type) {
+      case 'Attachment':
+        return 'Attach from...'
+
+      case 'Checklist':
+        return 'Add checklist'
+
+      default:
+        return type
+    }
+  }
+
+  const title = getTitle()
+
   return (
     <section className="action-modal" style={modalStyle} onClick={ev => ev.stopPropagation()}>
       <div className="title-container">
-        <p>{type === 'Attachment' ? 'Attach from...' : type}</p>
+        <p>{title}</p>
         <span>
           <IoCloseOutline onClick={() => setActionModal(null)} />
         </span>

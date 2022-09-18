@@ -61,6 +61,17 @@ export var board = {
             bgColor: '#FFAF3F',
           },
           memberIds: ['u101'],
+          checklists: [{
+            "id": "YEhmF",
+            "title": "Checklist",
+            "todos": [
+              {
+                "id": "212jX",
+                "title": "To Do 1",
+                "isDone": false
+              }
+            ]
+          }]
         },
         {
           id: 'c102',

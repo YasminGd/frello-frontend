@@ -6,6 +6,7 @@ export const utilService = {
   timeSince,
   isImage,
   hexToRgbA,
+  dueDateTimeFormat,
   dueDateFormat,
 }
 
@@ -92,7 +93,8 @@ function hexToRgbA(hex) {
   }
   throw new Error('Bad Hex')
 }
-function dueDateFormat(dueDate) {
+
+function dueDateTimeFormat(dueDate) {
   const currYear = new Date().getFullYear()
   const dueYear = new Date(dueDate).getFullYear()
   let strDate = ''
@@ -104,5 +106,12 @@ function dueDateFormat(dueDate) {
   strDate += `${new Date(dueDate)
     .toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
     .toLocaleUpperCase()}`
+  return strDate
+}
+
+function dueDateFormat(dueDate) {
+  let strDate = ''
+  strDate += `${new Date(dueDate).toLocaleString('en-US', { day: 'numeric' })} `
+  strDate += `${new Date(dueDate).toLocaleString('en-US', { month: 'short' })}`
   return strDate
 }

@@ -47,7 +47,7 @@ export const TaskDetailsOverview = ({ task, groupId, onOpenActionModal }) => {
             <input type="checkbox" onChange={handleChange} checked={task.dueDate.isDone} className="checkbox" />
             <div className="due-date-container">
               <button onClick={() => onOpenActionModal('Dates', btnDatesRef)} ref={btnDatesRef}>
-                <span>{utilService.dueDateFormat(task.dueDate.date)}</span>
+                <span>{utilService.dueDateTimeFormat(task.dueDate.date)}</span>
                 {getDueWarnSpan(task)}
                 <MdKeyboardArrowDown />
               </button>

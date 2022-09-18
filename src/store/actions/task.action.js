@@ -38,6 +38,19 @@ export function addImg(imgUrl, task, groupId) {
   }
 }
 
+export function addChecklist(title, taskId, groupId) {
+  return async (dispatch, getState) => {
+    try {
+      const board = getState().boardModule.board
+      const savedBoard = await taskService.addChecklist(title, taskId, groupId, board)
+      const newBoard = { ...savedBoard }
+      dispatch({ type: 'UPDATE_BOARD', board: newBoard })
+    } catch (err) {
+      console.log('Cannot add checklist', err)
+    }
+  }
+}
+
 export function removeTask(groupId, taskId) {
   return async (dispatch, getState) => {
     try {

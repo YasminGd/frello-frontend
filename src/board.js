@@ -20,12 +20,32 @@ export var board = {
     {
       id: 'l101',
       title: 'Done',
-      color: '#61bd4f',
+      color: '#7BC86C',
     },
     {
       id: 'l102',
       title: 'Progress',
-      color: '#61bd33',
+      color: '#F5DE29',
+    },
+    {
+      id: 'l103',
+      title: 'Progress',
+      color: '#FFAF3F',
+    },
+    {
+      id: 'l104',
+      title: 'Progress',
+      color: '#EF7664',
+    },
+    {
+      id: 'l105',
+      title: 'Progress',
+      color: '#CD8DE5',
+    },
+    {
+      id: 'l106',
+      title: 'Progress',
+      color: '#5BA4CF',
     },
   ],
   members: [
@@ -61,6 +81,27 @@ export var board = {
             bgColor: '#FFAF3F',
           },
           memberIds: ['u101'],
+          checklists: [{
+            "id": "YEhmF",
+            "title": "Checklist",
+            "todos": [
+              {
+                "id": "212jX",
+                "title": "To Do 1",
+                "isDone": false
+              }
+            ]
+          }, {
+            "id": "YEhmF2",
+            "title": "sas",
+            "todos": [
+              {
+                "id": "2123X",
+                "title": "To Do 2",
+                "isDone": true
+              }
+            ]
+          }]
         },
         {
           id: 'c102',

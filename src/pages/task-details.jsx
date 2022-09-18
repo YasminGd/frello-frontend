@@ -10,6 +10,7 @@ import { updateTask } from '../store/actions/task.action'
 import { TaskDescription } from '../cmps/task-description'
 import { TaskAttachments } from '../cmps/task-attachments'
 import { TaskDetailsSidebar } from '../cmps/task-details-sidebar'
+import { CheckListList } from '../cmps/checklist-list'
 import { TaskDetailsOverview } from '../cmps/task-details-overview'
 
 export const TaskDetails = () => {
@@ -49,7 +50,6 @@ export const TaskDetails = () => {
   const onOpenActionModal = (type, ref) => {
     if (actionModal?.type === type) return setActionModal(null)
     const rect = ref.current.getBoundingClientRect()
-    console.log(rect)
     const pos = { bottom: rect.bottom + 8, left: rect.left }
     setActionModal({ type, pos })
   }
@@ -80,6 +80,7 @@ export const TaskDetails = () => {
                 {/* <TaskDetailsOverview task={task}/> */}
                 <TaskDescription task={task} groupId={groupId} />
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
+                {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
               </section>
               <TaskDetailsSidebar onOpenActionModal={onOpenActionModal} />
             </div>

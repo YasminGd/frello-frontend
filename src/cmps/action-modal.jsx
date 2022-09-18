@@ -2,6 +2,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
 import { BoardSideMenu } from './board-side-menu'
+import { CheckList } from './action-modal-cmps/check-list'
 import { Dates } from './action-modal-cmps/Dates'
 
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId }) => {
@@ -15,8 +16,11 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId 
       case 'Cover':
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
-      case 'Menu':
-        return <BoardSideMenu />
+      case 'Labels':
+        return <Labels />
+
+      case 'Checklist':
+        return <CheckList />
 
       case 'Dates':
         return <Dates task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
@@ -25,10 +29,26 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId 
         break
     }
   }
+
+  const getTitle = () => {
+    switch (type) {
+      case 'Attachment':
+        return 'Attach from...'
+
+      case 'Checklist':
+        return 'Add checklist'
+
+      default:
+        return type
+    }
+  }
+
+  const title = getTitle()
+
   return (
     <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()}>
       <div className="title-container">
-        <p>{type === 'Attachment' ? 'Attach from...' : type}</p>
+        <p>{title}</p>
         <span>
           <IoCloseOutline onClick={() => setActionModal(null)} />
         </span>

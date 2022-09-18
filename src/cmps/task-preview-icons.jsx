@@ -6,7 +6,10 @@ export const TaskPreviewIcons = ({ task }) => {
   return (
     <section className="details-icons">
       <section className="task-preview-icons">
-        {task.description && <GrTextAlignFull />
+        {task.description && 
+          <section className="attachments-icon">
+          <GrTextAlignFull />
+          </section>
         }
         {task.attachments && task.attachments.length !== 0 &&
           <section className="attachments-icon">

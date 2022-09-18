@@ -1,19 +1,15 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { IoCloseOutline } from 'react-icons/io5'
 import { GrCreditCard } from 'react-icons/gr'
-import { BsPerson, BsCheck2Square, BsSquareHalf } from 'react-icons/bs'
-import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
-import { ImAttachment } from 'react-icons/im'
-import { TbRectangle } from 'react-icons/tb'
-import { boardService } from '../services/board.service'
 import { useDispatch } from 'react-redux'
 import { ActionModal } from '../cmps/action-modal'
 import { updateTask } from '../store/actions/task.action'
 import { TaskDescription } from '../cmps/task-description'
 import { TaskAttachments } from '../cmps/task-attachments'
+import { TaskDetailsSidebar } from '../cmps/task-details-sidebar'
 import { CheckListList } from '../cmps/checklist-list'
 
 export const TaskDetails = () => {
@@ -27,54 +23,6 @@ export const TaskDetails = () => {
 
   const [titleTxt, setTitleTxt] = useState(task.title)
   const [actionModal, setActionModal] = useState(null)
-
-  // Refs for action modal position calculation
-  const btnAttachmentRef = useRef()
-  const btnMembersRef = useRef()
-  const btnLabelsRef = useRef()
-  const btnChecklistRef = useRef()
-  const btnDatesRef = useRef()
-  const btnCoverRef = useRef()
-
-  const actionBtns = [
-    {
-      type: 'Members',
-      ref: btnMembersRef,
-      iconCmp: <BsPerson className="icon" />,
-    },
-    {
-      type: 'Labels',
-      ref: btnLabelsRef,
-      iconCmp: <AiOutlineTag className="icon" />,
-    },
-    {
-      type: 'Checklist',
-      ref: btnChecklistRef,
-      iconCmp: <BsCheck2Square className="icon" />,
-    },
-    {
-      type: 'Dates',
-      ref: btnDatesRef,
-      iconCmp: <AiOutlineClockCircle className="icon" />,
-    },
-    {
-      type: 'Attachment',
-      ref: btnAttachmentRef,
-      iconCmp: <ImAttachment className="icon" />,
-    },
-    {
-      type: 'Cover',
-      ref: btnCoverRef,
-      iconCmp: (
-        <BsSquareHalf
-          className="icon"
-          style={{
-            transform: 'rotate(0.75turn) translateY(-20%) translateX(22%)',
-          }}
-        />
-      ),
-    },
-  ]
 
   const handleChange = ({ target }) => {
     const { value } = target
@@ -133,20 +81,7 @@ export const TaskDetails = () => {
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
                 {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
               </section>
-
-              <section className="task-sidebar">
-                <h3 className="sidebar-title">Add to card</h3>
-
-                {actionBtns.map(btn => (
-                  <button className="btn-sidebar"
-                    onClick={() => onOpenActionModal(btn.type, btn.ref)}
-                    key={btn.type}
-                    ref={btn.ref}>
-                    {btn.iconCmp}
-                    {btn.type}
-                  </button>
-                ))}
-              </section>
+              <TaskDetailsSidebar onOpenActionModal={onOpenActionModal} />
             </div>
           </section>
         </section>

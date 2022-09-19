@@ -25,21 +25,39 @@
         height: 36px;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
 
         &:hover {
             cursor: pointer;
+
+            button {
+                display: inline-block;
+                height: 24px;
+                width: 24px;
+                font-size: 16px;
+                padding: 4px;
+                text-align: center;
+
+                &:hover {
+                  background-color: #091e4214;  
+                }
+            }
+        }
+
+        button {
+            background-color: transparent;
+            display: none;
+        }
+
+        p {
+            &.crossed-out {
+                text-decoration-line: line-through;
+            }
         }
     }
 
-    p {}
 
     textarea {
-
-        &.crossed-out {
-            text-decoration-line: line-through;
-        }
-
         &:focus {
             margin-top: 1px;
             padding-left: 12px;

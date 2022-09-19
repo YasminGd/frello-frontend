@@ -26,7 +26,11 @@ export const CheckListList = ({ task, groupId }) => {
         dispatch(updateTask(groupId, task))
     }
 
-
+    const removeTodo = (todoId, checkListId) => {
+        const checkList = task.checklists.find(checkList => checkList.id === checkListId)
+        checkList.todos = checkList.todos.filter(todo => todo.id !== todoId)
+        dispatch(updateTask(groupId, task))
+    }
 
     return (
         <section className="checklist-list">
@@ -39,6 +43,7 @@ export const CheckListList = ({ task, groupId }) => {
                         addTodo={addTodo}
                         deleteChecklist={deleteChecklist}
                         updateChecklist={updateChecklist}
+                        removeTodo={removeTodo}
                     />)
             }
         </section>

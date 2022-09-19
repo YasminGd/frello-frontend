@@ -5,7 +5,7 @@ import { AddTodo } from "./add-todo"
 import { EditTitle } from "./edit-title"
 import { TodoList } from "./todo-list"
 
-export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist, addTodo, updateChecklist }) => {
+export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist, addTodo, updateChecklist, removeTodo }) => {
     const [isAddTodoOpen, setIsAddTodoOpen] = useState(false)
     const [isEditTitleOpen, setIsEditTitleOpen] = useState(false)
 
@@ -24,7 +24,7 @@ export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist, addTo
 
     const getCompletionPercentage = () => {
         const todosLength = checkList.todos.length
-        if(todosLength === 0) return 0
+        if (todosLength === 0) return 0
         const completedTodosLength = checkList.todos.filter(todo => todo.isDone).length
 
         return (completedTodosLength * 100 / todosLength).toFixed(0)
@@ -36,7 +36,7 @@ export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist, addTo
         <section className="checklist-header">
             <section className="left">
                 {/* <div className="svg-holder"> */}
-                    <BsCheck2Square />
+                <BsCheck2Square />
                 {/* </div> */}
                 {isEditTitleOpen ? <EditTitle editTitle={editTitle} itemTitle={checkList.title} toggleTitleEdit={toggleTitleEdit} /> : <h3 onClick={toggleTitleEdit}>{checkList.title}</h3>}
             </section>
@@ -51,7 +51,7 @@ export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist, addTo
                 <div className={`percentage-bar ${completionPercentage === '100' ? 'done' : ''}`} style={{ width: `${completionPercentage}%` }}></div>
             </div>
         </section>
-        {checkList.todos && checkList.todos.length > 0 && <TodoList todos={checkList.todos} checkListId={checkList.id} updateTodo={updateTodo} />}
+        {checkList.todos && checkList.todos.length > 0 && <TodoList todos={checkList.todos} checkListId={checkList.id} updateTodo={updateTodo} removeTodo={removeTodo}/>}
         <section className="add-todo-option">
             {isAddTodoOpen ?
                 <AddTodo addTodo={addTodo} checkListId={checkList.id} closeModal={onAddTodo} /> :

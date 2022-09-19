@@ -35,16 +35,17 @@
     align-items: flex-start;
 
     .task-preview-icons {
-      margin-top: 1px;
+      margin-top: 5px;
+      margin-left: -2px;
       font-size: 12px;
       display: flex;
       justify-content: flex-start;
       align-items: center;
       gap: 13px;
+      height: 24px;
 
       & > * {
-        padding: 0 5px;
-        padding-top: 7px;
+        padding: 2px 6px;
       }
 
       .date-container {
@@ -63,6 +64,12 @@
         gap: 6px;
         align-items: center;
         justify-content: center;
+        border-radius: 3px;
+
+        &.done {
+          background-color: #61bd4f;
+          color: white;
+        }
       }
     }
   }

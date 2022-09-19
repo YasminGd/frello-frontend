@@ -54,44 +54,38 @@ export var board = {
     {
       id: 'l101',
       title: 'Done',
-      color: '#7BC86C',
-      class: 'green-light',
-      previewClass: 'green-darker'
+      color: 'green',
+      class: 'green-hoverable',
     },
     {
       id: 'l102',
       title: 'Progress',
-      color: '#F5DE29',
-      class: 'yellow-light',
-      previewClass: 'yellow-darker'
+      color: 'yellow',
+      class: 'yellow-hoverable',
     },
     {
       id: 'l103',
       title: 'Todo',
-      color: '#FFAF3F',
-      class: 'orange-light',
-      previewClass: 'orange-darker'
+      color: 'orange',
+      class: 'orange-hoverable',
     },
     {
       id: 'l104',
       title: 'Todo',
-      color: '#EF7664',
-      class: 'red-light',
-      previewClass: 'red-darker'
+      color: 'red',
+      class: 'red-hoverable',
     },
     {
       id: 'l105',
       title: 'Later',
-      color: '#CD8DE5',
-      class: 'purple-light',
-      previewClass: 'purple-darker'
+      color: 'purple',
+      class: 'purple-hoverable',
     },
     {
       id: 'l106',
       title: 'Important',
-      color: '#5BA4CF',
-      class: 'dark-blue-light',
-      previewClass: 'dark-blue-darker'
+      color: 'blue',
+      class: 'blue-hoverable',
     },
   ],
   members: [

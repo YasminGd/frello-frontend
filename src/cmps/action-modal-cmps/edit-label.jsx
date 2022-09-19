@@ -2,15 +2,29 @@ import { useState } from "react"
 import { ColorPallet } from "../color-pallet"
 import { IoCloseOutline } from 'react-icons/io5'
 
-export const EditLabel = ({ onToggleLabelEdit, label }) => {
+export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel }) => {
 
     const [labelTitle, setLabelTitle] = useState(label.title)
-    const [selectedColor, setSelectedColor] = useState(null)
+    const [selectedColor, setSelectedColor] = useState(label.color)
 
     const handleChange = ({ target }) => {
         if (target.type === 'text') {
             setLabelTitle(target.value)
         }
+    }
+
+    const onSaveButton = () => {
+        label.class = selectedColor
+        console.log('onSaveButton ~ selectedColor', selectedColor)
+        label.title = labelTitle
+        label.color = selectedColor.slice(0, -10)
+        onSaveLabel(label)
+        onToggleLabelEdit(null)
+    }
+
+    const onRemoveButton = () => {
+        onToggleLabelEdit(null)
+        onRemoveLabel(label.id)
     }
 
     return (
@@ -31,8 +45,8 @@ export const EditLabel = ({ onToggleLabelEdit, label }) => {
                 </button>
             </div>
             <div className="save-remove">
-                <button className="btn-save">Save</button>
-                <button className="btn-remove">Delete</button>
+                <button onClick={onSaveButton} className="btn-save">Save</button>
+                <button onClick={onRemoveButton} className="btn-remove">Delete</button>
             </div>
         </section>
     )

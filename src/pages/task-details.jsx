@@ -12,6 +12,7 @@ import { TaskDetailsSidebar } from '../cmps/task-details-sidebar'
 import { CheckListList } from '../cmps/checklist-list'
 import { TaskDetailsOverview } from '../cmps/task-details-overview'
 import { TaskDetailsHeader } from '../cmps/task-details-header'
+import { Activities } from '../cmps/activities'
 
 export const TaskDetails = () => {
   const navigate = useNavigate()
@@ -39,6 +40,17 @@ export const TaskDetails = () => {
     setActionModal({ type, pos })
   }
 
+  const getActivities = () => {
+    if (!board.activities || !board.activities.length) return []
+    console.log(board.activities);
+    return board.activities.filter(activity => {
+      console.log(activity.task?.id === task.id)
+      return activity.task?.id === task.id
+      })
+  }
+
+  const activities = getActivities()
+
   //prettier-ignore
   return (
     <React.Fragment>
@@ -57,6 +69,7 @@ export const TaskDetails = () => {
                 <TaskDescription task={task} groupId={groupId} />
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
                 {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
+                <Activities activities={activities} />
               </section>
               <TaskDetailsSidebar onOpenActionModal={onOpenActionModal} />
             </div>

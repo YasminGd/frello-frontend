@@ -1,0 +1,39 @@
+.activity-preview {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+    color: #172b4d;
+    
+
+    .member-img {
+        height: 32px;
+        width: 32px;
+        object-fit: cover;
+        padding-bottom: px;
+
+        img {
+            width: 100%;
+            border-radius: 25em;
+        }
+    }
+
+    .activity-description {
+        word-break: break-all;
+        // padding-top: px;
+        line-height: 20px;
+
+        .username {
+            font-weight: 700;
+        }
+
+        .task-name {
+            text-decoration: underline;
+        }
+
+        .time {
+            // margin-top: 6px;
+            font-weight: 400;
+            font-size: 12px;
+        }
+    }
+}

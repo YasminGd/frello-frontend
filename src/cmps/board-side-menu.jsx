@@ -1,4 +1,8 @@
+import { useSelector } from "react-redux"
+import { Activities } from "./activities"
+
 export const BoardSideMenu = ({ width, onCloseSideMenu }) => {
+    const board = useSelector(state => state.boardModule.board)
     return <section className="board-side-menu" style={width}>
         <section className="header">
             <h3>Menu</h3>
@@ -10,5 +14,7 @@ export const BoardSideMenu = ({ width, onCloseSideMenu }) => {
         <section className="board-menu-content-frame">
             <button>Change background</button>
         </section>
+        <section className="divider"></section>
+        <Activities activities={board.activities} />
     </section>
 }

@@ -9,27 +9,31 @@ export const groupService = {
     updateGroupTitle
 }
 
-async function add(title, board) {
+async function add(title, board, user) {
     board.groups.push({ title, id: utilService.makeId(), tasks: [] })
+    const boardWithActivities = boardService.addActivity(`Added ${title} to this board`, null, user, board)
 
     try {
-        return await storageService.post(STORAGE_KEY, board)
+        return await storageService.post(STORAGE_KEY, boardWithActivities)
     } catch (err) {
         console.log('cannot add task', err)
     }
 
-    return board
+    return boardWithActivities
 }
 
-async function remove(groupId, board) {
+async function remove(groupId, board, user) {
+    const title = board.groups.find(group => group.id === groupId).title
     board.groups = board.groups.filter(group => group.id !== groupId)
+    const boardWithActivities = boardService.addActivity(`Removed list ${title}`, null, user, board)
+
     try {
-        return await storageService.put(STORAGE_KEY, board)
+        return await storageService.put(STORAGE_KEY, boardWithActivities)
     } catch (err) {
         console.log('cannot delete task', err)
     }
 
-    return board
+    return boardWithActivities
 }
 
 async function updateGroupTitle(board, groupId, title) {

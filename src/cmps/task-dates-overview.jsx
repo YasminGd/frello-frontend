@@ -32,7 +32,8 @@ export const TaskDatesOverview = ({ task, groupId, onOpenActionModal }) => {
       else if (!target.checked) {
         task.dueDate.isDone = false
       }
-      dispatch(updateTask(groupId, task))
+      const activityTxt = `marked the due date on ${task.title} ${task.dueDate.isDone ? 'complete' : 'incomplete'}`
+      dispatch(updateTask(groupId, task, activityTxt))
     }
   }
 

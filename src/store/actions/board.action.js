@@ -76,28 +76,41 @@ export function updateBoard(board) {
   }
 }
 
-export function addItemToBoard(title, groupId, boardId) {
-  return async (dispatch) => {
-    try {
-      const updatedBoard = await boardService.addItem(title, groupId, boardId)
-      dispatch(updateBoard(updatedBoard))
+// export function addItemToBoard(title, groupId, boardId) {
+//   return async (dispatch) => {
+//     try {
+//       const updatedBoard = await boardService.addItem(title, groupId, boardId)
+//       dispatch(updateBoard(updatedBoard))
 
-    } catch (err) {
-      console.log(`cannot add item to board:`, err)
-    }
-  }
-}
+//     } catch (err) {
+//       console.log(`cannot add item to board:`, err)
+//     }
+//   }
+// }
 
-export function removeItemFromBoard(groupId, taskId, boardId) {
-  return async (dispatch) => {
-    try {
-      const updatedBoard = await boardService.removeItem(groupId, taskId, boardId)
-      dispatch(updateBoard(updatedBoard))
-    } catch (err) {
-      console.log(`cannot remove item from board:`, err)
-    }
-  }
-}
+// export function removeItemFromBoard(groupId, taskId, boardId) {
+//   return async (dispatch) => {
+//     try {
+//       const updatedBoard = await boardService.removeItem(groupId, taskId, boardId)
+//       dispatch(updateBoard(updatedBoard))
+//     } catch (err) {
+//       console.log(`cannot remove item from board:`, err)
+//     }
+//   }
+// }
+
+// export function addActivityToBoard(txt, task) {
+//   return async (dispatch, getState) => {
+//     try {
+//       const board = getState().boardModule.board
+//       const user = getState().userModule.user
+//       const updatedBoard = await boardService.addActivityToBoard(board, txt, task, user)
+//       dispatch(updateBoard(updatedBoard))
+//     } catch (err) {
+//       console.log(`cannot remove item from board:`, err)
+//     }
+//   }
+// }
 
 // Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)

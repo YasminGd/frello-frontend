@@ -5,7 +5,7 @@ import { AddTodo } from "./add-todo"
 import { EditTitle } from "./edit-title"
 import { TodoList } from "./todo-list"
 
-export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist, addTodo, updateChecklist, removeTodo }) => {
+export const ChecklistPreview = ({ checkList, updateTodo, removeChecklist, addTodo, updateChecklist, removeTodo }) => {
     const [isAddTodoOpen, setIsAddTodoOpen] = useState(false)
     const [isEditTitleOpen, setIsEditTitleOpen] = useState(false)
 
@@ -42,7 +42,7 @@ export const ChecklistPreview = ({ checkList, updateTodo, deleteChecklist, addTo
             </section>
             {!isEditTitleOpen &&
                 <section className="right">
-                    <button className="button-link" onClick={() => deleteChecklist(checkList.id)}>Delete</button>
+                    <button className="button-link" onClick={() => removeChecklist(checkList.id)}>Delete</button>
                 </section>}
         </section>
         <section className="checklist-status">

@@ -21,7 +21,8 @@ export const Members = ({ task, groupId }) => {
       const index = task.memberIds.indexOf(memberId)
       task.memberIds.splice(index, 1)
     } else {
-      task.memberIds.push(memberId)
+      if (task.memberIds) task.memberIds.push(memberId)
+      else task.memberIds = [memberId]
     }
 
     dispatch(updateTask(groupId, task))

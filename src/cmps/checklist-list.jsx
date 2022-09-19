@@ -1,10 +1,24 @@
 import { useDispatch } from "react-redux"
-import { updateTask } from "../store/actions/task.action"
+import { updateTask, addNewTodo } from "../store/actions/task.action"
 import { ChecklistPreview } from "./checklist-preview"
 
 export const CheckListList = ({ task, groupId }) => {
 
     const dispatch = useDispatch()
+
+    const deleteChecklist = (checklistId) => {
+        task.checklists = task.checklists.filter(checklist => checklist.id !== checklistId)
+        dispatch(updateTask(groupId, task))
+    }
+
+    const updateChecklist = (editedChecklist) => {
+        task.checklists = task.checklists.filter(checklist => checklist.id === editedChecklist.id ? editedChecklist : checklist)
+        dispatch(updateTask(groupId, task))
+    }
+
+    const addTodo = (title, checkListId) => {
+        dispatch(addNewTodo(title, checkListId, task.id, groupId))
+    }
 
     const updateTodo = (editedTodo, checkListId) => {
         const checkList = task.checklists.find(checkList => checkList.id === checkListId)
@@ -12,8 +26,9 @@ export const CheckListList = ({ task, groupId }) => {
         dispatch(updateTask(groupId, task))
     }
 
-    const deleteChecklist = (checklistId) => {
-        task.checklists = task.checklists.filter(checklist => checklist.id !== checklistId)
+    const removeTodo = (todoId, checkListId) => {
+        const checkList = task.checklists.find(checkList => checkList.id === checkListId)
+        checkList.todos = checkList.todos.filter(todo => todo.id !== todoId)
         dispatch(updateTask(groupId, task))
     }
 
@@ -25,7 +40,10 @@ export const CheckListList = ({ task, groupId }) => {
                         key={checkList.id}
                         checkList={checkList}
                         updateTodo={updateTodo}
+                        addTodo={addTodo}
                         deleteChecklist={deleteChecklist}
+                        updateChecklist={updateChecklist}
+                        removeTodo={removeTodo}
                     />)
             }
         </section>

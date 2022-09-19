@@ -229,7 +229,6 @@ export var board = {
           memberIds: ['u101'],
           labelIds: ['l101', 'l102'],
           createdAt: 1590999730348,
-          dueDate: 16156215211,
           byMember: {
             _id: 'u101',
             username: 'Tal',
@@ -297,7 +296,6 @@ export var board = {
           memberIds: ['u101'],
           labelIds: ['l101', 'l102'],
           createdAt: 1590999730348,
-          dueDate: 16156215211,
           byMember: {
             _id: 'u101',
             username: 'Tal',
@@ -344,7 +342,6 @@ export var board = {
           memberIds: ['u101'],
           labelIds: ['l101', 'l102'],
           createdAt: 1590999730348,
-          dueDate: 16156215211,
           byMember: {
             _id: 'u101',
             username: 'Tal',
@@ -405,7 +402,6 @@ export var board = {
           memberIds: ['u101'],
           labelIds: ['l101', 'l102'],
           createdAt: 1590999730348,
-          dueDate: 16156215211,
           byMember: {
             _id: 'u101',
             username: 'Tal',
@@ -475,7 +471,6 @@ export var board = {
           memberIds: ['u101'],
           labelIds: ['l101', 'l102'],
           createdAt: 1590999730348,
-          dueDate: 16156215211,
           byMember: {
             _id: 'u101',
             username: 'Tal',
@@ -547,7 +542,6 @@ export var board = {
           memberIds: ['u101'],
           labelIds: ['l101', 'l102'],
           createdAt: 1590999730348,
-          dueDate: 16156215211,
           byMember: {
             _id: 'u101',
             username: 'Tal',

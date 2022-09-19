@@ -35,7 +35,7 @@ export const CheckList = () => {
                     value={title}
                     onChange={handleChange}
                 />
-                <button className="blue">Add</button>
+                <button className="blue btn">Add</button>
             </form>
         </div>
     </section >)

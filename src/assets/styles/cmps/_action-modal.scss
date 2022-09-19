@@ -36,30 +36,6 @@
     }
   }
 
-  .btn {
-    border: none;
-    padding: 6px 12px;
-    font-size: 0.875rem;
-    color: #172b4d;
-    // margin: 10px 12px;
-    border-radius: 3px;
-    background-color: #091e420a;
-
-    &:hover {
-      background-color: #091e4214;
-
-      &:active {
-        background-color: #e4f0f6;
-        color: $blue-main;
-      }
-    }
-
-    &.blue {
-      color: white;
-      background-color: #0079bf;
-    }
-  }
-
   .title-container {
     color: #5e6c84;
     height: 40px;

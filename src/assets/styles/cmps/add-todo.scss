@@ -1,0 +1,25 @@
+.add-todo {
+    margin-top: 16px;
+    margin-left: 40px;
+
+    .input {
+        height: 37px;
+        margin-bottom: 8px;
+        width: 512px;
+    }
+
+    .options {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap:4px;
+
+        button:last-of-type {
+          background-color: transparent;
+          
+          &:hover {
+            background-color: #091e4214;
+          }
+        }
+    }
+}

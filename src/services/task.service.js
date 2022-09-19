@@ -8,7 +8,8 @@ export const taskService = {
   add,
   remove,
   addImg,
-  addChecklist
+  addChecklist,
+  addTodo
   // query,
   // getById,
   // save,
@@ -84,6 +85,25 @@ async function addChecklist(title, taskId, groupId, board) {
   const task = group.tasks.find(task => task.id === taskId)
   if (task.checklists) task.checklists.push(checklist)
   else task.checklists = [checklist]
+
+  try {
+    return await storageService.put(STORAGE_KEY, board)
+  } catch (err) {
+    console.log('cannot add checklist', err)
+  }
+}
+
+async function addTodo(title, checkListId, groupId, taskId, board) {
+  const todo = {
+    id: utilService.makeId(),
+    isDone: false,
+    title
+  }
+
+  const group = board.groups.find(group => group.id === groupId)
+  const task = group.tasks.find(task => task.id === taskId)
+  const checklist = task.checklists.find(checklist => checklist.id === checkListId)
+  checklist.todos.push(todo)
 
   try {
     return await storageService.put(STORAGE_KEY, board)

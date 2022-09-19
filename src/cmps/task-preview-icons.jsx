@@ -8,9 +8,13 @@ import { BsCheck2Square } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { updateTask } from '../store/actions/task.action'
 import { TbCheckbox } from 'react-icons/tb'
+import { useSelector } from 'react-redux'
 
 export const TaskPreviewIcons = ({ task, groupId }) => {
   const dispatch = useDispatch()
+  const boardMembers = useSelector((state) => state.boardModule.board.members)
+
+  const membersToRender = boardMembers.filter((member) => task.memberIds?.includes(member._id))
 
   const todosPreview = () => {
     if (!task.checklists || task?.checklists.length === 0) return
@@ -62,8 +66,8 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
   // console.log(todoDetails)
 
   return (
-    <section className="details-icons">
-      <section className="task-preview-icons">
+    <section className="task-preview-icons">
+      <section className="left-icons">
         {task.dueDate && (
           <section className={`date-container ${getDateClass(task)}`} onClick={(ev) => onToggleIsDone(ev, task)}>
             <span className="clock-icon">
@@ -96,6 +100,15 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
           </section>
         )}
       </section>
+      {task.memberIds && task.memberIds.length !== 0 && (
+        <section className="members-img">
+          {membersToRender.map((member) => (
+            <div className="member-img" key={member._id}>
+              <img src={member.imgUrl} alt="" />
+            </div>
+          ))}
+        </section>
+      )}
     </section>
   )
 }

@@ -38,10 +38,14 @@ export const TaskDetailsOverview = ({ task, groupId, onOpenActionModal }) => {
     }
   }
 
+  const isRenderLabels = () => {
+    if (task.labelIds && task.labelIds.length && task.labelIds !== 0) return true
+  }
+
   return (
     <section className="task-details-overview">
       <section className="members-labels-container">
-        {task.labelIds && task.labelIds.length && <TaskLabelsOverview onOpenActionModal={onOpenActionModal} labelIds={task.labelIds} />}
+        {isRenderLabels() && <TaskLabelsOverview onOpenActionModal={onOpenActionModal} labelIds={task.labelIds} />}
         {//*!! Here will go Members overview!!!*}
         }
       </section>

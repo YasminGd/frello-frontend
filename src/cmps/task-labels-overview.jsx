@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 
 export const TaskLabelsOverview = ({ labelIds, onOpenActionModal }) => {
     const btnAddLabelRef = useRef()
-    const btnLabelRef = useRef()
+    const labelsContainerRef = useRef()
     const boardLabels = useSelector(state => state.boardModule.board.labels)
 
     const labelsToRender = boardLabels.filter(label => labelIds.includes(label.id))
@@ -13,11 +13,10 @@ export const TaskLabelsOverview = ({ labelIds, onOpenActionModal }) => {
     return (
         <section className="task-labels-overview">
             <h4 className="title">Labels</h4>
-            <div className="labels-container">
+            <div className="labels-container" ref={labelsContainerRef}>
                 {labelsToRender.map(label => (
                     <button
-                        onClick={() => { onOpenActionModal('Labels', btnLabelRef) }}
-                        ref={btnLabelRef}
+                        onClick={() => { onOpenActionModal('Labels', labelsContainerRef) }}
                         key={label.id}
                         className={`btn-label ${label.class}`}>
                         <div className="color-circle" style={{ backgroundColor: label.color }}></div>

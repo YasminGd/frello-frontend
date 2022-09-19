@@ -53,6 +53,10 @@ export const ActionModal = ({
       case 'Checklist':
         return 'Add checklist'
 
+      case 'Labels':
+        if (isLabelsEdit) return 'Edit label'
+        return 'Labels'
+
       default:
         return type
     }

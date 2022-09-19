@@ -4,6 +4,7 @@
 @import 'setup/variables';
 @import 'setup/mixins';
 @import 'setup/functions';
+@import 'setup/colors';
 
 // BASICS
 @import 'basics/helpers';
@@ -48,6 +49,7 @@
 @import 'cmps/task-labels-list';
 @import 'cmps/task-labels-overview';
 @import 'cmps/task-details-header';
+@import 'cmps/color-pallet';
 
 // COMPONENTS-ACTION MODAL
 @import 'cmps/action-modal';

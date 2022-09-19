@@ -62,6 +62,7 @@ export function addBoard(board) {
 }
 
 export function updateBoard(board) {
+
   return async (dispatch, getState) => {
     const prevBoard = { ...getState().boardModule.board }
     dispatch(getActionUpdateBoard(board))
@@ -98,29 +99,3 @@ export function removeItemFromBoard(groupId, taskId, boardId) {
     }
   }
 }
-
-// Demo for Optimistic Mutation
-// (IOW - Assuming the server call will work, so updating the UI first)
-// export function onRemoveBoardOptimistic(boardId) {
-
-//     return (dispatch, getState) => {
-
-//         dispatch({
-//             type: 'REMOVE_BOARD',
-//             boardId
-//         })
-//         showSuccessMsg('Board removed')
-
-//         boardService.remove(boardId)
-//             .then(() => {
-//                 console.log('Server Reported - Deleted Succesfully');
-//             })
-//             .catch(err => {
-//                 showErrorMsg('Cannot remove board')
-//                 console.log('Cannot load boards', err)
-//                 dispatch({
-//                     type: 'UNDO_REMOVE_BOARD',
-//                 })
-//             })
-//     }
-// }

@@ -8,3 +8,18 @@
     box-shadow: inset 0 0 0 2px $blue-500;
   }
 }
+
+@mixin subHeader() {
+  color: #5e6c84;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  margin-top: 16px;
+  margin-top: 12px;
+}
+
+@mixin flexAlign() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

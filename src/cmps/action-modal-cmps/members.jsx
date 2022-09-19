@@ -17,15 +17,20 @@ export const Members = ({ task, groupId }) => {
   }
 
   const onToggleMember = (memberId) => {
+    const member = boardMembers.find(member => member._id === memberId)
+    let activityTxt
+
     if (task.memberIds?.includes(memberId)) {
       const index = task.memberIds.indexOf(memberId)
       task.memberIds.splice(index, 1)
+      activityTxt = `left ${task.title}`
     } else {
+      activityTxt = `joined ${task.title}`
       if (task.memberIds) task.memberIds.push(memberId)
       else task.memberIds = [memberId]
     }
 
-    dispatch(updateTask(groupId, task))
+    dispatch(updateTask(groupId, task, activityTxt, member))
   }
 
   return (

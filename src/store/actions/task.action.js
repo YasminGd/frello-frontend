@@ -1,3 +1,4 @@
+import { activityService } from '../../services/activity.service';
 import { taskService } from '../../services/task.service'
 
 export function updateTask(groupId, task, activityTxt, boardMember) {
@@ -5,6 +6,7 @@ export function updateTask(groupId, task, activityTxt, boardMember) {
     try {
       const board = getState().boardModule.board
       const user = boardMember || getState().userModule.user
+      console.log(boardMember);
       const savedBoard = await taskService.update(board, groupId, task, activityTxt, user)
       const newBoard = { ...savedBoard }
       dispatch({ type: 'UPDATE_BOARD', board: newBoard })

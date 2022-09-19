@@ -1,9 +1,9 @@
 .activity-preview {
     display: grid;
     grid-template-columns: 32px 1fr;
-    gap: 10px;
+    gap: 8px;
     color: #172b4d;
-    
+
 
     .member-img {
         height: 32px;
@@ -18,7 +18,7 @@
     }
 
     .activity-description {
-        word-break: break-all;
+        word-break: break-word;
         // padding-top: px;
         line-height: 20px;
 
@@ -34,6 +34,18 @@
             // margin-top: 6px;
             font-weight: 400;
             font-size: 12px;
+        }
+
+        .comment {
+            margin-top: 3px;
+            width: 271px;
+            height: 36px;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px -1px #091e4240, 0 0 0 1px #091e4214;
+            background-color: white;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+
         }
     }
 }

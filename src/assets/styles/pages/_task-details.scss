@@ -102,6 +102,11 @@
           margin-bottom: 4px;
           gap: 17px;
 
+          &:hover {
+            background-color: transparent;
+            
+          }
+
 
           svg {
             position: relative;
@@ -111,12 +116,16 @@
 
         .activity-list {
           font-size: 14px;
-          margin-top: 0;
+          margin-top: 8px;
           padding-left: 0;
           gap: 16px;
 
           .activity-preview {
             gap: 8px;
+
+            .comment {
+              width: 510px;
+            }
           }
         }
       }

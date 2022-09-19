@@ -45,7 +45,7 @@ export const TaskDetails = () => {
     return board.activities.filter(activity => {
       console.log(activity.task?.id === task.id)
       return activity.task?.id === task.id
-      })
+    })
   }
 
   const activities = getActivities()
@@ -69,7 +69,7 @@ export const TaskDetails = () => {
                 <TaskDescription task={task} groupId={groupId} />
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
                 {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
-                <Activities activities={activities} />
+                <Activities activities={activities} renderAddComments={true} task={task} />
               </section>
               <TaskDetailsSidebar onOpenActionModal={onOpenActionModal} />
             </div>

@@ -1,3 +1,4 @@
+import { activityService } from '../../services/activity.service.js'
 import { boardService } from '../../services/board.service.js'
 
 // Action Creators:
@@ -76,6 +77,22 @@ export function updateBoard(board) {
     }
   }
 }
+
+export function addNewComment(txt, task, comment) {
+  return async (dispatch, getState) => {
+    try {
+      const board = getState().boardModule.board
+      const user = getState().userModule.user
+      const savedBoard = await activityService.addActivity(txt, task, user, board, comment)
+      const newBoard = { ...savedBoard }
+      await boardService.save(savedBoard)
+      dispatch({ type: 'UPDATE_BOARD', board: newBoard })
+    } catch (err) {
+      console.log('Cannot add todo', err)
+    }
+  }
+}
+
 
 // export function addItemToBoard(title, groupId, boardId) {
 //   return async (dispatch) => {

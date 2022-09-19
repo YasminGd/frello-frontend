@@ -41,7 +41,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      gap: 13px;
+      gap: 4px;
       height: 24px;
 
       & > * {
@@ -53,8 +53,76 @@
         align-items: center;
         color: #5e6c84;
 
+        &.completed {
+          background-color: #61bd4f;
+          color: white;
+          border-radius: 3px;
+
+          &:hover {
+            background-color: #519839;
+
+            .checkbox-icon {
+              display: none;
+            }
+
+            .done-checkbox-icon {
+              display: flex;
+            }
+          }
+        }
+
+        &.overdue {
+          background-color: #ec9488;
+          color: white;
+          border-radius: 3px;
+
+          &:hover {
+            background-color: #eb5a46;
+          }
+        }
+
+        &.duesoon {
+          background-color: #f2d600;
+          color: white;
+          border-radius: 3px;
+
+          &:hover {
+            background-color: #d9b51c;
+          }
+        }
+
+        &:hover {
+          .clock-icon {
+            display: none;
+          }
+
+          .checkbox-icon {
+            display: flex;
+          }
+        }
+
+        .clock-icon {
+          display: flex;
+          align-items: center;
+        }
+
+        .checkbox-icon {
+          display: none;
+          align-items: center;
+
+          svg {
+            font-size: 18px;
+            margin-inline-end: 2px;
+          }
+        }
+
+        .done-checkbox-icon {
+          display: none;
+          align-items: center;
+        }
+
         svg {
-          font-size: 14px;
+          font-size: 16px;
           margin-inline-end: 4px;
         }
       }

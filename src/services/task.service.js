@@ -23,7 +23,8 @@ async function update(board, groupId, task) {
 
   try {
     return await storageService.put(STORAGE_KEY, board)
-  } catch (err) {
+  }
+  catch (err) {
     console.log('cannot update task', err)
   }
 }
@@ -34,7 +35,8 @@ async function add(title, groupId, board) {
 
   try {
     return await storageService.put(STORAGE_KEY, board)
-  } catch (err) {
+  }
+  catch (err) {
     console.log('cannot add task', err)
   }
 
@@ -47,7 +49,8 @@ async function remove(groupId, taskId, board) {
 
   try {
     return await storageService.put(STORAGE_KEY, board)
-  } catch (err) {
+  }
+  catch (err) {
     console.log('cannot delete task', err)
   }
 
@@ -69,7 +72,8 @@ async function addImg(imgUrl, task, groupId, board) {
 
   try {
     return await storageService.put(STORAGE_KEY, board)
-  } catch (err) {
+  }
+  catch (err) {
     console.log('cannot add img', err)
   }
 }

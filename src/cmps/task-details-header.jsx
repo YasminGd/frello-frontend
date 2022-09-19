@@ -20,7 +20,7 @@ export const TaskDetailsHeader = ({ task, groupId, groupTitle }) => {
 
     const setTaskTitle = () => {
         task.title = titleTxt
-        dispatch(updateTask(groupId, task))
+        dispatch(updateTask(groupId, { ...task }))
     }
 
     return (

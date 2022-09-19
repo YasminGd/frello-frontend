@@ -1,10 +1,10 @@
 import { taskService } from '../../services/task.service'
 
-export function updateTask(groupId, task, activityTxt) {
+export function updateTask(groupId, task, activityTxt, boardMember) {
   return async (dispatch, getState) => {
     try {
       const board = getState().boardModule.board
-      const user = getState().userModule.user
+      const user = boardMember || getState().userModule.user
       const savedBoard = await taskService.update(board, groupId, task, activityTxt, user)
       const newBoard = { ...savedBoard }
       dispatch({ type: 'UPDATE_BOARD', board: newBoard })

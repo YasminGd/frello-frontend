@@ -14,6 +14,10 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
     return !task.style || (task.style && task.style.coverStyle !== 'fully covered')
   }
 
+  const isRenderLabels = () => {
+    if (task.labelIds && task.labelIds.length && task.labelIds !== 0) return true
+  }
+
   const toRender = renderOptions()
   return (
     <Link
@@ -32,7 +36,7 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
         <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>
       )}
       <section className="task-body" style={{ backgroundColor: getCoverStyle() }}>
-        {task.labelIds && task.labelIds.length && <TaskLabelsList labelIds={task.labelIds} />}
+        {isRenderLabels() && <TaskLabelsList labelIds={task.labelIds} />}
         {task.title}
         {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
       </section>

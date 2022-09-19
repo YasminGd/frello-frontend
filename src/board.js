@@ -15,69 +15,96 @@ export var board = {
   style: {
     background:
       'url("https://techcrunch.com/wp-content/uploads/2020/11/GettyImages-1150039017.jpg?w=1390&crop=1")',
-    isLabelsLarge: true
+    isLabelsLarge: false,
+    colorsClasses: [
+      'light-green-hoverable',
+      'light-yellow-hoverable',
+      'light-orange-hoverable',
+      'light-red-hoverable',
+      'light-purple-hoverable',
+      'green-hoverable',
+      'yellow-hoverable',
+      'orange-hoverable',
+      'red-hoverable',
+      'purple-hoverable',
+      'dark-green-hoverable',
+      'dark-yellow-hoverable',
+      'dark-orange-hoverable',
+      'dark-red-hoverable',
+      'dark-purple-hoverable',
+      'light-blue-hoverable',
+      'light-sky-hoverable',
+      'light-lime-hoverable',
+      'light-pink-hoverable',
+      'light-black-hoverable',
+      'blue-hoverable',
+      'sky-hoverable',
+      'lime-hoverable',
+      'pink-hoverable',
+      'black-hoverable',
+      'dark-blue-hoverable',
+      'dark-sky-hoverable',
+      'dark-lime-hoverable',
+      'dark-pink-hoverable',
+      'dark-black-hoverable',
+
+    ]
   },
   labels: [
     {
       id: 'l101',
       title: 'Done',
-      color: '#7BC86C',
-      class: 'green-light',
-      previewClass: 'green-darker'
+      color: 'green',
+      class: 'green-hoverable',
     },
     {
       id: 'l102',
       title: 'Progress',
-      color: '#F5DE29',
-      class: 'yellow-light',
-      previewClass: 'yellow-darker'
+      color: 'yellow',
+      class: 'yellow-hoverable',
     },
     {
       id: 'l103',
       title: 'Todo',
-      color: '#FFAF3F',
-      class: 'orange-light',
-      previewClass: 'orange-darker'
+      color: 'orange',
+      class: 'orange-hoverable',
     },
     {
       id: 'l104',
       title: 'Todo',
-      color: '#EF7664',
-      class: 'red-light',
-      previewClass: 'red-darker'
+      color: 'red',
+      class: 'red-hoverable',
     },
     {
       id: 'l105',
       title: 'Later',
-      color: '#CD8DE5',
-      class: 'purple-light',
-      previewClass: 'purple-darker'
+      color: 'purple',
+      class: 'purple-hoverable',
     },
     {
       id: 'l106',
       title: 'Important',
-      color: '#5BA4CF',
-      class: 'dark-blue-light',
-      previewClass: 'dark-blue-darker'
+      color: 'blue',
+      class: 'blue-hoverable',
     },
   ],
   members: [
     {
       _id: 'u101',
-      fullname: 'Tal Tarablus',
+      fullname: 'Bar Ohayon',
       imgUrl:
-        'https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.football.org.il%2FImageServer%2FGetImage.ashx%3Ftype%3D2%26id%3D209197%26width%3D240%26height%3D305&imgrefurl=https%3A%2F%2Fwww.football.org.il%2Fen%2Fplayers%2Fplayer%2F%3Fplayer_id%3D169688%26season_id%3D19&tbnid=BpqbpdiO9xGzoM&vet=12ahUKEwiy1Yary5v6AhUNGRoKHZq8BjsQMygNegQIARBz..i&docid=LLq3P-ffKBxVRM&w=240&h=305&itg=1&q=bar%20ohayon&ved=2ahUKEwiy1Yary5v6AhUNGRoKHZq8BjsQMygNegQIARBz',
+        'https://scontent.ftlv5-1.fna.fbcdn.net/v/t1.6435-9/42763932_10212194299428669_1889538263073423360_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=2dDzoFKxPc8AX_yKobY&_nc_ht=scontent.ftlv5-1.fna&oh=00_AT9asrzvxAlB9bFB3_A8dtuDp_c_JepsgXU3YVfnrFwc0g&oe=634CA39C',
     },
     {
       _id: 'u102',
       fullname: 'Yasmin Gudha',
       imgUrl:
-        'https://www.google.com/imgres?imgurl=https%3A%2F%2Fp16-sign-va.tiktokcdn.com%2Ftos-maliva-avt-0068%2Fad2b7cf288ab1db21422839f361955fd~c5_720x720.jpeg%3Fx-expires%3D1656914400%26x-signature%3DkVLseCTERUkwZ5LbiTE0hQXffkU%253D&imgrefurl=https%3A%2F%2Fwww.tiktok.com%2Fdiscover%2Fwaicha20%3Flang%3Den&tbnid=l7ZmLhn3S7Ci3M&vet=12ahUKEwiMlv-Vy5v6AhUMvBoKHTbSBCYQMygQegQIARBJ..i&docid=uuP4NTDUs0rASM&w=583&h=583&itg=1&q=yasmin%20gudha&ved=2ahUKEwiMlv-Vy5v6AhUMvBoKHTbSBCYQMygQegQIARBJ',
+        'https://res.cloudinary.com/frello/image/upload/v1663581895/hx94mf1jqzol7neds3yj.jpg',
     },
     {
       _id: 'u103',
       fullname: 'Lee Sharon',
-      imgUrl: 'https://globalzonetoday.com/sharon-lee/',
+      imgUrl: 'https://scontent.ftlv23-1.fna.fbcdn.net/v/t31.18172-8/20157447_10155321973701047_7503367269692251994_o.jpg?stp=dst-jpg_p960x960&_nc_cat=107&ccb=1-7&_nc_sid=174925&_nc_ohc=-Xl-yuhb17QAX9mVafE&_nc_oc=AQmk7_yu3aK9zXZJ1L2aG8YCukN9dwOc_yxOdHSAcS6HsFNwBF-RsmA8IpM3BEEjx0Y&tn=qaqignt_wEc5HEq3&_nc_ht=scontent.ftlv23-1.fna&oh=00_AT8CayO-5d2vib8idTkvG-05B_NHSmRMZxjPk3kEAubWCA&oe=634D2378',
     },
   ],
   groups: [
@@ -126,7 +153,7 @@ export var board = {
           memberIds: ['u102'],
         },
         {
-          id: utilService.makeId(),
+          id: 'c103',
           title: 'Open routing directory',
           attachments: [],
         },
@@ -149,7 +176,7 @@ export var board = {
       title: 'Backlog-Client',
       tasks: [
         {
-          id: utilService.makeId(),
+          id: "c09",
           title: 'Planning the component tree and folder structure',
           archivedAt: 1589983468418,
           attachments: [],
@@ -222,7 +249,7 @@ export var board = {
       title: 'In development',
       tasks: [
         {
-          id: utilService.makeId(),
+          id: "a889a",
           title: 'Sanity test for new component',
           archivedAt: 1589983468418,
           attachments: [],
@@ -330,7 +357,7 @@ export var board = {
       title: 'Done',
       tasks: [
         {
-          id: utilService.makeId(),
+          id: "a0o98",
           title: 'SASS architecture',
           archivedAt: 1589983468418,
           attachments: [],
@@ -381,7 +408,7 @@ export var board = {
           },
         },
         {
-          id: utilService.makeId(),
+          id: "a1l3A",
           title: 'Add node.js modules',
           archivedAt: 1589983468418,
           attachments: [{ id: 'aa101', name: 'Attachment Image', createdAt: Date.now(), url: "https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png" }],
@@ -469,7 +496,7 @@ export var board = {
       title: 'Ready for production',
       tasks: [
         {
-          id: utilService.makeId(),
+          id: "a09L2h",
           title: 'Create a database with mongo',
           archivedAt: 1589983468418,
           attachments: [],

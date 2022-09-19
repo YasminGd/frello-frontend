@@ -10,10 +10,8 @@ export const TaskLabelsList = ({ labelIds }) => {
     const labelsToRender = boardLabels.filter(label => labelIds.includes(label.id))
 
     const toggleLabelsSize = (ev) => {
-        console.log('toggleLabelsSize ~ ev', ev)
         ev.preventDefault()
         board.style.isLabelsLarge = !isLabelsLarge
-        // isLabelsLarge = !isLabelsLarge
         dispatch(updateBoard({ ...board }))
     }
 
@@ -23,7 +21,7 @@ export const TaskLabelsList = ({ labelIds }) => {
             {labelsToRender.map(label => (
                 <div
                     onClick={toggleLabelsSize}
-                    className={`task-labels-preview ${isLabelsLarge ? label.class : label.previewClass} ${labelsStyle}`}
+                    className={`task-labels-preview ${isLabelsLarge ? label.class : label.color} ${labelsStyle}`}
                     key={label.id}>
                     {isLabelsLarge &&
                         <React.Fragment>

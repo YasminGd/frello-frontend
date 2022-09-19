@@ -28,7 +28,8 @@ async function update(board, groupId, task, activityTxt, user) {
 
   try {
     return await storageService.put(STORAGE_KEY, board)
-  } catch (err) {
+  }
+  catch (err) {
     console.log('cannot update task', err)
   }
 }
@@ -39,8 +40,9 @@ async function add(title, groupId, board, user) {
   const boardWithActivities = activityService.addActivity(`added ${title} to ${group.title}`, null, user, board)
 
   try {
-    return await storageService.put(STORAGE_KEY, boardWithActivities)
-  } catch (err) {
+    return await storageService.put(STORAGE_KEY, board)
+  }
+  catch (err) {
     console.log('cannot add task', err)
   }
 
@@ -54,8 +56,9 @@ async function remove(groupId, taskId, board, user) {
   const boardWithActivities = activityService.addActivity(`removed ${task.title}`, null, user, board)
 
   try {
-    return await storageService.put(STORAGE_KEY, boardWithActivities)
-  } catch (err) {
+    return await storageService.put(STORAGE_KEY, board)
+  }
+  catch (err) {
     console.log('cannot delete task', err)
   }
 
@@ -79,8 +82,9 @@ async function addImg(imgUrl, task, groupId, board, user) {
   const boardWithActivities = activityService.addActivity(`attached ${urlName} to ${task.title}`, null, user, board)
 
   try {
-    return await storageService.put(STORAGE_KEY, boardWithActivities)
-  } catch (err) {
+    return await storageService.put(STORAGE_KEY, board)
+  }
+  catch (err) {
     console.log('cannot add img', err)
   }
 }

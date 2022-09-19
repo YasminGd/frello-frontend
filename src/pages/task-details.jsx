@@ -33,7 +33,6 @@ export const TaskDetails = () => {
   }
 
   const onOpenActionModal = (type, ref) => {
-    console.log('onOpenActionModal ~ type', type)
     if (actionModal?.type === type) return setActionModal(null)
     const rect = ref.current.getBoundingClientRect()
     const pos = { bottom: rect.bottom + 8, left: rect.left }
@@ -62,6 +61,7 @@ export const TaskDetails = () => {
               <img src={task.style.coverImg} />
             </section>}
             {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>}
+
             <TaskDetailsHeader task={task} groupId={groupId} groupTitle={group.title} />
             <div className="task-body">
               <section className="task-content">
@@ -75,6 +75,7 @@ export const TaskDetails = () => {
             </div>
           </section>
         </section>
+
         {actionModal && <ActionModal onUpdateTask={onUpdateTask}
           setActionModal={setActionModal}
           data={actionModal}

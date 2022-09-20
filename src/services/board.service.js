@@ -1,11 +1,10 @@
 import { storageService } from './async-storage.service.js'
-// import { getActionRemoveBoard, getActionAddBoard, getActionUpdateBoard } from '../store/board.actions.js'
 import { store } from '../store/store'
 import { board } from '../board.js'
-
-// This file demonstrates how to use a BroadcastChannel to notify other browser tabs
+import { httpService } from './http.service.js'
 
 const STORAGE_KEY = 'board'
+const BASE_URL = `board/`
 const boardChannel = new BroadcastChannel('boardChannel')
 const gBoards = [
   board,
@@ -60,48 +59,50 @@ export const boardService = {
   save,
   remove,
   handleDragEnd
-  // addItem,
-  // removeItem
 }
-
 // window.cs = boardService
 
 async function query(filterBy) {
   try {
+    return await httpService.get(BASE_URL, filterBy)
     let boards = await storageService.query(STORAGE_KEY)
     if (!boards || !boards.length) {
       storageService.postMany(STORAGE_KEY, gBoards)
       boards = gBoards
     }
-
     return boards
-  } catch (err) { }
+  }
+  catch (err) {
+    console.log('err: Cannot get boards ', err)
+  }
 }
 
 function getById(boardId) {
+  return httpService.get(BASE_URL + boardId)
   return storageService.get(STORAGE_KEY, boardId)
   // return axios.get(`/api/board/${boardId}`)
 }
 
 async function remove(boardId) {
+  return httpService.delete(BASE_URL + boardId)
   await storageService.remove(STORAGE_KEY, boardId)
   // boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
 
 async function save(board) {
-  var savedBoard
+
   if (board._id) {
     console.log('INSIDE PUT')
-    savedBoard = await storageService.put(STORAGE_KEY, board)
+    return httpService.put(BASE_URL + board._id, board)
+    return await storageService.put(STORAGE_KEY, board)
     // boardChannel.postMessage(getActionUpdateBoard(savedBoard))
+
   } else {
     console.log('INSIDE POST')
-    // Later, owner is set by the backend
-    // board.owner = userService.getLoggedinUser()
-    savedBoard = await storageService.post(STORAGE_KEY, board)
+    return httpService.post(BASE_URL, board)
+    return await storageService.post(STORAGE_KEY, board)
     // boardChannel.postMessage(getActionAddBoard(savedBoard))
   }
-  return savedBoard
 }
 
 function handleDragEnd(newBoard, destination, source, type) {

@@ -6,52 +6,52 @@ import { httpService } from './http.service.js'
 const STORAGE_KEY = 'board'
 const BASE_URL = `board/`
 const boardChannel = new BroadcastChannel('boardChannel')
-const gBoards = [
-  board,
-  {
-    _id: 'b102',
-    title: 'Second board',
-    style: {
-      background:
-        'https://images.unsplash.com/photo-1637984135921-301a7d39e3b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1615&q=80',
-    },
-    isStarred: false,
-    groups: [],
-  },
-  {
-    _id: 'b103',
-    title: 'Third board',
-    style: {
-      background:
-        'https://images.unsplash.com/photo-1632395627727-3b97d0724814?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-      backgroundColor: 'rgb(81, 152, 57)',
-    },
-    isStarred: true,
-    groups: [],
-  },
-  {
-    _id: 'b104',
-    title: 'Fourth board',
-    style: {
-      background:
-        'https://images.unsplash.com/photo-1663603846637-269b931e22b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-      backgroundColor: 'rgb(81, 152, 57)',
-    },
-    isStarred: false,
-    groups: [],
-  },
-  {
-    _id: 'b105',
-    title: 'Fifth board',
-    style: {
-      background:
-        'https://images.unsplash.com/photo-1638736230824-2fdc03dd9849?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-      backgroundColor: 'rgb(81, 152, 57)',
-    },
-    isStarred: true,
-    groups: [],
-  },
-]
+  // const gBoards = [
+  //   board,
+  //   {
+  //     _id: 'b102',
+  //     title: 'Second board',
+  //     style: {
+  //       background:
+  //         'https://images.unsplash.com/photo-1637984135921-301a7d39e3b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1615&q=80',
+  //     },
+  //     isStarred: false,
+  //     groups: [],
+  //   },
+  //   {
+  //     _id: 'b103',
+  //     title: 'Third board',
+  //     style: {
+  //       background:
+  //         'https://images.unsplash.com/photo-1632395627727-3b97d0724814?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+  //       backgroundColor: 'rgb(81, 152, 57)',
+  //     },
+  //     isStarred: true,
+  //     groups: [],
+  //   },
+  //   {
+  //     _id: 'b104',
+  //     title: 'Fourth board',
+  //     style: {
+  //       background:
+  //         'https://images.unsplash.com/photo-1663603846637-269b931e22b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+  //       backgroundColor: 'rgb(81, 152, 57)',
+  //     },
+  //     isStarred: false,
+  //     groups: [],
+  //   },
+  //   {
+  //     _id: 'b105',
+  //     title: 'Fifth board',
+  //     style: {
+  //       background:
+  //         'https://images.unsplash.com/photo-1638736230824-2fdc03dd9849?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+  //       backgroundColor: 'rgb(81, 152, 57)',
+  //     },
+  //     isStarred: true,
+  //     groups: [],
+  //   },
+  // ]
 
   ; (() => {
     boardChannel.addEventListener('message', (ev) => {
@@ -73,8 +73,8 @@ async function query(filterBy) {
     return await httpService.get(BASE_URL, filterBy)
     let boards = await storageService.query(STORAGE_KEY)
     if (!boards || !boards.length) {
-      storageService.postMany(STORAGE_KEY, gBoards)
-      boards = gBoards
+      // storageService.postMany(STORAGE_KEY, gBoards)
+      // boards = gBoards
     }
     return boards
   } catch (err) {

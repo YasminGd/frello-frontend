@@ -1,3 +1,5 @@
+//////////////////////////////////////////// Colors with Hover ////////////////////////////////////////////
+
 .light-green-hoverable {
   background-color: #bfddb4;
   &:hover {
@@ -208,7 +210,7 @@
   }
 }
 
-////////////////////////////////////////////
+//////////////////////////////////////////// Colors ////////////////////////////////////////////
 
 .light-green {
   background-color: #bfddb4;
@@ -446,4 +448,216 @@
 
 .dark-black-hover {
   background-color: #000000;
+}
+
+//////////////////////////////////////////// Colors with Opacity ////////////////////////////////////////////
+
+.light-green-opacity {
+  background-color: hsla(104, 38%, 79%, 0.3);
+  &:hover {
+    background-color: hsla(110, 46%, 60%, 0.4);
+  }
+}
+
+.green-opacity {
+  background-color: hsla(103, 41%, 62%, 0.3);
+  &:hover {
+    background-color: hsla(108, 43%, 47%, 0.4);
+  }
+}
+
+.dark-green-opacity {
+  background-color: hsla(101, 35%, 49%, 0.3);
+  &:hover {
+    background-color: hsla(101, 49%, 35%, 0.4);
+  }
+}
+
+.light-blue-opacity {
+  background-color: hsla(205, 43%, 72%, 0.3);
+  &:hover {
+    background-color: hsla(202, 67%, 47%, 0.4);
+  }
+}
+
+.blue-opacity {
+  background-color: hsla(203, 52%, 57%, 0.3);
+  &:hover {
+    background-color: hsla(202, 95%, 34%, 0.4);
+  }
+}
+
+.dark-blue-opacity {
+  background-color: hsla(209, 56%, 37%, 0.3);
+  &:hover {
+    background-color: hsla(202, 84%, 24%, 0.4);
+  }
+}
+
+.light-yellow-opacity {
+  background-color: hsla(53, 80%, 79%, 0.3);
+  &:hover {
+    background-color: hsla(53, 91%, 56%, 0.4);
+  }
+}
+
+.yellow-opacity {
+  background-color: hsla(53, 83%, 55%, 0.3);
+  &:hover {
+    background-color: hsla(51, 92%, 47%, 0.4);
+  }
+}
+
+.dark-yellow-opacity {
+  background-color: hsla(50, 72%, 57%, 0.3);
+  &:hover {
+    background-color: hsla(45, 65%, 49%, 0.4);
+  }
+}
+
+.light-sky-opacity {
+  background-color: hsla(190, 62%, 77%, 0.3);
+  &:hover {
+    background-color: hsla(188, 79%, 52%, 0.4);
+  }
+}
+
+.sky-opacity {
+  background-color: hsla(192, 66%, 63%, 0.3);
+  &:hover {
+    background-color: hsla(189, 98%, 40%, 0.4);
+  }
+}
+
+.dark-sky-opacity {
+  background-color: hsla(195, 44%, 50%, 0.3);
+  &:hover {
+    background-color: hsla(191, 98%, 32%, 0.4);
+  }
+}
+
+.light-orange-opacity {
+  background-color: hsla(35, 80%, 80%, 0.3);
+  &:hover {
+    background-color: hsla(35, 100%, 62%, 0.4);
+  }
+}
+
+.orange-opacity {
+  background-color: hsla(33, 86%, 60%, 0.3);
+  &:hover {
+    background-color: hsla(36, 83%, 50%, 0.4);
+  }
+}
+
+.dark-orange-opacity {
+  background-color: hsla(38, 81%, 52%, 0.3);
+  &:hover {
+    background-color: hsla(38, 86%, 38%, 0.4);
+  }
+}
+
+.light-lime-opacity {
+  background-color: hsla(148, 69%, 82%, 0.3);
+  &:hover {
+    background-color: hsla(148, 77%, 68%, 0.4);
+  }
+}
+
+.lime-opacity {
+  background-color: hsla(141, 67%, 74%, 0.3);
+  &:hover {
+    background-color: hsla(143, 62%, 57%, 0.4);
+  }
+}
+
+.dark-lime-opacity {
+  background-color: hsla(133, 40%, 58%, 0.3);
+  &:hover {
+    background-color: hsla(127, 40%, 48%, 0.4);
+  }
+}
+
+.light-red-opacity {
+  background-color: hsla(8, 55%, 79%, 0.3);
+  &:hover {
+    background-color: hsla(8, 81%, 66%, 0.4);
+  }
+}
+
+.red-opacity {
+  background-color: hsla(9, 65%, 65%, 0.3);
+  &:hover {
+    background-color: hsla(8, 60%, 53%, 0.4);
+  }
+}
+
+.dark-red-opacity {
+  background-color: hsla(10, 49%, 51%, 0.3);
+  &:hover {
+    background-color: hsla(12, 59%, 36%, 0.4);
+  }
+}
+
+.light-pink-opacity {
+  background-color: hsla(322, 79%, 87%, 0.3);
+  &:hover {
+    background-color: hsla(323, 100%, 78%, 0.4);
+  }
+}
+
+.pink-opacity {
+  background-color: hsla(320, 73%, 75%, 0.3);
+  &:hover {
+    background-color: hsla(327, 72%, 65%, 0.4);
+  }
+}
+
+.dark-pink-opacity {
+  background-color: hsla(325, 45%, 59%, 0.3);
+  &:hover {
+    background-color: hsla(334, 45%, 47%, 0.4);
+  }
+}
+
+.light-purple-opacity {
+  background-color: hsla(283, 52%, 84%, 0.3);
+  &:hover {
+    background-color: hsla(284, 63%, 73%, 0.4);
+  }
+}
+
+.purple-opacity {
+  background-color: hsla(279, 56%, 72%, 0.3);
+  &:hover {
+    background-color: hsla(282, 41%, 59%, 0.4);
+  }
+}
+
+.dark-purple-opacity {
+  background-color: hsla(277, 36%, 59%, 0.3);
+  &:hover {
+    background-color: hsla(278, 18%, 40%, 0.4);
+  }
+}
+
+.light-black-opacity {
+  background-color: hsla(220, 18%, 40%, 0.3);
+  &:hover {
+    background-color: hsla(217, 25%, 35%, 0.4);
+  }
+}
+
+.black-opacity {
+  background-color: hsla(220, 28%, 30%, 0.3);
+  &:hover {
+    background-color: hsla(219, 54%, 20%, 0.4);
+  }
+}
+
+.dark-black-opacity {
+  background-color: hsla(221, 64%, 15%, 0.3);
+  &:hover {
+    background-color: hsla(0, 0%, 0%, 0.4);
+  }
 }

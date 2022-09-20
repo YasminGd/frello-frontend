@@ -9,6 +9,7 @@ export const TaskLabelsOverview = ({ labelIds, onOpenActionModal }) => {
     const boardLabels = useSelector(state => state.boardModule.board.labels)
 
     const labelsToRender = boardLabels.filter(label => labelIds.includes(label.id))
+    console.log('TaskLabelsOverview ~ labelsToRender', labelsToRender)
 
     return (
         <section className="task-labels-overview">
@@ -19,7 +20,7 @@ export const TaskLabelsOverview = ({ labelIds, onOpenActionModal }) => {
                         onClick={() => { onOpenActionModal('Labels', labelsContainerRef) }}
                         key={label.id}
                         className={`btn-label ${label.class}`}>
-                        <div className="color-circle" style={{ backgroundColor: label.color }}></div>
+                        <div className={`color-circle ${label.color}`}></div>
                         <span>{label.title}</span>
                     </button>
                 ))}
@@ -30,6 +31,6 @@ export const TaskLabelsOverview = ({ labelIds, onOpenActionModal }) => {
                     <AiOutlinePlus />
                 </button>
             </div>
-        </section>
+        </section >
     )
 }

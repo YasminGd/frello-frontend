@@ -8,6 +8,7 @@ export const TaskLabelsList = ({ labelIds }) => {
     const boardLabels = board.labels
     let isLabelsLarge = board.style.isLabelsLarge
     const labelsToRender = boardLabels.filter(label => labelIds.includes(label.id))
+    console.log('TaskLabelsList ~ labelsToRender', labelsToRender)
 
     const toggleLabelsSize = (ev) => {
         ev.preventDefault()
@@ -25,7 +26,7 @@ export const TaskLabelsList = ({ labelIds }) => {
                     key={label.id}>
                     {isLabelsLarge &&
                         <React.Fragment>
-                            <div style={{ backgroundColor: label.color }} className="color-circle"></div>
+                            <div className={`color-circle ${label.color}`}></div>
                             <span className="label-title">{label.title}</span>
                         </React.Fragment>
                     }

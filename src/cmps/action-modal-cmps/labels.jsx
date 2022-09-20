@@ -11,7 +11,6 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
     let board = useSelector(state => state.boardModule.board)
     let boardLabels = board.labels
     const [labelsToRender, setLabelsToRender] = useState(boardLabels)
-    console.log('Labels ~ labelsToRender', labelsToRender)
     const [selectedLabel, setSelectedLabel] = useState()
 
     const handleChange = ({ target }, labelId) => {

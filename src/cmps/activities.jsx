@@ -7,13 +7,7 @@ import { AddComment } from './add-comment'
 
 export const Activities = ({ activities, renderAddComments, task }) => {
   const board = useSelector((state) => state.boardModule.board)
-  const user = useSelector((state) => state.userModule.user)
-
-  const dispatch = useDispatch()
-
-  const addComment = (comment) => {
-    dispatch(addNewComment(`on ${task.title}`, task, comment))
-  }
+  let user = useSelector((state) => state.userModule.user)
 
   const getUser = () => {
     return user
@@ -22,6 +16,12 @@ export const Activities = ({ activities, renderAddComments, task }) => {
           fullname: 'Guest',
           imgUrl: 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg',
         }
+  }
+
+  const dispatch = useDispatch()
+
+  const addComment = (comment) => {
+    dispatch(addNewComment(`on ${task.title}`, task, comment))
   }
   return (
     <section className="activities">

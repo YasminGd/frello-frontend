@@ -1,7 +1,8 @@
 import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { AddItem } from './add-item.jsx'
 import { TaskPreview } from './task-preview.jsx'
 
-export const TaskList = ({ tasks, groupId, removeItem }) => {
+export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd }) => {
   return (
     <Droppable droppableId={groupId} type="task">
       {(provided) => (
@@ -25,6 +26,7 @@ export const TaskList = ({ tasks, groupId, removeItem }) => {
             </Draggable>
           ))}
           {provided.placeholder}
+          {isAddOpen && <AddItem addItem={addItem} onToggleAdd={onToggleAdd} groupId={groupId} />}
         </section>
       )}
     </Droppable>

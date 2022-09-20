@@ -2,7 +2,7 @@
   border-radius: 3px;
   background-color: white;
   box-shadow: 0 1px 0 #091e4240;
-  margin: 0 8px;
+  margin: 0 4px;
   overflow: hidden;
   flex-shrink: 0;
 
@@ -38,5 +38,52 @@
   &:hover {
     cursor: pointer;
     background-color: #f4f4f8;
+  }
+
+   .add-item {
+    margin: 0;
+    padding: 8px;
+    padding-top: 0;
+
+    textarea {
+      height: 65px;
+      padding-top: 7px;
+      padding-bottom: 42px;
+      margin-bottom: 8px;
+    }
+
+    button {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+
+  .add-task-button {
+    height: auto;
+    min-width: calc(100% - 40px);
+    width: 256px;
+    margin: auto;
+    // margin-top: 4px;
+    margin-left: 8px;
+    color: #5e6c84;
+    background-color: transparent;
+    transition: none;
+    margin-bottom: 8px;
+    padding-left: 2px;
+    // height: 40px;
+
+    span {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 6px 8px;
+      gap: 5px;
+
+    }
+
+    &:hover {
+      color: #172b4d;
+      background-color: #091e4214;
+    }
   }
 }

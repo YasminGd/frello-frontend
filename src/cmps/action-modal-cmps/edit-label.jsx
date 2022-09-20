@@ -14,8 +14,7 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
     }
 
     const onSaveButton = () => {
-        label.class = selectedColor
-        console.log('onSaveButton ~ selectedColor', selectedColor)
+        label.class = selectedColor.slice(0, -10) + '-opacity'
         label.title = labelTitle
         label.color = selectedColor.slice(0, -10)
         onSaveLabel(label)

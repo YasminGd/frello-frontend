@@ -63,11 +63,13 @@ export const TaskDetails = () => {
             <TaskDetailsHeader task={task} groupId={groupId} groupTitle={group.title} />
             <div className="task-body">
               <section className="task-content">
+
                 <TaskDetailsOverview onOpenActionModal={onOpenActionModal} task={task} groupId={groupId} />
                 <TaskDescription task={task} groupId={groupId} />
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
                 {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
                 <Activities activities={activities} renderAddComments={true} task={task} />
+
               </section>
               <TaskDetailsSidebar onOpenActionModal={onOpenActionModal} />
             </div>

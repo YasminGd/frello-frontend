@@ -42,17 +42,17 @@ export const AddComment = ({ user, addComment }) => {
 
     return <section className="add-comment">
         <div className="member-img">
-            <img src={user.imgUrl} />
+            <img src={user?.imgUrl} />
         </div>
         <form onSubmit={onAddComment}>
-            <textarea 
-            value={comment} 
-            onChange={handleChange} 
-            style={inputSize} 
-            onFocus={onFocusInput} 
-            onBlur={onBlurInput} 
-            onKeyDown={handleUserKeyPress}
-            placeholder="Write a comment...">
+            <textarea
+                value={comment}
+                onChange={handleChange}
+                style={inputSize}
+                onFocus={onFocusInput}
+                onBlur={onBlurInput}
+                onKeyDown={handleUserKeyPress}
+                placeholder="Write a comment...">
             </textarea>
             <button className="btn blue" style={isButtonShown} disabled={isButtonClickable}>
                 Save

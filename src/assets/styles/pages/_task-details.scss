@@ -14,7 +14,6 @@
   position: relative;
   transform: translate(-50%, 0);
   left: 50%;
-  // height: fit-content;
 }
 
 .task-details {
@@ -25,7 +24,7 @@
   z-index: 100;
   border-radius: 2px;
   width: 768px;
-  min-height: 100vh;
+  min-height: 600px;
   display: flex;
   overflow-y: auto;
   flex-direction: column;
@@ -78,7 +77,7 @@
       line-height: 20px;
       font-weight: 600;
 
-      &+svg {
+      & + svg {
         position: relative;
         right: 33px;
         bottom: 17px;
@@ -104,9 +103,7 @@
 
           &:hover {
             background-color: transparent;
-            
           }
-
 
           svg {
             position: relative;

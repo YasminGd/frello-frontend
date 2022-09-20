@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { updateBoard } from '../store/actions/board.action'
-import { BsThreeDots } from 'react-icons/bs'
+import { BsThreeDots, BsPersonPlus } from 'react-icons/bs'
 import { BoardSideMenu } from './board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from './action-modal'
@@ -63,7 +63,23 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
         <span className="divider"></span>
-        <div className="board-members"></div>
+        <div className="board-members">
+          {board.members.map((member, index) => (
+            <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>
+              <img src={member.imgUrl} alt="" />
+            </div>
+          ))}
+          <button
+            // onClick={() => {
+            //   onOpenActionModal('Members', btnAddMemberRef)
+            // }}
+            // ref={btnAddMemberRef}
+            className="btn-share"
+          >
+            <BsPersonPlus className="person-icon" />
+            <span>Share</span>
+          </button>
+        </div>
       </section>
       <section className="right">
         <button onClick={renderSideMenu}>

@@ -65,7 +65,7 @@ export function getBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId)
-      dispatch({ type: 'SET_BOARD', board })
+      dispatch({ type: 'SET_BOARD_FROM_BACK', board })
 
     } catch (err) {
       console.log(`cannot add board:`, err)

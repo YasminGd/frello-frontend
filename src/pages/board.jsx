@@ -12,16 +12,20 @@ import { addGroup, removeGroup } from '../store/actions/group.action'
 import { boardService } from '../services/board.service.js'
 
 export const Board = () => {
+  const boards = useSelector((state) => state.boardModule.boards)
   const board = useSelector((state) => state.boardModule.board)
   const params = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!board) dispatch(getBoard(params.boardId))
-    else {
-      dispatch(loadBoards())
-      dispatch({ type: 'SET_BOARD_FROM_BACK', boardId: params.boardId, })
-    }
+    if (boards.length && !board) dispatch({ type: 'SET_BOARD', boardId: params.boardId })
+    else dispatch(getBoard(params.boardId))
+    
+    // if (!board) dispatch(getBoard(params.boardId))
+    // else {
+    //   dispatch(loadBoards())
+    //   dispatch({ type: 'SET_BOARD_FROM_BACK', boardId: params.boardId, })
+    // }
   }, [])
 
   const getBoardStyle = () => {

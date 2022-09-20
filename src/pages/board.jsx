@@ -5,27 +5,27 @@ import { GroupList } from '../cmps/group-list.jsx'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { loadBoards, updateBoard } from '../store/actions/board.action'
+import { getBoard, loadBoards, updateBoard } from '../store/actions/board.action'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { addTask, removeTask } from '../store/actions/task.action'
 import { addGroup, removeGroup } from '../store/actions/group.action'
 import { boardService } from '../services/board.service.js'
 
 export const Board = () => {
+  const boards = useSelector((state) => state.boardModule.boards)
   const board = useSelector((state) => state.boardModule.board)
   const params = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(loadBoards())
-    setTimeout(
-      () =>
-        dispatch({
-          type: 'SET_BOARD',
-          boardId: params.boardId,
-        }),
-      300
-    )
+    if (boards.length && !board) dispatch({ type: 'SET_BOARD', boardId: params.boardId })
+    else dispatch(getBoard(params.boardId))
+    
+    // if (!board) dispatch(getBoard(params.boardId))
+    // else {
+    //   dispatch(loadBoards())
+    //   dispatch({ type: 'SET_BOARD_FROM_BACK', boardId: params.boardId, })
+    // }
   }, [])
 
   const getBoardStyle = () => {
@@ -84,7 +84,7 @@ export const Board = () => {
   const style = getBoardStyle()
   return (
     <section className="board" style={style}>
-      <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle}/>
+      <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
       <DragDropContext
         // onDragStart={onDragStart}
         // onDragUpdate={onDragUpdate}

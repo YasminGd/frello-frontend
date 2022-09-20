@@ -7,7 +7,6 @@ export const TaskMembersOverview = ({ memberIds, onOpenActionModal }) => {
   const boardMembers = useSelector((state) => state.boardModule.board.members)
 
   const membersToRender = boardMembers.filter((member) => memberIds.includes(member._id))
-  console.log(`membersToRender:`, membersToRender)
   return (
     <section className="task-members-overview">
       <h4 className="title">Members</h4>

@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service.js'
 import { store } from '../store/store'
 import { board } from '../board.js'
 import { utilService } from './util.service.js'
-// import { httpService } from './http.service.js'
+import { httpService } from './http.service.js'
 
 const STORAGE_KEY = 'board'
 const BASE_URL = `board/`
@@ -54,11 +54,11 @@ const gBoards = [
   },
 ]
 
-;(() => {
-  boardChannel.addEventListener('message', (ev) => {
-    store.dispatch(ev.data)
-  })
-})()
+  ; (() => {
+    boardChannel.addEventListener('message', (ev) => {
+      store.dispatch(ev.data)
+    })
+  })()
 
 export const boardService = {
   query,
@@ -66,13 +66,12 @@ export const boardService = {
   save,
   remove,
   handleDragEnd,
-  addActivity,
 }
 // window.cs = boardService
 
 async function query(filterBy) {
   try {
-    // return await httpService.get(BASE_URL, filterBy)
+    return await httpService.get(BASE_URL, filterBy)
     let boards = await storageService.query(STORAGE_KEY)
     if (!boards || !boards.length) {
       storageService.postMany(STORAGE_KEY, gBoards)
@@ -85,13 +84,13 @@ async function query(filterBy) {
 }
 
 function getById(boardId) {
-  // return httpService.get(BASE_URL + boardId)
+  return httpService.get(BASE_URL + boardId)
   return storageService.get(STORAGE_KEY, boardId)
   // return axios.get(`/api/board/${boardId}`)
 }
 
 async function remove(boardId) {
-  // return httpService.delete(BASE_URL + boardId)
+  return httpService.delete(BASE_URL + boardId)
   await storageService.remove(STORAGE_KEY, boardId)
   // boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
@@ -99,12 +98,12 @@ async function remove(boardId) {
 async function save(board) {
   if (board._id) {
     console.log('INSIDE PUT')
-    // return httpService.put(BASE_URL + board._id, board)
+    return httpService.put(BASE_URL + board._id, board)
     return await storageService.put(STORAGE_KEY, board)
     // boardChannel.postMessage(getActionUpdateBoard(savedBoard))
   } else {
     console.log('INSIDE POST')
-    // return httpService.post(BASE_URL, board)
+    return httpService.post(BASE_URL, board)
     return await storageService.post(STORAGE_KEY, board)
     // boardChannel.postMessage(getActionAddBoard(savedBoard))
   }
@@ -150,35 +149,6 @@ function handleDragEnd(newBoard, destination, source, type) {
     newBoard.groups[prevGroupIdx] = prevGroup
     return newBoard
   }
-}
-
-function addActivity(txt, task, user, board) {
-  const miniUser = user
-    ? user
-    : {
-        fullname: 'Guest',
-        imgUrl: 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg',
-      }
-
-  const miniTask = task
-    ? {
-        id: task.id,
-        title: task.title,
-      }
-    : null
-
-  const activity = {
-    id: utilService.makeId(),
-    txt,
-    createdAt: Date.now(),
-    byMember: miniUser,
-    task: miniTask,
-  }
-
-  if (board.activities) board.activities.push(activity)
-  else board.activities = [activity]
-
-  return board
 }
 
 // TEST DATA

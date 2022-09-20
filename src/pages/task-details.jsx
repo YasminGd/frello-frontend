@@ -41,9 +41,7 @@ export const TaskDetails = () => {
 
   const getActivities = () => {
     if (!board.activities || !board.activities.length) return []
-    console.log(board.activities);
     return board.activities.filter(activity => {
-      console.log(activity.task?.id === task.id)
       return activity.task?.id === task.id
     })
   }

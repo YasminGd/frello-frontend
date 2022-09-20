@@ -23,12 +23,13 @@ export const Workspace = () => {
   }
 
   const getStarredBoards = () => {
+    console.log(boards);
     return boards.filter((board) => board.isStarred)
   }
 
   return (
     <section className="workspace">
-      {!boards ? <Loader /> :
+      {!boards.length ? <Loader /> :
         <section className="all-boards">
           <section className="starred-boards">
             <div className="title">

@@ -10,6 +10,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { addTask, removeTask } from '../store/actions/task.action'
 import { addGroup, removeGroup } from '../store/actions/group.action'
 import { boardService } from '../services/board.service.js'
+import { Loader } from '../cmps/loader.jsx'
 
 export const Board = () => {
   const boards = useSelector((state) => state.boardModule.boards)
@@ -29,7 +30,7 @@ export const Board = () => {
   }, [])
 
   const getBoardStyle = () => {
-    if (!board) return
+    if (!board) return 
     if (board?.style.background) return { 'background': `url('${board.style.background}') center center / cover` }
     else if (board?.style.backgroundColor) return { 'backgroundColor': `${board.style.backgroundColor}` }
     return { 'backgroundColor': `pink` }
@@ -80,8 +81,10 @@ export const Board = () => {
     dispatch(updateBoard(updatedBoard))
   }
 
-  if (!board) return
+  
+  if (!board) return <Loader /> 
   const style = getBoardStyle()
+  
   return (
     <section className="board" style={style}>
       <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadBoards, updateBoard, setBoard } from '../store/actions/board.action'
 import { BoardList } from '../cmps/board-list'
 import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai'
+import { Loader } from '../cmps/loader'
 
 export const Workspace = () => {
   const boards = useSelector((state) => state.boardModule.boards)
@@ -11,7 +12,7 @@ export const Workspace = () => {
 
   useState(() => {
     console.log(board);
-    if(board) dispatch({ type: 'SET_BOARD', boardId: null })
+    if (board) dispatch({ type: 'SET_BOARD', boardId: null })
   }, [])
 
   const onToggleStarred = (ev, boardId) => {
@@ -27,26 +28,28 @@ export const Workspace = () => {
 
   return (
     <section className="workspace">
-      <section className="all-boards">
-        <section className="starred-boards">
-          <div className="title">
-            <AiOutlineStar className="title-icon" />
-            <h3>Starred boards</h3>
-          </div>
-          <div className="boards-container">
-            <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} />
-          </div>
+      {!boards ? <Loader /> :
+        <section className="all-boards">
+          <section className="starred-boards">
+            <div className="title">
+              <AiOutlineStar className="title-icon" />
+              <h3>Starred boards</h3>
+            </div>
+            <div className="boards-container">
+              <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} />
+            </div>
+          </section>
+          <section className="recent-boards">
+            <div className="title">
+              <AiOutlineClockCircle className="title-icon" />
+              <h3>Recently viewed</h3>
+            </div>
+            <div className="boards-container">
+              <BoardList boards={boards} onToggleStarred={onToggleStarred} />
+            </div>
+          </section>
         </section>
-        <section className="recent-boards">
-          <div className="title">
-            <AiOutlineClockCircle className="title-icon" />
-            <h3>Recently viewed</h3>
-          </div>
-          <div className="boards-container">
-            <BoardList boards={boards} onToggleStarred={onToggleStarred} />
-          </div>
-        </section>
-      </section>
+      }
     </section>
   )
 }

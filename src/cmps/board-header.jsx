@@ -63,7 +63,7 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
         <span className="divider"></span>
-        <div className="board-members">
+        {board.members && <div className="board-members">
           {board.members.map((member, index) => (
             <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>
               <img src={member.imgUrl} alt="" />
@@ -79,7 +79,8 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
             <BsPersonPlus className="person-icon" />
             <span>Share</span>
           </button>
-        </div>
+        </div>}
+
       </section>
       <section className="right">
         <button onClick={renderSideMenu}>

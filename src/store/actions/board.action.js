@@ -27,6 +27,7 @@ export function loadBoards() {
   return async (dispatch) => {
     try {
       const boards = await boardService.query()
+      console.log(boards)
       dispatch({
         type: 'SET_BOARDS',
         boards,

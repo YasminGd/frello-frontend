@@ -8,11 +8,11 @@ import { BoardSideMenu } from './board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from './action-modal'
 
-export const BoardHeader = () => {
+export const BoardHeader = ({ changeBgColor, changeTitle }) => {
   const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
-  const [sideMenuWidth, setSideMenuWidth] = useState({ width: '0px' })
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState('')
 
   const dispatch = useDispatch()
 
@@ -23,11 +23,6 @@ export const BoardHeader = () => {
 
   const resizeWidth = (ev) => {
     setWidth(displayTextWidth(boardTitle))
-  }
-
-  const setTitle = () => {
-    board.title = boardTitle
-    dispatch(updateBoard(board))
   }
 
   function displayTextWidth(
@@ -43,7 +38,7 @@ export const BoardHeader = () => {
   }
 
   const renderSideMenu = () => {
-    setSideMenuWidth(sideMenuWidth.width === '0px' ? { width: '339px' } : { width: '0px' })
+    setIsSideMenuOpen(isSideMenuOpen === '' ? 'open' : '')
   }
 
   const toggleStarBoard = () => {
@@ -57,7 +52,7 @@ export const BoardHeader = () => {
         <input
           value={boardTitle}
           onChange={handleChange}
-          onBlur={setTitle}
+          onBlur={() => changeTitle(boardTitle)}
           onKeyDown={resizeWidth}
           onKeyUp={resizeWidth}
           style={width}
@@ -76,7 +71,7 @@ export const BoardHeader = () => {
           Show menu
         </button>
       </section>
-      <BoardSideMenu width={sideMenuWidth} onCloseSideMenu={renderSideMenu} />
+      <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBgColor={changeBgColor} />
     </section>
   )
 }

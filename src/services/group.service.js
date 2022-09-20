@@ -1,3 +1,4 @@
+import { activityService } from "./activity.service"
 import { storageService } from "./async-storage.service"
 import { boardService } from "./board.service"
 import { httpService } from "./http.service"
@@ -13,7 +14,7 @@ export const groupService = {
 
 async function add(title, board, user) {
     board.groups.push({ title, id: utilService.makeId(), tasks: [] })
-    const boardWithActivities = boardService.addActivity(`Added ${title} to this board`, null, user, board)
+    const boardWithActivities = activityService.addActivity(`Added ${title} to this board`, null, user, board)
 
     try {
         return httpService.put(BASE_URL + board._id, boardWithActivities)
@@ -27,7 +28,7 @@ async function add(title, board, user) {
 async function remove(groupId, board, user) {
     const title = board.groups.find(group => group.id === groupId).title
     board.groups = board.groups.filter(group => group.id !== groupId)
-    const boardWithActivities = boardService.addActivity(`Removed list ${title}`, null, user, board)
+    const boardWithActivities = activityService.addActivity(`Removed list ${title}`, null, user, board)
 
     try {
         return await httpService.put(BASE_URL + board._id, boardWithActivities)

@@ -27,12 +27,12 @@ export function loadBoards() {
   return async (dispatch) => {
     try {
       const boards = await boardService.query()
-      console.log(boards)
       dispatch({
         type: 'SET_BOARDS',
-        boards,
+        boards: { ...boards },
       })
-    } catch (err) {
+    }
+    catch (err) {
       console.log('Cannot load boards', err)
     }
   }
@@ -44,7 +44,8 @@ export function removeBoard(boardId) {
       await boardService.remove(boardId)
       console.log('Deleted Succesfully!')
       dispatch(getActionRemoveBoard(boardId))
-    } catch (err) {
+    }
+    catch (err) {
       console.log('Cannot remove board', err)
     }
   }
@@ -54,8 +55,9 @@ export function addBoard(board) {
   return async (dispatch) => {
     try {
       const savedBoard = await boardService.save(board)
-      dispatch(getActionAddBoard(savedBoard))
-    } catch (err) {
+      dispatch(getActionAddBoard({ ...savedBoard }))
+    }
+    catch (err) {
       console.log(`cannot add board:`, err)
     }
   }
@@ -65,9 +67,9 @@ export function getBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId)
-      dispatch({ type: 'SET_BOARD_FROM_BACK', board })
-
-    } catch (err) {
+      dispatch({ type: 'SET_BOARD_FROM_BACK', board: { ...board } })
+    }
+    catch (err) {
       console.log(`cannot add board:`, err)
     }
   }
@@ -75,13 +77,13 @@ export function getBoard(boardId) {
 
 export function updateBoard(board) {
   return async (dispatch, getState) => {
-    console.log('updateBoard ~ board', board)
     const prevBoard = { ...getState().boardModule.board }
     dispatch(getActionUpdateBoard({ ...board }))
 
     try {
       await boardService.save(board)
-    } catch (err) {
+    }
+    catch (err) {
       dispatch(getActionUpdateBoard(prevBoard))
       console.log('Cannot update board', err)
     }
@@ -93,49 +95,12 @@ export function addNewComment(txt, task, comment) {
     try {
       const board = getState().boardModule.board
       const user = getState().userModule.user
-      const savedBoard = await activityService.addActivity(txt, task, user, board, comment)
-      const newBoard = { ...savedBoard }
-      await boardService.save(savedBoard)
-      dispatch({ type: 'UPDATE_BOARD', board: newBoard })
-
-    } catch (err) {
+      const boardWithActivities = await activityService.addActivity(txt, task, user, board, comment)
+      const saveBoard = await boardService.save(boardWithActivities)
+      dispatch({ type: 'UPDATE_BOARD', board: { ...saveBoard } })
+    }
+    catch (err) {
       console.log('Cannot add todo', err)
     }
   }
 }
-
-// export function addItemToBoard(title, groupId, boardId) {
-//   return async (dispatch) => {
-//     try {
-//       const updatedBoard = await boardService.addItem(title, groupId, boardId)
-//       dispatch(updateBoard(updatedBoard))
-
-//     } catch (err) {
-//       console.log(`cannot add item to board:`, err)
-//     }
-//   }
-// }
-
-// export function removeItemFromBoard(groupId, taskId, boardId) {
-//   return async (dispatch) => {
-//     try {
-//       const updatedBoard = await boardService.removeItem(groupId, taskId, boardId)
-//       dispatch(updateBoard(updatedBoard))
-//     } catch (err) {
-//       console.log(`cannot remove item from board:`, err)
-//     }
-//   }
-// }
-
-// export function addActivityToBoard(txt, task) {
-//   return async (dispatch, getState) => {
-//     try {
-//       const board = getState().boardModule.board
-//       const user = getState().userModule.user
-//       const updatedBoard = await boardService.addActivityToBoard(board, txt, task, user)
-//       dispatch(updateBoard(updatedBoard))
-//     } catch (err) {
-//       console.log(`cannot remove item from board:`, err)
-//     }
-//   }
-// }

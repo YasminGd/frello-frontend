@@ -1,0 +1,14 @@
+.loader {
+    position: fixed;
+    font-size: 20px;
+    width: 100vw;
+    height: calc(100vh - 44px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20%;
+    
+    img {
+        width: 5%;
+    }
+}

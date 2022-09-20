@@ -9,13 +9,14 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
   const onDeleteAttachment = () => {
     if (task.style.coverImg === attachment.url) task.style.coverImg = null
     const { id } = attachment
+    const attachmentTitle = attachment.url.split('/').pop()
     const taskToUpdate = {
       ...task,
       attachments: task.attachments.filter(
         (attachment) => attachment.id !== id
       ),
     }
-    dispatch(updateTask(groupId, taskToUpdate))
+    dispatch(updateTask(groupId, taskToUpdate, `deleted the Screenshot from ${attachmentTitle} attachment from ${task.title}`))
   }
 
   const onMakeCover = () => {

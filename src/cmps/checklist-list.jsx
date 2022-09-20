@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { updateTask, addNewTodo } from "../store/actions/task.action"
 import { ChecklistPreview } from "./checklist-preview"
@@ -6,9 +7,13 @@ export const CheckListList = ({ task, groupId }) => {
 
     const dispatch = useDispatch()
 
-    const deleteChecklist = (checklistId) => {
+    const board = useSelector(state => state.boardModule.board)
+
+    const removeChecklist = (checklistId) => {
+        const checklistTitle = task.checklists.find(checklist => checklist.id === checklistId).title
+        const taskTitle = task.title
         task.checklists = task.checklists.filter(checklist => checklist.id !== checklistId)
-        dispatch(updateTask(groupId, task))
+        dispatch(updateTask(groupId, task, `removed ${checklistTitle} from ${taskTitle}`))
     }
 
     const updateChecklist = (editedChecklist) => {
@@ -41,7 +46,7 @@ export const CheckListList = ({ task, groupId }) => {
                         checkList={checkList}
                         updateTodo={updateTodo}
                         addTodo={addTodo}
-                        deleteChecklist={deleteChecklist}
+                        removeChecklist={removeChecklist}
                         updateChecklist={updateChecklist}
                         removeTodo={removeTodo}
                     />)

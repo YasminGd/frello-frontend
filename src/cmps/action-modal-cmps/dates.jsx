@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 import DateFnsUtils from '@date-io/date-fns'
 import { updateTask } from '../../store/actions/task.action'
+import { utilService } from '../../services/util.service'
 
 export const Dates = ({ task, groupId, setActionModal }) => {
   const dispatch = useDispatch()
@@ -11,22 +12,26 @@ export const Dates = ({ task, groupId, setActionModal }) => {
   const onAddDueDate = () => {
     const dueDate = new Date(selectedDate).getTime()
 
+    let activityTxt
+    const dueString = utilService.dueDateTimeFormat(dueDate)
     if (task.dueDate) {
       task.dueDate.date = dueDate
+      activityTxt = `set ${task.title} to be due ${dueString}`
     } else {
       task.dueDate = {
         date: dueDate,
         isDone: false,
       }
+      activityTxt = `changed the due date of ${task.title} to ${dueString}`
     }
 
-    dispatch(updateTask(groupId, task))
+    dispatch(updateTask(groupId, task, activityTxt))
     setActionModal(null)
   }
 
   const onRemoveDueDate = () => {
     task.dueDate = null
-    dispatch(updateTask(groupId, task))
+    dispatch(updateTask(groupId, task, `removed the due date from ${task.title}`))
     setActionModal(null)
   }
 

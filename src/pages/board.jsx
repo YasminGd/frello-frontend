@@ -29,8 +29,12 @@ export const Board = () => {
   }, [])
 
   const addItem = (title, groupId) => {
-    if (groupId) dispatch(addTask(title, groupId, board._id))
-    else dispatch(addGroup(title))
+    if (groupId) {
+      dispatch(addTask(title, groupId, board._id))
+    }
+    else {
+      dispatch(addGroup(title))
+    }
   }
 
   const removeItem = (groupId, taskId) => {
@@ -55,7 +59,7 @@ export const Board = () => {
     dispatch(updateBoard(updatedBoard))
   }
 
-  if (!board) return 
+  if (!board) return
   return (
     <section className="board">
       <BoardHeader />

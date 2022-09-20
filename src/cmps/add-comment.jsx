@@ -45,7 +45,14 @@ export const AddComment = ({ user, addComment }) => {
             <img src={user.imgUrl} />
         </div>
         <form onSubmit={onAddComment}>
-            <textarea value={comment} onChange={handleChange} style={inputSize} onFocus={onFocusInput} onBlur={onBlurInput} onKeyDown={handleUserKeyPress}>
+            <textarea 
+            value={comment} 
+            onChange={handleChange} 
+            style={inputSize} 
+            onFocus={onFocusInput} 
+            onBlur={onBlurInput} 
+            onKeyDown={handleUserKeyPress}
+            placeholder="Write a comment...">
             </textarea>
             <button className="btn blue" style={isButtonShown} disabled={isButtonClickable}>
                 Save

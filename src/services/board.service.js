@@ -2,7 +2,7 @@ import { storageService } from './async-storage.service.js'
 import { store } from '../store/store'
 import { board } from '../board.js'
 import { utilService } from './util.service.js'
-import { httpService } from './http.service.js'
+// import { httpService } from './http.service.js'
 
 const STORAGE_KEY = 'board'
 const BASE_URL = `board/`
@@ -12,39 +12,45 @@ const gBoards = [
   {
     _id: 'b102',
     title: 'Second board',
-    style: { background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/ef2b36f0a6fced5b25ba500c55ae3016/photo-1513185041617-8ab03f83d6c5.jpg")' },
+    style: {
+      background:
+        'https://images.unsplash.com/photo-1637984135921-301a7d39e3b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1615&q=80',
+    },
     isStarred: false,
-    groups: []
+    groups: [],
   },
   {
     _id: 'b103',
     title: 'Third board',
     style: {
-      background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/656x960/4fef784b2b03ad256991ab304fcdac2e/photo-1662715593284-14fdf66c1202.jpg")',
+      background:
+        'https://images.unsplash.com/photo-1632395627727-3b97d0724814?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
       backgroundColor: 'rgb(81, 152, 57)',
     },
     isStarred: true,
-    groups: []
+    groups: [],
   },
   {
     _id: 'b104',
     title: 'Fourth board',
     style: {
-      background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/386209d5ee33d0c24fc340a53f16cfe4/photo-1663011109441-6948af4a0b80.jpg")',
+      background:
+        'https://images.unsplash.com/photo-1663603846637-269b931e22b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
       backgroundColor: 'rgb(81, 152, 57)',
     },
     isStarred: false,
-    groups: []
+    groups: [],
   },
   {
     _id: 'b105',
     title: 'Fifth board',
     style: {
-      background: 'url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/f7d6fa45ef3ecdf5429c9ce73175f5a2/photo-1660551772352-0855c10356b1.jpg")',
+      background:
+        'https://images.unsplash.com/photo-1638736230824-2fdc03dd9849?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
       backgroundColor: 'rgb(81, 152, 57)',
     },
     isStarred: true,
-    groups: []
+    groups: [],
   },
 ]
 
@@ -60,48 +66,45 @@ export const boardService = {
   save,
   remove,
   handleDragEnd,
-  addActivity
+  addActivity,
 }
 // window.cs = boardService
 
 async function query(filterBy) {
   try {
-    return await httpService.get(BASE_URL, filterBy)
+    // return await httpService.get(BASE_URL, filterBy)
     let boards = await storageService.query(STORAGE_KEY)
     if (!boards || !boards.length) {
       storageService.postMany(STORAGE_KEY, gBoards)
       boards = gBoards
     }
     return boards
-  }
-  catch (err) {
+  } catch (err) {
     console.log('err: Cannot get boards ', err)
   }
 }
 
 function getById(boardId) {
-  return httpService.get(BASE_URL + boardId)
+  // return httpService.get(BASE_URL + boardId)
   return storageService.get(STORAGE_KEY, boardId)
   // return axios.get(`/api/board/${boardId}`)
 }
 
 async function remove(boardId) {
-  return httpService.delete(BASE_URL + boardId)
+  // return httpService.delete(BASE_URL + boardId)
   await storageService.remove(STORAGE_KEY, boardId)
   // boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
 
 async function save(board) {
-
   if (board._id) {
     console.log('INSIDE PUT')
-    return httpService.put(BASE_URL + board._id, board)
+    // return httpService.put(BASE_URL + board._id, board)
     return await storageService.put(STORAGE_KEY, board)
     // boardChannel.postMessage(getActionUpdateBoard(savedBoard))
-
   } else {
     console.log('INSIDE POST')
-    return httpService.post(BASE_URL, board)
+    // return httpService.post(BASE_URL, board)
     return await storageService.post(STORAGE_KEY, board)
     // boardChannel.postMessage(getActionAddBoard(savedBoard))
   }
@@ -145,8 +148,8 @@ function handleDragEnd(newBoard, destination, source, type) {
 
     // reorder tasks across the groups
   } else if (type === 'task') {
-    const prevGroupIdx = newBoardGroups.findIndex(group => group.id === source.droppableId)
-    const newGroupIdx = newBoardGroups.findIndex(group => group.id === destination.droppableId)
+    const prevGroupIdx = newBoardGroups.findIndex((group) => group.id === source.droppableId)
+    const newGroupIdx = newBoardGroups.findIndex((group) => group.id === destination.droppableId)
     const prevGroup = newBoardGroups[prevGroupIdx]
     const newGroup = newBoardGroups[newGroupIdx]
 
@@ -172,6 +175,35 @@ function handleDragEnd(newBoard, destination, source, type) {
     newBoard.groups[prevGroupIdx] = prevGroup
     return newBoard
   }
+}
+
+function addActivity(txt, task, user, board) {
+  const miniUser = user
+    ? user
+    : {
+      fullname: 'Guest',
+      imgUrl: 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg',
+    }
+
+  const miniTask = task
+    ? {
+      id: task.id,
+      title: task.title,
+    }
+    : null
+
+  const activity = {
+    id: utilService.makeId(),
+    txt,
+    createdAt: Date.now(),
+    byMember: miniUser,
+    task: miniTask,
+  }
+
+  if (board.activities) board.activities.push(activity)
+  else board.activities = [activity]
+
+  return board
 }
 
 // TEST DATA

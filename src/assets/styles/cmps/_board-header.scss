@@ -1,86 +1,132 @@
 .board-header {
-    height: 52px;
-    padding: 8px 4px 8px 8px;
-    position: relative;
+  height: 52px;
+  padding: 8px 4px 8px 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & > * {
+    margin-bottom: 12px;
+    margin-top: 10px;
+    height: 32px;
+  }
+
+  .go-back {
+    position: absolute;
+    left: 5%;
+    font-size: 22px;
+    font-weight: 200;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .left {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    & > * {
+      height: 32px;
+    }
+    input {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 32px;
+      padding: 0 4px;
+      border-radius: 3px;
+      max-width: auto;
+      text-align: center;
+      border: none;
+      background-color: transparent;
+      margin: 0 4px 4px 0;
 
-    &>* {
-        margin-bottom: 12px;
-        margin-top: 10px;
-        height: 32px;
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.32);
+      }
+
+      &:focus {
+        background-color: #fff;
+        color: #172b4d;
+        box-shadow: inset 0 0 0 2px $blue-500;
+        outline: none;
+        border-radius: 0;
+      }
+
+      &:focus:hover {
+        cursor: text;
+      }
     }
 
-    .left {
-        input {
-            color: white;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 32px;
-            padding: 0 4px;
-            border-radius: 3px;
-            // padding-top: 2px;
-            max-width: auto;
-            text-align: center;
-            border: none;
-            background-color: transparent;
+    .star-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      width: 32px;
+      line-height: 32px;
+      border-radius: 3px;
+      color: #fff;
+      background-color: #ffffff3d;
 
-            &:hover {
-                cursor: pointer;
-                background-color: rgba(255, 255, 255, 0.32);
-            }
+      .yellow-star {
+        color: #f2d600;
+      }
 
-            &:focus {
-                background-color: #fff;
-                color: #172b4d;
-                box-shadow: inset 0 0 0 2px $blue-500;
-                outline: none;
-                border-radius: 0;
-            }
+      &:hover {
+        cursor: pointer;
+        color: #f2d600;
 
-            &:focus:hover {
-                cursor: text;
-            }
+        & > * {
+          transform: scale(1.2);
         }
+      }
     }
 
-    .right {
-        margin-top: 10px;
-        margin-right: 4px;
-
-        button {
-            transition: .1s ease;
-            background-color: #ffffff3d;
-            border-radius: 3px;
-            border: none;
-            color: #fff;
-            cursor: default;
-            font-size: 14px;
-            line-height: 32px;
-            max-width: 400px;
-            overflow: hidden;
-            position: relative;
-            text-decoration: none;
-            text-overflow: ellipsis;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            padding: 0;
-            padding-right: 12px;
-            padding-left: 9px;
-
-            &:hover {
-                cursor: pointer;
-                background-color: #ffffff52;
-            }
-        }
+    .divider {
+      border-left: 1px solid #ffffff3d;
+      height: 16px;
+      margin: 8px 8px 12px 8px;
     }
+  }
 
-    .action-modal {
-        position: absolute;
-        margin-top: -4px;
-        height: calc(100vh - 44px);
+  .right {
+    margin-top: 10px;
+    margin-right: 4px;
+
+    button {
+      transition: 0.1s ease;
+      background-color: #ffffff3d;
+      border-radius: 3px;
+      border: none;
+      color: #fff;
+      cursor: default;
+      font-size: 14px;
+      line-height: 32px;
+      max-width: 400px;
+      overflow: hidden;
+      position: relative;
+      text-decoration: none;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0;
+      padding-right: 12px;
+      padding-left: 9px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #ffffff52;
+      }
     }
+  }
+
+  .action-modal {
+    position: absolute;
+    margin-top: -4px;
+    height: calc(100vh - 44px);
+  }
 }

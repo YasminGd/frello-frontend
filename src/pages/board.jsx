@@ -24,6 +24,13 @@ export const Board = () => {
     }
   }, [])
 
+  const getBoardStyle = () => {
+    if (!board) return
+    if (board?.style.background) return { 'background': `url('${board.style.background}') center center / cover` }
+    else if (board?.style.backgroundColor) return { 'backgroundColor': `${board.style.backgroundColor}` }
+    return { 'backgroundColor': `pink` }
+  }
+
   const addItem = (title, groupId) => {
     if (groupId) {
       dispatch(addTask(title, groupId, board._id))
@@ -36,6 +43,20 @@ export const Board = () => {
   const removeItem = (groupId, taskId) => {
     if (taskId) dispatch(removeTask(groupId, taskId))
     else dispatch(removeGroup(groupId))
+  }
+
+  const changeTitle = (title) => {
+    board.title = title
+    dispatch(updateBoard(board))
+  }
+
+  const changeBgColor = (color) => {
+    if (board.style) {
+      if (board.style.background) board.style.background = null
+      board.style.backgroundColor = color
+    }
+    else board.style = { backgroundColor: color }
+    dispatch(updateBoard(board))
   }
 
   const onDragStart = () => { }
@@ -56,9 +77,10 @@ export const Board = () => {
   }
 
   if (!board) return
+  const style = getBoardStyle()
   return (
-    <section className="board">
-      <BoardHeader />
+    <section className="board" style={style}>
+      <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle}/>
       <DragDropContext
         // onDragStart={onDragStart}
         // onDragUpdate={onDragUpdate}

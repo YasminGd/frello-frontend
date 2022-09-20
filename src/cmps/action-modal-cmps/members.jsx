@@ -17,7 +17,7 @@ export const Members = ({ task, groupId }) => {
   }
 
   const onToggleMember = (memberId) => {
-    const member = boardMembers.find(member => member._id === memberId)
+    const member = boardMembers.find((member) => member._id === memberId)
     let activityTxt
 
     if (task.memberIds?.includes(memberId)) {

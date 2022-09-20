@@ -43,7 +43,6 @@ export function removeBoard(boardId) {
       await boardService.remove(boardId)
       console.log('Deleted Succesfully!')
       dispatch(getActionRemoveBoard(boardId))
-
     } catch (err) {
       console.log('Cannot remove board', err)
     }
@@ -55,7 +54,6 @@ export function addBoard(board) {
     try {
       const savedBoard = await boardService.save(board)
       dispatch(getActionAddBoard(savedBoard))
-
     } catch (err) {
       console.log(`cannot add board:`, err)
     }
@@ -63,15 +61,13 @@ export function addBoard(board) {
 }
 
 export function updateBoard(board) {
-
   return async (dispatch, getState) => {
     const prevBoard = { ...getState().boardModule.board }
-    dispatch(getActionUpdateBoard(board))
+    dispatch(getActionUpdateBoard({ ...board }))
 
     try {
       await boardService.save(board)
-    }
-    catch (err) {
+    } catch (err) {
       dispatch(getActionUpdateBoard(prevBoard))
       console.log('Cannot update board', err)
     }
@@ -92,7 +88,6 @@ export function addNewComment(txt, task, comment) {
     }
   }
 }
-
 
 // export function addItemToBoard(title, groupId, boardId) {
 //   return async (dispatch) => {

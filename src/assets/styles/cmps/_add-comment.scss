@@ -31,6 +31,10 @@
         &:focus {
             box-shadow: 0 4px 8px -2px #091e4240,0 0 0 1px #091e4214;
         }
+
+        &::placeholder {
+            color: #5e6c84
+        }
     }
 
     button {

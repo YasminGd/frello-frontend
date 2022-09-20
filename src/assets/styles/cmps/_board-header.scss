@@ -165,8 +165,12 @@
   }
 
   .action-modal {
+    .users {
+      max-height: 400px;
+      overflow: auto;
+    }
     position: absolute;
     margin-top: -4px;
-    height: calc(100vh - 44px);
+    height: auto;
   }
 }

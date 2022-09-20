@@ -12,7 +12,9 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
   const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
+  const [actionModal, setActionModal] = useState(null)
   const [isSideMenuOpen, setIsSideMenuOpen] = useState('')
+  const btnAddUserRef = useRef()
 
   const dispatch = useDispatch()
 
@@ -46,6 +48,13 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
     dispatch(updateBoard(board))
   }
 
+  const onOpenActionModal = (type, ref) => {
+    if (actionModal?.type === type) return setActionModal(null)
+    const rect = ref.current.getBoundingClientRect()
+    const pos = { bottom: rect.bottom + 8, left: rect.left }
+    setActionModal({ type, pos })
+  }
+
   return (
     <section className="board-header">
       <section className="left">
@@ -63,24 +72,25 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
         <span className="divider"></span>
-        {board.members && <div className="board-members">
-          {board.members.map((member, index) => (
-            <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>
-              <img src={member.imgUrl} alt="" />
-            </div>
-          ))}
-          <button
-            // onClick={() => {
-            //   onOpenActionModal('Members', btnAddMemberRef)
-            // }}
-            // ref={btnAddMemberRef}
-            className="btn-share"
-          >
-            <BsPersonPlus className="person-icon" />
-            <span>Share</span>
-          </button>
-        </div>}
-
+        {board.members && (
+          <div className="board-members">
+            {board.members.map((member, index) => (
+              <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>
+                <img src={member.imgUrl} alt="" />
+              </div>
+            ))}
+            <button
+              onClick={() => {
+                onOpenActionModal('Users', btnAddUserRef)
+              }}
+              ref={btnAddUserRef}
+              className="btn-share"
+            >
+              <BsPersonPlus className="person-icon" />
+              <span>Share</span>
+            </button>
+          </div>
+        )}
       </section>
       <section className="right">
         <button onClick={renderSideMenu}>
@@ -89,6 +99,7 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
         </button>
       </section>
       <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBgColor={changeBgColor} />
+      {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}
     </section>
   )
 }

@@ -8,6 +8,7 @@ import { CheckList } from './action-modal-cmps/check-list'
 import { Dates } from './action-modal-cmps/dates'
 import { Labels } from './action-modal-cmps/labels'
 import { Members } from './action-modal-cmps/members'
+import { Users } from './action-modal-cmps/users'
 
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
@@ -38,6 +39,9 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId 
 
       case 'Members':
         return <Members task={task} groupId={groupId} setActionModal={setActionModal} />
+
+      case 'Users':
+        return <Users task={task} groupId={groupId} setActionModal={setActionModal} />
       default:
         break
     }
@@ -54,6 +58,9 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId 
       case 'Labels':
         if (isLabelsEdit) return 'Edit label'
         return 'Labels'
+
+      case 'Users':
+        return 'Invite to board'
 
       default:
         return type

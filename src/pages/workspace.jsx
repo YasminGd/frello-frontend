@@ -23,7 +23,6 @@ export const Workspace = () => {
   }
 
   const getStarredBoards = () => {
-    console.log(boards);
     return boards.filter((board) => board.isStarred)
   }
 

@@ -7,7 +7,14 @@ import { AddComment } from "./add-comment"
 
 export const Activities = ({ activities, renderAddComments, task }) => {
     const board = useSelector(state => state.boardModule.board)
-    const user = useSelector(state => state.userModule.user)
+    let user = useSelector(state => state.userModule.user)
+
+    const getUser = () => {
+        return user ? user : {
+            fullname: 'Guest',
+            imgUrl: 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg',
+        }
+    }
 
     const dispatch = useDispatch()
 
@@ -19,7 +26,7 @@ export const Activities = ({ activities, renderAddComments, task }) => {
             <GrSort />
             <p>Activity</p>
         </section>
-        {renderAddComments && <AddComment user={user} addComment={addComment} />}
+        {renderAddComments && <AddComment user={getUser()} addComment={addComment} />}
         {board.activities && board.activities.length !== 0 && <ActivityList activities={activities} />}
     </section>
 }

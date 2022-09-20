@@ -8,10 +8,6 @@ export const Workspace = () => {
   const boards = useSelector((state) => state.boardModule.boards)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(loadBoards())
-  }, [])
-
   const onToggleStarred = (ev, boardId) => {
     ev.preventDefault()
     const board = boards.find((board) => board._id === boardId)

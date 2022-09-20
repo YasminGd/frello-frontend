@@ -62,9 +62,22 @@ export function addBoard(board) {
   }
 }
 
+export function getBoard(boardId) {
+  return async (dispatch) => {
+    try {
+      const board = await boardService.getById(boardId)
+      dispatch({ type: 'SET_BOARD', board })
+
+    } catch (err) {
+      console.log(`cannot add board:`, err)
+    }
+  }
+}
+
 export function updateBoard(board) {
 
   return async (dispatch, getState) => {
+    console.log('updateBoard ~ board', board)
     const prevBoard = { ...getState().boardModule.board }
     dispatch(getActionUpdateBoard(board))
 
@@ -87,6 +100,7 @@ export function addNewComment(txt, task, comment) {
       const newBoard = { ...savedBoard }
       await boardService.save(savedBoard)
       dispatch({ type: 'UPDATE_BOARD', board: newBoard })
+
     } catch (err) {
       console.log('Cannot add todo', err)
     }

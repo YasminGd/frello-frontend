@@ -7,8 +7,8 @@ export const BoardPreview = ({ board, onToggleStarred }) => {
       <section
         className="board-preview"
         style={{
-          background: `${board.style.background} center center / cover`,
-          backgroundColor: `${board.style.backgroundColor}`,
+          background: `${board.style?.background} center center / cover`,
+          backgroundColor: `${board.style?.backgroundColor}`,
         }}
       >
         <div className="board-preview-details">

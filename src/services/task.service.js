@@ -1,8 +1,9 @@
 import { activityService } from './activity.service'
 import { storageService } from './async-storage.service'
-import { boardService } from './board.service'
+import { httpService } from './http.service'
 import { utilService } from './util.service'
 const STORAGE_KEY = 'board'
+const BASE_URL = `board/`
 
 export const taskService = {
   update,
@@ -11,10 +12,6 @@ export const taskService = {
   addImg,
   addChecklist,
   addTodo
-  // query,
-  // getById,
-  // save,
-  // remove,
 }
 
 async function update(board, groupId, task, activityTxt, user) {
@@ -22,11 +19,12 @@ async function update(board, groupId, task, activityTxt, user) {
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => currTask.id === task.id)
   board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
 
-  if(activityTxt) {
+  if (activityTxt) {
     board = activityService.addActivity(activityTxt, task, user, board)
   }
 
   try {
+    return httpService.put(BASE_URL + board._id, board)
     return await storageService.put(STORAGE_KEY, board)
   }
   catch (err) {
@@ -40,13 +38,12 @@ async function add(title, groupId, board, user) {
   const boardWithActivities = activityService.addActivity(`added ${title} to ${group.title}`, null, user, board)
 
   try {
-    return await storageService.put(STORAGE_KEY, board)
+    return httpService.put(BASE_URL + board._id, boardWithActivities)
+    return await storageService.put(STORAGE_KEY, boardWithActivities)
   }
   catch (err) {
     console.log('cannot add task', err)
   }
-
-  return boardWithActivities
 }
 
 async function remove(groupId, taskId, board, user) {
@@ -56,13 +53,12 @@ async function remove(groupId, taskId, board, user) {
   const boardWithActivities = activityService.addActivity(`removed ${task.title}`, null, user, board)
 
   try {
-    return await storageService.put(STORAGE_KEY, board)
+    return await httpService.put(BASE_URL + board._id, boardWithActivities)
+    return await storageService.put(STORAGE_KEY, boardWithActivities)
   }
   catch (err) {
     console.log('cannot delete task', err)
   }
-
-  return boardWithActivities
 }
 
 async function addImg(imgUrl, task, groupId, board, user) {
@@ -76,13 +72,15 @@ async function addImg(imgUrl, task, groupId, board, user) {
   // Check if can be merged to updateTask function !!
   const groupIdx = board.groups.findIndex((group) => group.id === groupId)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => currTask.id === task.id)
+  if (!board.groups[groupIdx].tasks[taskIdx].attachments) board.groups[groupIdx].tasks[taskIdx].attachments = []
   board.groups[groupIdx].tasks[taskIdx].attachments.push(attachmentImage)
 
   const urlName = attachmentImage.url.split('/').pop()
   const boardWithActivities = activityService.addActivity(`attached ${urlName} to ${task.title}`, null, user, board)
 
   try {
-    return await storageService.put(STORAGE_KEY, board)
+    return httpService.put(BASE_URL + board._id, boardWithActivities)
+    return await storageService.put(STORAGE_KEY, boardWithActivities)
   }
   catch (err) {
     console.log('cannot add img', err)
@@ -103,8 +101,10 @@ async function addChecklist(title, taskId, groupId, board, user) {
   const boardWithActivities = activityService.addActivity(`added ${title} to ${task.title}`, task, user, board)
 
   try {
+    return httpService.put(BASE_URL + board._id, boardWithActivities)
     return await storageService.put(STORAGE_KEY, boardWithActivities)
-  } catch (err) {
+  }
+  catch (err) {
     console.log('cannot add checklist', err)
   }
 }
@@ -122,8 +122,10 @@ async function addTodo(title, checkListId, groupId, taskId, board) {
   checklist.todos.push(todo)
 
   try {
+    return httpService.put(BASE_URL + board._id, board)
     return await storageService.put(STORAGE_KEY, board)
-  } catch (err) {
+  }
+  catch (err) {
     console.log('cannot add checklist', err)
   }
 }

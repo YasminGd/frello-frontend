@@ -5,7 +5,7 @@ import { GroupList } from '../cmps/group-list.jsx'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { loadBoards, updateBoard } from '../store/actions/board.action'
+import { getBoard, loadBoards, updateBoard } from '../store/actions/board.action'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import { addTask, removeTask } from '../store/actions/task.action'
 import { addGroup, removeGroup } from '../store/actions/group.action'
@@ -17,15 +17,11 @@ export const Board = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(loadBoards())
-    setTimeout(
-      () =>
-        dispatch({
-          type: 'SET_BOARD',
-          boardId: params.boardId,
-        }),
-      300
-    )
+    if (!board) dispatch(getBoard(params.boardId))
+    else {
+      dispatch(loadBoards())
+      dispatch({ type: 'SET_BOARD_FROM_STATE', boardId: params.boardId, })
+    }
   }, [])
 
   const addItem = (title, groupId) => {

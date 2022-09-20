@@ -5,32 +5,24 @@ import { GroupList } from '../cmps/group-list.jsx'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getBoard, loadBoards, updateBoard } from '../store/actions/board.action'
-import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import { getBoard, updateBoard } from '../store/actions/board.action'
+import { DragDropContext } from 'react-beautiful-dnd'
 import { addTask, removeTask } from '../store/actions/task.action'
 import { addGroup, removeGroup } from '../store/actions/group.action'
 import { boardService } from '../services/board.service.js'
 import { Loader } from '../cmps/loader.jsx'
 
 export const Board = () => {
-  const boards = useSelector((state) => state.boardModule.boards)
   const board = useSelector((state) => state.boardModule.board)
   const params = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (boards.length && !board) dispatch({ type: 'SET_BOARD', boardId: params.boardId })
-    else dispatch(getBoard(params.boardId))
-    
-    // if (!board) dispatch(getBoard(params.boardId))
-    // else {
-    //   dispatch(loadBoards())
-    //   dispatch({ type: 'SET_BOARD_FROM_BACK', boardId: params.boardId, })
-    // }
+    dispatch(getBoard(params.boardId))
   }, [])
 
   const getBoardStyle = () => {
-    if (!board) return 
+    if (!board) return
     if (board?.style.background) return { 'background': `url('${board.style.background}') center center / cover` }
     else if (board?.style.backgroundColor) return { 'backgroundColor': `${board.style.backgroundColor}` }
     return { 'backgroundColor': `pink` }
@@ -81,10 +73,10 @@ export const Board = () => {
     dispatch(updateBoard(updatedBoard))
   }
 
-  
-  if (!board) return <Loader /> 
+
+  if (!board) return <Loader />
   const style = getBoardStyle()
-  
+
   return (
     <section className="board" style={style}>
       <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />

@@ -1,4 +1,5 @@
 import { taskService } from '../../services/task.service'
+import { getActionUpdateBoard } from './board.action'
 
 export function updateTask(groupId, task, activityTxt, boardMember) {
   return async (dispatch, getState) => {
@@ -6,7 +7,7 @@ export function updateTask(groupId, task, activityTxt, boardMember) {
       const board = getState().boardModule.board
       const user = boardMember || getState().userModule.user
       const savedBoard = await taskService.update(board, groupId, task, activityTxt, user)
-      dispatch({ type: 'UPDATE_BOARD', board: { ...savedBoard } })
+      dispatch(getActionUpdateBoard({ ...savedBoard }))
 
     } catch (err) {
       console.log('Cannot update task', err)
@@ -20,7 +21,7 @@ export function addTask(title, groupId) {
       const board = getState().boardModule.board
       const user = getState().userModule.user
       const savedBoard = await taskService.add(title, groupId, board, user)
-      dispatch({ type: 'UPDATE_BOARD', board: { ...savedBoard } })
+      dispatch(getActionUpdateBoard({ ...savedBoard }))
 
     } catch (err) {
       console.log('Cannot add task', err)
@@ -34,7 +35,7 @@ export function addImg(imgUrl, task, groupId) {
       const board = getState().boardModule.board
       const user = getState().userModule.user
       const savedBoard = await taskService.addImg(imgUrl, task, groupId, board, user)
-      dispatch({ type: 'UPDATE_BOARD', board: { ...savedBoard } })
+      dispatch(getActionUpdateBoard({ ...savedBoard }))
 
     } catch (err) {
       console.log('Cannot add image', err)
@@ -48,7 +49,7 @@ export function addChecklist(title, taskId, groupId) {
       const board = getState().boardModule.board
       const user = getState().userModule.user
       const savedBoard = await taskService.addChecklist(title, taskId, groupId, board, user)
-      dispatch({ type: 'UPDATE_BOARD', board: { ...savedBoard } })
+      dispatch(getActionUpdateBoard({ ...savedBoard }))
 
     } catch (err) {
       console.log('Cannot add checklist', err)
@@ -61,7 +62,7 @@ export function removeTask(groupId, taskId) {
     try {
       const board = getState().boardModule.board
       const savedBoard = await taskService.remove(groupId, taskId, board)
-      dispatch({ type: 'UPDATE_BOARD', board: { ...savedBoard } })
+      dispatch(getActionUpdateBoard({ ...savedBoard }))
 
     } catch (err) {
       console.log('Cannot remove task', err)
@@ -74,7 +75,7 @@ export function addNewTodo(title, checkListId, taskId, groupId) {
     try {
       const board = getState().boardModule.board
       const savedBoard = await taskService.addTodo(title, checkListId, groupId, taskId, board)
-      dispatch({ type: 'UPDATE_BOARD', board: { ...savedBoard } })
+      dispatch(getActionUpdateBoard({ ...savedBoard }))
 
     } catch (err) {
       console.log('Cannot add todo', err)

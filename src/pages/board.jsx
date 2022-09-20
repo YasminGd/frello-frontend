@@ -20,7 +20,7 @@ export const Board = () => {
     if (!board) dispatch(getBoard(params.boardId))
     else {
       dispatch(loadBoards())
-      dispatch({ type: 'SET_BOARD_FROM_STATE', boardId: params.boardId, })
+      dispatch({ type: 'SET_BOARD_FROM_BACK', boardId: params.boardId, })
     }
   }, [])
 
@@ -80,7 +80,7 @@ export const Board = () => {
   const style = getBoardStyle()
   return (
     <section className="board" style={style}>
-      <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle}/>
+      <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
       <DragDropContext
         // onDragStart={onDragStart}
         // onDragUpdate={onDragUpdate}

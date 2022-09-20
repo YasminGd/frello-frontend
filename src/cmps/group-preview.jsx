@@ -35,18 +35,30 @@ export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging 
         tasks={group.tasks}
         groupId={group.id}
         removeItem={removeItem}
+        addItem={addItem}
+        isAddOpen={isAddOpen}
+        onToggleAdd={onToggleAdd}
       />
-      {isAddOpen ? (
-        <AddItem
-          onToggleAdd={onToggleAdd}
-          addItem={addItem}
-          groupId={group.id}
-        />
-      ) : (
+      {!isAddOpen &&
         <button className="add-task-button" onClick={onToggleAdd}>
           <span><AiOutlinePlus />Add a card</span>
         </button>
-      )}
+      }
     </section>
   )
 }
+
+
+// {
+//   isAddOpen ? (
+//     <AddItem
+//       onToggleAdd={onToggleAdd}
+//       addItem={addItem}
+//       groupId={group.id}
+//     />
+//   ) : (
+//     <button className="add-task-button" onClick={onToggleAdd}>
+//       <span><AiOutlinePlus />Add a card</span>
+//     </button>
+//   )
+// }

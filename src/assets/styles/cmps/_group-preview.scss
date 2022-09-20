@@ -4,6 +4,7 @@
   width: 272px;
   border-radius: 3px;
   font-size: 0.875rem;
+  max-height: 100%;
 
   &.dragging {
     background-color: #ebecf0e7;
@@ -42,24 +43,6 @@
 
     &:hover {
       cursor: pointer;
-    }
-  }
-
-  .add-item {
-    margin: 0;
-    padding: 8px;
-    padding-top: 0;
-
-    textarea {
-      height: 65px;
-      padding-top: 7px;
-      padding-bottom: 42px;
-      margin-bottom: 8px;
-    }
-
-    button {
-      padding-left: 12px;
-      padding-right: 12px;
     }
   }
 

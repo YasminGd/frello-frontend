@@ -14,28 +14,15 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
   const dispatch = useDispatch()
   const boardMembers = useSelector((state) => state.boardModule.board.members)
 
-  const membersToRender = boardMembers? boardMembers.filter((member) => task.memberIds?.includes(member._id)) : []
+  const membersToRender = boardMembers ? boardMembers.filter((member) => task.memberIds?.includes(member._id)) : []
 
   const todosPreview = () => {
-    if (!task.checklists || task?.checklists.length === 0) return
+    if (!task.checklists || task.checklists.length === 0) return
 
-    let todos
-    let doneTodos
-    if (task.checklists.length === 1) {
-      todos = task.checklists[0].todos.length
-      doneTodos = task.checklists[0].todos.filter((todo) => todo.isDone).length
-    } else {
-      todos = task.checklists.reduce(
-        (currChecklist, prevChecklist) => currChecklist.todos.length + prevChecklist.todos.length
-      )
-      doneTodos = task.checklists.reduce(
-        (currChecklist, prevChecklist) =>
-          currChecklist.todos.filter((todo) => todo.isDone).length +
-          prevChecklist.todos.filter((todo) => todo.isDone).length
-      )
-    }
-    // console.log(todos)
-    return { doneTodos, todos }
+    const todosLength = task.checklists.reduce((a, b) => a + b.todos.length, 0)
+    const doneTodosLength = task.checklists.reduce((a, b) => a + b.todos.filter(todo => todo.isDone).length, 0)
+
+    return { doneTodosLength, todosLength }
   }
 
   const getDateClass = (task) => {
@@ -93,10 +80,10 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
             {task.attachments.length}
           </section>
         )}
-        {task.checklists && task.checklists.length !== 0 && (todoDetails.doneTodos !== 0 || todoDetails.todos !== 0) && (
-          <section className={`attachments-icon ${todoDetails.doneTodos === todoDetails.todos ? 'done' : ''}`}>
+        {task.checklists && task.checklists.length !== 0 && (todoDetails.doneTodosLength !== 0 || todoDetails.todosLength !== 0) && (
+          <section className={`attachments-icon ${todoDetails.doneTodosLength === todoDetails.todosLength ? 'done' : ''}`}>
             <BsCheck2Square />
-            {`${todoDetails.doneTodos}/${todoDetails.todos}`}
+            {`${todoDetails.doneTodosLength}/${todoDetails.todosLength}`}
           </section>
         )}
       </section>

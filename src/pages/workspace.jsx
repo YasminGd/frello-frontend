@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadBoards, updateBoard } from '../store/actions/board.action'
+import { loadBoards, updateBoard, setBoard } from '../store/actions/board.action'
 import { BoardList } from '../cmps/board-list'
 import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai'
 
@@ -10,6 +10,10 @@ export const Workspace = () => {
 
   useEffect(() => {
     dispatch(loadBoards())
+    dispatch(dispatch({
+      type: 'SET_BOARD',
+      boardId: null,
+    }))
   }, [])
 
   const onToggleStarred = (ev, boardId) => {

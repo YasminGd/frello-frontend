@@ -14,7 +14,7 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
   const dispatch = useDispatch()
   const boardMembers = useSelector((state) => state.boardModule.board.members)
 
-  const membersToRender = boardMembers.filter((member) => task.memberIds?.includes(member._id))
+  const membersToRender = boardMembers? boardMembers.filter((member) => task.memberIds?.includes(member._id)) : []
 
   const todosPreview = () => {
     if (!task.checklists || task?.checklists.length === 0) return

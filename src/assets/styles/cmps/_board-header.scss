@@ -12,6 +12,17 @@
         height: 32px;
     }
 
+    .go-back {
+        position: absolute;
+        left: 5%;
+        font-size: 22px;
+        font-weight: 200;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     .left {
         input {
             color: white;

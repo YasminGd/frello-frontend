@@ -14,7 +14,7 @@ async function add(title, board, user) {
     const boardWithActivities = boardService.addActivity(`Added ${title} to this board`, null, user, board)
 
     try {
-        return await storageService.post(STORAGE_KEY, boardWithActivities)
+        return await storageService.put(STORAGE_KEY, boardWithActivities)
     } catch (err) {
         console.log('cannot add task', err)
     }

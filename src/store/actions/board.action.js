@@ -27,6 +27,7 @@ export function loadBoards() {
   return async (dispatch) => {
     try {
       const boards = await boardService.query()
+      console.log(boards);
       dispatch({
         type: 'SET_BOARDS',
         boards,
@@ -66,7 +67,7 @@ export function updateBoard(board) {
 
   return async (dispatch, getState) => {
     const prevBoard = { ...getState().boardModule.board }
-    dispatch(getActionUpdateBoard(board))
+    dispatch(getActionUpdateBoard(prevBoard))
 
     try {
       await boardService.save(board)

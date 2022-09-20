@@ -8,10 +8,9 @@
   transition-property: background-color, box-shadow;
   transition-duration: 0.5s, 0.5s;
   position: relative;
-  // z-index: 100;
   color: white;
   min-height: 44px;
-  border-bottom: 1px solid hsla(218,54%,19.6%,0.16);
+  border-bottom: 1px solid hsla(218, 54%, 19.6%, 0.16);
 
   .main-logo {
     border-radius: 3px;
@@ -23,7 +22,6 @@
     h1 {
       margin-left: 6px;
       font-size: 1.4rem;
-      // letter-spacing: 1px;
       line-height: 30px;
     }
 
@@ -35,7 +33,7 @@
     font-family: CharlieDisplay-bold;
     display: flex;
     align-items: center;
-    padding:0 6px;
+    padding: 0 6px;
     margin-left: 6px;
   }
 
@@ -49,13 +47,12 @@
       display: none;
     }
 
-    &>* {
+    & > * {
       padding: 0px 22px;
       height: 44px;
       display: flex;
       align-items: center;
       font-size: 1.2rem;
-
     }
 
     .login {
@@ -76,7 +73,7 @@
   &.home-header {
     background-color: #fff;
 
-    .home-nav>* {
+    .home-nav > * {
       height: 60px;
     }
 

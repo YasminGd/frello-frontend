@@ -20,7 +20,7 @@ export function addTask(title, groupId) {
       const board = getState().boardModule.board
       const user = getState().userModule.user
       const savedBoard = await taskService.add(title, groupId, board, user)
-      dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
+      dispatch({ type: 'UPDATE_BOARD', board: { ...savedBoard } })
 
     } catch (err) {
       console.log('Cannot add task', err)

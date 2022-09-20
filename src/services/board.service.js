@@ -1,7 +1,6 @@
 import { storageService } from './async-storage.service.js'
 import { store } from '../store/store'
 import { board } from '../board.js'
-import { utilService } from './util.service.js'
 import { httpService } from './http.service.js'
 
 const STORAGE_KEY = 'board'

@@ -15,10 +15,6 @@ export const BoardPreview = ({ board, onToggleStarred }) => {
     <Link key={board._id} to={`/board/${board._id}`}>
       <section
         className="board-preview"
-        // style={{
-        //   background: `${board.style.background} center center / cover`,
-        //   backgroundColor: `${board.style.backgroundColor}`,
-        // }}
         style={boardStyle}
       >
         <div className="board-preview-details">

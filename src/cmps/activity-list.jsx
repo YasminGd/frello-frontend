@@ -1,10 +1,9 @@
 import { ActivityPreview } from "./activity-preview"
 
-export const ActivityList = ({activities}) => {
-    console.log(activities);
+export const ActivityList = ({ activities }) => {
     return <section className="activity-list">
         {
-            activities.map(activity => <ActivityPreview activity={activity}/>)
+            activities.map(activity => <ActivityPreview key={activity.id} activity={activity} />)
         }
     </section>
 } 

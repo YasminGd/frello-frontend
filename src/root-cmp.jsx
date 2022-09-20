@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AppHeader } from './cmps/app-header.jsx'
 import { Home } from './pages/home'
@@ -6,8 +6,15 @@ import { Workspace } from './pages/workspace'
 import './assets/styles/main.scss'
 import { Board } from './pages/board'
 import { LoginSignup } from './cmps/login-signup.jsx'
+import { loadBoards } from './store/actions/board.action.js'
+import { useDispatch } from 'react-redux'
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadBoards())
+  }, [])
+
   return (
     <div className="app">
       <AppHeader />

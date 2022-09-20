@@ -29,7 +29,7 @@ export function loadBoards() {
       const boards = await boardService.query()
       dispatch({
         type: 'SET_BOARDS',
-        boards: { ...boards },
+        boards: [...boards],
       })
     }
     catch (err) {

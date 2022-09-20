@@ -10,8 +10,7 @@ export const Workspace = () => {
   const dispatch = useDispatch()
 
   useState(() => {
-    console.log(board);
-    if(board) dispatch({ type: 'SET_BOARD', boardId: null })
+    if (board) dispatch({ type: 'SET_BOARD', boardId: null })
   }, [])
 
   const onToggleStarred = (ev, boardId) => {

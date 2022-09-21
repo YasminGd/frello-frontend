@@ -1,6 +1,4 @@
 import { useState } from "react"
-import { useSelector } from "react-redux"
-import { Activities } from "./activities"
 import { SideMenuBackgroundOptions } from "./side-menu-background-options"
 import { SideMenuColors } from "./side-menu-colors"
 import { SideMenuMainDisplay } from "./side-menu-main-display"

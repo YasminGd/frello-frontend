@@ -35,6 +35,8 @@
       align-items: center;
       line-height: 20px;
       margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
 
       &:hover {
         background-color: #091e4214;
@@ -66,7 +68,6 @@
       align-items: center;
       padding: 6px 8px;
       gap: 5px;
-
     }
 
     &:hover {

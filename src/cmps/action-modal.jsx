@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
 import { IoChevronBack } from 'react-icons/io5'
-import { Cover } from './action-modal-cmps/Cover'
-import { Attachment } from './action-modal-cmps/Attachment'
+import { Cover } from './action-modal-cmps/cover'
+import { Attachment } from './action-modal-cmps/attachment'
 import { CheckList } from './action-modal-cmps/check-list'
 import { Dates } from './action-modal-cmps/dates'
 import { Labels } from './action-modal-cmps/labels'
 import { Members } from './action-modal-cmps/members'
 import { Users } from './action-modal-cmps/users'
+import { ListActions } from './action-modal-cmps/list-actions'
 
-export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId }) => {
+export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem }) => {
 
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
@@ -42,6 +43,10 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId 
 
       case 'Users':
         return <Users />
+
+      case 'List actions':
+        return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
+
       default:
         break
     }

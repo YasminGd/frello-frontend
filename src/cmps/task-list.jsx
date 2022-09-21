@@ -1,5 +1,5 @@
 import { Draggable, Droppable } from 'react-beautiful-dnd'
-import { AddItem } from './add-item.jsx'
+import { AddItem } from './task-details-cmps/add-item.jsx'
 import { TaskPreview } from './task-preview.jsx'
 
 export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd }) => {

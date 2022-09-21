@@ -12,23 +12,21 @@ export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
-
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
-// export const socketService = createSocketService()
-export const socketService = createDummySocketService()
+export const socketService = createSocketService()
+// export const socketService = createDummySocketService()
 
 // for debugging from console
 // window.socketService = socketService
 
 socketService.setup()
 
-
 function createSocketService() {
   var socket = null;
   const socketService = {
     setup() {
       socket = io(baseUrl)
-      setTimeout(()=>{
+      setTimeout(() => {
         const user = userService.getLoggedinUser()
         if (user) this.login(user._id)
       }, 500)
@@ -69,9 +67,9 @@ function createDummySocketService() {
     terminate() {
       this.setup()
     },
-    login() {   
+    login() {
     },
-    logout() {   
+    logout() {
     },
     on(eventName, cb) {
       listenersMap[eventName] = [...(listenersMap[eventName]) || [], cb]
@@ -82,7 +80,9 @@ function createDummySocketService() {
       else listenersMap[eventName] = listenersMap[eventName].filter(l => l !== cb)
     },
     emit(eventName, data) {
+      console.log('data: ', data)
       if (!listenersMap[eventName]) return
+      console.log('data: ', data)
       listenersMap[eventName].forEach(listener => {
         listener(data)
       })

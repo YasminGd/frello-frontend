@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
-import { BoardHeader } from '../cmps/board-header.jsx'
-import { GroupList } from '../cmps/group-list.jsx'
-import { useEffect } from 'react'
+import { BoardHeader } from '../cmps/board/board-header.jsx'
+import { GroupList } from '../cmps/board/group-list.jsx'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoard, updateBoard } from '../store/actions/board.action'
@@ -11,15 +11,35 @@ import { addTask, removeTask } from '../store/actions/task.action'
 import { addGroup, removeGroup } from '../store/actions/group.action'
 import { boardService } from '../services/board.service.js'
 import { Loader } from '../cmps/loader.jsx'
+import { socketService } from '../services/socket.service.js'
 
 export const Board = () => {
-  const board = useSelector((state) => state.boardModule.board)
-  const params = useParams()
   const dispatch = useDispatch()
+  const params = useParams()
+  // const [boardId, setBoardId] = useState(params.boardId)
+
+  const board = useSelector((state) => state.boardModule.board)
 
   useEffect(() => {
     dispatch(getBoard(params.boardId))
+    // setBoard(boardFromStore)
+
+    // setBoardId(params.boardId)
+    socketService.emit('join-board', params.boardId)
+
+    // return () => {
+    // socketService.off(SOCKET_EVENT_ADD_MSG, addMsg)
+    // }
   }, [])
+
+  useEffect(() => {
+    socketService.on('update-board', socketUpdateBoard)
+  })
+
+  const socketUpdateBoard = (updatedBoard) => {
+    console.log('socketUpdateBoard ~ updatedBoard', updatedBoard)
+    // setBoard(updatedBoard)
+  }
 
   const getBoardStyle = () => {
     if (!board) return
@@ -29,12 +49,8 @@ export const Board = () => {
   }
 
   const addItem = (title, groupId) => {
-    if (groupId) {
-      dispatch(addTask(title, groupId, board._id))
-    }
-    else {
-      dispatch(addGroup(title))
-    }
+    if (groupId) dispatch(addTask(title, groupId, board._id))
+    else dispatch(addGroup(title))
   }
 
   const removeItem = (groupId, taskId) => {

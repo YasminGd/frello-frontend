@@ -1,7 +1,7 @@
 import { BsSquareHalf } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
-import { utilService } from '../services/util.service'
-import { updateTask } from '../store/actions/task.action'
+import { utilService } from '../../services/util.service'
+import { updateTask } from '../../store/actions/task.action'
 
 export const AttachmentPreview = ({ task, attachment, groupId }) => {
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
     if (task.style) {
       if (task.style.coverImg === attachment.url) {
         task.style.coverImg = null
-        task.style.coverStyle = 'not fully covered'
+        task.style.isFullyCovered = false
       }
       else {
         task.style.coverImg = attachment.url
@@ -60,7 +60,7 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
                   transform: 'rotate(0.75turn) translateY(-20%) translateX(22%)',
                 }}
               />
-            {task.style?.coverImg === attachment.url ? 'Remove cover' : 'Make cover'}
+              {task.style?.coverImg === attachment.url ? 'Remove cover' : 'Make cover'}
             </section>
           </span>
         </span>

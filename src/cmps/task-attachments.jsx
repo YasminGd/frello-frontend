@@ -1,11 +1,7 @@
 import { GrAttachment } from 'react-icons/gr'
-import { useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
-import { updateTask } from '../store/actions/task.action'
-import { AttachmentPreview } from './attachment-preview'
+import { AttachmentPreview } from './task-details-cmps/attachment-preview'
 
 export const TaskAttachments = ({ task, groupId }) => {
-  const dispatch = useDispatch()
 
   const { attachments } = task
 

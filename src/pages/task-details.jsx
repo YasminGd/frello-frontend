@@ -8,11 +8,11 @@ import { ActionModal } from '../cmps/action-modal'
 import { updateTask } from '../store/actions/task.action'
 import { TaskDescription } from '../cmps/task-description'
 import { TaskAttachments } from '../cmps/task-attachments'
-import { TaskDetailsSidebar } from '../cmps/task-details-sidebar'
-import { CheckListList } from '../cmps/checklist-list'
-import { TaskDetailsOverview } from '../cmps/task-details-overview'
-import { TaskDetailsHeader } from '../cmps/task-details-header'
-import { Activities } from '../cmps/activities'
+import { TaskDetailsSidebar } from '../cmps/task-details-cmps/task-details-sidebar'
+import { CheckListList } from '../cmps/task-details-cmps/checklist-list'
+import { TaskDetailsOverview } from '../cmps/task-details-cmps/task-details-overview'
+import { TaskDetailsHeader } from '../cmps/task-details-cmps/task-details-header'
+import { Activities } from '../cmps/board/activities'
 
 export const TaskDetails = () => {
   const navigate = useNavigate()

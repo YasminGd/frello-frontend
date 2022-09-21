@@ -23,21 +23,14 @@
 @import 'cmps/board-header';
 @import 'cmps/board-list';
 @import 'cmps/board-preview';
-@import 'cmps/edit-task-list';
-@import 'cmps/edit-task-preview';
-@import 'cmps/edit-task-details';
 @import 'cmps/group-list';
 @import 'cmps/group-preview';
 @import 'cmps/board-side-menu';
-@import 'cmps/task-activity';
-@import 'cmps/task-activity-list';
-@import 'cmps/task-activity-preview';
 @import 'cmps/attachment-preview';
 @import 'cmps/task-description';
 @import 'cmps/task-attachments';
 @import 'cmps/task-list';
 @import 'cmps/task-preview';
-@import 'cmps/task-title';
 @import 'cmps/add-item';
 @import 'cmps/dynamic-textarea';
 @import 'cmps/task-details-sidebar';
@@ -64,6 +57,8 @@
 @import 'cmps/side-menu-colors';
 @import 'cmps/side-menu-main-display';
 @import 'cmps/loader';
+@import 'cmps/quick-edit';
+@import 'cmps/quick-edit-buttons';
 
 // COMPONENTS-ACTION MODAL
 @import 'cmps/action-modal';
@@ -75,3 +70,4 @@
 @import 'cmps/action-modal-cmps/dates';
 @import 'cmps/action-modal-cmps/members';
 @import 'cmps/action-modal-cmps/users';
+@import 'cmps/action-modal-cmps/list-actions';

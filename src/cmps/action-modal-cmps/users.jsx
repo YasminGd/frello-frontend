@@ -24,7 +24,7 @@ export const Users = () => {
     delete user.createdAt
     delete user.username
 
-    if (board.members.some((member) => member._id === userId)) {
+    if (board.members?.some((member) => member._id === userId)) {
       const index = board.members.findIndex((member) => member._id === userId)
       board.members.splice(index, 1)
       activityTxt = `removed ${user.fullname} from this board`
@@ -53,7 +53,7 @@ export const Users = () => {
                   <img src={user.imgUrl} alt="" />
                 </div>
                 <span className="member-fullname">{user.fullname}</span>
-                {board.members.some((member) => member._id === user._id) && (
+                {board.members?.some((member) => member._id === user._id) && (
                   <span className="checked-icon">
                     <BiCheck />
                   </span>

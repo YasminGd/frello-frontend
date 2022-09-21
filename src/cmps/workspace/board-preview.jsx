@@ -17,16 +17,18 @@ export const BoardPreview = ({ board, onToggleStarred }) => {
         className="board-preview"
         style={boardStyle}
       >
-        <div className="board-preview-details">
-          <h3>{board.title}</h3>
-          <div className="board-star">
-            {board.isStarred ? (
-              <AiFillStar className="starred" onClick={(ev) => onToggleStarred(ev, board._id)} />
-            ) : (
-              <AiOutlineStar onClick={(ev) => onToggleStarred(ev, board._id)} />
-            )}
+        <span className="board-hover">
+          <div className="board-preview-details">
+            <h3>{board.title}</h3>
+            <div className="board-star">
+              {board.isStarred ? (
+                <AiFillStar className="starred" onClick={(ev) => onToggleStarred(ev, board._id)} />
+              ) : (
+                <AiOutlineStar onClick={(ev) => onToggleStarred(ev, board._id)} />
+              )}
+            </div>
           </div>
-        </div>
+        </span>
       </section>
     </Link>
   )

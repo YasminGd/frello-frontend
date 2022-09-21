@@ -56,7 +56,7 @@ export const Board = () => {
     dispatch(updateBoard(board))
   }
 
-  const onDragStart = () => { }
+  // const onDragStart = () => { }
 
   //prettier-ignore
   const onDragEnd = (result) => {

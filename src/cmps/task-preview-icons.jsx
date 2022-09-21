@@ -14,8 +14,7 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
   const dispatch = useDispatch()
   const board = useSelector((state) => state.boardModule.board)
   const boardMembers = board.members
-  // const taskComments = board?.activities.filter(activity => activity?.task.id === task.id && task.comment) || null
-  // console.log(taskComments);
+  const taskComments = board?.activities.filter(activity => activity?.task?.id === task.id && activity?.comment) || null
 
   const membersToRender = boardMembers ? boardMembers.filter((member) => task.memberIds?.includes(member._id)) : []
 

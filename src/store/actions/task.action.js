@@ -5,8 +5,7 @@ export function updateTask(groupId, task, activityTxt, boardMember) {
   return async (dispatch, getState) => {
     try {
       const board = getState().boardModule.board
-      const user = boardMember || getState().userModule.user
-      const savedBoard = await taskService.update(board, groupId, task, activityTxt, user)
+      const savedBoard = await taskService.update(board, groupId, task, activityTxt, boardMember)
       dispatch(getActionUpdateBoard(structuredClone(savedBoard)))
 
     } catch (err) {

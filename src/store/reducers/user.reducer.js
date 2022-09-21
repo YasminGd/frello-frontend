@@ -11,6 +11,8 @@ const initialState = {
   //   users: (() => {
   //     console.log(userService.getUsers())
   //   })(),
+  users: [],
+  user: null
 }
 
 export function userReducer(state = initialState, action) {

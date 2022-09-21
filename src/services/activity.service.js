@@ -1,14 +1,17 @@
+import { userService } from "./user.service"
 import { utilService } from "./util.service"
 
 export const activityService = {
   addActivity
 }
 
-function addActivity(txt, task, user, board, comment) {
-  const miniUser = {
-    fullname: user.fullname,
-    imgUrl: user.imgUrl,
-  }
+function addActivity(txt, task, board, comment, user) {
+  // const miniUser = {
+  //   fullname: user.fullname,
+  //   imgUrl: user.imgUrl,
+  // }
+  const miniUser = user || userService.getLoggedInUser()
+  console.log(miniUser);
 
   const miniTask = task ? {
     id: task.id,

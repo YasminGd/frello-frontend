@@ -95,8 +95,7 @@ export function addNewComment(txt, task, comment) {
   return async (dispatch, getState) => {
     try {
       const board = getState().boardModule.board
-      const user = getState().userModule.user
-      const boardWithActivities = await activityService.addActivity(txt, task, user, board, comment)
+      const boardWithActivities = await activityService.addActivity(txt, task, board, comment)
       const savedBoard = await boardService.save(boardWithActivities)
       dispatch(getActionUpdateBoard({ ...savedBoard }))
     }

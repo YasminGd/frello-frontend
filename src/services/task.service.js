@@ -20,7 +20,8 @@ async function update(board, groupId, task, activityTxt, user) {
   board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
 
   if (activityTxt) {
-    board = activityService.addActivity(activityTxt, task, user, board)
+    console.log(user);
+    board = activityService.addActivity(activityTxt, task, board, null, user)
   }
 
   try {
@@ -35,7 +36,7 @@ async function update(board, groupId, task, activityTxt, user) {
 async function add(title, groupId, board, user) {
   const group = board.groups.find((group) => group.id === groupId)
   group.tasks.push({ title, id: utilService.makeId() })
-  const boardWithActivities = activityService.addActivity(`added ${title} to ${group.title}`, null, user, board)
+  const boardWithActivities = activityService.addActivity(`added ${title} to ${group.title}`, null, board)
 
   try {
     return httpService.put(BASE_URL + board._id, boardWithActivities)
@@ -50,7 +51,7 @@ async function remove(groupId, taskId, board, user) {
   const group = board.groups.find((group) => group.id === groupId)
   const task = group.tasks.find((task) => task.id === taskId)
   group.tasks = group.tasks.filter((task) => task.id !== taskId)
-  const boardWithActivities = activityService.addActivity(`removed ${task.title}`, null, user, board)
+  const boardWithActivities = activityService.addActivity(`removed ${task.title}`, null, board)
 
   try {
     return await httpService.put(BASE_URL + board._id, boardWithActivities)
@@ -76,7 +77,7 @@ async function addImg(imgUrl, task, groupId, board, user) {
   board.groups[groupIdx].tasks[taskIdx].attachments.push(attachmentImage)
 
   const urlName = attachmentImage.url.split('/').pop()
-  const boardWithActivities = activityService.addActivity(`attached ${urlName} to ${task.title}`, null, user, board)
+  const boardWithActivities = activityService.addActivity(`attached ${urlName} to ${task.title}`, null, board)
 
   try {
     return httpService.put(BASE_URL + board._id, boardWithActivities)
@@ -98,7 +99,7 @@ async function addChecklist(title, taskId, groupId, board, user) {
   const task = group.tasks.find(task => task.id === taskId)
   if (task.checklists) task.checklists.push(checklist)
   else task.checklists = [checklist]
-  const boardWithActivities = activityService.addActivity(`added ${title} to ${task.title}`, task, user, board)
+  const boardWithActivities = activityService.addActivity(`added ${title} to ${task.title}`, task, board)
 
   try {
     return httpService.put(BASE_URL + board._id, boardWithActivities)

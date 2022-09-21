@@ -13,7 +13,7 @@ export const Workspace = () => {
   useEffect(() => {
     if (board) dispatch({ type: 'SET_BOARD', boardId: null })
     dispatch(loadBoards())
-  }, [])
+  }, [boards])
 
   const onToggleStarred = (ev, boardId) => {
     ev.preventDefault()

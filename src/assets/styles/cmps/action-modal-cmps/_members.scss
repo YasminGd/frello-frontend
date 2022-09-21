@@ -41,10 +41,7 @@
       cursor: pointer;
     }
 
-    &:active:hover {
-      background-color: #e4f0f5;
-      color: rgb(0, 121, 192);
-    }
+    @include activeHoverBlue();
 
     .member-img {
       height: 32px;

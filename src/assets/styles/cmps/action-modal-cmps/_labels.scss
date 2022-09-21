@@ -37,10 +37,6 @@
         align-items: center;
         width: 98%;
         border-radius: 3px;
-        // opacity: 0.4;
-        &:hover {
-          // opacity: 0.5;
-        }
 
         .label-color-circle {
           opacity: 1;
@@ -68,6 +64,7 @@
       &:hover {
         background-color: #ecedf0;
       }
+      @include activeHoverBlue();
     }
     svg path {
       stroke: #1c2a4bce;
@@ -80,8 +77,6 @@
       cursor: pointer;
       border-color: #dee1e5;
       border-radius: 3px;
-      &:focus {
-      }
       &:checked {
         accent-color: #5ba4cf;
       }
@@ -102,6 +97,7 @@
     font-size: 14px;
     background-color: #f2f2f3;
     padding: 6px 12px;
+    @include activeHoverBlue();
 
     &:hover {
       background-color: #ecedf0;
@@ -109,44 +105,44 @@
   }
 }
 
-.green-light {
-  background-color: hsla(110, 46%, 60%, 0.3);
-  &:hover {
-    background-color: hsla(110, 46%, 60%, 0.5);
-  }
-}
+// .green-light {
+//   background-color: hsla(110, 46%, 60%, 0.3);
+//   &:hover {
+//     background-color: hsla(110, 46%, 60%, 0.5);
+//   }
+// }
 
-.yellow-light {
-  background-color: hsla(53, 91%, 56%, 0.3);
-  &:hover {
-    background-color: hsla(53, 91%, 56%, 0.5);
-  }
-}
+// .yellow-light {
+//   background-color: hsla(53, 91%, 56%, 0.3);
+//   &:hover {
+//     background-color: hsla(53, 91%, 56%, 0.5);
+//   }
+// }
 
-.orange-light {
-  background-color: hsla(35, 100%, 62%, 0.3);
-  &:hover {
-    background-color: hsla(35, 100%, 62%, 0.5);
-  }
-}
+// .orange-light {
+//   background-color: hsla(35, 100%, 62%, 0.3);
+//   &:hover {
+//     background-color: hsla(35, 100%, 62%, 0.5);
+//   }
+// }
 
-.red-light {
-  background-color: hsla(7, 81%, 66%, 0.3);
-  &:hover {
-    background-color: hsla(7, 81%, 66%, 0.5);
-  }
-}
+// .red-light {
+//   background-color: hsla(7, 81%, 66%, 0.3);
+//   &:hover {
+//     background-color: hsla(7, 81%, 66%, 0.5);
+//   }
+// }
 
-.purple-light {
-  background-color: hsla(284, 63%, 73%, 0.3);
-  &:hover {
-    background-color: hsla(284, 63%, 73%, 0.5);
-  }
-}
+// .purple-light {
+//   background-color: hsla(284, 63%, 73%, 0.3);
+//   &:hover {
+//     background-color: hsla(284, 63%, 73%, 0.5);
+//   }
+// }
 
-.dark-blue-light {
-  background-color: hsla(202, 55%, 58%, 0.3);
-  &:hover {
-    background-color: hsla(202, 55%, 58%, 0.5);
-  }
-}
+// .dark-blue-light {
+//   background-color: hsla(202, 55%, 58%, 0.3);
+//   &:hover {
+//     background-color: hsla(202, 55%, 58%, 0.5);
+//   }
+// }

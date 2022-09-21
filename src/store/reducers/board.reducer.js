@@ -33,6 +33,7 @@ export function boardReducer(state = initialState, action) {
       break
 
     case 'UPDATE_BOARD':
+      // let boardTest = structuredClone(action.board)
       state = { ...state, board: action.board }
       break
 

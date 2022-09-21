@@ -33,14 +33,14 @@ export const Board = () => {
 
   const socketUpdateBoard = (updatedBoard) => {
     console.log('socketUpdateBoard ~ updatedBoard', updatedBoard)
-    // setBoard(updatedBoard)
+    dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
   }
 
   const getBoardStyle = () => {
     if (!board) return
-    if (board?.style.background) return { 'background': `url('${board.style.background}') center center / cover` }
-    else if (board?.style.backgroundColor) return { 'backgroundColor': `${board.style.backgroundColor}` }
-    return { 'backgroundColor': `pink` }
+    if (board?.style.background) return { background: `url('${board.style.background}') center center / cover` }
+    else if (board?.style.backgroundColor) return { backgroundColor: `${board.style.backgroundColor}` }
+    return { backgroundColor: `pink` }
   }
 
   const addItem = (title, groupId) => {
@@ -62,8 +62,7 @@ export const Board = () => {
     if (board.style) {
       if (board.style.background) board.style.background = null
       board.style.backgroundColor = color
-    }
-    else board.style = { backgroundColor: color }
+    } else board.style = { backgroundColor: color }
     dispatch(updateBoard(board))
   }
 
@@ -83,7 +82,6 @@ export const Board = () => {
     const updatedBoard = boardService.handleDragEnd(newBoard, destination, source, type)
     dispatch(updateBoard(updatedBoard))
   }
-
 
   if (!board) return <Loader />
   const style = getBoardStyle()

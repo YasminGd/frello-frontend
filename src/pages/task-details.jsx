@@ -42,7 +42,7 @@ export const TaskDetails = () => {
   const getActivities = () => {
     if (!board.activities || !board.activities.length) return []
     return board.activities.filter(activity => {
-      return activity.task?.id === task.id
+      return activity.task?.id === task?.id
     })
   }
 
@@ -71,7 +71,7 @@ export const TaskDetails = () => {
                 <Activities activities={activities} renderAddComments={true} task={task} />
 
               </section>
-              <TaskDetailsSidebar onOpenActionModal={onOpenActionModal} />
+              <TaskDetailsSidebar onOpenActionModal={onOpenActionModal} taskId={task.id} groupId={groupId} />
             </div>
           </section>
         </section>

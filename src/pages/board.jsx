@@ -12,6 +12,7 @@ import { addGroup, removeGroup } from '../store/actions/group.action'
 import { boardService } from '../services/board.service.js'
 import { Loader } from '../cmps/loader.jsx'
 import { socketService } from '../services/socket.service.js'
+import { unsplashService } from '../services/unsplash.service.js'
 
 export const Board = () => {
   const dispatch = useDispatch()

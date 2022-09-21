@@ -48,7 +48,7 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
         <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>
       )}
       <section className={`task-body`} style={{ backgroundColor: getCoverStyle() }}>
-        {isRenderLabels() && <TaskLabelsList labelIds={task.labelIds} />}
+        {isRenderLabels() && toRender && <TaskLabelsList labelIds={task.labelIds} />}
         {task.title}
         {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
       </section>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
 import { IoChevronBack } from 'react-icons/io5'
 import { Cover } from './action-modal-cmps/cover'
@@ -13,6 +13,23 @@ import { ListActions } from './action-modal-cmps/list-actions'
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem }) => {
 
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
+
+  const modalRef = useRef()
+
+  useEffect(() => {
+    document.onmousedown = (ev) => {
+      handleClickOutside(ev)
+    }
+    return () => {
+      document.onmousedown = null
+      }
+  }, [])
+
+  const handleClickOutside = (ev) => {
+    if (modalRef.current && !modalRef.current.contains(ev.target)) {
+      setActionModal(null)
+    }
+  }
 
   const onToggleLabelEdit = () => {
     setIsLabelsEdit((prevState) => !prevState)
@@ -75,7 +92,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
   const title = getTitle()
 
   return (
-    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()} >
+    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()} ref={modalRef}>
       <div className="title-container">
         <p>{title}</p>
         {isLabelsEdit && <IoChevronBack className="edit-go-back" onClick={onToggleLabelEdit} />}

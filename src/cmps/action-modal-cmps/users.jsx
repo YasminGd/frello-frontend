@@ -34,7 +34,7 @@ export const Users = () => {
       else board.members = [user]
     }
 
-    const boardWithActivities = activityService.addActivity(activityTxt, null, null, board, null)
+    const boardWithActivities = activityService.addActivity(activityTxt, null, board)
     dispatch(updateBoard(boardWithActivities))
   }
 

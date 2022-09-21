@@ -15,6 +15,8 @@ $grayCustom: #ebecf0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f9fafc;
+  height: 100vh;
 
   .form-logo {
     font-family: CharlieDisplay-bold;
@@ -26,13 +28,14 @@ $grayCustom: #ebecf0;
     display: flex;
     align-items: center;
     margin-top: 40px;
+    color: #253858;
 
     img {
       margin-right: 20px;
     }
 
     h1 {
-      font-size: 3.1em;
+      font-size: 3.3em;
       letter-spacing: 1px;
     }
   }
@@ -60,16 +63,6 @@ $grayCustom: #ebecf0;
     margin-bottom: 24px;
   }
 
-  .dynamic-placeholder {
-    position: relative;
-    bottom: 30px;
-    left: 10px;
-    font-size: 0.9em;
-    transition: bottom 0.2s;
-    cursor: text;
-    color: $gray500;
-  }
-
   a {
     margin: auto;
     color: #0052cc;
@@ -88,13 +81,13 @@ $grayCustom: #ebecf0;
   input[type='text'],
   input[type='number'] {
     padding: 0.65rem 0.5rem;
-    font-size: 1rem;
+    font-size: 14px;
     border: 2px solid $gray;
     background-color: $gray-light;
     color: $gray800;
     border-radius: 5px;
     appearance: none;
-    color: $gray500;
+    color: rgb(77, 77, 77);
     display: block;
     width: 316px;
     height: 40px;
@@ -119,8 +112,7 @@ $grayCustom: #ebecf0;
     font-weight: bold;
     margin-bottom: 1rem;
     display: inline-block;
-    transition: background-color 200ms ease-in-out, border 200ms ease-in-out,
-      transform 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out, border 200ms ease-in-out, transform 200ms ease-in-out;
   }
 
   .error {
@@ -133,7 +125,7 @@ $grayCustom: #ebecf0;
   button[type='submit'] {
     margin-top: 1rem;
     border: none;
-    font-size: 0.95em;
+    font-size: 14px;
     background-color: #0052cc;
     color: white;
     border-radius: 5px;
@@ -142,4 +134,26 @@ $grayCustom: #ebecf0;
       background-color: lighten(#0052cc, 8%);
     }
   }
+
+  .already-have-account {
+    font-size: 14px;
+  }
+}
+
+.left-hero {
+  display: inline-block;
+  position: absolute;
+  width: 400px;
+  bottom: 0;
+  left: 0;
+  max-width: 30%;
+}
+
+.right-hero {
+  display: inline-block;
+  position: absolute;
+  width: 400px;
+  bottom: 0;
+  right: 0;
+  max-width: 30%;
 }

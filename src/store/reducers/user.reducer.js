@@ -2,7 +2,7 @@ import { userService } from '../../services/user.service'
 import { loadUsers } from '../actions/user.action'
 
 const initialState = {
-  loggedinUser: null,
+  loggedInUser: null,
   //   users:
   //     userService.getUsers().then((users) => {
   //       console.log(`users:`, users)

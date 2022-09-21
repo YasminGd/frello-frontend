@@ -1,16 +1,31 @@
+import { userService } from '../../services/user.service'
+import { loadUsers } from '../actions/user.action'
+
 const initialState = {
-    user: null
+  loggedinUser: null,
+  //   users:
+  //     userService.getUsers().then((users) => {
+  //       console.log(`users:`, users)
+  //       return users
+  //     }) || [],
+  //   users: (() => {
+  //     console.log(userService.getUsers())
+  //   })(),
 }
 
 export function userReducer(state = initialState, action) {
-    let newState = state
-    let boards
+  switch (action.type) {
+    case 'SET_USERS':
+      state = { ...state, users: [...action.users] }
+      break
 
-    switch (action.type) {
-        default:
-            return state
-    }
-    // For debug:
-    window.boardState = newState
-    return newState
+    case 'SET_USER':
+      state = { ...state, loggedInUser: { ...action.user } }
+
+    default:
+      return state
+  }
+  // For debug:
+  window.boardState = state
+  return state
 }

@@ -11,13 +11,14 @@
     transition-property: transform, width;
     transition-timing-function: ease-in;
     font-size: 14px;
-    overflow-y: auto;
+    // overflow-y: auto;
     z-index: 20;
     box-shadow: 0 12px 24px -6px #091e4240, 0 0 0 1px #091e4214;
     transform: translateX(100%);
     // transition-property: translate;
     transition-timing-function: ease-in;
     transition-duration: 0.1s;
+    overflow: hidden;
 
     &.open {
         transform: translateX(0%);
@@ -99,4 +100,6 @@
         }
 
     }
+    
+
 }

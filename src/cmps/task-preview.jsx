@@ -1,3 +1,4 @@
+import { BsPencil } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { TaskLabelsList } from './task-labels-list'
 import { TaskPreviewIcons } from './task-preview-icons'
@@ -39,6 +40,9 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
         {isRenderLabels() && <TaskLabelsList labelIds={task.labelIds} />}
         {task.title}
         {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
+      </section>
+      <section className="quick-edit-icon">
+        <BsPencil />
       </section>
     </Link>
   )

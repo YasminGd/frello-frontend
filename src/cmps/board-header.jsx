@@ -79,18 +79,18 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
                 <img src={member.imgUrl} alt="" />
               </div>
             ))}
-            <button
-              onClick={() => {
-                onOpenActionModal('Users', btnAddUserRef)
-              }}
-              ref={btnAddUserRef}
-              className="btn-share"
-            >
-              <BsPersonPlus className="person-icon" />
-              <span>Share</span>
-            </button>
           </div>
         )}
+        <button
+          onClick={() => {
+            onOpenActionModal('Users', btnAddUserRef)
+          }}
+          ref={btnAddUserRef}
+          className="btn-share"
+        >
+          <BsPersonPlus className="person-icon" />
+          <span>Share</span>
+        </button>
       </section>
       <section className="right">
         <button onClick={renderSideMenu}>

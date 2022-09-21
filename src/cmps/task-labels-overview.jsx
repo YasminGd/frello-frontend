@@ -9,7 +9,6 @@ export const TaskLabelsOverview = ({ labelIds, onOpenActionModal }) => {
     const boardLabels = useSelector(state => state.boardModule.board.labels)
 
     const labelsToRender = boardLabels.filter(label => labelIds.includes(label.id))
-    console.log('TaskLabelsOverview ~ labelsToRender', labelsToRender)
 
     return (
         <section className="task-labels-overview">

@@ -3,7 +3,6 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { IoChevronBack } from 'react-icons/io5'
 import { Cover } from './action-modal-cmps/Cover'
 import { Attachment } from './action-modal-cmps/Attachment'
-import { BoardSideMenu } from './board-side-menu'
 import { CheckList } from './action-modal-cmps/check-list'
 import { Dates } from './action-modal-cmps/dates'
 import { Labels } from './action-modal-cmps/labels'
@@ -11,7 +10,9 @@ import { Members } from './action-modal-cmps/members'
 import { Users } from './action-modal-cmps/users'
 
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId }) => {
+
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
+
   const onToggleLabelEdit = () => {
     setIsLabelsEdit((prevState) => !prevState)
   }
@@ -23,13 +24,12 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId 
     switch (type) {
       case 'Attachment':
         return <Attachment task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
+
       case 'Cover':
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
       case 'Labels':
-        return (
-          <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
-        )
+        return <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
 
       case 'Checklist':
         return <CheckList />

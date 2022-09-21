@@ -1,6 +1,3 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
-
 export const ColorPallet = ({ setSelectedColor, selectedColor }) => {
 
     const colorsClasses = [
@@ -37,17 +34,23 @@ export const ColorPallet = ({ setSelectedColor, selectedColor }) => {
 
     ]
 
+    const onSelectColor = (colorClass) => {
+        colorClass = colorClass.slice(0, -10)
+        setSelectedColor(colorClass)
+    }
+
     return (
         <section className="color-pallet">
             {colorsClasses.map(colorClass => (
-                <div className={`color-container ${(selectedColor === colorClass) ? 'selected-container' : ''}`}
+                <div className={`color-container ${(selectedColor + '-hoverable' === colorClass) ? 'selected-container' : ''}`}
                     key={colorClass}>
                     <div
-                        onClick={() => { setSelectedColor(colorClass) }}
-                        className={`color ${colorClass} ${(selectedColor === colorClass) ? 'selected-color' : ''}`}>
+                        onClick={() => { onSelectColor(colorClass) }}
+                        className={`color ${colorClass} ${(selectedColor + '-hoverable' === colorClass) ? 'selected-color' : ''}`}>
                     </div>
                 </div>
-            ))}
-        </section>
+            ))
+            }
+        </section >
     )
 }

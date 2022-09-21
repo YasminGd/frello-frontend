@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { AddItem } from './add-item.jsx'
-import { TaskList } from './task-list.jsx'
-import { DynamicTextarea } from './dynamic-textarea.jsx'
+import { TaskList } from '../task-list.jsx'
+import { DynamicTextarea } from '../dynamic-textarea.jsx'
 import { BsThreeDots } from 'react-icons/bs'
 import { AiOutlinePlus } from 'react-icons/ai'
 

@@ -1,4 +1,4 @@
-import { BoardPreview } from './board-preview'
+import { BoardPreview } from "./board-preview"
 
 export const BoardList = ({ boards, onToggleStarred }) => {
   return (

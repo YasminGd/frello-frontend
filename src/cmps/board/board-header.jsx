@@ -2,11 +2,11 @@ import { useRef } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { updateBoard } from '../store/actions/board.action'
+import { updateBoard } from '../../store/actions/board.action'
 import { BsThreeDots, BsPersonPlus } from 'react-icons/bs'
 import { BoardSideMenu } from './board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
-import { ActionModal } from './action-modal'
+import { ActionModal } from '../action-modal'
 
 export const BoardHeader = ({ changeBgColor, changeTitle }) => {
   const board = useSelector((state) => state.boardModule.board)

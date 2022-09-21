@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { GrCreditCard } from "react-icons/gr"
 import { useDispatch } from "react-redux"
-import { updateTask } from "../store/actions/task.action"
+import { updateTask } from "../../store/actions/task.action"
 
 
 export const TaskDetailsHeader = ({ task, groupId, groupTitle }) => {

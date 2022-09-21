@@ -1,6 +1,6 @@
-import { TaskDatesOverview } from './task-dates-overview'
-import { TaskLabelsOverview } from './task-labels-overview'
-import { TaskMembersOverview } from './task-members-overview'
+import { TaskDatesOverview } from '../task-dates-overview'
+import { TaskLabelsOverview } from '../task-labels-overview'
+import { TaskMembersOverview } from '../task-members-overview'
 
 export const TaskDetailsOverview = ({ task, groupId, onOpenActionModal }) => {
   const isRenderLabels = () => {

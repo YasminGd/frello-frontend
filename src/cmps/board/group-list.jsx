@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AddItem } from './add-item.jsx'
+import { AddItem } from '../task-details-cmps/add-item.jsx'
 import { GroupPreview } from './group-preview.jsx'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AiOutlinePlus } from 'react-icons/ai'

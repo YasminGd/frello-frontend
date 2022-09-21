@@ -35,7 +35,7 @@ export const LoginSignup = () => {
             //     .required("Required"),
             password: Yup.string()
                 .required('No password provided.')
-                .min(5, 'Password is too short - should be 8 chars minimum.')
+                .min(8, 'Password is too short - should be 8 chars minimum.')
                 .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.')
         }),
         onSubmit: (values) => {

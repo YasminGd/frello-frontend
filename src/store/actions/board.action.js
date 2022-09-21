@@ -1,5 +1,6 @@
 import { activityService } from '../../services/activity.service.js'
 import { boardService } from '../../services/board.service.js'
+import { socketService } from '../../services/socket.service.js'
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {

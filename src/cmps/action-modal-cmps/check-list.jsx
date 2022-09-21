@@ -3,16 +3,11 @@ import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { addChecklist } from "../../store/actions/task.action"
 
-export const CheckList = () => {
+export const CheckList = ({ setActionModal }) => {
+
     const [title, setTitle] = useState('Checklist')
     const params = useParams()
-
-    const inputRef = useRef()
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        inputRef.current.focus()
-    }, [])
 
     const handleChange = ({ target }) => {
         const { value } = target
@@ -22,6 +17,7 @@ export const CheckList = () => {
     const onAddChecklist = (ev) => {
         ev.preventDefault()
         dispatch(addChecklist(title, params.taskId, params.groupId))
+        setActionModal(null)
     }
 
     return (<section className="check-list">
@@ -29,7 +25,7 @@ export const CheckList = () => {
             <form onSubmit={onAddChecklist}>
                 <label htmlFor="addTitle">Title</label>
                 <input
-                    ref={inputRef}
+                    autoFocus
                     id="addTitle"
                     type="text"
                     value={title}

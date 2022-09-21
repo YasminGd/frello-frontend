@@ -75,7 +75,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
   const title = getTitle()
 
   return (
-    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()}>
+    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()} >
       <div className="title-container">
         <p>{title}</p>
         {isLabelsEdit && <IoChevronBack className="edit-go-back" onClick={onToggleLabelEdit} />}

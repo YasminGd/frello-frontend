@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux'
 import { updateTask } from '../store/actions/task.action'
 import { TbCheckbox } from 'react-icons/tb'
 import { useSelector } from 'react-redux'
+import { IoChatbubbleOutline } from 'react-icons/io5'
 
 export const TaskPreviewIcons = ({ task, groupId }) => {
   const dispatch = useDispatch()
@@ -80,6 +81,13 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
             <GrTextAlignFull />
           </section>
         )}
+        {
+          taskComments && taskComments.length !== 0 &&
+          <section className={`attachments-icon`}>
+            < IoChatbubbleOutline />
+            {taskComments.length}
+          </section>
+        }
         {task.attachments && task.attachments.length !== 0 && (
           <section className="attachments-icon">
             <FiPaperclip />

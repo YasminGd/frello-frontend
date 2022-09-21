@@ -1,6 +1,6 @@
 import React from "react"
 import { useParams } from "react-router-dom"
-import { utilService } from "../services/util.service"
+import { utilService } from "../../services/util.service"
 
 export const ActivityPreview = ({ activity }) => {
     const parames = useParams()

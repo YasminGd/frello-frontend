@@ -10,7 +10,7 @@ async function getUsers() {
   try {
     console.log('GET USERS')
     const users = await httpService.get(BASE_URL)
-    console.log(`users:`, users)
+    // console.log(`users:`, users)
     if (users)
       return new Promise((resolve, reject) => {
         resolve(users)

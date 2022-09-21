@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
-import { updateTask, addNewTodo } from "../store/actions/task.action"
+import { updateTask, addNewTodo } from "../../store/actions/task.action"
 import { ChecklistPreview } from "./checklist-preview"
 
 export const CheckListList = ({ task, groupId }) => {

@@ -1,9 +1,8 @@
 import { useState } from "react"
 import { BsCheck2Square } from "react-icons/bs"
-import { useDispatch } from "react-redux"
 import { AddTodo } from "./add-todo"
-import { EditTitle } from "./edit-title"
-import { TodoList } from "./todo-list"
+import { EditTitle } from "../edit-title"
+import { TodoList } from "../todo-list"
 
 export const ChecklistPreview = ({ checkList, updateTodo, removeChecklist, addTodo, updateChecklist, removeTodo }) => {
     const [isAddTodoOpen, setIsAddTodoOpen] = useState(false)
@@ -51,7 +50,7 @@ export const ChecklistPreview = ({ checkList, updateTodo, removeChecklist, addTo
                 <div className={`percentage-bar ${completionPercentage === '100' ? 'done' : ''}`} style={{ width: `${completionPercentage}%` }}></div>
             </div>
         </section>
-        {checkList.todos && checkList.todos.length > 0 && <TodoList todos={checkList.todos} checkListId={checkList.id} updateTodo={updateTodo} removeTodo={removeTodo}/>}
+        {checkList.todos && checkList.todos.length > 0 && <TodoList todos={checkList.todos} checkListId={checkList.id} updateTodo={updateTodo} removeTodo={removeTodo} />}
         <section className="add-todo-option">
             {isAddTodoOpen ?
                 <AddTodo addTodo={addTodo} checkListId={checkList.id} closeModal={onAddTodo} /> :

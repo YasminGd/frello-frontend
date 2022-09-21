@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadBoards, updateBoard } from '../store/actions/board.action'
-import { BoardList } from '../cmps/board-list'
+import { BoardList } from '../cmps/workspace/board-list'
 import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai'
 import { Loader } from '../cmps/loader'
 

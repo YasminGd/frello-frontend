@@ -6,13 +6,16 @@ export const Cover = ({ task, onUpdateTask }) => {
   const colors = ['#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4', '#172B4D']
 
   //main background color for the cover options
-  const getCoverOptionsBackgroundColor = () => {
+  const getCoverOptionsBackgroundColor = (coverOption) => {
+    if (selectedImg && coverOption) return `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${selectedImg}") center center / cover`
+    else if (selectedImg && !coverOption) return `url("${selectedImg}") center center / cover`
     return selectedColor ? selectedColor : '#5e6c844d'
   }
 
   //get line colors for the not fully covered option div
   const getNotCoveredItemsColor = () => {
-    return selectedColor ? '#091e4299' : '#5e6c844d'
+    if (selectedColor || selectedImg) return '#091e4299'
+    return '#5e6c844d'
   }
 
   //get line colors for the fully covered option div
@@ -45,7 +48,6 @@ export const Cover = ({ task, onUpdateTask }) => {
     return selectedCover === coverOption && (selectedColor || selectedImg) ? 'border' : ''
   }
 
-  const coverBackgroundColor = getCoverOptionsBackgroundColor()
   const notCoveredItemsColor = getNotCoveredItemsColor()
   const coveredItemsColor = getCoveredItemsColor()
 
@@ -53,8 +55,8 @@ export const Cover = ({ task, onUpdateTask }) => {
     <section className="options">
       <p>Size</p>
       <section className="visual-options">
-        <div className={`not-covered-visual-option ${isThereBorderOnCoverOption(false)}`}
-          style={{ background: coverBackgroundColor }}
+        <div className={`not-covered-visual-option ${isThereBorderOnCoverOption(false)} ${selectedColor || selectedImg ? '' : 'disabled'}`}
+          style={{ background: getCoverOptionsBackgroundColor(false) }}
           onClick={() => onUpdateCoverStyle(false)}>
           <div className="bottom-main">
             <div className={`bottom-title`}
@@ -74,8 +76,8 @@ export const Cover = ({ task, onUpdateTask }) => {
             > </div>
           </div>
         </div>
-        <div className={`covered-visual-option ${isThereBorderOnCoverOption(true)}`}
-          style={{ backgroundColor: coverBackgroundColor }}
+        <div className={`covered-visual-option ${isThereBorderOnCoverOption(true)} ${selectedColor || selectedImg ? '' : 'disabled'}`}
+          style={{ background: getCoverOptionsBackgroundColor(true) }}
           onClick={() => onUpdateCoverStyle(true)}>
           <div className={`bottom-title`}
             style={{ backgroundColor: coveredItemsColor }}

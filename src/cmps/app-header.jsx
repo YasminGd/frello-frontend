@@ -8,7 +8,7 @@ export const AppHeader = () => {
 
   const getStyleClass = () => {
     let styleClass
-    if (location.pathname === '/') styleClass = 'home-header'
+    if (location.pathname === '/') styleClass = 'home-header fixed'
     else if (location.pathname === '/user/login' || location.pathname === '/user/signup') styleClass = 'login-header'
 
     return styleClass

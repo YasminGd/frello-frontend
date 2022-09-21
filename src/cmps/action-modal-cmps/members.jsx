@@ -6,7 +6,7 @@ import { BiCheck } from 'react-icons/bi'
 export const Members = ({ task, groupId }) => {
   const dispatch = useDispatch()
   const boardMembers = useSelector((state) => state.boardModule.board.members)
-  const [membersToRender, setMembersToRender] = useState(boardMembers)
+  const [membersToRender, setMembersToRender] = useState(boardMembers || [])
 
   const handleChange = ({ target }) => {
     if (target.type === 'text') {

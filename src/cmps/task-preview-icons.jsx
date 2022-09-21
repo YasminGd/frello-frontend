@@ -12,7 +12,10 @@ import { useSelector } from 'react-redux'
 
 export const TaskPreviewIcons = ({ task, groupId }) => {
   const dispatch = useDispatch()
-  const boardMembers = useSelector((state) => state.boardModule.board.members)
+  const board = useSelector((state) => state.boardModule.board)
+  const boardMembers = board.members
+  // const taskComments = board?.activities.filter(activity => activity?.task.id === task.id && task.comment) || null
+  // console.log(taskComments);
 
   const membersToRender = boardMembers ? boardMembers.filter((member) => task.memberIds?.includes(member._id)) : []
 
@@ -24,6 +27,10 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
 
     return { doneTodosLength, todosLength }
   }
+
+  // const getCommentsLength = () => {
+  //   if()
+  // }
 
   const getDateClass = (task) => {
     if (task?.dueDate?.isDone) {

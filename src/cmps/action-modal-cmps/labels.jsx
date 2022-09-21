@@ -10,7 +10,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
 
     const dispatch = useDispatch()
     let board = useSelector(state => state.boardModule.board)
-    let boardLabelsState = useSelector(state => state.boardModule.board.labels)
+    let boardLabelsState = useSelector(state => state.boardModule.board.labels || [])
 
     const [selectedLabel, setSelectedLabel] = useState()
     const [boardLabels, setBoardLabels] = useState(boardLabelsState)

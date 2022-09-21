@@ -33,7 +33,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
 
       case 'Checklist':
-        return <CheckList />
+        return <CheckList setActionModal={setActionModal} />
 
       case 'Dates':
         return <Dates task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />

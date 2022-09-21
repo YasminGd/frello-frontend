@@ -1,4 +1,5 @@
 import { httpService } from './http.service'
+import { utilService } from './util.service'
 
 export const userService = {
   getUsers,
@@ -40,7 +41,14 @@ async function signup(credentials) {
 }
 
 function getLoggedInUser() {
-  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN))
+  return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN)) ||
+  // console.log('getLoggedInUser ~ user', user)
+  {
+    fullname: 'Guest',
+    username: 'Guest',
+    imgUrl: 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg',
+    id: utilService.makeId()
+  }
 }
 
 async function getUsers() {

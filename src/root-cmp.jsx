@@ -6,7 +6,7 @@ import { Workspace } from './pages/workspace'
 import './assets/styles/main.scss'
 import { Board } from './pages/board'
 import { LoginSignup } from './cmps/login-signup.jsx'
-import { loadUsers } from './store/actions/user.action.js'
+import { loadUser, loadUsers } from './store/actions/user.action.js'
 import { useDispatch } from 'react-redux'
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
 
   useEffect(() => {
     dispatch(loadUsers())
+    dispatch(loadUser())
   }, [])
 
   return (

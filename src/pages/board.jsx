@@ -23,18 +23,13 @@ export const Board = () => {
   useEffect(() => {
     dispatch(getBoard(params.boardId))
     // setBoard(boardFromStore)
-
     // setBoardId(params.boardId)
     socketService.emit('join-board', params.boardId)
-
-    // return () => {
-    // socketService.off(SOCKET_EVENT_ADD_MSG, addMsg)
-    // }
   }, [])
 
   useEffect(() => {
     socketService.on('update-board', socketUpdateBoard)
-  })
+  }, [])
 
   const socketUpdateBoard = (updatedBoard) => {
     console.log('socketUpdateBoard ~ updatedBoard', updatedBoard)

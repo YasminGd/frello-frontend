@@ -11,6 +11,17 @@ export function loadUsers() {
   }
 }
 
+export function loadUser() {
+  return async (dispatch) => {
+    try {
+      const loggedInUser = await userService.getLoggedInUser()
+      dispatch({ type: 'SET_LOGGEDIN_USER', loggedInUser })
+    } catch (err) {
+      console.log('Cannot get loggedInUser', err)
+    }
+  }
+}
+
 export function signup(credentials) {
   return async (dispatch) => {
     try {

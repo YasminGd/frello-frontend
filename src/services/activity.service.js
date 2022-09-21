@@ -5,9 +5,9 @@ export const activityService = {
 }
 
 function addActivity(txt, task, user, board, comment) {
-  const miniUser = user ? user : {
-    fullname: 'Guest',
-    imgUrl: 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg',
+  const miniUser = {
+    fullname: user.fullname,
+    imgUrl: user.imgUrl,
   }
 
   const miniTask = task ? {

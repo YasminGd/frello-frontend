@@ -1,17 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { updateTask } from '../../store/actions/task.action'
 import React, { useState } from 'react'
 import { BiCheck } from 'react-icons/bi'
 import { updateBoard } from '../../store/actions/board.action'
 import { activityService } from '../../services/activity.service'
 
-export const Users = ({ task, groupId }) => {
+export const Users = () => {
   const dispatch = useDispatch()
   const workspaceUsers = useSelector((state) => state.userModule.users)
   const board = useSelector((state) => state.boardModule.board)
   const [usersToRender, setUsersToRender] = useState(workspaceUsers)
 
-  console.log(`board:`, board)
   const handleChange = ({ target }) => {
     if (target.type === 'text') {
       const regex = new RegExp(target.value, 'i')

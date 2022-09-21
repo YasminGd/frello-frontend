@@ -41,7 +41,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId 
         return <Members task={task} groupId={groupId} setActionModal={setActionModal} />
 
       case 'Users':
-        return <Users task={task} groupId={groupId} setActionModal={setActionModal} />
+        return <Users />
       default:
         break
     }

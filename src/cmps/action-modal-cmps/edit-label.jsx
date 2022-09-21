@@ -4,8 +4,8 @@ import { IoCloseOutline } from 'react-icons/io5'
 
 export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel }) => {
 
-    const [labelTitle, setLabelTitle] = useState(label.title)
-    const [selectedColor, setSelectedColor] = useState(label.color)
+    const [labelTitle, setLabelTitle] = useState(label?.title || '')
+    const [selectedColor, setSelectedColor] = useState(label?.color)
 
     const handleChange = ({ target }) => {
         if (target.type === 'text') {
@@ -14,9 +14,11 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
     }
 
     const onSaveButton = () => {
-        label.class = selectedColor.slice(0, -10) + '-opacity'
+        if (!selectedColor) return
+        if (!label) label = {}
+        label.class = selectedColor + '-opacity'
         label.title = labelTitle
-        label.color = selectedColor.slice(0, -10)
+        label.color = selectedColor
         onSaveLabel(label)
         onToggleLabelEdit(null)
     }
@@ -25,6 +27,8 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
         onToggleLabelEdit(null)
         onRemoveLabel(label.id)
     }
+
+    const btnTxt = label ? 'Save' : 'Create'
 
     return (
         <section className="edit-label">
@@ -44,8 +48,8 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
                 </button>
             </div>
             <div className="save-remove">
-                <button onClick={onSaveButton} className="btn-save">Save</button>
-                <button onClick={onRemoveButton} className="btn-remove">Delete</button>
+                <button onClick={onSaveButton} className="btn-save">{btnTxt}</button>
+                {label && <button onClick={onRemoveButton} className="btn-remove">Delete</button>}
             </div>
         </section>
     )

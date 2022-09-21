@@ -2,16 +2,25 @@ import { GrFormEdit } from 'react-icons/gr'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateTask } from '../../store/actions/task.action'
 import { updateBoard } from '../../store/actions/board.action'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { EditLabel } from './edit-label'
+import { utilService } from '../../services/util.service'
 
 export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
 
     const dispatch = useDispatch()
     let board = useSelector(state => state.boardModule.board)
-    let boardLabels = board.labels
-    const [labelsToRender, setLabelsToRender] = useState(boardLabels)
+    let boardLabelsState = useSelector(state => state.boardModule.board.labels)
+
     const [selectedLabel, setSelectedLabel] = useState()
+    const [boardLabels, setBoardLabels] = useState(boardLabelsState)
+
+    useEffect(() => {
+        setBoardLabels(boardLabelsState)
+        return () => {
+            setSelectedLabel(null)
+        }
+    }, [boardLabelsState])
 
     const handleChange = ({ target }, labelId) => {
         if (target.type === 'checkbox') {
@@ -26,27 +35,35 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
 
         } else if (target.type === 'text') {
             const regex = new RegExp(target.value, 'i')
-            const filteredLabels = boardLabels.filter(label => regex.test(label.title))
-            setLabelsToRender(filteredLabels)
+            const filteredLabels = board.labels.filter(label => regex.test(label.title))
+            setBoardLabels(filteredLabels)
         }
     }
 
-    const onOpenEditLabel = (label) => {
-        setSelectedLabel(label)
+    const onOpenSaveLabel = (label) => {
+        if (label) setSelectedLabel(label)
         onToggleLabelEdit()
     }
 
     const onSaveLabel = (label) => {
-        const labelIdx = board.labels.findIndex(label => label.id === selectedLabel.id)
-        board.labels.splice(labelIdx, 1, label)
+        if (label.id) {
+            const labelIdx = board.labels.findIndex(label => label.id === selectedLabel.id)
+            board.labels.splice(labelIdx, 1, label)
+
+        } else {
+            label.id = utilService.makeId()
+            task.labelIds.push(label.id)
+            board.labels.push(label)
+        }
+        setSelectedLabel(null)
         dispatch(updateBoard(board))
     }
 
     const onRemoveLabel = (labelId) => {
-        board.labels = board.labels.filter(currLabel => currLabel.id !== labelId)
-        dispatch(updateBoard({ ...board }))
+        const labelsToSave = boardLabels.filter(currLabel => currLabel.id !== labelId)
+        board.labels = labelsToSave
+        dispatch(updateBoard(board))
     }
-
     return (
         <section className="labels">
             {isLabelsEdit ?
@@ -67,7 +84,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
                     </div>
                     <p className="sub-header">Labels</p>
                     <ul>
-                        {labelsToRender.map(label => (
+                        {boardLabels.map(label => (
                             <li key={label.id}>
                                 <label htmlFor={label.id}>
                                     <input onChange={(ev) => { handleChange(ev, label.id) }}
@@ -82,11 +99,11 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
                                         </div>
                                     </div>
                                 </label>
-                                <button onClick={() => { onOpenEditLabel(label) }} className="color"><GrFormEdit /></button>
+                                <button onClick={() => { onOpenSaveLabel(label) }} className="edit"><GrFormEdit /></button>
                             </li>
                         ))}
                     </ul>
-                    <button className="create">Create new label</button>
+                    <button onClick={() => { onOpenSaveLabel() }} className="create">Create new label</button>
                 </React.Fragment>
             }
         </section >

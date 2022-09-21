@@ -97,7 +97,6 @@ export function addNewComment(txt, task, comment) {
       const user = getState().userModule.user
       const boardWithActivities = await activityService.addActivity(txt, task, user, board, comment)
       const savedBoard = await boardService.save(boardWithActivities)
-      // dispatch({ type: 'UPDATE_BOARD', board: { ...saveBoard } })
       dispatch(getActionUpdateBoard({ ...savedBoard }))
     }
     catch (err) {

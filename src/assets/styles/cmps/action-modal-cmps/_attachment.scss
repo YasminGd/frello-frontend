@@ -78,10 +78,7 @@ $blue: #0079bf;
     &:hover {
       background-color: #091e4214;
 
-      &:active {
-        background-color: #e4f0f6;
-        color: $blue;
-      }
+      @include activeHoverBlue();
     }
   }
 }

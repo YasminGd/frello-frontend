@@ -1,44 +1,51 @@
-import { useState } from "react"
-
 export const Cover = ({ task, onUpdateTask }) => {
-  const [selectedColor, setSelectedColor] = useState(task.style ? task.style.bgColor : '')
-  const [selectedCover, setSelectedCover] = useState(task.style ? task.style.coverStyle : '')
+  const selectedColor = task.style ? task.style.bgColor : ''
+  const selectedImg = task.style ? task.style.coverImg : ''
+  const selectedCover = task.style ? task.style.isFullyCovered : false
 
   const colors = ['#7BC86C', '#F5DD29', '#FFAF3F', '#EF7564', '#CD8DE5', '#5BA4CF', '#29CCE5', '#6DECA9', '#FF8ED4', '#172B4D']
 
-  const getCoverBackgroundColor = () => {
+  //main background color for the cover options
+  const getCoverOptionsBackgroundColor = () => {
     return selectedColor ? selectedColor : '#5e6c844d'
   }
 
+  //get line colors for the not fully covered option div
   const getNotCoveredItemsColor = () => {
     return selectedColor ? '#091e4299' : '#5e6c844d'
   }
 
+  //get line colors for the fully covered option div
   const getCoveredItemsColor = () => {
     return selectedColor && selectedColor !== '#172B4D' ? '#091e4299' : '#ffffff'
   }
 
-  const onUpdateCover = (color) => {
-    if (selectedColor === color) return
+  //when updating cover color
+  const onUpdateCoverColor = (color) => {
+    if (selectedColor === color && selectedColor !== null) return
     if (task.style) {
       task.style.bgColor = color
       task.style.coverImg = null
-      if (!color) task.style.coverStyle = 'not fully covered'
+      if (!color) task.style.isFullyCovered = false
     }
     else task.style = { bgColor: color }
-    setSelectedColor(color)
     onUpdateTask(task)
   }
 
-  const onUpdateCoverStyle = (coverStyle) => {
-    if (selectedCover === coverStyle || (!task?.style?.coverImg && !selectedColor)) return
-    if (task.style) task.style.coverStyle = coverStyle
-    else task.style = { coverStyle: coverStyle }
-    setSelectedCover(coverStyle)
+  //when updating cover style
+  const onUpdateCoverStyle = (coverOption) => {
+    if (selectedCover === coverOption || (!selectedImg && !selectedColor)) return
+    if (task.style) task.style.isFullyCovered = coverOption
+    else task.style = { isFullyCovered: coverOption }
     onUpdateTask(task)
   }
 
-  const coverBackgroundColor = getCoverBackgroundColor()
+  //render border on cover option
+  const isThereBorderOnCoverOption = (coverOption) => {
+    return selectedCover === coverOption && (selectedColor || selectedImg) ? 'border' : ''
+  }
+
+  const coverBackgroundColor = getCoverOptionsBackgroundColor()
   const notCoveredItemsColor = getNotCoveredItemsColor()
   const coveredItemsColor = getCoveredItemsColor()
 
@@ -46,9 +53,9 @@ export const Cover = ({ task, onUpdateTask }) => {
     <section className="options">
       <p>Size</p>
       <section className="visual-options">
-        <div className={`not-covered-visual-option ${selectedCover === 'not fully covered' && selectedColor ? 'border' : ''}`}
-          style={{ backgroundColor: coverBackgroundColor }}
-          onClick={() => onUpdateCoverStyle('not fully covered')}>
+        <div className={`not-covered-visual-option ${isThereBorderOnCoverOption(false)}`}
+          style={{ background: coverBackgroundColor }}
+          onClick={() => onUpdateCoverStyle(false)}>
           <div className="bottom-main">
             <div className={`bottom-title`}
               style={{ background: notCoveredItemsColor }}
@@ -67,9 +74,9 @@ export const Cover = ({ task, onUpdateTask }) => {
             > </div>
           </div>
         </div>
-        <div className={`covered-visual-option ${selectedCover === 'fully covered' && selectedColor ? 'border' : ''}`}
+        <div className={`covered-visual-option ${isThereBorderOnCoverOption(true)}`}
           style={{ backgroundColor: coverBackgroundColor }}
-          onClick={() => onUpdateCoverStyle('fully covered')}>
+          onClick={() => onUpdateCoverStyle(true)}>
           <div className={`bottom-title`}
             style={{ backgroundColor: coveredItemsColor }}
           > </div>
@@ -78,7 +85,9 @@ export const Cover = ({ task, onUpdateTask }) => {
           > </div>
         </div>
       </section>
-      {selectedColor && <button className="option-button" onClick={() => onUpdateCover(null)}>Remove cover</button>}
+      {(selectedColor || selectedImg) &&
+        <button className="option-button" onClick={() => onUpdateCoverColor(null)}>
+          Remove cover</button>}
     </section>
     <section className="options">
       <p>Colors</p>
@@ -87,9 +96,8 @@ export const Cover = ({ task, onUpdateTask }) => {
           colors.map(color => <button
             key={color}
             className={`${color === selectedColor ? 'border' : ''} color`}
-            onClick={() => onUpdateCover(color)}
+            onClick={() => onUpdateCoverColor(color)}
             style={{ backgroundColor: color }}>
-
           </button>)
         }
       </section>

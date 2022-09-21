@@ -23,7 +23,7 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
     if (task.style) {
       if (task.style.coverImg === attachment.url) {
         task.style.coverImg = null
-        task.style.coverStyle = 'not fully covered'
+        task.style.isFullyCovered = false
       }
       else {
         task.style.coverImg = attachment.url

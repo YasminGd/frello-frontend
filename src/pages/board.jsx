@@ -49,12 +49,8 @@ export const Board = () => {
   }
 
   const addItem = (title, groupId) => {
-    if (groupId) {
-      dispatch(addTask(title, groupId, board._id))
-    }
-    else {
-      dispatch(addGroup(title))
-    }
+    if (groupId) dispatch(addTask(title, groupId, board._id))
+    else dispatch(addGroup(title))
   }
 
   const removeItem = (groupId, taskId) => {

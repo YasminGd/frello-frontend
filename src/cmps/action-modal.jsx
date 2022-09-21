@@ -8,8 +8,9 @@ import { Dates } from './action-modal-cmps/dates'
 import { Labels } from './action-modal-cmps/labels'
 import { Members } from './action-modal-cmps/members'
 import { Users } from './action-modal-cmps/users'
+import { ListActions } from './action-modal-cmps/list-actions'
 
-export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId }) => {
+export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem }) => {
 
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
@@ -42,6 +43,10 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId 
 
       case 'Users':
         return <Users />
+
+      case 'List actions':
+        return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
+
       default:
         break
     }

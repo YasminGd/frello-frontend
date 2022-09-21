@@ -2,8 +2,15 @@ import { useRef } from 'react'
 import { BsPerson, BsCheck2Square, BsSquareHalf } from 'react-icons/bs'
 import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
 import { ImAttachment } from 'react-icons/im'
+import { GoArchive } from 'react-icons/go'
+import { useDispatch } from 'react-redux'
+import { removeTask } from '../../store/actions/task.action'
+import { useNavigate } from 'react-router-dom'
 
-export const TaskDetailsSidebar = ({ onOpenActionModal }) => {
+export const TaskDetailsSidebar = ({ onOpenActionModal, taskId, groupId }) => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     // Refs for action modal position calculation
     const btnAttachmentRef = useRef()
@@ -12,6 +19,7 @@ export const TaskDetailsSidebar = ({ onOpenActionModal }) => {
     const btnChecklistRef = useRef()
     const btnDatesRef = useRef()
     const btnCoverRef = useRef()
+    const btnRemoveRef = useRef()
 
     const actionBtns = [
         {
@@ -39,6 +47,7 @@ export const TaskDetailsSidebar = ({ onOpenActionModal }) => {
             ref: btnAttachmentRef,
             iconCmp: <ImAttachment className="icon" />,
         },
+
         {
             type: 'Cover',
             ref: btnCoverRef,
@@ -50,8 +59,13 @@ export const TaskDetailsSidebar = ({ onOpenActionModal }) => {
                     }}
                 />
             ),
-        },
+        }
     ]
+
+    const onRemoveTask = () => {
+        dispatch(removeTask(groupId, taskId))
+        navigate(-1)
+    }
 
     return (
         <section className="task-sidebar">
@@ -66,6 +80,8 @@ export const TaskDetailsSidebar = ({ onOpenActionModal }) => {
                     {btn.type}
                 </button>
             ))}
+
+            <button onClick={onRemoveTask} className='btn-sidebar' ref={btnRemoveRef}><GoArchive className="icon" />Delete</button>
         </section>
     )
 }

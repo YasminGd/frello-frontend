@@ -51,6 +51,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
             board.labels.splice(labelIdx, 1, label)
 
         } else {
+            if (!board.labels) board.labels = []
             label.id = utilService.makeId()
             task.labelIds.push(label.id)
             board.labels.push(label)

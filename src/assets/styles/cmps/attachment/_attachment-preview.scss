@@ -18,7 +18,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // height: 100%;
     flex-grow: 1;
     justify-content: space-between;
     padding: 8px 0;
@@ -43,9 +42,6 @@
       }
     }
 
-    // .attachment-options {
-    //   color: #5e6c84;
-
     .make-attachment-cover {
       display: block;
       text-decoration: underline;
@@ -55,8 +51,6 @@
 
       .svg-holder {
         font-size: 14px;
-        // width: 12px;
-        // height: 12px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -68,7 +62,6 @@
           font-size: 10px;
         }
       }
-
 
       &:hover {
         cursor: pointer;

@@ -8,7 +8,6 @@ export const AppHeader = () => {
   const user = useSelector((state) => state.userModule.loggedInUser)
   const location = useLocation()
 
-  console.log(user)
   const getStyleClass = () => {
     let styleClass
     if (location.pathname === '/') styleClass = 'home-header fixed'

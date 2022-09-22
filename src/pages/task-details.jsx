@@ -50,13 +50,16 @@ export const TaskDetails = () => {
 
   const activities = getActivities()
 
+  const btnCloseStyle = task.style?.bgColor ? 'on-cover' : ''
+  console.log('TaskDetails ~ btnCloseStyle', btnCloseStyle)
+
   //prettier-ignore
   return (
     <React.Fragment>
       <section onClick={onGoBack} className="screen">
         <section className="task-details-container">
           <section className="task-details" onClick={(ev) => ev.stopPropagation()}>
-            <button className="close-task-details" onClick={onGoBack}><IoCloseOutline /></button>
+            <button className={`close-task-details ${btnCloseStyle}`} onClick={onGoBack}><IoCloseOutline /></button>
             {task.style?.coverImg && <section className="cover-color img">
               <img src={task.style.coverImg} />
             </section>}

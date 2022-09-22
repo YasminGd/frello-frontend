@@ -22,7 +22,7 @@ export const TaskLabelsList = ({ labelIds }) => {
         <div className="label-container" key={label.id}>
           <div
             onClick={toggleLabelsSize}
-            className={`task-labels-preview ${isLabelsLarge ? label.class : label.color} ${labelsStyle}`}
+            className={`task-labels-preview ${isLabelsLarge ? label.class : label.color + '-hoverable'} ${labelsStyle}`}
             key={label.id}
           >
             {isLabelsLarge && (

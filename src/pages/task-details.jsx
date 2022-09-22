@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -28,7 +28,7 @@ export const TaskDetails = () => {
     dispatch(updateTask(groupId, task))
   }
 
-  const onGoBack = () => {
+  const onGoBack = (ev) => {
     navigate(-1)
   }
 
@@ -60,7 +60,7 @@ export const TaskDetails = () => {
           <section className="task-details" onClick={(ev) => ev.stopPropagation()}>
             <button className={`close-task-details ${btnCloseStyle}`} onClick={onGoBack}><IoCloseOutline /></button>
             {task.style?.coverImg && <section className="cover-color img">
-              <img src={task.style.coverImg} />
+              <img src={task.style.coverImg} alt="Background cover" />
             </section>}
             {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>}
 

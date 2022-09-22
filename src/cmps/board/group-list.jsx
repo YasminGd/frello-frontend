@@ -10,7 +10,6 @@ export const GroupList = ({ board, addItem, removeItem }) => {
   const onToggleAdd = () => {
     setIsAddOpen(!isAddOpen)
   }
-
   return (
     <Droppable droppableId={board._id} direction="horizontal" type="group">
       {(provided) => (

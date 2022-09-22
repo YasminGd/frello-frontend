@@ -7,7 +7,7 @@ export function updateTask(groupId, task, activityTxt, boardMember) {
     try {
       const board = getState().boardModule.board
       const savedBoard = await taskService.update(board, groupId, task, activityTxt, boardMember)
-      dispatch(getActionUpdateBoard(getActionUpdateBoard({ ...savedBoard })))
+      dispatch(getActionUpdateBoard({ ...savedBoard }))
 
     } catch (err) {
       console.log('Cannot update task', err)

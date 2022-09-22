@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { SiTrello } from 'react-icons/si'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
 const logo = require('../assets/img/logo-frello.png')
 
 export const AppHeader = () => {
+  const user = useSelector(state => state.userModule.loggedInUser)
   const location = useLocation()
 
+  console.log(user);
   const getStyleClass = () => {
     let styleClass
     if (location.pathname === '/') styleClass = 'home-header fixed'
@@ -33,6 +37,9 @@ export const AppHeader = () => {
           Get Frello for free
         </Link>
       </nav>
+      {!styleClass && user && <div className="user-img">
+                  <img src={user.imgUrl} alt="" />
+                </div>}
     </section>
   )
 }

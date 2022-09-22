@@ -3,7 +3,11 @@
   display: flex;
   gap: 4px;
   flex-wrap: wrap;
-  padding-top: 6px;
+  padding-top: 5px;
+
+  &.large {
+    margin-bottom: 4px;
+  }
 
   .label-container {
     height: 16px;

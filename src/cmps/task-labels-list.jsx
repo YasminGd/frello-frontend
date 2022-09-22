@@ -17,7 +17,7 @@ export const TaskLabelsList = ({ labelIds }) => {
 
     const labelsStyle = isLabelsLarge ? 'large' : ''
     return (
-        <section className="task-labels-list">
+        <section className={`task-labels-list ${labelsStyle}`}>
             {labelsToRender.map(label => (
                 <div className="label-container">
                     <div

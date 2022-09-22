@@ -7,7 +7,7 @@ export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onTog
     <Droppable droppableId={groupId} type="task">
       {(provided) => (
         <section
-          className="task-list"
+          className={`task-list ${isAddOpen? 'full' : ''}`}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >

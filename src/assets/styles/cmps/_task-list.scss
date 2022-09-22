@@ -9,6 +9,10 @@
     max-height: calc(100vh - 44px - 52px - 108px);
     overflow-y: auto;
 
+    &.full {
+    max-height: calc(100vh - 44px - 52px - 72px);
+    }
+
     .add-item {
         padding: 0;
         margin: 0 4px;

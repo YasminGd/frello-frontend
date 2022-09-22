@@ -21,10 +21,6 @@ export const Board = () => {
 
   const board = useSelector((state) => state.boardModule.board)
 
-  const getPhotos = async () => {
-    const photos = await unsplashService.getPhotos()
-  }
-
   useEffect(() => {
     dispatch(getBoard(params.boardId))
     // setBoard(boardFromStore)

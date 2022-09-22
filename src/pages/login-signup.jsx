@@ -35,13 +35,13 @@ export const LoginSignup = () => {
     }),
     onSubmit: (values) => {
       if (status === 'signup') {
-        ; (async () => {
+        ;(async () => {
           await dispatch(signup(values))
           navigate('/workspace')
         })()
       }
       if (status === 'login') {
-        ; (async () => {
+        ;(async () => {
           await dispatch(login(values))
           navigate('/workspace')
         })()

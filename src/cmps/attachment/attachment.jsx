@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { cloudinaryService } from '../../services/cloudinary.service'
 import { utilService } from '../../services/util.service'
 import { addImg } from '../../store/actions/task.action'
-import { Loader } from '../loader'
+import { Loader } from '../global/loader'
 
 export const Attachment = ({ task, groupId, setActionModal }) => {
   const [attachedLink, setAttachedLink] = useState('')
@@ -35,25 +35,26 @@ export const Attachment = ({ task, groupId, setActionModal }) => {
 
   return (
     <section className="attachment">
-      {isAdding ? 
-      <Loader/> : 
-      <React.Fragment>
-      <input type="file" accept="image/*" onChange={onUploadImg} />
-      <p>Computer</p>
+      {isAdding ? (
+        <Loader />
+      ) : (
+        <React.Fragment>
+          <input type="file" accept="image/*" onChange={onUploadImg} />
+          <p>Computer</p>
 
-      <div className="seperator"></div>
-      <div className="input-container">
-        <label htmlFor="addLink">Attach a link</label>
-        <input
-          id="addLink"
-          onChange={(ev) => setAttachedLink(ev.target.value)}
-          type="text"
-          placeholder="Paste any link here..."
-        />
-      </div>
-      <button onClick={onAttachLink}>Attach</button>
-      </React.Fragment>
-      }
+          <div className="seperator"></div>
+          <div className="input-container">
+            <label htmlFor="addLink">Attach a link</label>
+            <input
+              id="addLink"
+              onChange={(ev) => setAttachedLink(ev.target.value)}
+              type="text"
+              placeholder="Paste any link here..."
+            />
+          </div>
+          <button onClick={onAttachLink}>Attach</button>
+        </React.Fragment>
+      )}
     </section>
   )
 }

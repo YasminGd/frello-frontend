@@ -1,8 +1,7 @@
 import { GrAttachment } from 'react-icons/gr'
-import { AttachmentPreview } from './task-details-cmps/attachment-preview'
+import { AttachmentPreview } from './attachment-preview'
 
 export const TaskAttachments = ({ task, groupId }) => {
-
   const { attachments } = task
 
   return (
@@ -15,12 +14,7 @@ export const TaskAttachments = ({ task, groupId }) => {
       <div className="attachments-body">
         {attachments &&
           attachments.map((attachment) => (
-            <AttachmentPreview
-              key={attachment.id}
-              task={task}
-              attachment={attachment}
-              groupId={groupId}
-            />
+            <AttachmentPreview key={attachment.id} task={task} attachment={attachment} groupId={groupId} />
           ))}
       </div>
     </section>

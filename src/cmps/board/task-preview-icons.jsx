@@ -3,10 +3,10 @@ import { FiPaperclip } from 'react-icons/fi'
 import { GrTextAlignFull } from 'react-icons/gr'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { BiCheckbox } from 'react-icons/bi'
-import { utilService } from '../services/util.service'
+import { utilService } from '../../services/util.service'
 import { BsCheck2Square } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
-import { updateTask } from '../store/actions/task.action'
+import { updateTask } from '../../store/actions/task.action'
 import { TbCheckbox } from 'react-icons/tb'
 import { useSelector } from 'react-redux'
 import { IoChatbubbleOutline } from 'react-icons/io5'
@@ -15,7 +15,8 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
   const dispatch = useDispatch()
   const board = useSelector((state) => state.boardModule.board)
   const boardMembers = board.members
-  const taskComments = board?.activities.filter(activity => activity?.task?.id === task.id && activity?.comment) || null
+  const taskComments =
+    board?.activities.filter((activity) => activity?.task?.id === task.id && activity?.comment) || null
 
   const membersToRender = boardMembers ? boardMembers.filter((member) => task.memberIds?.includes(member._id)) : []
 
@@ -23,7 +24,7 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
     if (!task.checklists || task.checklists.length === 0) return
 
     const todosLength = task.checklists.reduce((a, b) => a + b.todos.length, 0)
-    const doneTodosLength = task.checklists.reduce((a, b) => a + b.todos.filter(todo => todo.isDone).length, 0)
+    const doneTodosLength = task.checklists.reduce((a, b) => a + b.todos.filter((todo) => todo.isDone).length, 0)
 
     return { doneTodosLength, todosLength }
   }
@@ -81,25 +82,28 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
             <GrTextAlignFull />
           </section>
         )}
-        {
-          taskComments && taskComments.length !== 0 &&
+        {taskComments && taskComments.length !== 0 && (
           <section className={`attachments-icon`}>
-            < IoChatbubbleOutline />
+            <IoChatbubbleOutline />
             {taskComments.length}
           </section>
-        }
+        )}
         {task.attachments && task.attachments.length !== 0 && (
           <section className="attachments-icon">
             <FiPaperclip />
             {task.attachments.length}
           </section>
         )}
-        {task.checklists && task.checklists.length !== 0 && (todoDetails.doneTodosLength !== 0 || todoDetails.todosLength !== 0) && (
-          <section className={`attachments-icon ${todoDetails.doneTodosLength === todoDetails.todosLength ? 'done' : ''}`}>
-            <BsCheck2Square />
-            {`${todoDetails.doneTodosLength}/${todoDetails.todosLength}`}
-          </section>
-        )}
+        {task.checklists &&
+          task.checklists.length !== 0 &&
+          (todoDetails.doneTodosLength !== 0 || todoDetails.todosLength !== 0) && (
+            <section
+              className={`attachments-icon ${todoDetails.doneTodosLength === todoDetails.todosLength ? 'done' : ''}`}
+            >
+              <BsCheck2Square />
+              {`${todoDetails.doneTodosLength}/${todoDetails.todosLength}`}
+            </section>
+          )}
       </section>
       {task.memberIds && task.memberIds.length !== 0 && (
         <section className="members-img">

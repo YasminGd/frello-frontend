@@ -1,17 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
 import { IoChevronBack } from 'react-icons/io5'
-import { Cover } from './action-modal-cmps/cover'
-import { Attachment } from './action-modal-cmps/attachment'
-import { CheckList } from './action-modal-cmps/check-list'
-import { Dates } from './action-modal-cmps/dates'
-import { Labels } from './action-modal-cmps/labels'
-import { Members } from './action-modal-cmps/members'
-import { Users } from './action-modal-cmps/users'
-import { ListActions } from './action-modal-cmps/list-actions'
+import { Cover } from '../task-details/cover'
+import { Attachment } from '../attachment/attachment'
+import { CheckList } from '../checklist/check-list'
+import { Dates } from '../dates/dates'
+import { Labels } from '../labels/labels'
+import { Members } from '../members/members'
+import { Users } from '../board/users'
+import { ListActions } from '../board/list-actions'
 
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem }) => {
-
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
   const modalRef = useRef()
@@ -22,7 +21,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
     }
     return () => {
       document.onmousedown = null
-      }
+    }
   }, [])
 
   const handleClickOutside = (ev) => {
@@ -47,7 +46,9 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
       case 'Labels':
-        return <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
+        return (
+          <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
+        )
 
       case 'Checklist':
         return <CheckList setActionModal={setActionModal} />

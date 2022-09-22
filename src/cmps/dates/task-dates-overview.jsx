@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { utilService } from '../services/util.service'
-import { updateTask } from '../store/actions/task.action'
+import { utilService } from '../../services/util.service'
+import { updateTask } from '../../store/actions/task.action'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
 export const TaskDatesOverview = ({ task, groupId, onOpenActionModal }) => {

@@ -10,7 +10,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import { addTask, removeTask } from '../store/actions/task.action'
 import { addGroup, removeGroup } from '../store/actions/group.action'
 import { boardService } from '../services/board.service.js'
-import { Loader } from '../cmps/loader.jsx'
+import { Loader } from '../cmps/global/loader.jsx'
 import { socketService } from '../services/socket.service.js'
 import { unsplashService } from '../services/unsplash.service.js'
 
@@ -92,21 +92,23 @@ export const Board = () => {
 
   return (
     <section className="board" style={style}>
-      {!board ? <Loader/>:
-      <React.Fragment>
-        <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
-      <DragDropContext
-        // onDragStart={onDragStart}
-        // onDragUpdate={onDragUpdate}
-        onDragEnd={onDragEnd}
-      >
-        <GroupList board={board} addItem={addItem} removeItem={removeItem} />
-      </DragDropContext>
-      <Routes>
-        <Route path=":groupId/:taskId" element={<TaskDetails />} />
-      </Routes>
-      </React.Fragment>
-      }
+      {!board ? (
+        <Loader />
+      ) : (
+        <React.Fragment>
+          <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
+          <DragDropContext
+            // onDragStart={onDragStart}
+            // onDragUpdate={onDragUpdate}
+            onDragEnd={onDragEnd}
+          >
+            <GroupList board={board} addItem={addItem} removeItem={removeItem} />
+          </DragDropContext>
+          <Routes>
+            <Route path=":groupId/:taskId" element={<TaskDetails />} />
+          </Routes>
+        </React.Fragment>
+      )}
     </section>
   )
 }

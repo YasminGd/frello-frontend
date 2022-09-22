@@ -6,7 +6,7 @@ import { updateBoard } from '../../store/actions/board.action'
 import { BsThreeDots, BsPersonPlus } from 'react-icons/bs'
 import { BoardSideMenu } from './board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
-import { ActionModal } from '../action-modal'
+import { ActionModal } from '../global/action-modal'
 
 export const BoardHeader = ({ changeBgColor, changeTitle }) => {
   const board = useSelector((state) => state.boardModule.board)

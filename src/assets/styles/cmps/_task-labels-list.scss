@@ -2,8 +2,12 @@
   width: 100%;
   display: flex;
   gap: 4px;
-  margin-bottom: 8px;
   flex-wrap: wrap;
+  padding-top: 6px;
+
+  .label-container {
+    height: 16px;
+  }
 
   .task-labels-preview {
     height: 8px;
@@ -29,46 +33,5 @@
 
   .label-title {
     font-size: 12px;
-  }
-}
-
-.green-darker {
-  background-color: hsla(110, 46%, 60%);
-  &:hover {
-    background-color: darken($color: hsla(110, 46%, 60%), $amount: 12%);
-  }
-}
-
-.yellow-darker {
-  background-color: hsla(53, 91%, 56%);
-  &:hover {
-    background-color: darken($color: hsla(53, 91%, 56%), $amount: 12%);
-  }
-}
-.orange-darker {
-  background-color: hsla(35, 100%, 62%);
-  &:hover {
-    background-color: darken($color: hsla(35, 100%, 62%), $amount: 12%);
-  }
-}
-
-.red-darker {
-  background-color: hsla(7, 81%, 66%);
-  &:hover {
-    background-color: darken($color: hsla(7, 81%, 66%), $amount: 12%);
-  }
-}
-
-.purple-darker {
-  background-color: hsla(284, 63%, 73%);
-  &:hover {
-    background-color: darken($color: hsla(284, 63%, 73%), $amount: 12%);
-  }
-}
-
-.dark-blue-darker {
-  background-color: hsla(202, 55%, 58%);
-  &:hover {
-    background-color: darken($color: hsla(202, 55%, 58%), $amount: 12%);
   }
 }

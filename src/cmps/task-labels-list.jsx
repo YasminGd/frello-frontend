@@ -19,16 +19,18 @@ export const TaskLabelsList = ({ labelIds }) => {
     return (
         <section className="task-labels-list">
             {labelsToRender.map(label => (
-                <div
-                    onClick={toggleLabelsSize}
-                    className={`task-labels-preview ${isLabelsLarge ? label.class : label.color} ${labelsStyle}`}
-                    key={label.id}>
-                    {isLabelsLarge &&
-                        <React.Fragment>
-                            <div className={`color-circle ${label.color}`}></div>
-                            <span className="label-title">{label.title}</span>
-                        </React.Fragment>
-                    }
+                <div className="label-container">
+                    <div
+                        onClick={toggleLabelsSize}
+                        className={`task-labels-preview ${isLabelsLarge ? label.class : label.color} ${labelsStyle}`}
+                        key={label.id}>
+                        {isLabelsLarge &&
+                            <React.Fragment>
+                                <div className={`color-circle ${label.color}`}></div>
+                                <span className="label-title">{label.title}</span>
+                            </React.Fragment>
+                        }
+                    </div>
                 </div>
             ))}
         </section>

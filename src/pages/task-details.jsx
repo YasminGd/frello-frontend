@@ -51,7 +51,6 @@ export const TaskDetails = () => {
   const activities = getActivities()
 
   const btnCloseStyle = task.style?.bgColor ? 'on-cover' : ''
-  console.log('TaskDetails ~ btnCloseStyle', btnCloseStyle)
 
   //prettier-ignore
   return (

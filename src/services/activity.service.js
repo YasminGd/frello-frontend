@@ -6,18 +6,13 @@ export const activityService = {
 }
 
 function addActivity(txt, task, board, comment, user) {
-  // const miniUser = {
-  //   fullname: user.fullname,
-  //   imgUrl: user.imgUrl,
-  // }
   const miniUser = user || userService.getLoggedInUser()
-  console.log(miniUser)
 
   const miniTask = task
     ? {
-        id: task.id,
-        title: task.title,
-      }
+      id: task.id,
+      title: task.title,
+    }
     : null
 
   const activity = {

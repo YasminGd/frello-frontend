@@ -22,8 +22,12 @@
       bottom: -58px;
       z-index: 10;
 
-      .starred {
+      &.starred {
+        display: block;
+
+        svg {
         color: #eed847;
+        }
       }
     }
   }

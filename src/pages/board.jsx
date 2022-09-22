@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
 import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/board/group-list.jsx'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoard, updateBoard } from '../store/actions/board.action'
@@ -20,6 +20,10 @@ export const Board = () => {
   // const [boardId, setBoardId] = useState(params.boardId)
 
   const board = useSelector((state) => state.boardModule.board)
+
+  const getPhotos = async () => {
+    const photos = await unsplashService.getPhotos()
+  }
 
   useEffect(() => {
     dispatch(getBoard(params.boardId))
@@ -39,8 +43,8 @@ export const Board = () => {
 
   const getBoardStyle = () => {
     if (!board) return
-    if (board?.style.background) return { background: `url('${board.style.background}') center center / cover` }
-    else if (board?.style.backgroundColor) return { backgroundColor: `${board.style.backgroundColor}` }
+    if (board?.style?.background) return { background: `url('${board.style.background}') center center / cover` }
+    else if (board?.style?.backgroundColor) return { backgroundColor: `${board.style.backgroundColor}` }
     return { backgroundColor: `pink` }
   }
 
@@ -84,12 +88,13 @@ export const Board = () => {
     dispatch(updateBoard(updatedBoard))
   }
 
-  if (!board) return <Loader />
   const style = getBoardStyle()
 
   return (
     <section className="board" style={style}>
-      <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
+      {!board ? <Loader/>:
+      <React.Fragment>
+        <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
       <DragDropContext
         // onDragStart={onDragStart}
         // onDragUpdate={onDragUpdate}
@@ -100,6 +105,8 @@ export const Board = () => {
       <Routes>
         <Route path=":groupId/:taskId" element={<TaskDetails />} />
       </Routes>
+      </React.Fragment>
+      }
     </section>
   )
 }

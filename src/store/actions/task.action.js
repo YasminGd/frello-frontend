@@ -3,10 +3,11 @@ import { getActionUpdateBoard } from './board.action'
 
 export function updateTask(groupId, task, activityTxt, boardMember) {
   return async (dispatch, getState) => {
+    console.log(task);
     try {
       const board = getState().boardModule.board
       const savedBoard = await taskService.update(board, groupId, task, activityTxt, boardMember)
-      dispatch(getActionUpdateBoard(structuredClone(savedBoard)))
+      dispatch(getActionUpdateBoard(getActionUpdateBoard({ ...savedBoard })))
 
     } catch (err) {
       console.log('Cannot update task', err)
@@ -35,7 +36,6 @@ export function addImg(imgUrl, task, groupId) {
       const user = getState().userModule.user
       const savedBoard = await taskService.addImg(imgUrl, task, groupId, board, user)
       dispatch(getActionUpdateBoard({ ...savedBoard }))
-
     } catch (err) {
       console.log('Cannot add image', err)
     }

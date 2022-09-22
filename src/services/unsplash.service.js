@@ -9,16 +9,17 @@ const photos = _loadFromStorage(KEY) || null
 
 async function getPhotos(searchWords) {
     // Defining our variables
+    console.log(searchWords);
     if(!searchWords && photos) return photos
-    const BASE_URL = 'https://api.unsplash.com/photos/'
     const ACCESS_KEY = 'vuoea2539QLM1SmLGMMoXzzUFtAGa1No7X6sFclUQa4'
-    let URL = `${BASE_URL}?client_id=${ACCESS_KEY}`
-    if(searchWords) URL = URL + `/topics/${searchWords}/photos`
+    let URL = `https://api.unsplash.com/search/photos?page=1&per_page=30&query=${searchWords}&client_id=${ACCESS_KEY}`
+    // let URL = `${BASE_URL}?client_id=${ACCESS_KEY}`
+    // if(searchWords) URL = URL + `/topics/${searchWords}/photos?page=1&per_page=14`
     try {
         const response = await axios.get(URL)
         const {data} = response
-        const photos = data.map((photo) =>( {backgroundColor: photo.color, background:photo.urls.full }))
-        console.log(photos);
+        console.log(data);
+        const photos = data.results.map((photo) =>( {backgroundColor: photo.color, background:photo.urls.full, thumbnail: photo.urls.small }))
         _saveToStorage(KEY,photos)
         return photos
     } catch (err) {

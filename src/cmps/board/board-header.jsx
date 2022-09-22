@@ -8,7 +8,7 @@ import { BoardSideMenu } from './board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from '../global/action-modal'
 
-export const BoardHeader = ({ changeBgColor, changeTitle }) => {
+export const BoardHeader = ({ changeBackground, changeTitle }) => {
   const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
@@ -55,6 +55,8 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
     setActionModal({ type, pos })
   }
 
+  const rightStyle = actionModal ? 'open' : ''
+
   return (
     <section className="board-header">
       <section className="left">
@@ -92,13 +94,13 @@ export const BoardHeader = ({ changeBgColor, changeTitle }) => {
           <span>Share</span>
         </button>
       </section>
-      <section className="right">
+      <section className={`right ${isSideMenuOpen}`}>
         <button onClick={renderSideMenu}>
           <BsThreeDots />
           Show menu
         </button>
       </section>
-      <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBgColor={changeBgColor} />
+      <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBackground={changeBackground} />
       {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}
     </section>
   )

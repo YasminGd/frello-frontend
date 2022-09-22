@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
 import { addChecklist } from "../../store/actions/task.action"
+import { Loader } from "../global/loader"
 
 export const CheckList = ({ setActionModal }) => {
 
     const [title, setTitle] = useState('Checklist')
+    const [isAdding, setIsAdding] = useState(false)
     const params = useParams()
     const dispatch = useDispatch()
 
@@ -16,12 +18,13 @@ export const CheckList = ({ setActionModal }) => {
 
     const onAddChecklist = (ev) => {
         ev.preventDefault()
+        setIsAdding(true)
         dispatch(addChecklist(title, params.taskId, params.groupId))
         setActionModal(null)
     }
 
     return (<section className="check-list">
-        <div className="input-container">
+        {isAdding ? <Loader /> : <div className="input-container">
             <form onSubmit={onAddChecklist}>
                 <label htmlFor="addTitle">Title</label>
                 <input
@@ -33,6 +36,6 @@ export const CheckList = ({ setActionModal }) => {
                 />
                 <button className="blue btn">Add</button>
             </form>
-        </div>
+        </div>}
     </section >)
 }

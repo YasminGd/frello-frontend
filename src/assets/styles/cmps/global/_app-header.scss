@@ -11,7 +11,8 @@
   width: 100%;
   color: white;
   min-height: 44px;
-  border-bottom: 1px solid hsla(218, 54%, 19.6%, 0.16);
+  border-bottom: 1px solid hsla(0,0%,100%,0.16);
+  transition: background-color 300ms;
 
   &.fixed {
     position: fixed;

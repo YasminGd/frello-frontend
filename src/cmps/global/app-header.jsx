@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 const logo = require('../../assets/img/logo-frello.png')
 
 export const AppHeader = () => {
+  const board = useSelector((state) => state.boardModule.board)
   const user = useSelector((state) => state.userModule.loggedInUser)
   const location = useLocation()
 
@@ -16,10 +17,14 @@ export const AppHeader = () => {
     return styleClass
   }
 
+  const getStyleColor = () => {
+    return board?.style?.backgroundColor ? {backgroundColor: board.style.backgroundColor} : {}
+  }
+
   const styleClass = getStyleClass()
 
   return (
-    <section className={`app-header ${styleClass}`}>
+    <section className={`app-header ${styleClass}`} style={getStyleColor()}>
       <Link to="/workspace">
         <div className="main-logo">
           <SiTrello />

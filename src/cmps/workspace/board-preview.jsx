@@ -20,9 +20,9 @@ export const BoardPreview = ({ board, onToggleStarred }) => {
         <span className="board-hover">
           <div className="board-preview-details">
             <h3>{board.title}</h3>
-            <div className="board-star">
+            <div className={`board-star ${board.isStarred ? 'starred' : ''}`}>
               {board.isStarred ? (
-                <AiFillStar className="starred" onClick={(ev) => onToggleStarred(ev, board._id)} />
+                <AiFillStar onClick={(ev) => onToggleStarred(ev, board._id)} />
               ) : (
                 <AiOutlineStar onClick={(ev) => onToggleStarred(ev, board._id)} />
               )}

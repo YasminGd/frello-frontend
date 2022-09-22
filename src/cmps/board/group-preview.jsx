@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { TaskList } from '../task-list.jsx'
 import { DynamicTextarea } from '../dynamic-textarea.jsx'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { BsPlusLg } from 'react-icons/bs'
 import { ActionModal } from '../action-modal.jsx'
 
 //prettier-ignore
@@ -49,7 +49,7 @@ export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging 
       />
       {!isAddOpen &&
         <button className="add-task-button" onClick={onToggleAdd}>
-          <span><AiOutlinePlus />Add a card</span>
+          <span><BsPlusLg />Add a card</span>
         </button>
       }
       {actionModal && <ActionModal

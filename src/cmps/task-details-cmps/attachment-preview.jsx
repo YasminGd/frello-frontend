@@ -7,7 +7,7 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
   const dispatch = useDispatch()
 
   const onDeleteAttachment = () => {
-    if (task.style.coverImg === attachment.url) task.style.coverImg = null
+    if (task.style?.coverImg === attachment.url) task.style.coverImg = null
     const { id } = attachment
     const attachmentTitle = attachment.url.split('/').pop()
     const taskToUpdate = {

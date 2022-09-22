@@ -59,7 +59,7 @@
     background-color: transparent;
     transition: none;
     margin-bottom: 8px;
-    padding-left: 2px;
+    padding-left: 4px;
     // height: 40px;
 
     span {
@@ -68,6 +68,11 @@
       align-items: center;
       padding: 6px 8px;
       gap: 5px;
+
+      svg {
+        font-size: 12px;
+        margin-right: 1px;
+      }
     }
 
     &:hover {

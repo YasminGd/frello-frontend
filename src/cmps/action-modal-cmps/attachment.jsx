@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { cloudinaryService } from '../../services/cloudinary.service'
 import { utilService } from '../../services/util.service'
 import { addImg } from '../../store/actions/task.action'
+import { Loader } from '../loader'
 
 export const Attachment = ({ task, groupId, setActionModal }) => {
   const [attachedLink, setAttachedLink] = useState('')
+  const [isAdding, setIsAdding] = useState(false)
   const dispatch = useDispatch()
 
   const onAttachLink = () => {
@@ -18,6 +20,7 @@ export const Attachment = ({ task, groupId, setActionModal }) => {
 
   const onUploadImg = async (ev) => {
     try {
+      setIsAdding(true)
       const url = await cloudinaryService.uploadImg(ev)
       onAddImg(url)
     } catch (err) {
@@ -25,13 +28,16 @@ export const Attachment = ({ task, groupId, setActionModal }) => {
     }
   }
 
-  const onAddImg = (imgUrl) => {
+  const onAddImg = async (imgUrl) => {
     dispatch(addImg(imgUrl, task, groupId))
     setActionModal(null)
   }
 
   return (
     <section className="attachment">
+      {isAdding ? 
+      <Loader/> : 
+      <React.Fragment>
       <input type="file" accept="image/*" onChange={onUploadImg} />
       <p>Computer</p>
 
@@ -46,6 +52,8 @@ export const Attachment = ({ task, groupId, setActionModal }) => {
         />
       </div>
       <button onClick={onAttachLink}>Attach</button>
+      </React.Fragment>
+      }
     </section>
   )
 }

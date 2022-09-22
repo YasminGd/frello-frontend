@@ -6,6 +6,7 @@
   margin: auto;
   padding: 40px;
   padding-top:47px;
+  min-height: calc(100vh - 44px);
 
   .title {
     display: flex;
@@ -13,15 +14,16 @@
     color: #172b4d;
     font-size: 0.8547rem;
     padding: 0 0 11px;
+    margin-inline-start: 4px;
 
     .title-icon {
       color: #42526e;
       font-size: 1.5rem;
-      margin-inline-end: 8px;
+      margin-inline-end: 12px;
     }
   }
 
   .starred-boards {
-    margin-bottom: 10px;
+    margin-bottom:45px;
   }
 }

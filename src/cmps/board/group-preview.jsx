@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
-import { TaskList } from '../task-list.jsx'
-import { DynamicTextarea } from '../dynamic-textarea.jsx'
+import { TaskList } from './task-list.jsx'
+import { DynamicTextarea } from '../global/dynamic-textarea.jsx'
 import { BsPlusLg } from 'react-icons/bs'
-import { ActionModal } from '../action-modal.jsx'
+import { ActionModal } from '../global/action-modal.jsx'
 
 //prettier-ignore
 export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging }) => {
@@ -60,4 +60,4 @@ export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging 
       />}
     </section>
   )
-} 
+}

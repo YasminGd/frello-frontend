@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadBoards, updateBoard } from '../store/actions/board.action'
 import { BoardList } from '../cmps/workspace/board-list'
 import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai'
-import { Loader } from '../cmps/loader'
+import { Loader } from '../cmps/global/loader'
 
 export const Workspace = () => {
   const boards = useSelector((state) => state.boardModule.boards)
@@ -28,7 +28,9 @@ export const Workspace = () => {
 
   return (
     <section className="workspace">
-      {!boards.length ? <Loader /> :
+      {!boards.length ? (
+        <Loader />
+      ) : (
         <section className="all-boards">
           <section className="starred-boards">
             <div className="title">
@@ -49,7 +51,7 @@ export const Workspace = () => {
             </div>
           </section>
         </section>
-      }
+      )}
     </section>
   )
 }

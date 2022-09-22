@@ -1,0 +1,130 @@
+.task-preview-icons {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 3px;
+  flex-wrap: wrap;
+
+  .left-icons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3.8px;
+    margin-left: -2px;
+
+    & > * {
+      margin: 4px 0 0 0;
+      padding: 2px 6px;
+    }
+
+    .date-container {
+      display: flex;
+      align-items: center;
+      color: #5e6c84;
+      margin-bottom: 4px;
+
+      &.completed {
+        background-color: #61bd4f;
+        color: white;
+        border-radius: 3px;
+
+        &:hover {
+          background-color: #519839;
+
+          .checkbox-icon {
+            display: none;
+          }
+
+          .done-checkbox-icon {
+            display: flex;
+          }
+        }
+      }
+
+      &.overdue {
+        background-color: #ec9488;
+        color: white;
+        border-radius: 3px;
+
+        &:hover {
+          background-color: #eb5a46;
+        }
+      }
+
+      &.duesoon {
+        background-color: #f2d600;
+        color: white;
+        border-radius: 3px;
+
+        &:hover {
+          background-color: #d9b51c;
+        }
+      }
+
+      &:hover {
+        .clock-icon {
+          display: none;
+        }
+
+        .checkbox-icon {
+          display: flex;
+        }
+      }
+
+      .clock-icon {
+        display: flex;
+        align-items: center;
+      }
+
+      .checkbox-icon {
+        display: none;
+        align-items: center;
+
+        svg {
+          font-size: 18px;
+          margin-inline-end: 2px;
+        }
+      }
+
+      .done-checkbox-icon {
+        display: none;
+        align-items: center;
+      }
+
+      svg {
+        font-size: 16px;
+        margin-inline-end: 4px;
+      }
+    }
+
+    .attachments-icon {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      color: #5e6c84;
+
+      &.done {
+        background-color: #61bd4f;
+        color: white;
+      }
+    }
+  }
+
+  .members-img {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+
+    .member-img {
+      height: 28px;
+      width: 28px;
+      margin: 4px 0 0 4px;
+      img {
+        border-radius: 25em;
+      }
+    }
+  }
+}

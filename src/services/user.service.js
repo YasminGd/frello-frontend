@@ -53,7 +53,6 @@ function getLoggedInUser() {
 
 async function getUsers() {
   try {
-    console.log('GET USERS')
     const users = await httpService.get(BASE_URL)
     // console.log(`users:`, users)
     if (users)

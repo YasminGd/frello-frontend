@@ -18,56 +18,73 @@
 @import 'pages/workspace';
 @import 'pages/login-signup';
 
-// COMPONENTS
-@import 'cmps/app-header';
-@import 'cmps/board-header';
-@import 'cmps/board-list';
-@import 'cmps/board-preview';
-@import 'cmps/group-list';
-@import 'cmps/group-preview';
-@import 'cmps/board-side-menu';
-@import 'cmps/attachment-preview';
-@import 'cmps/task-description';
-@import 'cmps/task-attachments';
-@import 'cmps/task-list';
-@import 'cmps/task-preview';
-@import 'cmps/add-item';
-@import 'cmps/dynamic-textarea';
-@import 'cmps/task-details-sidebar';
-@import 'cmps/checklist-list';
-@import 'cmps/checklist-preview';
-@import 'cmps/todo-list';
-@import 'cmps/todo-preview';
-@import 'cmps/task-details-overview';
-@import 'cmps/task-labels-list';
-@import 'cmps/task-labels-overview';
-@import 'cmps/task-dates-overview';
-@import 'cmps/task-members-overview';
-@import 'cmps/task-preview-icons';
-@import 'cmps/task-details-header';
-@import 'cmps/add-todo';
-@import 'cmps/edit-todo';
-@import 'cmps/edit-title';
-@import 'cmps/color-pallet';
-@import 'cmps/activities';
-@import 'cmps/activity-preview';
-@import 'cmps/activity-list';
-@import 'cmps/add-comment';
-@import 'cmps/side-menu-background-options';
-@import 'cmps/side-menu-colors';
-@import 'cmps/side-menu-main-display';
-@import 'cmps/loader';
-@import 'cmps/quick-edit';
-@import 'cmps/quick-edit-buttons';
+//////////////////////////////////////////// COMPONENTS ////////////////////////////////////////////
+// GLOBAL
+@import 'cmps/global/app-header';
+@import 'cmps/global/loader';
+@import 'cmps/global/add-item';
+@import 'cmps/global/dynamic-textarea';
+@import 'cmps/global/action-modal';
+@import 'cmps/global/edit-title';
 
-// COMPONENTS-ACTION MODAL
-@import 'cmps/action-modal';
-@import 'cmps/action-modal-cmps/cover';
-@import 'cmps/action-modal-cmps/attachment';
-@import 'cmps/action-modal-cmps/labels';
-@import 'cmps/action-modal-cmps/edit-label';
-@import 'cmps/action-modal-cmps/check-list';
-@import 'cmps/action-modal-cmps/dates';
-@import 'cmps/action-modal-cmps/members';
-@import 'cmps/action-modal-cmps/users';
-@import 'cmps/action-modal-cmps/list-actions';
+// WORKSPACE
+@import 'cmps/workspace/board-list';
+@import 'cmps/workspace/board-preview';
+
+// BOARD
+@import 'cmps/board/board-header';
+@import 'cmps/board/group-list';
+@import 'cmps/board/task-list';
+@import 'cmps/board/task-preview';
+@import 'cmps/board/group-preview';
+@import 'cmps/board/board-side-menu';
+@import 'cmps/board/side-menu-background-options';
+@import 'cmps/board/side-menu-colors';
+@import 'cmps/board/side-menu-main-display';
+@import 'cmps/board/quick-edit';
+@import 'cmps/board/quick-edit-buttons';
+@import 'cmps/board/users';
+@import 'cmps/board/list-actions';
+@import 'cmps/board/task-preview-icons';
+
+// TASK DETAILS
+@import 'cmps/task-details/task-details-header';
+@import 'cmps/task-details/task-details-overview';
+@import 'cmps/task-details/task-details-sidebar';
+@import 'cmps/task-details/task-description';
+@import 'cmps/task-details/cover';
+
+// ATTACHMENT
+@import 'cmps/attachment/attachment';
+@import 'cmps/attachment/task-attachments';
+@import 'cmps/attachment/attachment-preview';
+
+// CHECKLIST
+@import 'cmps/checklist/checklist-list';
+@import 'cmps/checklist/checklist-preview';
+@import 'cmps/checklist/todo-list';
+@import 'cmps/checklist/todo-preview';
+@import 'cmps/checklist/check-list';
+@import 'cmps/checklist/add-todo';
+@import 'cmps/checklist/edit-todo';
+
+// LABELS
+@import 'cmps/labels/task-labels-list';
+@import 'cmps/labels/task-labels-overview';
+@import 'cmps/labels/color-pallet';
+@import 'cmps/labels/labels';
+@import 'cmps/labels/edit-label';
+
+// DATES
+@import 'cmps/dates/task-dates-overview';
+@import 'cmps/dates/dates';
+
+// MEMBERS
+@import 'cmps/members/members';
+@import 'cmps/members/task-members-overview';
+
+// ACTIVITIES
+@import 'cmps/activities/activities';
+@import 'cmps/activities/activity-preview';
+@import 'cmps/activities/activity-list';
+@import 'cmps/activities/add-comment';

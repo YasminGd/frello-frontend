@@ -28,7 +28,7 @@ export const Home = () => {
           Manage projects, organize tasks, and build team spirit—all in one place.
         </p>
         <Link to={'/workspace'}>Start doing</Link>
-        <img className="desc-image" src={mainDescriptionImg} />
+        <img className="desc-image" alt="Description Img" src={mainDescriptionImg} />
       </div>
     </section>
   )

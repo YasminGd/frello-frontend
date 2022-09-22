@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
 import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/board/group-list.jsx'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoard, updateBoard } from '../store/actions/board.action'
@@ -10,7 +10,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import { addTask, removeTask } from '../store/actions/task.action'
 import { addGroup, removeGroup } from '../store/actions/group.action'
 import { boardService } from '../services/board.service.js'
-import { Loader } from '../cmps/loader.jsx'
+import { Loader } from '../cmps/global/loader.jsx'
 import { socketService } from '../services/socket.service.js'
 import { unsplashService } from '../services/unsplash.service.js'
 
@@ -88,21 +88,23 @@ export const Board = () => {
 
   return (
     <section className="board" style={style}>
-      {!board ? <Loader/>:
-      <React.Fragment>
-        <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
-      <DragDropContext
-        // onDragStart={onDragStart}
-        // onDragUpdate={onDragUpdate}
-        onDragEnd={onDragEnd}
-      >
-        <GroupList board={board} addItem={addItem} removeItem={removeItem} />
-      </DragDropContext>
-      <Routes>
-        <Route path=":groupId/:taskId" element={<TaskDetails />} />
-      </Routes>
-      </React.Fragment>
-      }
+      {!board ? (
+        <Loader />
+      ) : (
+        <React.Fragment>
+          <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
+          <DragDropContext
+            // onDragStart={onDragStart}
+            // onDragUpdate={onDragUpdate}
+            onDragEnd={onDragEnd}
+          >
+            <GroupList board={board} addItem={addItem} removeItem={removeItem} />
+          </DragDropContext>
+          <Routes>
+            <Route path=":groupId/:taskId" element={<TaskDetails />} />
+          </Routes>
+        </React.Fragment>
+      )}
     </section>
   )
 }

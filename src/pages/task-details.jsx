@@ -60,7 +60,7 @@ export const TaskDetails = () => {
           <section className="task-details" onClick={(ev) => ev.stopPropagation()}>
             <button className={`close-task-details ${btnCloseStyle}`} onClick={onGoBack}><IoCloseOutline /></button>
             {task.style?.coverImg && <section className="cover-color img">
-              <img src={task.style.coverImg} />
+              <img src={task.style.coverImg} alt='coverImg' />
             </section>}
             {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>}
 

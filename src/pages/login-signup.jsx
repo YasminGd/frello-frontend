@@ -53,11 +53,6 @@ export const LoginSignup = () => {
     ev.target.classList.add('focus')
   }
 
-  const onBlur = (ev, inputName) => {
-    if (formik.values[inputName]) return
-    ev.target.classList.remove('focus')
-  }
-
   const formTxt = status === 'login' ? 'Log in to Frello' : 'Sign up for your account'
 
   return (
@@ -133,8 +128,8 @@ export const LoginSignup = () => {
           </NavLink>
         )}
       </form>
-      <img src={leftHero} className="left-hero" />
-      <img src={rightHero} className="right-hero" />
+      <img src={leftHero} alt="leftHero" className="left-hero" />
+      <img src={rightHero} alt="rightHero" className="right-hero" />
     </section>
   )
 }

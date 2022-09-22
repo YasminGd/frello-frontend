@@ -49,7 +49,7 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
       )}
       <section className={`task-body`} style={{ backgroundColor: getCoverStyle() }}>
         {isRenderLabels() && toRender && <TaskLabelsList labelIds={task.labelIds} />}
-        {task.title}
+        <p>{task.title}</p>
         {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
       </section>
       {/* <section className="quick-edit-icon" onClick={toggleEditModal}>

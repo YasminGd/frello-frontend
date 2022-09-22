@@ -6,7 +6,11 @@ export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onTog
   return (
     <Droppable droppableId={groupId} type="task">
       {(provided) => (
-        <section className="task-list" {...provided.droppableProps} ref={provided.innerRef}>
+        <section
+          className={`task-list ${isAddOpen ? 'full' : ''}`}
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
           {tasks.map((task, index) => (
             <Draggable draggableId={task.id} key={task.id} index={index}>
               {(provided, snapshot) => (

@@ -16,6 +16,7 @@ export const AddTodo = ({ addTodo, checkListId, closeModal }) => {
         ev.preventDefault()
         addTodo(title, checkListId)
         setTitle('')
+        inputRef.current.focus()
     }
 
     return <section className="add-todo ">

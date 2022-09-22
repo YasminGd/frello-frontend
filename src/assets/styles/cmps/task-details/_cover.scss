@@ -1,0 +1,138 @@
+.cover {
+  font-size: 12px;
+  padding: 8px;
+  padding: 9px 13px;
+  font-weight: 600;
+  width: 100%;
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 21px;
+
+    .option-button {
+      background-color: #091e420a;
+      border: none;
+      border-radius: 3px;
+      padding: 8px 0;
+      margin-bottom: -4px;
+
+      &:hover {
+        background-color: #091e4214;
+      }
+    }
+
+    .visual-options {
+      height: 64px;
+      display: flex;
+      width: 100%;
+      gap: 9px;
+
+      .disabled {
+        &:hover {
+          cursor: default;
+        }
+      }
+
+      & > * {
+        display: inline;
+        border-radius: 3px;
+        flex-grow: 1;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(9, 30, 66, 0.08);
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .bottom-title {
+        height: 4px;
+        width: 91%;
+        margin: auto;
+        margin-top: 6px;
+        border-radius: 3px;
+      }
+
+      .bottom-paragraph {
+        height: 4px;
+        width: 73%;
+        margin-left: 4.5%;
+        margin-top: 4px;
+        border-radius: 3px;
+      }
+
+      .covered-visual-option {
+        .bottom-title {
+          height: 5px;
+          width: 88%;
+          margin-left: 4.5%;
+          margin-top: 42px;
+          border-radius: 3px;
+        }
+
+        .bottom-paragraph {
+          height: 5px;
+          width: 70%;
+          margin-left: 4.5%;
+          margin-top: 3px;
+          border-radius: 3px;
+        }
+      }
+
+      .bottom-main {
+        margin-top: 29px;
+        background-color: white;
+        height: 36px;
+        display: block;
+        border-radius: 0;
+        overflow: hidden;
+
+        .bottom-label {
+          border-radius: 3px;
+          margin-left: 4.5%;
+          margin-top: 6px;
+          height: 5px;
+          width: 12%;
+          display: inline-block;
+        }
+
+        .second {
+          margin-left: 2%;
+        }
+
+        .bottom-circle {
+          border-radius: 50%;
+          margin-left: 55%;
+          height: 9px;
+          width: 9px;
+          display: inline-block;
+          position: absolute;
+          right: 4px;
+          bottom: 4px;
+        }
+      }
+    }
+
+    .colors {
+      display: grid;
+      height: 70px;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      row-gap: 8px;
+      column-gap: 9px;
+
+      button {
+        border: none;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .border {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
+    filter: none;
+  }
+}

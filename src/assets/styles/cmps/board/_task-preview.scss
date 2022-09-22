@@ -3,7 +3,6 @@
   background-color: white;
   box-shadow: 0 1px 0 #091e4240;
   margin: 0 4px;
-  // overflow: hidden;
   flex-shrink: 0;
   position: relative;
 
@@ -56,24 +55,17 @@
         right: 0;
         border-radius: 3px;
       }
-
-      // div {
-      //   position: absolute;
-      //   bottom: 0;
-      // }
     }
   }
 
   .task-body {
     padding: 6px;
     padding-left: 8px;
-    // padding: 6px 8px;
     word-break: break-word;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-
   }
 
   &:hover {
@@ -104,14 +96,12 @@
     min-width: calc(100% - 40px);
     width: 256px;
     margin: auto;
-    // margin-top: 4px;
     margin-left: 8px;
     color: #5e6c84;
     background-color: transparent;
     transition: none;
     margin-bottom: 8px;
     padding-left: 2px;
-    // height: 40px;
 
     span {
       display: flex;

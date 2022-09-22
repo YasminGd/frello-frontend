@@ -2,13 +2,12 @@ import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { SiTrello } from 'react-icons/si'
 import { useSelector } from 'react-redux'
-const logo = require('../assets/img/logo-frello.png')
+const logo = require('../../assets/img/logo-frello.png')
 
 export const AppHeader = () => {
   const user = useSelector((state) => state.userModule.loggedInUser)
   const location = useLocation()
 
-  console.log(user)
   const getStyleClass = () => {
     let styleClass
     if (location.pathname === '/') styleClass = 'home-header fixed'

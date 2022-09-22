@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
 import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/board/group-list.jsx'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoard, updateBoard } from '../store/actions/board.action'
@@ -18,10 +18,6 @@ export const Board = () => {
   const dispatch = useDispatch()
   const params = useParams()
   const board = useSelector((state) => state.boardModule.board)
-
-  const getPhotos = async () => {
-    const photos = await unsplashService.getPhotos()
-  }
 
   useEffect(() => {
     dispatch(getBoard(params.boardId))

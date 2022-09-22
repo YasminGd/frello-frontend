@@ -53,12 +53,12 @@ function getLoggedInUser() {
 
 async function getUsers() {
   try {
-    const users = await httpService.get(BASE_URL)
+    return await httpService.get(BASE_URL)
     // console.log(`users:`, users)
-    if (users)
-      return new Promise((resolve, reject) => {
-        resolve(users)
-      })
+    // if (users)
+    // return new Promise((resolve, reject) => {
+    // resolve(users)
+    // })
     // console.log(`users:`, users)
     // if (!users) return []
     // return users

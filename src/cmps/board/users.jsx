@@ -1,14 +1,24 @@
 import { useSelector, useDispatch } from 'react-redux'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiCheck } from 'react-icons/bi'
 import { updateBoard } from '../../store/actions/board.action'
 import { activityService } from '../../services/activity.service'
+import { userService } from '../../services/user.service'
+import { Loader } from '../global/loader'
 
 export const Users = () => {
   const dispatch = useDispatch()
-  const workspaceUsers = useSelector((state) => state.userModule.users)
   const board = useSelector((state) => state.boardModule.board)
+  const [workspaceUsers, setWorkspaceUsers] = useState()
   const [usersToRender, setUsersToRender] = useState(workspaceUsers)
+
+  useEffect(() => {
+    ; (async () => {
+      const users = await userService.getUsers()
+      setWorkspaceUsers(users)
+      setUsersToRender(users)
+    })()
+  }, [])
 
   const handleChange = ({ target }) => {
     if (target.type === 'text') {
@@ -37,7 +47,7 @@ export const Users = () => {
     const boardWithActivities = activityService.addActivity(activityTxt, null, board)
     dispatch(updateBoard(boardWithActivities))
   }
-
+  if (!usersToRender) return <Loader />
   return (
     <section className="users">
       <div className="">

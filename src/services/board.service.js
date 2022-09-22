@@ -1,63 +1,7 @@
-import { storageService } from './async-storage.service.js'
-import { store } from '../store/store'
-import { board } from '../board.js'
 import { httpService } from './http.service.js'
 
-const STORAGE_KEY = 'board'
+// const STORAGE_KEY = 'board'
 const BASE_URL = `board/`
-const boardChannel = new BroadcastChannel('boardChannel')
-  // const gBoards = [
-  //   board,
-  //   {
-  //     _id: 'b102',
-  //     title: 'Second board',
-  //     style: {
-  //       background:
-  //         'https://images.unsplash.com/photo-1637984135921-301a7d39e3b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1615&q=80',
-  //     },
-  //     isStarred: false,
-  //     groups: [],
-  //   },
-  //   {
-  //     _id: 'b103',
-  //     title: 'Third board',
-  //     style: {
-  //       background:
-  //         'https://images.unsplash.com/photo-1632395627727-3b97d0724814?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-  //       backgroundColor: 'rgb(81, 152, 57)',
-  //     },
-  //     isStarred: true,
-  //     groups: [],
-  //   },
-  //   {
-  //     _id: 'b104',
-  //     title: 'Fourth board',
-  //     style: {
-  //       background:
-  //         'https://images.unsplash.com/photo-1663603846637-269b931e22b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
-  //       backgroundColor: 'rgb(81, 152, 57)',
-  //     },
-  //     isStarred: false,
-  //     groups: [],
-  //   },
-  //   {
-  //     _id: 'b105',
-  //     title: 'Fifth board',
-  //     style: {
-  //       background:
-  //         'https://images.unsplash.com/photo-1638736230824-2fdc03dd9849?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
-  //       backgroundColor: 'rgb(81, 152, 57)',
-  //     },
-  //     isStarred: true,
-  //     groups: [],
-  //   },
-  // ]
-
-  ; (() => {
-    boardChannel.addEventListener('message', (ev) => {
-      store.dispatch(ev.data)
-    })
-  })()
 
 export const boardService = {
   query,
@@ -66,17 +10,16 @@ export const boardService = {
   remove,
   handleDragEnd,
 }
-// window.cs = boardService
 
 async function query(filterBy) {
   try {
     return await httpService.get(BASE_URL, filterBy)
-    let boards = await storageService.query(STORAGE_KEY)
-    if (!boards || !boards.length) {
-      // storageService.postMany(STORAGE_KEY, gBoards)
-      // boards = gBoards
-    }
-    return boards
+    // let boards = await storageService.query(STORAGE_KEY)
+    // if (!boards || !boards.length) {
+    // storageService.postMany(STORAGE_KEY, gBoards)
+    // boards = gBoards
+    // }
+    // return boards
   } catch (err) {
     console.log('err: Cannot get boards ', err)
   }
@@ -84,27 +27,23 @@ async function query(filterBy) {
 
 function getById(boardId) {
   return httpService.get(BASE_URL + boardId)
-  return storageService.get(STORAGE_KEY, boardId)
-  // return axios.get(`/api/board/${boardId}`)
+  // return storageService.get(STORAGE_KEY, boardId)
 }
 
 async function remove(boardId) {
   return httpService.delete(BASE_URL + boardId)
-  await storageService.remove(STORAGE_KEY, boardId)
-  // boardChannel.postMessage(getActionRemoveBoard(boardId))
+  // await storageService.remove(STORAGE_KEY, boardId)
 }
 
 async function save(board) {
   if (board._id) {
     console.log('INSIDE PUT')
     return httpService.put(BASE_URL + board._id, board)
-    return await storageService.put(STORAGE_KEY, board)
-    // boardChannel.postMessage(getActionUpdateBoard(savedBoard))
+    // return await storageService.put(STORAGE_KEY, board)
   } else {
     console.log('INSIDE POST')
     return httpService.post(BASE_URL, board)
-    return await storageService.post(STORAGE_KEY, board)
-    // boardChannel.postMessage(getActionAddBoard(savedBoard))
+    // return await storageService.post(STORAGE_KEY, board)
   }
 }
 
@@ -149,6 +88,3 @@ function handleDragEnd(newBoard, destination, source, type) {
     return newBoard
   }
 }
-
-// TEST DATA
-// storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

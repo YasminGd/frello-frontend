@@ -17,14 +17,10 @@ import { unsplashService } from '../services/unsplash.service.js'
 export const Board = () => {
   const dispatch = useDispatch()
   const params = useParams()
-  // const [boardId, setBoardId] = useState(params.boardId)
-
   const board = useSelector((state) => state.boardModule.board)
 
   useEffect(() => {
     dispatch(getBoard(params.boardId))
-    // setBoard(boardFromStore)
-    // setBoardId(params.boardId)
     socketService.emit('join-board', params.boardId)
   }, [])
 
@@ -33,7 +29,6 @@ export const Board = () => {
   }, [])
 
   const socketUpdateBoard = (updatedBoard) => {
-    console.log('socketUpdateBoard ~ updatedBoard', updatedBoard)
     dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
   }
 
@@ -63,8 +58,6 @@ export const Board = () => {
     board.style = {background, backgroundColor, thumbnail}
     dispatch(updateBoard(board))
   }
-
-  // const onDragStart = () => { }
 
   //prettier-ignore
   const onDragEnd = (result) => {

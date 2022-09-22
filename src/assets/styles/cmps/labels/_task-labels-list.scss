@@ -17,7 +17,7 @@
     height: 8px;
     border-radius: 4px;
     min-width: 40px;
-    transition: all 0.45s ease-out;
+    transition: width, height 0.45s ease-out;
     display: flex;
     align-items: center;
     padding-inline-end: 8px;

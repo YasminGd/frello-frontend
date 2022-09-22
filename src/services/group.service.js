@@ -1,9 +1,7 @@
 import { activityService } from "./activity.service"
-import { storageService } from "./async-storage.service"
-import { boardService } from "./board.service"
 import { httpService } from "./http.service"
 import { utilService } from "./util.service"
-const STORAGE_KEY = 'board'
+// const STORAGE_KEY = 'board'
 const BASE_URL = `board/`
 
 export const groupService = {
@@ -18,7 +16,7 @@ async function add(title, board, user) {
 
     try {
         return httpService.put(BASE_URL + board._id, boardWithActivities)
-        return await storageService.post(STORAGE_KEY, boardWithActivities)
+        // return await storageService.post(STORAGE_KEY, boardWithActivities)
     }
     catch (err) {
         console.log('cannot add group', err)
@@ -32,7 +30,7 @@ async function remove(groupId, board, user) {
 
     try {
         return await httpService.put(BASE_URL + board._id, boardWithActivities)
-        return await storageService.put(STORAGE_KEY, boardWithActivities)
+        // return await storageService.put(STORAGE_KEY, boardWithActivities)
     }
     catch (err) {
         console.log('cannot delete group', err)
@@ -44,7 +42,7 @@ async function updateGroupTitle(board, groupId, title) {
     group.title = title
     try {
         return httpService.put(BASE_URL + board._id, board)
-        return await storageService.put(STORAGE_KEY, board)
+        // return await storageService.put(STORAGE_KEY, board)
     }
     catch (err) {
         console.log('cannot update group', err)

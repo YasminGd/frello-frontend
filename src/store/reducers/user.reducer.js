@@ -1,5 +1,4 @@
 import { userService } from '../../services/user.service'
-import { loadUsers } from '../actions/user.action'
 
 const initialState = {
   // loggedInUser: userService.getLoggedInUser(),
@@ -11,8 +10,8 @@ const initialState = {
   //   users: (() => {
   //     console.log(userService.getUsers())
   //   })(),
-  users: [],
-  user: null
+  // users: [],
+  user: userService.getLoggedInUser()
 }
 
 export function userReducer(state = initialState, action) {
@@ -24,6 +23,7 @@ export function userReducer(state = initialState, action) {
 
     case 'SET_LOGGEDIN_USER':
       state = { ...state, loggedInUser: { ...action.loggedInUser } }
+      break
 
     default:
       return state

@@ -21,7 +21,8 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
     }
   }, [boardLabelsState])
 
-  const handleChange = ({ target }, labelId) => {
+  const handleChange = (ev, labelId) => {
+    const { target } = ev
     if (target.type === 'checkbox') {
       if (!task.labelIds) task.labelIds = []
       if (target.checked) task.labelIds.push(labelId)
@@ -43,11 +44,13 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
   }
 
   const onSaveLabel = (label) => {
+    if (!board.labels.length) board.labels = []
+    if (!task.labelIds.length) task.labelsIds = []
+
     if (label.id) {
       const labelIdx = board.labels.findIndex((label) => label.id === selectedLabel.id)
       board.labels.splice(labelIdx, 1, label)
     } else {
-      if (!board.labels) board.labels = []
       label.id = utilService.makeId()
       task.labelIds.push(label.id)
       board.labels.push(label)

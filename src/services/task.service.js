@@ -1,8 +1,7 @@
 import { activityService } from './activity.service'
-import { storageService } from './async-storage.service'
 import { httpService } from './http.service'
 import { utilService } from './util.service'
-const STORAGE_KEY = 'board'
+// const STORAGE_KEY = 'board'
 const BASE_URL = `board/`
 
 export const taskService = {
@@ -26,7 +25,7 @@ async function update(board, groupId, task, activityTxt, user) {
 
   try {
     return httpService.put(BASE_URL + board._id, board)
-    return await storageService.put(STORAGE_KEY, board)
+    // return await storageService.put(STORAGE_KEY, board)
   }
   catch (err) {
     console.log('cannot update task', err)
@@ -40,7 +39,7 @@ async function add(title, groupId, board, user) {
 
   try {
     return httpService.put(BASE_URL + board._id, boardWithActivities)
-    return await storageService.put(STORAGE_KEY, boardWithActivities)
+    // return await storageService.put(STORAGE_KEY, boardWithActivities)
   }
   catch (err) {
     console.log('cannot add task', err)
@@ -55,7 +54,7 @@ async function remove(groupId, taskId, board, user) {
 
   try {
     return await httpService.put(BASE_URL + board._id, boardWithActivities)
-    return await storageService.put(STORAGE_KEY, boardWithActivities)
+    // return await storageService.put(STORAGE_KEY, boardWithActivities)
   }
   catch (err) {
     console.log('cannot delete task', err)
@@ -81,7 +80,7 @@ async function addImg(imgUrl, task, groupId, board, user) {
 
   try {
     return httpService.put(BASE_URL + board._id, boardWithActivities)
-    return await storageService.put(STORAGE_KEY, boardWithActivities)
+    // return await storageService.put(STORAGE_KEY, boardWithActivities)
   }
   catch (err) {
     console.log('cannot add img', err)
@@ -103,7 +102,7 @@ async function addChecklist(title, taskId, groupId, board, user) {
 
   try {
     return httpService.put(BASE_URL + board._id, boardWithActivities)
-    return await storageService.put(STORAGE_KEY, boardWithActivities)
+    // return await storageService.put(STORAGE_KEY, boardWithActivities)
   }
   catch (err) {
     console.log('cannot add checklist', err)
@@ -124,7 +123,7 @@ async function addTodo(title, checkListId, groupId, taskId, board) {
 
   try {
     return httpService.put(BASE_URL + board._id, board)
-    return await storageService.put(STORAGE_KEY, board)
+    // return await storageService.put(STORAGE_KEY, board)
   }
   catch (err) {
     console.log('cannot add checklist', err)

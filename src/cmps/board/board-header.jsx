@@ -101,10 +101,12 @@ export const BoardHeader = ({ changeBackground, changeTitle }) => {
           <BsFilter />
           Filter
         </button>
-        <button onClick={renderSideMenu}>
-          <BsThreeDots />
-          Show menu
-        </button>
+        {!isSideMenuOpen &&
+          <button onClick={renderSideMenu}>
+            <BsThreeDots />
+            Show menu
+          </button>
+        }
       </section>
       <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBackground={changeBackground} />
       {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}

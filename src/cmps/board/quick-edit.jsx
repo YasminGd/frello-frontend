@@ -1,7 +1,7 @@
 import React from 'react'
 import { QuickEditButtons } from './quick-edit-buttons'
 
-export const QuickEdit = () => {
+export const QuickEdit = ({ task, groupId, onOpenActionModal }) => {
   const stop = (ev) => {
     ev.stopPropagation()
     ev.preventDefault()
@@ -13,9 +13,9 @@ export const QuickEdit = () => {
           <textarea></textarea>
           <button className="btn blue">Save</button>
         </section>
+        <QuickEditButtons task={task} groupId={groupId} onOpenActionModal={onOpenActionModal} />
       </section>
-      <section className="screen"></section>
-      <QuickEditButtons />
+      <section className="screen" onClick={(ev) => ev.stopPropagation()}></section>
     </React.Fragment>
   )
 }

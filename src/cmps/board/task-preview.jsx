@@ -5,8 +5,8 @@ import { QuickEdit } from './quick-edit'
 import { TaskLabelsList } from '../labels/task-labels-list'
 import { TaskPreviewIcons } from './task-preview-icons'
 
-export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
-  // const [isQuickEditOpen, setIsQuickEditOpen] = useState(false)
+export const TaskPreview = ({ task, groupId, provided, isDragging, onOpenActionModal }) => {
+  const [isQuickEditOpen, setIsQuickEditOpen] = useState(false)
   const getCoverStyle = () => {
     if (task.style?.isFullyCovered && task.style.isFullyCovered) {
       return task.style.bgColor ? task.style.bgColor : ''
@@ -22,11 +22,11 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
     if (task.labelIds && task.labelIds.length && task.labelIds !== 0) return true
   }
 
-  // const toggleEditModal = (ev) => {
-  //   ev.stopPropagation()
-  //   ev.preventDefault()
-  //   setIsQuickEditOpen(!isQuickEditOpen)
-  // }
+  const toggleEditModal = (ev) => {
+    ev.stopPropagation()
+    ev.preventDefault()
+    setIsQuickEditOpen(!isQuickEditOpen)
+  }
 
   const toRender = renderOptions()
   return (
@@ -52,12 +52,12 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
         <p>{task.title}</p>
         {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
       </section>
-      {/* <section className="quick-edit-icon" onClick={toggleEditModal}>
+      <section className="quick-edit-icon" onClick={toggleEditModal}>
         <BsPencil />
-      </section> */}
-      {/* {
-        isQuickEditOpen && <QuickEdit />
-      } */}
+      </section>
+      {
+        isQuickEditOpen && <QuickEdit task={task} groupId={groupId} onOpenActionModal={onOpenActionModal}/>
+      }
     </Link>
   )
 }

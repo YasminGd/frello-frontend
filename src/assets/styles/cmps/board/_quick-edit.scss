@@ -1,7 +1,7 @@
 .quick-edit {
   position: absolute;
   height: 100px;
-  width: 100%;
+  width: calc(100% + 240px);
   z-index: 200;
   top: 0;
 
@@ -17,4 +17,8 @@
   button {
     padding: 8px 24px;
   }
+}
+
+.screen {
+  position: fixed;
 }

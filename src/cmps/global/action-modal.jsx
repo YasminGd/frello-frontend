@@ -41,7 +41,6 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
   if (pos.right) {
     delete modalStyle.left
     modalStyle.right = pos.right
-    // modalStyle.bottom += 40
   }
 
   const getActionCmp = (type) => {

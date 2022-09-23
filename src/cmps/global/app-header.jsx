@@ -7,7 +7,6 @@ const logo = require('../../assets/img/logo-frello.png')
 export const AppHeader = () => {
   const board = useSelector((state) => state.boardModule.board)
   const user = useSelector((state) => state.userModule.user)
-  console.log(user);
   const location = useLocation()
 
   const getStyleClass = () => {
@@ -19,7 +18,7 @@ export const AppHeader = () => {
   }
 
   const getStyleColor = () => {
-    return board?.style?.backgroundColor ? {backgroundColor: board.style.backgroundColor} : {}
+    return board?.style?.backgroundColor ? { backgroundColor: board.style.backgroundColor } : {}
   }
 
   const styleClass = getStyleClass()

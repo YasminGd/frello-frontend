@@ -5,7 +5,7 @@ import { SideMenuPhotos } from "./side-menu-photos"
 import { SideMenuMainDisplay } from "./side-menu-main-display"
 import { IoIosArrowBack } from "react-icons/io"
 
-export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBgColor }) => {
+export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBackground }) => {
     const [title, setTitle] = useState('Menu')
 
     const onChangeTitle = (title) => {
@@ -19,9 +19,9 @@ export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBgColor }) => {
             case ('Change background'):
                 return <SideMenuBackgroundOptions onChangeTitle={onChangeTitle} />
             case ('Colors'):
-                return <SideMenuColors changeBgColor={changeBgColor} />
+                return <SideMenuColors changeBackground={changeBackground} />
             case ('Photos by'):
-                return <SideMenuPhotos changeBgColor={changeBgColor} />
+                return <SideMenuPhotos changeBackground={changeBackground} />
 
         }
     }
@@ -32,6 +32,7 @@ export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBgColor }) => {
                 setTitle('Menu')
                 break
             case ('Colors'):
+            case ('Photos by'):
                 setTitle('Change background')
                 break
         }
@@ -44,7 +45,7 @@ export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBgColor }) => {
             {title !== 'Menu' && <IoIosArrowBack className="go-back" onClick={onGoBack} />}
             <h3>{title === 'Photos by' ? 
             <React.Fragment>
-                {title} <a href="https://unsplash.com/">Unsplash</a>
+                {title} <a href="https://unsplash.com/" target="_blank">Unsplash</a>
                 </React.Fragment>
                 :
                 title}

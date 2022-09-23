@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import { unsplashService } from "../../services/unsplash.service"
 import { Loader } from "../global/loader"
 
-export const SideMenuPhotos = () => {
+export const SideMenuPhotos = ({ changeBackground }) => {
     const [photos, setPhotos] = useState(null)
+    const [search, setSearch] = useState('')
 
     const getPhotos = async () => {
-        const photos = await unsplashService.getPhotos()
+        const photos = await unsplashService.getPhotos(search)
+        console.log(photos);
         setPhotos(photos)
     }
 
@@ -15,15 +17,29 @@ export const SideMenuPhotos = () => {
             .catch(console.log('Cant get photos'))
     }, [])
 
+    const onSearchPhotos = (ev) => {
+        ev.preventDefault()
+        if (!search) return
+        setPhotos(null)
+        getPhotos(search)
+    }
 
-    if (!photos) return <Loader />
-    return <section className="side-menu-photos">
-        <input />
-        <section className="photo-list">
-            {
-                photos.map(photo => <div className="display" style={{ background: `url('${photo.background}') center center / cover` }}></div>)
-            }
-        </section>
+    return <section className="side-menu-photos main-layout">
+        <form onSubmit={onSearchPhotos}>
+            <div className="input-holder">
+                <input type="text" className="input" value={search} onChange={handleChange} />
+            </div>
+        </form>
+        {
+            photos ?
+                <section className="photo-list display-grid">
+                    {
+                        photos.map(photo => <div className="display hover-darker" style={{ background: `url('${photo.thumbnail}') center center / cover` }} onClick={() => changeBackground(photo)}></div>)
+                    }
+                </section>
+                : <Loader />
+        }
+
     </section>
 
 }

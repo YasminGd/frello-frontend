@@ -1,4 +1,4 @@
-export const SideMenuColors = ({ changeBgColor }) => {
+export const SideMenuColors = ({ changeBackground }) => {
     const colors = [`rgb(0, 121, 191)`,
         `rgb(210, 144, 52)`,
         `rgb(81, 152, 57)`,
@@ -9,10 +9,11 @@ export const SideMenuColors = ({ changeBgColor }) => {
         `rgb(0, 174, 204)`,
         `rgb(131, 140, 145)`]
 
-    return <section className="side-menu-colors">
+    return <section className="side-menu-colors main-layout">
+        <section className="color-list display-grid">
         {
-            colors.map(color => <div className="display" style={{ backgroundColor: color }} onClick={() => changeBgColor(color)}></div>
-            )
+            colors.map(backgroundColor => <div className="display hover" style={{ backgroundColor }} onClick={() => changeBackground({backgroundColor})}></div>)
         }
+        </section>
     </section>
 }

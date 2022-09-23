@@ -39,8 +39,8 @@ export const Board = () => {
 
   const getBoardStyle = () => {
     if (!board) return
-    if (board?.style?.background) return { background: `url('${board.style.background}') center center / cover` }
-    else if (board?.style?.backgroundColor) return { backgroundColor: `${board.style.backgroundColor}` }
+    if (board?.style.background) return { background: `url('${board.style.background}') center center / cover` }
+    else if (board?.style.backgroundColor) return { backgroundColor: `${board.style.backgroundColor}` }
     return { backgroundColor: `pink` }
   }
 
@@ -59,11 +59,8 @@ export const Board = () => {
     dispatch(updateBoard(board))
   }
 
-  const changeBgColor = (color) => {
-    if (board.style) {
-      if (board.style.background) board.style.background = null
-      board.style.backgroundColor = color
-    } else board.style = { backgroundColor: color }
+  const changeBackground = ({background, backgroundColor, thumbnail}) => {
+    board.style = {background, backgroundColor, thumbnail}
     dispatch(updateBoard(board))
   }
 
@@ -165,7 +162,7 @@ export const Board = () => {
         <Loader />
       ) : (
         <React.Fragment>
-          <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
+          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} />
           <DragDropContext
             onDragStart={onDragStart}
             onDragUpdate={onDragUpdate}

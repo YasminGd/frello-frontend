@@ -1,8 +1,10 @@
+import { useRef } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AddItem } from '../global/add-item.jsx'
 import { TaskPreview } from './task-preview.jsx'
 
-export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd, onOpenActionModal }) => {
+export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd }) => {
+
   return (
     <Droppable droppableId={groupId} type="task">
       {(provided) => (
@@ -15,7 +17,6 @@ export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onTog
             <Draggable draggableId={task.id} key={task.id} index={index}>
               {(provided, snapshot) => (
                 <TaskPreview
-                  onOpenActionModal={onOpenActionModal}
                   provided={provided}
                   key={task.id}
                   task={task}

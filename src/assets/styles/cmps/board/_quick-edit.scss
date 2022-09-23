@@ -1,9 +1,8 @@
 .quick-edit {
-  position: absolute;
-  height: 100px;
-  width: calc(100% + 240px);
-  z-index: 200;
-  top: 0;
+  position: fixed;
+  // width: calc(100% + 240px);
+  z-index: 20;
+  // top: 0;
 
   textarea {
     min-height: 96px;
@@ -19,6 +18,13 @@
   }
 }
 
-.screen {
+.screen-edit {
   position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000000a3;
+  overflow-y: auto;
+  z-index: 15;
 }

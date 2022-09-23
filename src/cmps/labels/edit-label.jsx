@@ -12,7 +12,8 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
     }
   }
 
-  const onSaveButton = () => {
+  const onSaveButton = (ev) => {
+    ev.preventDefault()
     if (!selectedColor) return
     if (!label) label = {}
     label.class = selectedColor + '-opacity'
@@ -22,7 +23,8 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
     onToggleLabelEdit(null)
   }
 
-  const onRemoveButton = () => {
+  const onRemoveButton = (ev) => {
+    ev.preventDefault()
     onToggleLabelEdit(null)
     onRemoveLabel(label.id)
   }
@@ -32,7 +34,13 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
   return (
     <section className="edit-label">
       <p className="sub-title">Title</p>
-      <input className="label-title" onChange={handleChange} type="text" autoFocus value={labelTitle} />
+      <input
+        className="label-title"
+        onChange={handleChange}
+        type="text"
+        autoFocus
+        onClick={(ev) => { ev.preventDefault() }}
+        value={labelTitle} />
       <p className="sub-header">Select a color</p>
       <ColorPallet setSelectedColor={setSelectedColor} selectedColor={selectedColor} />
       <div className="btn-container">
@@ -47,11 +55,11 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
         </button>
       </div>
       <div className="save-remove">
-        <button onClick={onSaveButton} className="btn-save">
+        <button onClick={(ev) => { onSaveButton(ev) }} className="btn-save">
           {btnTxt}
         </button>
         {label && (
-          <button onClick={onRemoveButton} className="btn-remove">
+          <button onClick={(ev) => { onRemoveButton(ev) }} className="btn-remove">
             Delete
           </button>
         )}

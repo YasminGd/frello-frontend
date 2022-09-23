@@ -1,65 +1,112 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { BsPerson } from 'react-icons/bs'
 import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
 import { ImAttachment } from 'react-icons/im'
 import { BsCardHeading } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { GoArchive } from 'react-icons/go'
+import { removeTask, updateTask } from '../../store/actions/task.action'
+import { useDispatch } from 'react-redux'
+import React from 'react'
+import { ActionModal } from '../global/action-modal'
+import { utilService } from '../../services/util.service'
 
-export const QuickEditButtons = ({ onOpenActionModal, groupId, task }) => {
+export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
+
+  const dispatch = useDispatch()
+  const [actionModal, setActionModal] = useState(null)
+  const navigate = useNavigate()
+
   // Refs for action modal position calculation
-  const btnAttachmentRef = useRef()
-  const btnMembersRef = useRef()
   const btnLabelsRef = useRef()
-  // const btnChecklistRef = useRef()
+  const btnMembersRef = useRef()
+  const btnCoverRef = useRef()
   const btnDatesRef = useRef()
-  // const btnCoverRef = useRef()
 
   const actionBtns = [
     {
-      type: 'Edit labels',
+      type: 'Labels',
+      txt: 'Edit labels',
       ref: btnLabelsRef,
       iconCmp: <AiOutlineTag className="icon" />,
     },
     {
-      type: 'Change members',
+      type: 'Members',
+      txt: 'Change members',
       ref: btnMembersRef,
       iconCmp: <BsPerson className="icon" />,
     },
     {
-      type: 'Change cover',
-      ref: btnDatesRef,
-      iconCmp: <AiOutlineClockCircle className="icon" />,
+      type: 'Cover',
+      txt: 'Change cover',
+      ref: btnCoverRef,
+      iconCmp: <ImAttachment className="icon" />,
     },
     {
-      type: 'Remove task',
-      ref: btnAttachmentRef,
-      iconCmp: <ImAttachment className="icon" />,
+      type: 'Dates',
+      txt: 'Edit dates',
+      ref: btnDatesRef,
+      iconCmp: <AiOutlineClockCircle className="icon" />,
     },
   ]
 
   const openModal = (ev, type, ref) => {
-    ev.stopPropagation()
+    ev.preventDefault()
     onOpenActionModal(type, ref)
   }
 
-  const stop = (ev) => {
-    ev.stopPropagation()
-    ev.preventDefault()
+  const onRemoveTask = () => {
+    dispatch(removeTask(groupId, task.id))
+    setQuickEdit(null)
   }
+
+  const onUpdateTask = (task) => {
+    dispatch(updateTask(groupId, task))
+  }
+
+  const onOpenActionModal = (type, ref) => {
+    if (actionModal?.type === type) return setActionModal(null)
+    const pos = utilService.getModalPosition(ref)
+    setActionModal({ type, pos })
+  }
+
   return (
-    <section className="quick-edit-buttons" onClick={stop}>
-      <button className="" key="Open card">
-        <Link to={`${groupId}/${task.id}`}>
-          <BsCardHeading />
-          Open card
+    <React.Fragment>
+      <section className="quick-edit-buttons" >
+        <Link
+          to={`${groupId}/${task.id}`}>
+          <button onClick={() => { setQuickEdit(null) }} className="" key="Open card">
+            <BsCardHeading />
+            Open card
+          </button>
         </Link>
-      </button>
-      {actionBtns.map((btn) => (
-        <button className="" onClick={(ev) => openModal(ev, btn.type, btn.ref)} key={btn.type} ref={btn.ref}>
-          {btn.iconCmp}
-          {btn.type}
+        {actionBtns.map((btn) => (
+          <button className=""
+            onClick={(ev) => openModal(ev, btn.type, btn.ref)}
+            key={btn.type}
+            ref={btn.ref}
+          >
+            {btn.iconCmp}
+            {btn.txt}
+          </button>
+        ))}
+        <button
+          onClick={onRemoveTask}
+          className='btn-sidebar'
+        >
+          <GoArchive className="icon" />
+          Delete
         </button>
-      ))}
-    </section>
+      </section>
+      {
+        actionModal && <ActionModal
+          setActionModal={setActionModal}
+          data={actionModal}
+          groupId={groupId}
+          task={task}
+          onUpdateTask={onUpdateTask}
+        />
+      }
+    </React.Fragment >
   )
 }

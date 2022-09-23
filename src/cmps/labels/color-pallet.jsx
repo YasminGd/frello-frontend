@@ -32,7 +32,8 @@ export const ColorPallet = ({ setSelectedColor, selectedColor }) => {
     'dark-black-hoverable',
   ]
 
-  const onSelectColor = (colorClass) => {
+  const onSelectColor = (ev, colorClass) => {
+    ev.preventDefault()
     colorClass = colorClass.slice(0, -10)
     setSelectedColor(colorClass)
   }
@@ -45,8 +46,8 @@ export const ColorPallet = ({ setSelectedColor, selectedColor }) => {
           key={colorClass}
         >
           <div
-            onClick={() => {
-              onSelectColor(colorClass)
+            onClick={(ev) => {
+              onSelectColor(ev, colorClass)
             }}
             className={`color ${colorClass} ${selectedColor + '-hoverable' === colorClass ? 'selected-color' : ''}`}
           ></div>

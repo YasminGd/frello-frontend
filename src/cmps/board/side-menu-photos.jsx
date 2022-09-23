@@ -37,7 +37,14 @@ export const SideMenuPhotos = ({ changeBackground }) => {
             photos ?
                 <section className="photo-list display-grid">
                     {
-                        photos.map(photo => <div className="display hover-darker" style={{ background: `url('${photo.thumbnail}') center center / cover` }} onClick={() => changeBackground(photo)}></div>)
+                        photos.map(photo =>
+                            <div
+                                key={photo.background}
+                                className="display hover-darker"
+                                style={{ background: `url('${photo.thumbnail}') center center / cover` }}
+                                onClick={() => changeBackground(photo)}>
+                            </div>
+                        )
                     }
                 </section>
                 : <Loader />

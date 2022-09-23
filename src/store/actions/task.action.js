@@ -7,7 +7,8 @@ export function updateTask(groupId, task, activityTxt, boardMember) {
       const board = getState().boardModule.board
       const savedBoard = await taskService.update(board, groupId, task, activityTxt, boardMember)
       dispatch(getActionUpdateBoard({ ...savedBoard }))
-    } catch (err) {
+    }
+    catch (err) {
       console.log('Cannot update task', err)
     }
   }
@@ -20,7 +21,8 @@ export function addTask(title, groupId) {
       const user = getState().userModule.user
       const savedBoard = await taskService.add(title, groupId, board, user)
       dispatch(getActionUpdateBoard({ ...savedBoard }))
-    } catch (err) {
+    }
+    catch (err) {
       console.log('Cannot add task', err)
     }
   }
@@ -33,7 +35,8 @@ export function addImg(imgUrl, task, groupId) {
       const user = getState().userModule.user
       const savedBoard = await taskService.addImg(imgUrl, task, groupId, board, user)
       dispatch(getActionUpdateBoard({ ...savedBoard }))
-    } catch (err) {
+    }
+    catch (err) {
       console.log('Cannot add image', err)
     }
   }

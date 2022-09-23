@@ -24,13 +24,16 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
   const handleChange = (ev, labelId) => {
     const { target } = ev
     if (target.type === 'checkbox') {
+
       if (!task.labelIds) task.labelIds = []
       if (target.checked) task.labelIds.push(labelId)
+
       else if (!target.checked) {
         const labelIdx = task.labelIds.findIndex((currLabelId) => currLabelId === labelId)
         task.labelIds.splice(labelIdx, 1)
       }
       dispatch(updateTask(groupId, task))
+
     } else if (target.type === 'text') {
       const regex = new RegExp(target.value, 'i')
       const filteredLabels = board.labels.filter((label) => regex.test(label.title))
@@ -38,7 +41,8 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
     }
   }
 
-  const onOpenSaveLabel = (label) => {
+  const onOpenSaveLabel = (ev, label) => {
+    ev.preventDefault()
     if (label) setSelectedLabel(label)
     onToggleLabelEdit()
   }
@@ -77,6 +81,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
         <React.Fragment>
           <div className="">
             <input
+              onClick={(ev) => { ev.preventDefault() }}
               onChange={handleChange}
               autoFocus
               className="search-label"
@@ -106,9 +111,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
                   </div>
                 </label>
                 <button
-                  onClick={() => {
-                    onOpenSaveLabel(label)
-                  }}
+                  onClick={(ev) => { onOpenSaveLabel(ev, label) }}
                   className="edit"
                 >
                   <GrFormEdit />
@@ -117,8 +120,8 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
             ))}
           </ul>
           <button
-            onClick={() => {
-              onOpenSaveLabel()
+            onClick={(ev) => {
+              onOpenSaveLabel(ev)
             }}
             className="create"
           >

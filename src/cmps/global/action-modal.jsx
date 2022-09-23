@@ -52,9 +52,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
       case 'Labels':
-        return (
-          <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
-        )
+        return <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
 
       case 'Checklist':
         return <CheckList setActionModal={setActionModal} />
@@ -108,7 +106,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
   const title = getTitle()
 
   return (
-    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()} ref={modalRef}>
+    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.preventDefault()} ref={modalRef}>
       {title &&
         <div className="title-container">
           <p>{title}</p>

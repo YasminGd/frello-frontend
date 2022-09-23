@@ -8,6 +8,8 @@ export const utilService = {
   hexToRgbA,
   dueDateTimeFormat,
   dueDateFormat,
+  getModalPosition,
+  getModalPositionOnTop
 }
 
 function makeId(length = 6) {
@@ -114,4 +116,20 @@ function dueDateFormat(dueDate) {
   strDate += `${new Date(dueDate).toLocaleString('en-US', { day: 'numeric' })} `
   strDate += `${new Date(dueDate).toLocaleString('en-US', { month: 'short' })}`
   return strDate
+}
+
+function getModalPosition(ref) {
+  const rect = ref.current.getBoundingClientRect()
+  const pos = { bottom: rect.bottom + 8, left: rect.left }
+  if (window.innerWidth - rect.right < 150) pos.left -= 130
+  if (window.innerHeight - rect.bottom < 450) pos.bottom -= 200
+  return pos
+}
+
+function getModalPositionOnTop(ref) {
+  const rect = ref.current.getBoundingClientRect()
+  const pos = { top: rect.top - 8, left: rect.left - 2.5 }
+  // if (window.innerWidth - rect.right < 150) pos.left -= 130
+  // if (window.innerHeight - rect.bottom < 450) pos.bottom -= 200
+  return pos
 }

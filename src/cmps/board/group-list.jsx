@@ -42,7 +42,6 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps }) => {
                 width: placeholderProps.clientWidth,
                 backgroundColor: '#00000055',
                 borderRadius: '3px',
-                zIndex: '-1'
               }}
             />
           )}

@@ -19,7 +19,6 @@ async function update(board, groupId, task, activityTxt, user) {
   board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
 
   if (activityTxt) {
-    console.log(user);
     board = activityService.addActivity(activityTxt, task, board, null, user)
   }
 

@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom'
 import { QuickEdit } from './quick-edit'
 import { TaskLabelsList } from '../labels/task-labels-list'
 import { TaskPreviewIcons } from './task-preview-icons'
+import { useRef } from 'react'
+import { utilService } from '../../services/util.service'
 
-export const TaskPreview = ({ task, groupId, provided, isDragging, onOpenActionModal }) => {
-  const [isQuickEditOpen, setIsQuickEditOpen] = useState(false)
+export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
+
+  const taskPreviewRef = useRef()
+
+  const [quickEdit, setQuickEdit] = useState(null)
   const getCoverStyle = () => {
     if (task.style?.isFullyCovered && task.style.isFullyCovered) {
       return task.style.bgColor ? task.style.bgColor : ''
@@ -22,13 +27,16 @@ export const TaskPreview = ({ task, groupId, provided, isDragging, onOpenActionM
     if (task.labelIds && task.labelIds.length && task.labelIds !== 0) return true
   }
 
-  const toggleEditModal = (ev) => {
+  const toggleEditModal = (ev, ref) => {
+    if (quickEdit) return setQuickEdit(null)
     ev.stopPropagation()
     ev.preventDefault()
-    setIsQuickEditOpen(!isQuickEditOpen)
+    const pos = utilService.getModalPositionOnTop(ref)
+    setQuickEdit({ pos })
   }
 
   const toRender = renderOptions()
+
   return (
     <Link
       to={`${groupId}/${task.id}`}
@@ -38,26 +46,36 @@ export const TaskPreview = ({ task, groupId, provided, isDragging, onOpenActionM
       {...provided.dragHandleProps}
       ref={provided.innerRef}
     >
-      {task.style?.coverImg && (
-        <section className="cover-color img">
-          <div className="image-gradient"></div>
-          <img src={task.style.coverImg} />
+      <section className='task-preview-conatainer' ref={taskPreviewRef}>
+        {task.style?.coverImg && (
+          <section className="cover-color img">
+            <div className="image-gradient"></div>
+            <img src={task.style.coverImg} />
+          </section>
+        )}
+
+        {task.style?.bgColor &&
+          (<section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
+          </section>)
+        }
+
+        <section className={`task-body`} style={{ backgroundColor: getCoverStyle() }}>
+          {isRenderLabels() && toRender && <TaskLabelsList labelIds={task.labelIds} />}
+          <p>{task.title}</p>
+          {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
         </section>
-      )}
-      {task.style?.bgColor && (
-        <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>
-      )}
-      <section className={`task-body`} style={{ backgroundColor: getCoverStyle() }}>
-        {isRenderLabels() && toRender && <TaskLabelsList labelIds={task.labelIds} />}
-        <p>{task.title}</p>
-        {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
+
+        <section className="quick-edit-icon" onClick={(ev) => { toggleEditModal(ev, taskPreviewRef) }}>
+          <BsPencil />
+        </section>
+
+        {quickEdit && <QuickEdit
+          pos={quickEdit.pos}
+          task={task}
+          groupId={groupId}
+          setQuickEdit={setQuickEdit} />
+        }
       </section>
-      <section className="quick-edit-icon" onClick={toggleEditModal}>
-        <BsPencil />
-      </section>
-      {
-        isQuickEditOpen && <QuickEdit task={task} groupId={groupId} onOpenActionModal={onOpenActionModal}/>
-      }
     </Link>
   )
 }

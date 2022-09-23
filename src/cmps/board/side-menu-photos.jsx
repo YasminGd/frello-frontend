@@ -8,7 +8,6 @@ export const SideMenuPhotos = ({ changeBackground }) => {
 
     const getPhotos = async () => {
         const photos = await unsplashService.getPhotos(search)
-        console.log(photos);
         setPhotos(photos)
     }
 
@@ -22,6 +21,10 @@ export const SideMenuPhotos = ({ changeBackground }) => {
         if (!search) return
         setPhotos(null)
         getPhotos(search)
+    }
+
+    const handleChange = ({ target }) => {
+        setSearch(target.value)
     }
 
     return <section className="side-menu-photos main-layout">

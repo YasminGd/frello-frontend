@@ -5,6 +5,7 @@
 html {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
     Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+  scroll-behavior: auto;
 }
 
 body {
@@ -74,4 +75,3 @@ a {
 // ::-webkit-scrollbar-track-piece {
 //   background: #00000026;
 // }
-

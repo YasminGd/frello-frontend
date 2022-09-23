@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
 import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/board/group-list.jsx'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getBoard, updateBoard } from '../store/actions/board.action'
@@ -18,6 +18,11 @@ export const Board = () => {
   const dispatch = useDispatch()
   const params = useParams()
   const board = useSelector((state) => state.boardModule.board)
+
+  // for DND placeholder
+  const queryAttr = "data-rbd-drag-handle-draggable-id"
+  const [placeholderProps, setPlaceholderProps] = useState({})
+  // console.log('Board ~ placeholderProps', placeholderProps)
 
   useEffect(() => {
     dispatch(getBoard(params.boardId))
@@ -62,11 +67,84 @@ export const Board = () => {
     dispatch(updateBoard(board))
   }
 
+  const getDraggedDom = draggableId => {
+    const domQuery = `[${queryAttr}='${draggableId}']`
+    const draggedDOM = document.querySelector(domQuery)
+
+    return draggedDOM
+  }
+
+  // Calculates the position of the dragged element placeholder
+  const onDragStart = (event) => {
+    const draggedDOM = getDraggedDom(event.draggableId)
+    if (!draggedDOM) return
+    const sourceIndex = event.source.index
+    draggedDOM.parentElement.style.position = 'fixed'
+    const { clientHeight, clientWidth } = draggedDOM
+
+    var clientX =
+      parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
+      [...draggedDOM.parentNode.children]
+        .slice(0, sourceIndex)
+        .reduce((total, curr) => {
+          return total + curr.clientWidth + 8
+        }, 0) - draggedDOM.parentNode.scrollLeft
+
+    setPlaceholderProps({
+      clientHeight,
+      clientWidth,
+      clientY: parseFloat(
+        window.getComputedStyle(draggedDOM.parentNode)),
+      clientX
+
+    })
+  }
+
+  // Calculates the updated position of the dragged element placeholder
+  const onDragUpdate = event => {
+    if (!event.destination) return
+    const draggedDOM = getDraggedDom(event.draggableId)
+    if (!draggedDOM) return
+
+    const { clientHeight, clientWidth } = draggedDOM
+    const destinationIndex = event.destination.index
+    const sourceIndex = event.source.index
+
+    const childrenArray = [...draggedDOM.parentNode.children]
+    const movedItem = childrenArray[sourceIndex]
+    childrenArray.splice(sourceIndex, 1)
+
+    const updatedArray = [
+      ...childrenArray.slice(0, destinationIndex),
+      movedItem,
+      ...childrenArray.slice(destinationIndex + 1)
+    ]
+
+    var clientX =
+      parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
+      updatedArray
+        .slice(0, destinationIndex)
+        .reduce((total, curr) => {
+          return total + curr.clientWidth + 8
+        }, 0) - draggedDOM.parentNode.scrollLeft
+
+    setPlaceholderProps({
+      clientHeight,
+      clientWidth,
+      clientY: parseFloat(
+        window.getComputedStyle(draggedDOM.parentNode)),
+      clientX
+
+    })
+  }
+
   //prettier-ignore
   const onDragEnd = (result) => {
     const { destination, source, type } = result
 
     if (!destination) return
+    setPlaceholderProps({})
+    const draggedDOM = getDraggedDom(result.draggableId)
 
     // if position is same as before return
     if (destination.droppableId === source.droppableId &&
@@ -75,6 +153,8 @@ export const Board = () => {
     const newBoard = { ...board }
     const updatedBoard = boardService.handleDragEnd(newBoard, destination, source, type)
     dispatch(updateBoard(updatedBoard))
+    draggedDOM.parentElement.style.position = 'static'
+
   }
 
   const style = getBoardStyle()
@@ -87,11 +167,11 @@ export const Board = () => {
         <React.Fragment>
           <BoardHeader changeBgColor={changeBgColor} changeTitle={changeTitle} />
           <DragDropContext
-            // onDragStart={onDragStart}
-            // onDragUpdate={onDragUpdate}
+            onDragStart={onDragStart}
+            onDragUpdate={onDragUpdate}
             onDragEnd={onDragEnd}
           >
-            <GroupList board={board} addItem={addItem} removeItem={removeItem} />
+            <GroupList placeholderProps={placeholderProps} board={board} addItem={addItem} removeItem={removeItem} />
           </DragDropContext>
           <Routes>
             <Route path=":groupId/:taskId" element={<TaskDetails />} />

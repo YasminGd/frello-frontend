@@ -3,8 +3,9 @@ import { AddItem } from '../global/add-item.jsx'
 import { GroupPreview } from './group-preview.jsx'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AiOutlinePlus } from 'react-icons/ai'
+import { isEmpty } from 'lodash'
 
-export const GroupList = ({ board, addItem, removeItem }) => {
+export const GroupList = ({ board, addItem, removeItem, placeholderProps }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
 
   const onToggleAdd = () => {
@@ -12,7 +13,8 @@ export const GroupList = ({ board, addItem, removeItem }) => {
   }
   return (
     <Droppable droppableId={board._id} direction="horizontal" type="group">
-      {(provided) => (
+      {(provided, snapshot) => (
+        // <div className="group-list-container">
         <section className="group-list" {...provided.droppableProps} ref={provided.innerRef}>
           {board.groups.map((group, index) => (
             <Draggable draggableId={group.id} key={group.id} index={index}>
@@ -29,6 +31,20 @@ export const GroupList = ({ board, addItem, removeItem }) => {
             </Draggable>
           ))}
           {provided.placeholder}
+          {!isEmpty(placeholderProps) && snapshot.isDraggingOver && (
+            <div
+              className="placeholder"
+              style={{
+                position: 'absolute',
+                top: placeholderProps.clientY,
+                left: placeholderProps.clientX,
+                height: placeholderProps.clientHeight,
+                width: placeholderProps.clientWidth,
+                backgroundColor: '#00000055',
+                borderRadius: '3px'
+              }}
+            />
+          )}
           {isAddOpen ? (
             <AddItem onToggleAdd={onToggleAdd} addItem={addItem} />
           ) : (
@@ -40,6 +56,7 @@ export const GroupList = ({ board, addItem, removeItem }) => {
             </button>
           )}
         </section>
+
       )}
     </Droppable>
   )

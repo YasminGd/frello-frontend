@@ -8,16 +8,11 @@ import { LoginSignup } from './pages/login-signup.jsx'
 
 function App() {
 
-  // useEffect(() => {
-  //   dispatch(loadUsers())
-  // }, [])
-
   return (
     <div className="app">
       <AppHeader />
       <main className="container">
         <Routes>
-          {/* <Route path="user/:id" element={<UserDetails />} /> */}
           <Route path="" element={<Home />} />
           <Route path="user/:status" element={<LoginSignup />} />
           <Route path="workspace" element={<Workspace />} />

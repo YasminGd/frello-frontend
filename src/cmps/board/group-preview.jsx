@@ -3,6 +3,7 @@ import { TaskList } from './task-list.jsx'
 import { DynamicTextarea } from '../global/dynamic-textarea.jsx'
 import { BsPlusLg } from 'react-icons/bs'
 import { ActionModal } from '../global/action-modal.jsx'
+import { utilService } from '../../services/util.service.js'
 
 //prettier-ignore
 export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging }) => {
@@ -16,8 +17,7 @@ export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging 
 
   const onOpenActionModal = (type, ref) => {
     if (actionModal?.type === type) return setActionModal(null)
-    const rect = ref.current.getBoundingClientRect()
-    const pos = { bottom: rect.bottom + 8, left: rect.left }
+    const pos = utilService.getModalPosition(type, ref)
     setActionModal({ type, pos })
   }
 

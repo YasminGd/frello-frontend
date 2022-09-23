@@ -9,7 +9,7 @@ export const AddItem = ({ onToggleAdd, addItem, groupId }) => {
 
     useEffect(() => {
         inputRef.current.focus()
-    })
+    }, [])
 
     const handleChange = ({ target }) => {
         setTitle(target.value)

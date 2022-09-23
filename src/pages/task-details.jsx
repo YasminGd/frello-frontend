@@ -13,6 +13,7 @@ import { CheckListList } from '../cmps/checklist/checklist-list'
 import { TaskDetailsOverview } from '../cmps/task-details/task-details-overview'
 import { TaskDetailsHeader } from '../cmps/task-details/task-details-header'
 import { Activities } from '../cmps/activities/activities'
+import { utilService } from '../services/util.service'
 
 export const TaskDetails = () => {
   const navigate = useNavigate()
@@ -33,10 +34,7 @@ export const TaskDetails = () => {
   }
 
   const onOpenActionModal = (type, ref) => {
-    const rect = ref.current.getBoundingClientRect()
-    const pos = { bottom: rect.bottom + 8, left: rect.left }
-    if (window.innerWidth - rect.right < 150) pos.left -= 130
-    if (window.innerHeight - rect.bottom < 450) pos.bottom -= 200
+    const pos = utilService.getModalPosition(type, ref)
     setActionModal({ type, pos })
   }
 
@@ -55,7 +53,7 @@ export const TaskDetails = () => {
   return (
     <React.Fragment>
       <section onClick={onGoBack} className="screen">
-        <section className="task-details-container">
+        <section className="task-details-container" >
           <section className="task-details" onClick={(ev) => ev.stopPropagation()}>
             <button className={`close-task-details ${btnCloseStyle}`} onClick={onGoBack}><IoCloseOutline /></button>
             {task.style?.coverImg && <section className="cover-color img">

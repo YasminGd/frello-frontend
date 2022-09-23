@@ -11,7 +11,7 @@
   width: 100%;
   color: white;
   min-height: 44px;
-  border-bottom: 1px solid hsla(0,0%,100%,0.16);
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.16);
   transition: background-color 300ms;
 
   &.fixed {
@@ -104,13 +104,14 @@
   }
 
   .user-img {
-      height: 32px;
-      object-fit: cover;
-      width: 32px;
-      margin-inline-end: 4px;
+    height: 32px;
+    object-fit: cover;
+    width: 32px;
+    margin-inline-end: 4px;
+    cursor: pointer;
 
-      img {
-        border-radius: 25em;
-      }
+    img {
+      border-radius: 25em;
+    }
   }
 }

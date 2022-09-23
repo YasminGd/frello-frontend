@@ -13,7 +13,7 @@ export const Workspace = () => {
   useEffect(() => {
     if (board) dispatch({ type: 'SET_BOARD', boardId: null })
     dispatch(loadBoards())
-  }, []) //!! deleted boards from array due to infinite loop
+  }, [])
 
   const onToggleStarred = (ev, boardId) => {
     ev.preventDefault()

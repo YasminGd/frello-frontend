@@ -33,14 +33,14 @@
 
 // BOARD
 @import 'cmps/board/board-header';
+@import 'cmps/board/board-side-menu';
 @import 'cmps/board/filter/board-filter';
 @import 'cmps/board/filter/members-filter';
 @import 'cmps/board/filter/member-select-list';
 @import 'cmps/board/group-list';
+@import 'cmps/board/group-preview';
 @import 'cmps/board/task-list';
 @import 'cmps/board/task-preview';
-@import 'cmps/board/group-preview';
-@import 'cmps/board/board-side-menu';
 @import 'cmps/board/side-menu-background-options';
 @import 'cmps/board/side-menu-colors';
 @import 'cmps/board/side-menu-photos';
@@ -48,6 +48,7 @@
 @import 'cmps/board/quick-edit';
 @import 'cmps/board/quick-edit-buttons';
 @import 'cmps/board/users';
+@import 'cmps/board/account-details';
 @import 'cmps/board/list-actions';
 @import 'cmps/board/task-preview-icons';
 
@@ -66,18 +67,18 @@
 // CHECKLIST
 @import 'cmps/checklist/checklist-list';
 @import 'cmps/checklist/checklist-preview';
+@import 'cmps/checklist/check-list';
 @import 'cmps/checklist/todo-list';
 @import 'cmps/checklist/todo-preview';
-@import 'cmps/checklist/check-list';
 @import 'cmps/checklist/add-todo';
 @import 'cmps/checklist/edit-todo';
 
 // LABELS
+@import 'cmps/labels/labels';
 @import 'cmps/labels/task-labels-list';
 @import 'cmps/labels/task-labels-overview';
-@import 'cmps/labels/color-pallet';
-@import 'cmps/labels/labels';
 @import 'cmps/labels/edit-label';
+@import 'cmps/labels/color-pallet';
 
 // DATES
 @import 'cmps/dates/task-dates-overview';
@@ -89,6 +90,6 @@
 
 // ACTIVITIES
 @import 'cmps/activities/activities';
-@import 'cmps/activities/activity-preview';
 @import 'cmps/activities/activity-list';
+@import 'cmps/activities/activity-preview';
 @import 'cmps/activities/add-comment';

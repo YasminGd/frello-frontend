@@ -7,6 +7,7 @@ import { BsThreeDots, BsPersonPlus, BsFilter } from 'react-icons/bs'
 import { BoardSideMenu } from './board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from '../global/action-modal'
+import { utilService } from '../../services/util.service'
 
 export const BoardHeader = ({ changeBackground, changeTitle }) => {
   const board = useSelector((state) => state.boardModule.board)
@@ -51,9 +52,7 @@ export const BoardHeader = ({ changeBackground, changeTitle }) => {
 
   const onOpenActionModal = (type, ref) => {
     if (actionModal?.type === type) return setActionModal(null)
-    const rect = ref.current.getBoundingClientRect()
-    const pos = { bottom: rect.bottom + 8, left: rect.left }
-    if (type === 'Filter') { pos.right = 5; pos.bottom += 8 }
+    const pos = utilService.getModalPosition(type, ref)
     setActionModal({ type, pos })
   }
 

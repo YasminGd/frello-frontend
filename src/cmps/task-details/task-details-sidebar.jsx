@@ -79,9 +79,10 @@ export const TaskDetailsSidebar = ({ onOpenActionModal, taskId, groupId }) => {
                     {btn.iconCmp}
                     {btn.type}
                 </button>
-            ))}
+            ))
+            }
 
             <button onClick={onRemoveTask} className='btn-sidebar' ref={btnRemoveRef}><GoArchive className="icon" />Delete</button>
-        </section>
+        </section >
     )
 }

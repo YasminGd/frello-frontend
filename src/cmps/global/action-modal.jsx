@@ -9,6 +9,8 @@ import { Labels } from '../labels/labels'
 import { Members } from '../members/members'
 import { Users } from '../board/users'
 import { ListActions } from '../board/list-actions'
+import { BoardFilter } from '../board/filter/board-filter'
+import { MemberSelectList } from '../board/filter/member-select-list'
 
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
@@ -26,7 +28,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
 
   const handleClickOutside = (ev) => {
     if (modalRef.current && !modalRef.current.contains(ev.target)) {
-      setActionModal(null)
+      setTimeout(() => setActionModal(null), 150)
     }
   }
 
@@ -36,6 +38,11 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
 
   const { type, pos } = data
   const modalStyle = { left: pos.left + 'px', top: pos.bottom + 'px' }
+  if (pos.right) {
+    delete modalStyle.left
+    modalStyle.right = pos.right
+    // modalStyle.bottom += 40
+  }
 
   const getActionCmp = (type) => {
     switch (type) {
@@ -65,6 +72,12 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
       case 'List actions':
         return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
 
+      case 'Filter':
+        return <BoardFilter />
+
+      case 'Select member':
+        return <MemberSelectList />
+
       default:
         break
     }
@@ -85,6 +98,9 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
       case 'Users':
         return 'Invite to board'
 
+      case 'Select member':
+        return ''
+
       default:
         return type
     }
@@ -94,13 +110,15 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
 
   return (
     <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()} ref={modalRef}>
-      <div className="title-container">
-        <p>{title}</p>
-        {isLabelsEdit && <IoChevronBack className="edit-go-back" onClick={onToggleLabelEdit} />}
-        <span>
-          <IoCloseOutline onClick={() => setActionModal(null)} />
-        </span>
-      </div>
+      {title &&
+        <div className="title-container">
+          <p>{title}</p>
+          {isLabelsEdit && <IoChevronBack className="edit-go-back" onClick={onToggleLabelEdit} />}
+          <span>
+            <IoCloseOutline onClick={() => setActionModal(null)} />
+          </span>
+        </div>
+      }
       {getActionCmp(type)}
     </section>
   )

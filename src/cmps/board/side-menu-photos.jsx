@@ -12,6 +12,10 @@ export const SideMenuPhotos = ({ changeBackground }) => {
         setPhotos(photos)
     }
 
+    const handleChange = () => {
+
+    }
+
     useEffect(() => {
         getPhotos()
             .catch(console.log('Cant get photos'))

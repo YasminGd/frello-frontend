@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
 
-  &>* {
+  & > * {
     margin-bottom: 12px;
     margin-top: 10px;
     height: 32px;
@@ -26,7 +26,7 @@
   .left {
     display: flex;
 
-    &>* {
+    & > * {
       height: 32px;
     }
 
@@ -81,7 +81,7 @@
         cursor: pointer;
         color: #f2d600;
 
-        &>* {
+        & > * {
           transform: scale(1.2);
         }
       }
@@ -137,6 +137,7 @@
     margin-top: 10px;
     margin-right: 4px;
     transition: margin 0.12s ease-in;
+    display: flex;
 
     &.open {
       margin-right: 343px;

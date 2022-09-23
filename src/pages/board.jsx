@@ -59,8 +59,8 @@ export const Board = () => {
     dispatch(updateBoard(board))
   }
 
-  const changeBackground = ({background, backgroundColor, thumbnail}) => {
-    board.style = {background, backgroundColor, thumbnail}
+  const changeBackground = ({ background, backgroundColor, thumbnail }) => {
+    board.style = { background, backgroundColor, thumbnail }
     dispatch(updateBoard(board))
   }
 
@@ -76,7 +76,6 @@ export const Board = () => {
     const draggedDOM = getDraggedDom(event.draggableId)
     if (!draggedDOM) return
     const sourceIndex = event.source.index
-    draggedDOM.parentElement.style.position = 'fixed'
     const { clientHeight, clientWidth } = draggedDOM
 
     var clientX =
@@ -150,7 +149,7 @@ export const Board = () => {
     const newBoard = { ...board }
     const updatedBoard = boardService.handleDragEnd(newBoard, destination, source, type)
     dispatch(updateBoard(updatedBoard))
-    draggedDOM.parentElement.style.position = 'static'
+    // draggedDOM.parentElement.style.position = 'static'
 
   }
 

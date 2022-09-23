@@ -9,7 +9,7 @@ export const Dates = ({ task, groupId, setActionModal }) => {
   const dispatch = useDispatch()
   const [selectedDate, handleDateChange] = useState(new Date())
 
-  const onAddDueDate = () => {
+  const onAddDueDate = (ev) => {
     const dueDate = new Date(selectedDate).getTime()
 
     let activityTxt

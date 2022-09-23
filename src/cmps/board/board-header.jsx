@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { updateBoard } from '../../store/actions/board.action'
-import { BsThreeDots, BsPersonPlus } from 'react-icons/bs'
+import { BsThreeDots, BsPersonPlus, BsFilter } from 'react-icons/bs'
 import { BoardSideMenu } from './board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from '../global/action-modal'
@@ -15,6 +15,7 @@ export const BoardHeader = ({ changeBackground, changeTitle }) => {
   const [actionModal, setActionModal] = useState(null)
   const [isSideMenuOpen, setIsSideMenuOpen] = useState('')
   const btnAddUserRef = useRef()
+  const filterRef = useRef()
 
   const dispatch = useDispatch()
 
@@ -52,6 +53,7 @@ export const BoardHeader = ({ changeBackground, changeTitle }) => {
     if (actionModal?.type === type) return setActionModal(null)
     const rect = ref.current.getBoundingClientRect()
     const pos = { bottom: rect.bottom + 8, left: rect.left }
+    if (type === 'Filter') { pos.right = 5; pos.bottom += 8 }
     setActionModal({ type, pos })
   }
 
@@ -95,6 +97,10 @@ export const BoardHeader = ({ changeBackground, changeTitle }) => {
         </button>
       </section>
       <section className={`right ${isSideMenuOpen}`}>
+        <button ref={filterRef} onClick={() => { onOpenActionModal('Filter', filterRef) }}>
+          <BsFilter />
+          Filter
+        </button>
         <button onClick={renderSideMenu}>
           <BsThreeDots />
           Show menu

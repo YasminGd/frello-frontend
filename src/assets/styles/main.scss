@@ -33,6 +33,8 @@
 
 // BOARD
 @import 'cmps/board/board-header';
+@import 'cmps/board/filter/board-filter';
+@import 'cmps/board/filter/members-filter';
 @import 'cmps/board/group-list';
 @import 'cmps/board/task-list';
 @import 'cmps/board/task-preview';

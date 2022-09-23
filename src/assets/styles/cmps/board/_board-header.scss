@@ -138,6 +138,8 @@
     margin-right: 4px;
     transition: margin 0.12s ease-in;
     display: flex;
+    display: flex;
+    gap: 14px;
 
     &.open {
       margin-right: 343px;
@@ -163,7 +165,7 @@
       padding: 0;
       padding-right: 12px;
       padding-left: 9px;
-      margin-inline-end: 14px;
+      // margin-inline-end: 14px;
 
       &:hover {
         cursor: pointer;

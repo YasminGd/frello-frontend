@@ -16,7 +16,7 @@ export const MembersFilter = () => {
 
     const onOpenSelectMember = (type, ref) => {
         const rect = ref.current.getBoundingClientRect()
-        const pos = { bottom: rect.bottom + 8, left: rect.left + 5 }
+        const pos = { bottom: rect.bottom + 8, left: rect.left }
         setSelectMember({ type, pos })
     }
 
@@ -84,7 +84,7 @@ export const MembersFilter = () => {
                             <input
                                 ref={selectMemberRef}
                                 onFocus={() => { onOpenSelectMember('Select member', selectMemberRef) }}
-                                onBlur={() => { setSelectMember(null) }}
+                                // onBlur={() => { setSelectMember(null) }}
                                 // onClick={() => { toggleSelectMember() }}
                                 className="search-member"
                                 type="text"
@@ -92,7 +92,7 @@ export const MembersFilter = () => {
                             <FaChevronDown className="icon-open" />
                         </div>
                         {selectMember && <ActionModal
-                            // setActionModal={setSelectMember}
+                            setActionModal={setSelectMember}
                             data={selectMember}
                         />}
 

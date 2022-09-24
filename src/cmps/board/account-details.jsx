@@ -1,8 +1,17 @@
+import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
+import { logout } from "../../store/actions/user.action"
 
-export const AccountDetails = () => {
-
+export const AccountDetails = ({ setActionModal }) => {
+    const dispatch = useDispatch()
     const user = useSelector(state => state.userModule.user)
+
+
+    const onLogout = () => {
+        dispatch(logout())
+        setActionModal(null)
+    }
 
     return (
         <section className="account-details">
@@ -14,7 +23,7 @@ export const AccountDetails = () => {
             </div>
             <div className="seperator"></div>
             <div className="btn-container">
-                <button className="btn-login-logout">Logout</button>
+                <Link to={'/'} onClick={onLogout} className="btn-login-logout">Logout</Link>
             </div>
         </section>
     )

@@ -119,6 +119,7 @@ function dueDateFormat(dueDate) {
 }
 
 function getModalPosition(type, ref) {
+  console.log('getModalPosition ~ ref', ref)
   const rect = ref.current.getBoundingClientRect()
   const pos = { bottom: rect.bottom + 8, left: rect.left }
   if (window.innerWidth - rect.right < 150) pos.left -= 130

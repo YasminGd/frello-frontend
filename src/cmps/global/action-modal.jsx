@@ -77,7 +77,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return <MemberSelectList />
 
       case 'Account':
-        return <AccountDetails />
+        return <AccountDetails setActionModal={setActionModal} />
 
       default:
         break

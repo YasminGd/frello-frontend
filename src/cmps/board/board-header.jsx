@@ -9,7 +9,7 @@ import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from '../global/action-modal'
 import { utilService } from '../../services/util.service'
 
-export const BoardHeader = ({ changeBackground, changeTitle }) => {
+export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filterBy }) => {
   const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
@@ -108,7 +108,7 @@ export const BoardHeader = ({ changeBackground, changeTitle }) => {
         }
       </section>
       <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBackground={changeBackground} />
-      {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}
+      {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} updateFilter={updateFilter} filterBy={filterBy}/>}
     </section>
   )
 }

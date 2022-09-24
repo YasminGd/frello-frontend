@@ -15,10 +15,12 @@ import { socketService } from '../services/socket.service.js'
 import { unsplashService } from '../services/unsplash.service.js'
 
 export const Board = () => {
+  const board = useSelector((state) => state.boardModule.board)
+  const [filterBy, setFilterBy] = useState({})
+  const filteredBoard = boardService.getBoardForDisplay(board, filterBy)
+  
   const dispatch = useDispatch()
   const params = useParams()
-  const board = useSelector((state) => state.boardModule.board)
-
   // for DND placeholder
   const queryAttr = "data-rbd-drag-handle-draggable-id"
   const [placeholderProps, setPlaceholderProps] = useState({})
@@ -150,7 +152,11 @@ export const Board = () => {
     const updatedBoard = boardService.handleDragEnd(newBoard, destination, source, type)
     dispatch(updateBoard(updatedBoard))
     // draggedDOM.parentElement.style.position = 'static'
+  }
 
+  const updateFilter = (filter) => {
+    setFilterBy(filter)
+    console.log(filter);
   }
 
   const style = getBoardStyle()
@@ -161,13 +167,13 @@ export const Board = () => {
         <Loader />
       ) : (
         <React.Fragment>
-          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} />
+          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} updateFilter={updateFilter} filterBy={filterBy}/>
           <DragDropContext
             onDragStart={onDragStart}
             onDragUpdate={onDragUpdate}
             onDragEnd={onDragEnd}
           >
-            <GroupList placeholderProps={placeholderProps} board={board} addItem={addItem} removeItem={removeItem} />
+            <GroupList placeholderProps={placeholderProps} board={filteredBoard} addItem={addItem} removeItem={removeItem} />
           </DragDropContext>
           <Routes>
             <Route path=":groupId/:taskId" element={<TaskDetails />} />

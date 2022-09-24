@@ -12,6 +12,7 @@ import { ListActions } from '../board/list-actions'
 import { BoardFilter } from '../board/filter/board-filter'
 import { MemberSelectList } from '../board/filter/member-select-list'
 import { AccountDetails } from '../board/account-details'
+import { CreateBoard } from '../workspace/create-board'
 
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
@@ -53,7 +54,9 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return <Cover task={task} onUpdateTask={onUpdateTask} />
 
       case 'Labels':
-        return <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
+        return (
+          <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
+        )
 
       case 'Checklist':
         return <CheckList setActionModal={setActionModal} />
@@ -78,6 +81,9 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
 
       case 'Account':
         return <AccountDetails />
+
+      case 'Create board':
+        return <CreateBoard />
 
       default:
         break
@@ -111,7 +117,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
 
   return (
     <section className="action-modal" style={modalStyle} onClick={(ev) => ev.preventDefault()} ref={modalRef}>
-      {title &&
+      {title && (
         <div className="title-container">
           <p>{title}</p>
           {isLabelsEdit && <IoChevronBack className="edit-go-back" onClick={onToggleLabelEdit} />}
@@ -119,7 +125,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
             <IoCloseOutline onClick={() => setActionModal(null)} />
           </span>
         </div>
-      }
+      )}
       {getActionCmp(type)}
     </section>
   )

@@ -13,7 +13,7 @@ import { BoardFilter } from '../board/filter/board-filter'
 import { MemberSelectList } from '../board/filter/member-select-list'
 import { AccountDetails } from '../board/account-details'
 
-export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem }) => {
+export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem, updateFilter, filterBy, handleChange }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
   const modalRef = useRef()
@@ -29,7 +29,8 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
 
   const handleClickOutside = (ev) => {
     if (modalRef.current && !modalRef.current.contains(ev.target)) {
-      setTimeout(() => setActionModal(null), 150)
+      // setTimeout(() => setActionModal(null), 150)
+     setActionModal(null)
     }
   }
 
@@ -71,10 +72,10 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
 
       case 'Filter':
-        return <BoardFilter />
+        return <BoardFilter updateFilter={updateFilter} filterBy={filterBy}/>
 
       case 'Select member':
-        return <MemberSelectList />
+        return <MemberSelectList handleChange={handleChange} filterBy={filterBy}/>
 
       case 'Account':
         return <AccountDetails setActionModal={setActionModal} />
@@ -110,7 +111,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
   const title = getTitle()
 
   return (
-    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.preventDefault()} ref={modalRef}>
+    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()} ref={modalRef}>
       {title &&
         <div className="title-container">
           <p>{title}</p>

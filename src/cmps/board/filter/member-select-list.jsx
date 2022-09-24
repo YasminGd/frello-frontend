@@ -1,23 +1,23 @@
 import { useSelector } from "react-redux"
 
-export const MemberSelectList = () => {
+export const MemberSelectList = ({handleChange, filterBy}) => {
 
     const boardMembers = useSelector(state => state.boardModule.board.members)
 
     return (
-        <section className="member-select-list">
+        <section className="member-select-list" onClick={ev => ev.preventDefault()}>
             <ul>
                 {boardMembers.map(member => (
-                    <li key={member._id}>
+                    <li key={member._id} onClick={ev => ev.stopPropagation()}>
                         <label htmlFor={member._id}>
                             <input
-                                // onChange={(ev) => {
-                                // handleChange(ev, label.id)
-                                // }}
-                                // checked={task.labelIds?.includes(label.id)}
                                 className="checkbox"
                                 type="checkbox"
-                                id={member._id}
+                                id={member._id} 
+                                name="members"
+                                value={member._id}
+                                onChange={handleChange}
+                                checked = {filterBy?.members.includes(member._id)}
                             />
                             <div className="option-container">
                                 <div className="member-img">

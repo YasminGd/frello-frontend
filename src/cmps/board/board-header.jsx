@@ -113,7 +113,14 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
         )}
       </section>
       <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBackground={changeBackground} />
-      {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} updateFilter={updateFilter} filterBy={filterBy}/>}
+      {actionModal && (
+        <ActionModal
+          setActionModal={setActionModal}
+          data={actionModal}
+          updateFilter={updateFilter}
+          filterBy={filterBy}
+        />
+      )}
     </section>
   )
 }

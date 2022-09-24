@@ -94,7 +94,7 @@ export const ActionModal = ({
         return <AccountDetails setActionModal={setActionModal} />
 
       case 'Create board':
-        return <CreateBoard />
+        return <CreateBoard setActionModal={setActionModal} />
 
       default:
         break
@@ -127,7 +127,7 @@ export const ActionModal = ({
   const title = getTitle()
 
   return (
-    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.preventDefault()} ref={modalRef}>
+    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()} ref={modalRef}>
       {title && (
         <div className="title-container">
           <p>{title}</p>

@@ -32,6 +32,7 @@ export const AppHeader = () => {
   }
 
   const styleClass = getStyleClass()
+  const isDisplayUserImg = (user?.fullname === 'Guest') ? false : true
 
   return (
     <section className={`app-header ${styleClass}`} style={getStyleColor()}>
@@ -50,7 +51,7 @@ export const AppHeader = () => {
           Get Frello for free
         </Link>
       </nav>
-      {!styleClass && user && (
+      {!styleClass && user && isDisplayUserImg && (
         <div className="user-img">
           <img
             src={user.imgUrl} alt=""

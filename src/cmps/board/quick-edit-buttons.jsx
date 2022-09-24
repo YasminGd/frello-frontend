@@ -50,11 +50,6 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
     },
   ]
 
-  const openModal = (ev, type, ref) => {
-    ev.preventDefault()
-    onOpenActionModal(type, ref)
-  }
-
   const onRemoveTask = () => {
     dispatch(removeTask(groupId, task.id))
     setQuickEdit(null)
@@ -64,9 +59,11 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
     dispatch(updateTask(groupId, task))
   }
 
-  const onOpenActionModal = (type, ref) => {
+  const onOpenActionModal = (ev, type, ref) => {
+    console.log('onOpenActionModal ~ ref', ref)
+    ev.preventDefault()
     if (actionModal?.type === type) return setActionModal(null)
-    const pos = utilService.getModalPosition(ref)
+    const pos = utilService.getModalPosition(type, ref)
     setActionModal({ type, pos })
   }
 
@@ -82,7 +79,7 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
         </Link>
         {actionBtns.map((btn) => (
           <button className=""
-            onClick={(ev) => openModal(ev, btn.type, btn.ref)}
+            onClick={(ev) => onOpenActionModal(ev, btn.type, btn.ref)}
             key={btn.type}
             ref={btn.ref}
           >

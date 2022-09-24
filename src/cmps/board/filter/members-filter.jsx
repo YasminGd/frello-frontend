@@ -6,8 +6,10 @@ import { FaChevronDown } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { ActionModal } from "../../global/action-modal"
 
-export const MembersFilter = () => {
-
+export const MembersFilter = ({handleChange, filterBy, updateFilter}) => {
+    const user = useSelector(state => state.userModule.user)
+    const board = useSelector(state => state.boardModule.board)
+    const members = board.members
     const [selectMember, setSelectMember] = useState(null)
     const selectMemberRef = useRef()
 
@@ -20,12 +22,11 @@ export const MembersFilter = () => {
         setSelectMember({ type, pos })
     }
 
-    // const toggleSelectMember = () => {
-    //     setSelectMember(prevState => {
-    //         if (prevState) return null
-    //         else return { type: 'Select member', ref: selectMemberRef }
-    //     })
-    // }
+    const changeFilter = ({target}) => {
+        if(!target.checked) filterBy = {...filterBy, members:[]}
+        else filterBy = {...filterBy, members:members.map(member => member._id)}
+        updateFilter(filterBy)
+    }
 
     return (
         <section className="members-filter">
@@ -34,13 +35,13 @@ export const MembersFilter = () => {
                 <li>
                     <label htmlFor='no-members'>
                         <input
-                            // onChange={(ev) => {
-                            // handleChange(ev, label.id)
-                            // }}
-                            // checked={task.labelIds?.includes(label.id)}
+                            checked={filterBy?.members?.includes('no-members')}
                             className="checkbox"
                             type="checkbox"
                             id="no-members"
+                            name="members"
+                            value="no-members"
+                            onChange={handleChange}
                         />
                         <div className="option-container">
                             <div className="member-img guest">
@@ -60,6 +61,10 @@ export const MembersFilter = () => {
                             className="checkbox"
                             type="checkbox"
                             id="me"
+                            name="members"
+                            value={user._id}
+                            checked={filterBy?.members?.includes(user._id)}
+                            onChange={handleChange}
                         />
                         <div className="option-container">
                             <div className="member-img">
@@ -79,21 +84,23 @@ export const MembersFilter = () => {
                             className="checkbox"
                             type="checkbox"
                             id="selecet-member"
+                            checked = {filterBy?.members?.length && !(filterBy?.members?.length === 1 && filterBy?.members?.includes('no-members'))}
+                            onChange = {changeFilter}
                         />
                         <div className="option-container">
                             <input
                                 ref={selectMemberRef}
                                 onFocus={() => { onOpenSelectMember('Select member', selectMemberRef) }}
-                                // onBlur={() => { setSelectMember(null) }}
-                                // onClick={() => { toggleSelectMember() }}
                                 className="search-member"
                                 type="text"
-                                placeholder="Selecet members" />
+                                placeholder={filterBy?.members?.length && !(filterBy?.members?.length === 1 && filterBy?.members?.includes('no-members')) ? `${filterBy?.members?.filter(member=> member!=='no-members').length} ${filterBy?.members?.filter(member=> member!=='no-members').length === 1 ? `member` : `members`} selected`: "Select members"} />
                             <FaChevronDown className="icon-open" />
                         </div>
                         {selectMember && <ActionModal
                             setActionModal={setSelectMember}
                             data={selectMember}
+                            handleChange = {handleChange}
+                            filterBy={filterBy}
                         />}
 
                     </label>

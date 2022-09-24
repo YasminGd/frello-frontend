@@ -21,6 +21,10 @@ export function userReducer(state = initialState, action) {
       state = { ...state, users: [...action.users] }
       break
 
+    case 'SET_USER':
+      state = { ...state, user: action.user }
+      break
+
     case 'SET_LOGGEDIN_USER':
       state = { ...state, loggedInUser: { ...action.loggedInUser } }
       break

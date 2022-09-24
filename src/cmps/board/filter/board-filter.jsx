@@ -1,26 +1,24 @@
 import { useRef, useState } from "react"
 import { useSelector } from "react-redux"
+import { boardService } from "../../../services/board.service"
 import { MembersFilter } from "./members-filter"
 
-export const BoardFilter = () => {
-    const boardFromStore = useSelector(state => state.boardModule.board)
-    const [filterBy, setFilterBy] = useState({})
-    console.log('BoardFilter ~ filterBy', filterBy)
-    const filteredBoard = useRef(structuredClone(boardFromStore))
+export const BoardFilter = ({ updateFilter, filterBy }) => {
+    // const boardFromStore = useSelector(state => state.boardModule.board)
+    // const filteredBoard = useRef(structuredClone(boardFromStore))
 
     const handleChange = ({ target }) => {
-        const { value } = target
-        setFilterBy(prevState => ({ ...prevState, txt: value }))
-        filterBoard(filterBy)
-    }
-
-    const filterBoard = (filterBy) => {
-        console.log('filterBoard ~ filterBy', filterBy)
-        const regex = new RegExp(filterBy.txt, 'i')
-        // const filteredBoardGroups = boardFromStore.groups.filter(group => regex.test(group.title))
-        // console.log('filterBoard ~ filteredBoardGroups', filteredBoardGroups)
-        // filteredBoard.groups = filteredBoardGroups
-        // console.log('filterBoard ~ filteredBoard.groups', filteredBoard.groups)
+        const { value, name } = target
+        if (target.type === 'checkbox') {
+            if(target.checked && !filterBy[name]?.includes(value)) {
+                if (filterBy[name]) filterBy = { ...filterBy, [name]: [...filterBy[name], value] }
+                else filterBy = { ...filterBy, [name]: [value] }
+            } else {
+                filterBy = { ...filterBy, [name]: filterBy[name].filter(item => item !== value) }
+            }
+        }
+        else filterBy = { ...filterBy, [name]: value }
+        updateFilter(filterBy)
     }
 
     return (
@@ -32,10 +30,12 @@ export const BoardFilter = () => {
                     autoFocus
                     className="search-filter"
                     type="text"
-                    placeholder="Enter a keyword..." />
+                    placeholder="Enter a keyword..."
+                    value={filterBy.txt}
+                    name="txt" />
                 <p className="search-label">Search cards, members, labels, and more.</p>
-                <MembersFilter title="Members" />
-                <MembersFilter title="Labels" />
+                <MembersFilter title="Members" handleChange={handleChange} filterBy={filterBy} updateFilter={updateFilter}/>
+                {/* <MembersFilter title="Labels" /> */}
             </div>
         </section>
     )

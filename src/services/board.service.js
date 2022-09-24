@@ -9,6 +9,7 @@ export const boardService = {
   save,
   remove,
   handleDragEnd,
+  getBoardForDisplay
 }
 
 async function query(filterBy) {
@@ -87,4 +88,23 @@ function handleDragEnd(newBoard, destination, source, type) {
     newBoard.groups[prevGroupIdx] = prevGroup
     return newBoard
   }
+}
+
+
+function getBoardForDisplay(board, filter) {
+  let filteredBoard = structuredClone(board)
+  let filterCopy = structuredClone(filter)
+  if (filter.txt) {
+    const regex = new RegExp(filter.txt, 'i')
+    filteredBoard.groups = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => regex.test(task.title)) }))
+  }
+  if (filter.members && filter.members.length) {
+    if (filter.members.includes('no-members')) {
+      filterCopy.members.splice(filter.members.indexOf('no-members'), 1)
+      filteredBoard.groups = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => !task.memberIds || !task.memberIds.length || filterCopy.members.some(memberId => task.memberIds.includes(memberId))) }))
+  } else {
+      filteredBoard.groups = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => filter.members.some(memberId => task.memberIds?.includes(memberId))) }))
+    }
+  }
+  return filteredBoard
 }

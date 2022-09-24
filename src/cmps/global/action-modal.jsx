@@ -14,7 +14,17 @@ import { MemberSelectList } from '../board/filter/member-select-list'
 import { AccountDetails } from '../board/account-details'
 import { CreateBoard } from '../workspace/create-board'
 
-export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem }) => {
+export const ActionModal = ({
+  data,
+  task,
+  onUpdateTask,
+  setActionModal,
+  groupId,
+  removeItem,
+  updateFilter,
+  filterBy,
+  handleChange,
+}) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
   const modalRef = useRef()
@@ -30,7 +40,8 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
 
   const handleClickOutside = (ev) => {
     if (modalRef.current && !modalRef.current.contains(ev.target)) {
-      setTimeout(() => setActionModal(null), 150)
+      // setTimeout(() => setActionModal(null), 150)
+      setActionModal(null)
     }
   }
 
@@ -74,13 +85,13 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
 
       case 'Filter':
-        return <BoardFilter />
+        return <BoardFilter updateFilter={updateFilter} filterBy={filterBy} />
 
       case 'Select member':
-        return <MemberSelectList />
+        return <MemberSelectList handleChange={handleChange} filterBy={filterBy} />
 
       case 'Account':
-        return <AccountDetails />
+        return <AccountDetails setActionModal={setActionModal} />
 
       case 'Create board':
         return <CreateBoard />

@@ -55,23 +55,28 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
       {...provided.dragHandleProps}
       ref={provided.innerRef}
     >
-      <section className="task-preview-conatainer" ref={taskPreviewRef}>
+      <section className="task-preview-container" ref={taskPreviewRef}>
         {task.style?.coverImg && (
           <section className="cover-color img">
-            <div className="image-gradient"></div>
+            <div className="image-gradient">
+              <p>{task.title}</p>
+            </div>
             <img src={task.style.coverImg} />
           </section>
         )}
 
         {task.style?.bgColor && (
-          <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>
+          <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
+            {!toRender && <p>{task.title}</p>}
+          </section>
         )}
 
-        <section className={`task-body`} style={{ backgroundColor: getCoverStyle() }}>
-          {isRenderLabels() && toRender && <TaskLabelsList labelIds={task.labelIds} />}
+        {toRender && <section className={`task-body`} style={{ backgroundColor: getCoverStyle() }}>
+          {isRenderLabels() && <TaskLabelsList labelIds={task.labelIds} />}
           <p>{task.title}</p>
-          {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
-        </section>
+          <TaskPreviewIcons groupId={groupId} task={task} />
+        </section>}
+
 
         <section
           className="quick-edit-icon"

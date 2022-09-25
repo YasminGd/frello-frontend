@@ -47,8 +47,9 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
   const toRender = renderOptions()
 
   return (
-    <button
-      onClick={(ev) => { onOpenTaskDetails(ev) }}
+    <Link
+      onClick={(ev) => ev.preventDefault()}
+      // onClick={(ev) => { onOpenTaskDetails(ev) }}
       to={`${groupId}/${task.id}`}
       className={`task-preview ${isDragging ? 'dragging' : ''} 
       ${task?.style?.isFullyCovered ? 'full' : ''}`}
@@ -86,6 +87,6 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
           setQuickEdit={setQuickEdit} />
         }
       </section>
-    </button>
+    </Link>
   )
 }

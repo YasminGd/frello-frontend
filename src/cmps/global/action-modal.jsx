@@ -40,7 +40,6 @@ export const ActionModal = ({
 
   const handleClickOutside = (ev) => {
     if (modalRef.current && !modalRef.current.contains(ev.target)) {
-      // setTimeout(() => setActionModal(null), 150)
       setActionModal(null)
     }
   }

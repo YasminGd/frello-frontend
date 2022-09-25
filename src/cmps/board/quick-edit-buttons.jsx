@@ -60,7 +60,6 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
   }
 
   const onOpenActionModal = (ev, type, ref) => {
-    console.log('onOpenActionModal ~ ref', ref)
     ev.preventDefault()
     if (actionModal?.type === type) return setActionModal(null)
     const pos = utilService.getModalPosition(type, ref)

@@ -5,12 +5,15 @@ import { HashRouter as Router } from 'react-router-dom'
 import App from './root-cmp.jsx'
 import { store } from './store/store'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <GoogleOAuthProvider clientId="1031425776599-1fk9n9l1d95umd9mtgikqjbsi5gcf571.apps.googleusercontent.com">
+        <App />
+      </GoogleOAuthProvider>
     </Router>
   </Provider>
 )

@@ -138,6 +138,12 @@ $grayCustom: #ebecf0;
   .already-have-account {
     font-size: 14px;
   }
+
+  .google-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
 }
 
 .left-hero {

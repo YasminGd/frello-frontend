@@ -59,7 +59,7 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
         {task.style?.coverImg && (
           <section className="cover-color img">
             <div className="image-gradient">
-              <p>{task.title}</p>
+              {!toRender && <p>{task.title}</p>}
             </div>
             <img src={task.style.coverImg} />
           </section>

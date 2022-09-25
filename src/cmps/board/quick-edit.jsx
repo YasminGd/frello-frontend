@@ -22,7 +22,8 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
 
   return (
     <React.Fragment>
-      <section className="quick-edit" style={modalStyle} onClick={(ev) => { ev.preventDefault() }}>
+      <div className="backdrop" onClick={(ev) => { ev.preventDefault() }}></div>
+      <section className="quick-edit" style={modalStyle} >
         <section className="main-edit">
           <textarea
             value={taskTitle}

@@ -5,11 +5,9 @@
   border-radius: 3px;
   font-size: 0.875rem;
   max-height: 100%;
-  // z-index: 2;
   margin-inline-end: 8px;
 
   &.dragging {
-    background-color: #ebecf0e7;
     rotate: 3deg;
   }
 

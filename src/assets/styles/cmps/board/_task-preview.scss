@@ -7,7 +7,6 @@
   position: relative;
 
   &.dragging {
-    background-color: rgba(255, 255, 255, 0.66);
     rotate: 3deg;
   }
 
@@ -67,6 +66,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    p {
+      text-align: left;
+    }
   }
 
   &:hover {

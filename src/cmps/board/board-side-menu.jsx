@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Fragment, useState } from "react"
 import { SideMenuBackgroundOptions } from "./side-menu-background-options"
 import { SideMenuColors } from "./side-menu-colors"
 import { SideMenuPhotos } from "./side-menu-photos"
@@ -43,13 +43,13 @@ export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBackground }) => 
     return <section className={`board-side-menu ${isOpen}`}>
         <section className="header">
             {title !== 'Menu' && <IoIosArrowBack className="go-back" onClick={onGoBack} />}
-            <h3>{title === 'Photos by' ? 
-            <React.Fragment>
-                {title} <a href="https://unsplash.com/" target="_blank">Unsplash</a>
-                </React.Fragment>
+            <h3>{title === 'Photos by' ?
+                <Fragment>
+                    {title} <a href="https://unsplash.com/" target="_blank">Unsplash</a>
+                </Fragment>
                 :
                 title}
-                </h3>
+            </h3>
             <section className="svg-holder" onClick={onCloseSideMenu}>
                 <svg stroke="currentColor" fill="currentColor" strokeidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#000" strokeWidth="2" d="M3,3 L21,21 M3,21 L21,3"></path></svg>
             </section>

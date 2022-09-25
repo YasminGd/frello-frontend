@@ -102,8 +102,16 @@ function getBoardForDisplay(board, filter) {
     if (filter.members.includes('no-members')) {
       filterCopy.members.splice(filter.members.indexOf('no-members'), 1)
       filteredBoard.groups = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => !task.memberIds || !task.memberIds.length || filterCopy.members.some(memberId => task.memberIds.includes(memberId))) }))
-  } else {
+    } else {
       filteredBoard.groups = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => filter.members.some(memberId => task.memberIds?.includes(memberId))) }))
+    }
+  }
+  if (filter.labels && filter.labels.length) {
+    if (filter.labels.includes('no-labels')) {
+      filterCopy.labels.splice(filter.labels.indexOf('no-labels'), 1)
+      filteredBoard.groups = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => !task.labelIds || !task.labelIds.length || filterCopy.labels.some(labelId => task.labelIds.includes(labelId))) }))
+    } else {
+      filteredBoard.groups = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => filter.labels.some(labelId => task.labelIds?.includes(labelId))) }))
     }
   }
   return filteredBoard

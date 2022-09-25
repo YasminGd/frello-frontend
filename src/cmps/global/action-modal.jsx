@@ -13,6 +13,7 @@ import { BoardFilter } from '../board/filter/board-filter'
 import { MemberSelectList } from '../board/filter/member-select-list'
 import { AccountDetails } from '../board/account-details'
 import { CreateBoard } from '../workspace/create-board'
+import { LabelSelectList } from '../board/filter/label-select-list'
 
 export const ActionModal = ({
   data,
@@ -89,6 +90,9 @@ export const ActionModal = ({
       case 'Select member':
         return <MemberSelectList handleChange={handleChange} filterBy={filterBy} />
 
+      case 'Select label':
+        return <LabelSelectList handleChange={handleChange} filterBy={filterBy} />
+
       case 'Account':
         return <AccountDetails setActionModal={setActionModal} />
 
@@ -116,6 +120,7 @@ export const ActionModal = ({
         return 'Invite to board'
 
       case 'Select member':
+      case 'Select label':
         return ''
 
       default:

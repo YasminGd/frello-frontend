@@ -12,6 +12,7 @@ import { ListActions } from '../board/list-actions'
 import { BoardFilter } from '../board/filter/board-filter'
 import { MemberSelectList } from '../board/filter/member-select-list'
 import { AccountDetails } from '../board/account-details'
+import { LabelSelectList } from '../board/filter/label-select-list'
 
 export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem, updateFilter, filterBy, handleChange }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
@@ -30,7 +31,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
   const handleClickOutside = (ev) => {
     if (modalRef.current && !modalRef.current.contains(ev.target)) {
       // setTimeout(() => setActionModal(null), 150)
-     setActionModal(null)
+      setActionModal(null)
     }
   }
 
@@ -72,10 +73,13 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
 
       case 'Filter':
-        return <BoardFilter updateFilter={updateFilter} filterBy={filterBy}/>
+        return <BoardFilter updateFilter={updateFilter} filterBy={filterBy} />
 
       case 'Select member':
-        return <MemberSelectList handleChange={handleChange} filterBy={filterBy}/>
+        return <MemberSelectList handleChange={handleChange} filterBy={filterBy} />
+
+      case 'Select label':
+        return <LabelSelectList handleChange={handleChange} filterBy={filterBy} />
 
       case 'Account':
         return <AccountDetails />
@@ -101,6 +105,7 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         return 'Invite to board'
 
       case 'Select member':
+      case 'Select label':
         return ''
 
       default:

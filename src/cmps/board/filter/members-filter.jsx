@@ -8,6 +8,7 @@ import { ActionModal } from "../../global/action-modal"
 
 export const MembersFilter = ({handleChange, filterBy, updateFilter}) => {
     const user = useSelector(state => state.userModule.user)
+    console.log(user);
     const board = useSelector(state => state.boardModule.board)
     const members = board.members
     const [selectMember, setSelectMember] = useState(null)
@@ -29,7 +30,7 @@ export const MembersFilter = ({handleChange, filterBy, updateFilter}) => {
     }
 
     return (
-        <section className="members-filter">
+        <section className="members-filter filter">
             <h3>Members</h3>
             <ul>
                 <li>
@@ -44,13 +45,14 @@ export const MembersFilter = ({handleChange, filterBy, updateFilter}) => {
                             onChange={handleChange}
                         />
                         <div className="option-container">
-                            <div className="member-img guest">
+                            <div className="member-img guest no-img img">
                                 <span><BsPerson /></span>
                             </div>
-                            <p>No Members</p>
+                            <p>No members</p>
                         </div>
                     </label>
                 </li>
+                {user.username !== 'Guest' && 
                 <li>
                     <label htmlFor='me'>
                         <input
@@ -67,31 +69,28 @@ export const MembersFilter = ({handleChange, filterBy, updateFilter}) => {
                             onChange={handleChange}
                         />
                         <div className="option-container">
-                            <div className="member-img">
+                            <div className="member-img img">
                                 <img src={userImgUrl} alt="user" />
                             </div>
                             <p>Cards assigned to me</p>
                         </div>
                     </label>
                 </li>
+}
                 <li>
-                    <label htmlFor='selecet-member'>
+                    <label htmlFor='select-member'>
                         <input
-                            // onChange={(ev) => {
-                            // handleChange(ev, label.id)
-                            // }}
-                            // checked={task.labelIds?.includes(label.id)}
-                            className="checkbox"
+                            className="checkbox member-search"
                             type="checkbox"
-                            id="selecet-member"
+                            id="select-member"
                             checked = {filterBy?.members?.length && !(filterBy?.members?.length === 1 && filterBy?.members?.includes('no-members'))}
                             onChange = {changeFilter}
                         />
-                        <div className="option-container">
+                        <div className="option-container member-search">
                             <input
                                 ref={selectMemberRef}
                                 onFocus={() => { onOpenSelectMember('Select member', selectMemberRef) }}
-                                className="search-member"
+                                className="search-member search"
                                 type="text"
                                 placeholder={filterBy?.members?.length && !(filterBy?.members?.length === 1 && filterBy?.members?.includes('no-members')) ? `${filterBy?.members?.filter(member=> member!=='no-members').length} ${filterBy?.members?.filter(member=> member!=='no-members').length === 1 ? `member` : `members`} selected`: "Select members"} />
                             <FaChevronDown className="icon-open" />

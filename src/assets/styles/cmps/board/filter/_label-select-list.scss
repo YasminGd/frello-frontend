@@ -1,0 +1,39 @@
+.action-modal {
+    .label-select-list {
+      width: 321px;
+      margin-bottom: 8px;
+  
+      ul {
+        position: relative;
+        margin-inline-start: 0;
+        padding-inline-start: 0;
+  
+  
+        li {
+          padding-inline-start: 35px;
+          padding: 4px 12px 4px 42px;
+          position: relative;
+  
+          label {
+            padding: 0;
+
+            .label-color {
+                width: 100%;
+            }
+          }
+  
+          &:hover {
+            background-color: #e3e5e7;
+          }
+          &:active {
+            
+          }
+  
+          .checkbox {
+            // top: 16px;
+            left: 11px;
+          }
+        }
+      }
+    }
+  }

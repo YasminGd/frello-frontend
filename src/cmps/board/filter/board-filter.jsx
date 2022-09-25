@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { boardService } from "../../../services/board.service"
+import { LabelsFilter } from "./labels-filter"
 import { MembersFilter } from "./members-filter"
 
 export const BoardFilter = ({ updateFilter, filterBy }) => {
@@ -24,7 +25,7 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
     return (
         <section className="board-filter">
             <div className="filter-container">
-                <h3>Keyword</h3>
+                <h3 className="title">Keyword</h3>
                 <input
                     onChange={handleChange}
                     autoFocus
@@ -34,8 +35,8 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
                     value={filterBy.txt}
                     name="txt" />
                 <p className="search-label">Search cards, members, labels, and more.</p>
-                <MembersFilter title="Members" handleChange={handleChange} filterBy={filterBy} updateFilter={updateFilter}/>
-                {/* <MembersFilter title="Labels" /> */}
+                <MembersFilter handleChange={handleChange} filterBy={filterBy} updateFilter={updateFilter}/>
+                <LabelsFilter handleChange={handleChange} filterBy={filterBy} updateFilter={updateFilter}/>
             </div>
         </section>
     )

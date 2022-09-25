@@ -1,14 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadBoards, updateBoard } from '../store/actions/board.action'
 import { BoardList } from '../cmps/workspace/board-list'
 import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai'
 import { Loader } from '../cmps/global/loader'
+import { utilService } from '../services/util.service'
+import { ActionModal } from '../cmps/global/action-modal'
 
 export const Workspace = () => {
   const boards = useSelector((state) => state.boardModule.boards)
   const board = useSelector((state) => state.boardModule.board)
   const dispatch = useDispatch()
+  const [actionModal, setActionModal] = useState(null)
 
   useEffect(() => {
     if (board) dispatch({ type: 'SET_BOARD', boardId: null })
@@ -24,6 +27,13 @@ export const Workspace = () => {
 
   const getStarredBoards = () => {
     return boards.filter((board) => board.isStarred)
+  }
+
+  const onOpenActionModal = (type, ref) => {
+    console.log('hello')
+    if (actionModal?.type === type) return setActionModal(null)
+    const pos = utilService.getModalPosition(type, ref)
+    setActionModal({ type, pos })
   }
 
   return (
@@ -47,11 +57,17 @@ export const Workspace = () => {
               <h3>Recently viewed</h3>
             </div>
             <div className="boards-container">
-              <BoardList boards={boards} onToggleStarred={onToggleStarred} />
+              <BoardList
+                onOpenActionModal={onOpenActionModal}
+                newBoard={true}
+                boards={boards}
+                onToggleStarred={onToggleStarred}
+              />
             </div>
           </section>
         </section>
       )}
+      {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}
     </section>
   )
 }

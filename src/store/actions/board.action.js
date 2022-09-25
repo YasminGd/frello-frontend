@@ -1,6 +1,5 @@
 import { activityService } from '../../services/activity.service.js'
 import { boardService } from '../../services/board.service.js'
-import { socketService } from '../../services/socket.service.js'
 
 // Action Creators:
 export function getActionRemoveBoard(boardId) {
@@ -32,8 +31,7 @@ export function loadBoards() {
         type: 'SET_BOARDS',
         boards: [...boards],
       })
-    }
-    catch (err) {
+    } catch (err) {
       console.log('Cannot load boards', err)
     }
   }
@@ -45,8 +43,7 @@ export function removeBoard(boardId) {
       await boardService.remove(boardId)
       console.log('Deleted Succesfully!')
       dispatch(getActionRemoveBoard(boardId))
-    }
-    catch (err) {
+    } catch (err) {
       console.log('Cannot remove board', err)
     }
   }
@@ -57,8 +54,7 @@ export function addBoard(board) {
     try {
       const savedBoard = await boardService.save(board)
       dispatch(getActionAddBoard({ ...savedBoard }))
-    }
-    catch (err) {
+    } catch (err) {
       console.log(`cannot add board:`, err)
     }
   }
@@ -69,8 +65,7 @@ export function getBoard(boardId) {
     try {
       const board = await boardService.getById(boardId)
       dispatch({ type: 'SET_BOARD_FROM_BACK', board: { ...board } })
-    }
-    catch (err) {
+    } catch (err) {
       console.log(`cannot add board:`, err)
     }
   }
@@ -83,8 +78,7 @@ export function updateBoard(board) {
 
     try {
       await boardService.save(board)
-    }
-    catch (err) {
+    } catch (err) {
       dispatch(getActionUpdateBoard(prevBoard))
       console.log('Cannot update board', err)
     }
@@ -98,8 +92,7 @@ export function addNewComment(txt, task, comment) {
       const boardWithActivities = await activityService.addActivity(txt, task, board, comment)
       const savedBoard = await boardService.save(boardWithActivities)
       dispatch(getActionUpdateBoard({ ...savedBoard }))
-    }
-    catch (err) {
+    } catch (err) {
       console.log('Cannot add todo', err)
     }
   }

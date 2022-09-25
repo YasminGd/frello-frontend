@@ -96,19 +96,31 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
         </button>
       </section>
       <section className={`right ${isSideMenuOpen}`}>
-        <button ref={filterRef} onClick={() => { onOpenActionModal('Filter', filterRef) }}>
+        <button
+          ref={filterRef}
+          onClick={() => {
+            onOpenActionModal('Filter', filterRef)
+          }}
+        >
           <BsFilter />
           Filter
         </button>
-        {!isSideMenuOpen &&
+        {!isSideMenuOpen && (
           <button onClick={renderSideMenu}>
             <BsThreeDots />
             Show menu
           </button>
-        }
+        )}
       </section>
       <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBackground={changeBackground} />
-      {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} updateFilter={updateFilter} filterBy={filterBy}/>}
+      {actionModal && (
+        <ActionModal
+          setActionModal={setActionModal}
+          data={actionModal}
+          updateFilter={updateFilter}
+          filterBy={filterBy}
+        />
+      )}
     </section>
   )
 }

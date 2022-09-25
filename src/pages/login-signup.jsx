@@ -7,7 +7,8 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import leftHero from '../assets/img/left-loginsignup-hero.svg'
 import rightHero from '../assets/img/right-loginsignup-hero.svg'
-import GoogleLogin from 'react-google-login'
+import { GoogleLogin } from '@react-oauth/google'
+import jwt_decode from 'jwt-decode'
 const logo = require('../assets/img/logo-frello.png')
 
 export const LoginSignup = () => {
@@ -19,13 +20,6 @@ export const LoginSignup = () => {
   useEffect(() => {
     setStatus(params.status)
   }, [params.status])
-
-  // useEffect(() => {
-  //   google.accounts.id.initialize({
-  //     client_id: '1031425776599-1fk9n9l1d95umd9mtgikqjbsi5gcf571.apps.googleusercontent.com',
-  //     callback: handleCallbackResponse,
-  //   })
-  // }, [])
 
   const handleCallbackResponse = (response) => {}
 
@@ -63,10 +57,6 @@ export const LoginSignup = () => {
     ev.target.classList.add('focus')
   }
 
-  const responseGoogle = (response) => {
-    console.log(response)
-  }
-
   const formTxt = status === 'login' ? 'Log in to Frello' : 'Sign up for your account'
 
   return (
@@ -77,7 +67,6 @@ export const LoginSignup = () => {
       </div>
       <form className="signup-form" onSubmit={formik.handleSubmit}>
         <h5>{formTxt}</h5>
-
         {status === 'signup' && (
           <React.Fragment>
             <input
@@ -97,7 +86,6 @@ export const LoginSignup = () => {
             )}
           </React.Fragment>
         )}
-
         <input
           id="username"
           name="username"
@@ -113,7 +101,6 @@ export const LoginSignup = () => {
         ) : (
           <span>&nbsp;</span>
         )}
-
         <input
           id="password"
           name="password"
@@ -129,16 +116,19 @@ export const LoginSignup = () => {
         ) : (
           <span>&nbsp;</span>
         )}
-
         <button type="submit">{formTxt}</button>
-        {/* <button>Sign up with google</button> */}
-        <GoogleLogin
-          clientId="1031425776599-1fk9n9l1d95umd9mtgikqjbsi5gcf571.apps.googleusercontent.com"
-          buttonText="Sign up with google"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
+        <div className="google-btn-container">
+          <GoogleLogin
+            onSuccess={(credentialResponse) => {
+              console.log(credentialResponse)
+              var decoded = jwt_decode(credentialResponse.credential)
+              console.log(`decoded:`, decoded)
+            }}
+            onError={() => {
+              console.log('Login Failed')
+            }}
+          />
+        </div>
         {status === 'login' && (
           <NavLink className="already-have-account" to={'/user/signup'}>
             Sign up for an account

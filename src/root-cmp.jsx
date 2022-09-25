@@ -7,7 +7,6 @@ import { Board } from './pages/board'
 import { LoginSignup } from './pages/login-signup.jsx'
 
 function App() {
-
   return (
     <div className="app">
       <AppHeader />

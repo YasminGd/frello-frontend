@@ -53,10 +53,10 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
 
   const geMembersClass = () => {
     return task.dueDate || task.description ||
-     (taskComments && taskComments.length !== 0) ||
-     (task.attachments && task.attachments.length !== 0) ||
-     (task.checklists && task.checklists.length !== 0) ?
-     'larger-margin' : ''
+      (taskComments && taskComments.length !== 0) ||
+      (task.attachments && task.attachments.length !== 0) ||
+      (task.checklists && task.checklists.length !== 0) ?
+      'larger-margin' : ''
   }
 
   const onToggleIsDone = (ev, task) => {
@@ -117,7 +117,7 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
         <section className={`members-img ${geMembersClass()}`}>
           {membersToRender.map((member) => (
             <div className="member-img" key={member._id}>
-              <img src={member.imgUrl} alt="" />
+              <img src={member.imgUrl} alt="" referrerPolicy="no-referrer" />
             </div>
           ))}
         </section>

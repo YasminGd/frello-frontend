@@ -60,7 +60,7 @@ export const Users = () => {
             {user && (
               <div className="member-container" onClick={() => onToggleUser(user._id)}>
                 <div className="member-img">
-                  <img src={user.imgUrl} alt="" />
+                  <img src={user.imgUrl} alt="" referrerPolicy="no-referrer" />
                 </div>
                 <span className="member-fullname">{user.fullname}</span>
                 {board.members?.some((member) => member._id === user._id) && (

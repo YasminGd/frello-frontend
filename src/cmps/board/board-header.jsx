@@ -79,7 +79,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           <div className="board-members">
             {board.members.map((member, index) => (
               <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>
-                <img src={member.imgUrl} alt="" />
+                <img src={member.imgUrl} alt="" referrerPolicy="no-referrer" />
               </div>
             ))}
           </div>

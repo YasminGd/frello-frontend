@@ -45,7 +45,7 @@ export const Members = ({ task, groupId }) => {
             {member && (
               <div className="member-container" onClick={() => onToggleMember(member._id)}>
                 <div className="member-img">
-                  <img src={member.imgUrl} alt="" />
+                  <img src={member.imgUrl} alt="" referrerPolicy="no-referrer" />
                 </div>
                 <span className="member-fullname">{member.fullname}</span>
                 {task.memberIds?.includes(member._id) && (

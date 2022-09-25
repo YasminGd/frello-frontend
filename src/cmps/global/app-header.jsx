@@ -54,6 +54,7 @@ export const AppHeader = () => {
       {!styleClass && user && isDisplayUserImg && (
         <div className="user-img">
           <img
+            referrerPolicy="no-referrer"
             src={user.imgUrl} alt=""
             ref={userImgRef}
             onClick={() => { onOpenActionModal('Account', userImgRef) }} />

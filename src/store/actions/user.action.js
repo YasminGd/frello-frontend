@@ -22,10 +22,10 @@ export function loadUser() {
   }
 }
 
-export function signup(credentials) {
+export function signup(credentials, isGoogleAuth) {
   return async (dispatch) => {
     try {
-      const signedUser = await userService.signup(credentials)
+      const signedUser = await userService.signup(credentials, isGoogleAuth)
       dispatch({ type: 'SET_USER', user: signedUser })
     } catch (err) {
       console.log(`Cannot signup`, err)

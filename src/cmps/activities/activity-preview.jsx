@@ -9,7 +9,7 @@ export const ActivityPreview = ({ activity }) => {
     const timeSince = utilService.timeSince(activity.createdAt)
     return <section className="activity-preview">
         <div className="member-img">
-            <img src={activity.byMember.imgUrl} />
+            <img src={activity.byMember.imgUrl} referrerPolicy="no-referrer" />
         </div>
         <section className="activity-description">
             {

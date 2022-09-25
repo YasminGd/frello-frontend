@@ -21,7 +21,26 @@ export const LoginSignup = () => {
     setStatus(params.status)
   }, [params.status])
 
-  const handleCallbackResponse = (response) => {}
+  const handleGoogleAuth = (credentialResponse) => {
+    var decoded = jwt_decode(credentialResponse.credential)
+    const user = {
+      fullname: decoded.name,
+      username: decoded.email,
+      imgUrl: decoded.picture
+    }
+
+    if (status === 'signup') {
+      ; (async () => {
+        try {
+          await dispatch(signup(user, true))
+          navigate('/workspace')
+        }
+        catch (err) {
+          console.log(err, 'cannot signup')
+        }
+      })()
+    }
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -39,15 +58,25 @@ export const LoginSignup = () => {
     }),
     onSubmit: (values) => {
       if (status === 'signup') {
-        ;(async () => {
-          await dispatch(signup(values))
-          navigate('/workspace')
+        ; (async () => {
+          try {
+            await dispatch(signup(values))
+            navigate('/workspace')
+          }
+          catch (err) {
+            console.log(err, 'cannot signup')
+          }
         })()
       }
       if (status === 'login') {
-        ;(async () => {
-          await dispatch(login(values))
-          navigate('/workspace')
+        ; (async () => {
+          try {
+            await dispatch(login(values))
+            navigate('/workspace')
+          }
+          catch (err) {
+            console.log(err, 'cannot login')
+          }
         })()
       }
     },
@@ -119,11 +148,7 @@ export const LoginSignup = () => {
         <button type="submit">{formTxt}</button>
         <div className="google-btn-container">
           <GoogleLogin
-            onSuccess={(credentialResponse) => {
-              console.log(credentialResponse)
-              var decoded = jwt_decode(credentialResponse.credential)
-              console.log(`decoded:`, decoded)
-            }}
+            onSuccess={handleGoogleAuth}
             onError={() => {
               console.log('Login Failed')
             }}

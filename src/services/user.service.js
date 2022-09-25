@@ -31,11 +31,14 @@ async function logout() {
   }
 }
 
-async function signup(credentials) {
+async function signup(credentials, isGoogleAuth) {
   try {
-    await httpService.post('auth/signup', credentials)
-    return login(credentials)
-  } catch (err) {
+    if (isGoogleAuth) await httpService.post('google-auth/signup', credentials)
+    else await httpService.post('auth/signup', credentials)
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(credentials))
+    return credentials
+  }
+  catch (err) {
     console.log('Cannot signup', err)
   }
 }

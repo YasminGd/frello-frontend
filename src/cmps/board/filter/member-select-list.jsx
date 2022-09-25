@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 
-export const MemberSelectList = ({handleChange, filterBy}) => {
+export const MemberSelectList = ({ handleChange, filterBy }) => {
 
     const boardMembers = useSelector(state => state.boardModule.board.members)
 
@@ -13,15 +13,15 @@ export const MemberSelectList = ({handleChange, filterBy}) => {
                             <input
                                 className="checkbox"
                                 type="checkbox"
-                                id={member._id} 
+                                id={member._id}
                                 name="members"
                                 value={member._id}
                                 onChange={handleChange}
-                                checked = {filterBy?.members?.includes(member._id)}
+                                checked={filterBy?.members?.includes(member._id)}
                             />
                             <div className="option-container">
                                 <div className="member-img img">
-                                    <img src={member.imgUrl} alt="user" />
+                                    <img src={member.imgUrl} alt="user" referrerPolicy="no-referrer" />
                                 </div>
                                 <p>{member.fullname}</p>
                             </div>

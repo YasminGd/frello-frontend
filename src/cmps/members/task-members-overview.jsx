@@ -13,7 +13,7 @@ export const TaskMembersOverview = ({ memberIds, onOpenActionModal }) => {
       <div className="members-container">
         {membersToRender.map((member) => (
           <div className="member-img" key={member._id}>
-            <img src={member.imgUrl} alt="" />
+            <img src={member.imgUrl} alt="" referrerPolicy="no-referrer" />
           </div>
         ))}
         <button

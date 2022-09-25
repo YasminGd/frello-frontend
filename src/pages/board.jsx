@@ -13,6 +13,7 @@ import { boardService } from '../services/board.service.js'
 import { Loader } from '../cmps/global/loader.jsx'
 import { socketService } from '../services/socket.service.js'
 import { unsplashService } from '../services/unsplash.service.js'
+import { activityService } from '../services/activity.service.js'
 
 export const Board = () => {
   const board = useSelector((state) => state.boardModule.board)
@@ -139,6 +140,7 @@ export const Board = () => {
   //prettier-ignore
   const onDragEnd = (result) => {
     const { destination, source, type } = result
+    console.log(destination, source , type);
 
     if (!destination) return
     setPlaceholderProps({})
@@ -149,7 +151,14 @@ export const Board = () => {
       destination.index === source.index) return
 
     const newBoard = { ...board }
-    const updatedBoard = boardService.handleDragEnd(newBoard, destination, source, type)
+    let updatedBoard = boardService.handleDragEnd(newBoard, destination, source, type)
+    if(type === 'task' && (destination.droppableId !== source.droppableId)) {
+      const sourceGroup = updatedBoard.groups.find(group => group.id === source.droppableId)
+      const destinationGroup = updatedBoard.groups.find(group => group.id === destination.droppableId)
+      const task = destinationGroup.tasks[destination.index]
+      updatedBoard = activityService.addActivity(`moved ${task.title} from ${sourceGroup.title} to ${destinationGroup.title}`, task, updatedBoard)
+    }
+    // const updatedBoardWithActivity = activityService.addActivity(`moved ${} from ${} to ${}`)
     dispatch(updateBoard(updatedBoard))
     // draggedDOM.parentElement.style.position = 'static'
   }

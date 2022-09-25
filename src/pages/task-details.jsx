@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { Fragment, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -21,6 +21,7 @@ export const TaskDetails = () => {
   const [actionModal, setActionModal] = useState(null)
   const { groupId, taskId } = useParams()
   const board = useSelector((state) => state.boardModule.board)
+  const screenRef = useRef()
 
   const group = board.groups.find((group) => group.id === groupId)
   const task = group.tasks.find((task) => task.id === taskId)
@@ -51,10 +52,11 @@ export const TaskDetails = () => {
 
   //prettier-ignore
   return (
-    <React.Fragment>
-      <section onClick={onGoBack} className="screen">
+    <Fragment>
+      <section className="screen">
+        <div onClick={onGoBack} className="backdrop"></div>
         <section className="task-details-container" >
-          <section className="task-details" onClick={(ev) => ev.stopPropagation()}>
+          <section ref={screenRef} className="task-details" onClick={(ev) => ev.stopPropagation()}>
             <button className={`close-task-details ${btnCloseStyle}`} onClick={onGoBack}><IoCloseOutline /></button>
             {task.style?.coverImg && <section className="cover-color img">
               <img src={task.style.coverImg} alt="Background cover" />
@@ -83,6 +85,6 @@ export const TaskDetails = () => {
           task={task}
           groupId={groupId} />}
       </section>
-    </React.Fragment>
+    </Fragment>
   )
 }

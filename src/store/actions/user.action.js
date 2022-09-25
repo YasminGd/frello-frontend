@@ -44,6 +44,17 @@ export function login(credentials) {
   }
 }
 
+export function logout() {
+  return async (dispatch) => {
+    try {
+      await userService.logout()
+      dispatch({ type: 'SET_USER', user: null })
+    } catch (err) {
+      console.log('Cannot login', err)
+    }
+  }
+}
+
 export function getLoggedInUser() {
   return async (dispatch) => {
     const user = await userService.getLoggedInUser()

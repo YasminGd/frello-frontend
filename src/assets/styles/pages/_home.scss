@@ -26,10 +26,11 @@
   .main {
     display: flex;
     justify-content: center;
-    margin: 140px 85px 0;
+    margin: 140px 50px 0;
 
     .main-content {
       max-width: 650px;
+      align-self: flex-end;
 
       h1 {
         font-size: 3rem;
@@ -48,8 +49,9 @@
 
     .main-img {
       margin-left: 120px;
+      margin-top: 50px;
       min-width: 290px;
-      width: 290px;
+      width: 340px;
       align-self: flex-end;
     }
   }

@@ -10,7 +10,7 @@ export const TaskLabelsList = ({ labelIds }) => {
   const labelsToRender = boardLabels.filter((label) => labelIds.includes(label.id))
 
   const toggleLabelsSize = (ev) => {
-    ev.stopPropagation()
+    ev.preventDefault()
     board.style.isLabelsLarge = !isLabelsLarge
     dispatch(updateBoard({ ...board }))
   }

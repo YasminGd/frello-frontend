@@ -7,6 +7,7 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import leftHero from '../assets/img/left-loginsignup-hero.svg'
 import rightHero from '../assets/img/right-loginsignup-hero.svg'
+import GoogleLogin from 'react-google-login'
 const logo = require('../assets/img/logo-frello.png')
 
 export const LoginSignup = () => {
@@ -18,6 +19,15 @@ export const LoginSignup = () => {
   useEffect(() => {
     setStatus(params.status)
   }, [params.status])
+
+  // useEffect(() => {
+  //   google.accounts.id.initialize({
+  //     client_id: '1031425776599-1fk9n9l1d95umd9mtgikqjbsi5gcf571.apps.googleusercontent.com',
+  //     callback: handleCallbackResponse,
+  //   })
+  // }, [])
+
+  const handleCallbackResponse = (response) => {}
 
   const formik = useFormik({
     initialValues: {
@@ -51,6 +61,10 @@ export const LoginSignup = () => {
 
   const handleFocus = (ev) => {
     ev.target.classList.add('focus')
+  }
+
+  const responseGoogle = (response) => {
+    console.log(response)
   }
 
   const formTxt = status === 'login' ? 'Log in to Frello' : 'Sign up for your account'
@@ -117,6 +131,14 @@ export const LoginSignup = () => {
         )}
 
         <button type="submit">{formTxt}</button>
+        {/* <button>Sign up with google</button> */}
+        <GoogleLogin
+          clientId="1031425776599-1fk9n9l1d95umd9mtgikqjbsi5gcf571.apps.googleusercontent.com"
+          buttonText="Sign up with google"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
+        />
         {status === 'login' && (
           <NavLink className="already-have-account" to={'/user/signup'}>
             Sign up for an account

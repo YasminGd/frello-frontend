@@ -8,7 +8,6 @@ import { useRef } from 'react'
 import { utilService } from '../../services/util.service'
 
 export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
-
   const taskPreviewRef = useRef()
   const navigate = useNavigate()
   const location = useLocation()
@@ -48,7 +47,6 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
 
   return (
     <Link
-      onClick={(ev) => ev.preventDefault()}
       // onClick={(ev) => { onOpenTaskDetails(ev) }}
       to={`${groupId}/${task.id}`}
       className={`task-preview ${isDragging ? 'dragging' : ''} 
@@ -57,7 +55,7 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
       {...provided.dragHandleProps}
       ref={provided.innerRef}
     >
-      <section className='task-preview-conatainer' ref={taskPreviewRef}>
+      <section className="task-preview-conatainer" ref={taskPreviewRef}>
         {task.style?.coverImg && (
           <section className="cover-color img">
             <div className="image-gradient"></div>
@@ -65,10 +63,9 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
           </section>
         )}
 
-        {task.style?.bgColor &&
-          (<section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
-          </section>)
-        }
+        {task.style?.bgColor && (
+          <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>
+        )}
 
         <section className={`task-body`} style={{ backgroundColor: getCoverStyle() }}>
           {isRenderLabels() && toRender && <TaskLabelsList labelIds={task.labelIds} />}
@@ -76,16 +73,16 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
           {toRender && <TaskPreviewIcons groupId={groupId} task={task} />}
         </section>
 
-        <section className="quick-edit-icon" onClick={(ev) => { toggleEditModal(ev, taskPreviewRef) }}>
+        <section
+          className="quick-edit-icon"
+          onClick={(ev) => {
+            toggleEditModal(ev, taskPreviewRef)
+          }}
+        >
           <BsPencil />
         </section>
 
-        {quickEdit && <QuickEdit
-          pos={quickEdit.pos}
-          task={task}
-          groupId={groupId}
-          setQuickEdit={setQuickEdit} />
-        }
+        {quickEdit && <QuickEdit pos={quickEdit.pos} task={task} groupId={groupId} setQuickEdit={setQuickEdit} />}
       </section>
     </Link>
   )

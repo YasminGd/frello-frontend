@@ -116,3 +116,30 @@ function getBoardForDisplay(board, filter) {
   }
   return filteredBoard
 }
+
+// function getBoardForDisplay(board, filter) {
+//   let filteredBoard = structuredClone(board)
+
+//   if (filter) {
+//     if (filter.txt) {
+//       const regex = new RegExp(filter.txt, 'i')
+//       filteredBoard.groups = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => regex.test(task.title)) }))
+//     }
+
+//     let groupsWithNoMembers = filteredBoard.groups
+//     if (filter['no-members']) groupsWithNoMembers = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => !task.memberIds || !task.memberIds.length) }))
+
+//     let groupsWithMembers = filteredBoard.groups
+//     if (filter.members && filter.members.length) groupsWithMembers = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => filter.members.some(memberId => task.memberIds?.includes(memberId))) }))
+
+//     let groupsWithNoLabels = filteredBoard.groups
+//     if (filter['no-labels']) groupsWithNoLabels = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => !task.labelIds || !task.labelIds.length) }))
+
+//     let groupsWithLabels = filteredBoard.groups
+//     if (filter.labels && filter.labels.length) groupsWithLabels = filteredBoard.groups.map(group => ({ ...group, tasks: group.tasks.filter(task => filter.labels.some(labelId => task.labelIds?.includes(labelId))) }))
+
+//     filteredBoard.groups = Array.from(new Set([...groupsWithNoMembers, ...groupsWithMembers, ...groupsWithNoLabels, ...groupsWithLabels]))
+//   }
+
+//   return filteredBoard
+// }

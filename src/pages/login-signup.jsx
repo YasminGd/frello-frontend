@@ -20,6 +20,7 @@ export const LoginSignup = () => {
 
   useEffect(() => {
     setStatus(params.status)
+    setWrongCredentialsDiv('not-visible')
   }, [params.status])
 
   const handleGoogleAuth = (credentialResponse) => {

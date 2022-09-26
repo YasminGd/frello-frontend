@@ -16,6 +16,7 @@ export const LoginSignup = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [status, setStatus] = useState(params.status)
+  const [wrongCredentialsDiv, setWrongCredentialsDiv] = useState('not-visible')
 
   useEffect(() => {
     setStatus(params.status)
@@ -76,6 +77,7 @@ export const LoginSignup = () => {
           }
           catch (err) {
             console.log(err, 'cannot login')
+            setWrongCredentialsDiv('')
           }
         })()
       }
@@ -96,6 +98,9 @@ export const LoginSignup = () => {
       </div>
       <form className="signup-form" onSubmit={formik.handleSubmit}>
         <h5>{formTxt}</h5>
+        <div className={`wrong-credentials ${wrongCredentialsDiv}`}>
+          Incorrect email address and / or password.
+        </div>
         {status === 'signup' && (
           <React.Fragment>
             <input

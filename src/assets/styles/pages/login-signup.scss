@@ -41,6 +41,29 @@ $grayCustom: #ebecf0;
   }
 }
 
+.wrong-credentials {
+  border-radius: 3px;
+  box-shadow: rgb(9 30 66 / 28%) 0px 4px 8px -2px, rgb(9 30 66 / 30%) 0px 0px 1px;
+  color: rgb(37, 56, 88);
+  font-size: 12px;
+  line-height: 20px;
+  margin-bottom: 24px;
+  padding: 16px;
+  transform: rotateX(0deg);
+  transform-origin: 50% 0px;
+  transition-property: visibility, height, margin-bottom, opacity, transform, padding;
+  transition-duration: 0s, 0.2s, 0.2s, 0.2s, 0.2s;
+  transition-timing-function: ease-in-out;
+
+  &.not-visible {
+    height: 0px;
+    margin-bottom: 0px;
+    opacity: 0;
+    transform: rotateX(-90deg);
+    visibility: hidden;
+  }
+}
+
 .signup-form {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -66,6 +89,7 @@ $grayCustom: #ebecf0;
   a {
     margin: auto;
     color: #0052cc;
+
     &:hover {
       text-decoration: underline;
     }
@@ -130,6 +154,7 @@ $grayCustom: #ebecf0;
     color: white;
     border-radius: 5px;
     padding: 10px 0;
+
     &:hover {
       background-color: lighten(#0052cc, 8%);
     }
@@ -143,6 +168,7 @@ $grayCustom: #ebecf0;
     display: flex;
     justify-content: center;
     margin-bottom: 8px;
+    width: 100%;
   }
 }
 

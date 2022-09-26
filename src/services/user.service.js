@@ -19,6 +19,7 @@ async function login(credentials) {
     return user
   } catch (err) {
     console.log('Cannot login', err)
+    throw err
   }
 }
 
@@ -40,6 +41,7 @@ async function signup(credentials, isGoogleAuth) {
   }
   catch (err) {
     console.log('Cannot signup', err)
+    throw err
   }
 }
 

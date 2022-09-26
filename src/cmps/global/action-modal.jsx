@@ -131,7 +131,8 @@ export const ActionModal = ({
   const title = getTitle()
 
   return (
-    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.stopPropagation()} ref={modalRef}>
+    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.preventDefault()} ref={modalRef}>
+      {/* add stop propagation? */}
       {title && (
         <div className="title-container">
           <p>{title}</p>

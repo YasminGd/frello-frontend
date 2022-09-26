@@ -29,6 +29,7 @@ export function signup(credentials, isGoogleAuth) {
       dispatch({ type: 'SET_USER', user: signedUser })
     } catch (err) {
       console.log(`Cannot signup`, err)
+      throw err
     }
   }
 }
@@ -40,6 +41,7 @@ export function login(credentials) {
       dispatch({ type: 'SET_USER', user })
     } catch (err) {
       console.log('Cannot login', err)
+      throw err
     }
   }
 }

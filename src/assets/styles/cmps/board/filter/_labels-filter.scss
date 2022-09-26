@@ -23,6 +23,10 @@
 
             .select-label-li {
                 margin-top: -8px;
+
+                input[type='checkbox']:first-of-type {
+                    margin-top: 8px;
+                }
                 
                 input[type='checkbox'] {
                     margin-top: 4px;

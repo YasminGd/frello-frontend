@@ -164,7 +164,7 @@ export const Board = () => {
   }
 
   const updateFilter = (filter) => {
-    setFilterBy(filter)
+    setFilterBy({...filter})
     console.log(filter);
   }
 

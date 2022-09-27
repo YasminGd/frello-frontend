@@ -8,13 +8,13 @@ import { ActionModal } from "../../global/action-modal"
 
 export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
     const user = useSelector(state => state.userModule.user)
-    console.log(user);
     const board = useSelector(state => state.boardModule.board)
     const members = board.members
     const [selectMember, setSelectMember] = useState(null)
     const selectMemberRef = useRef()
+    console.log(user);
 
-    const userImgUrl = useSelector(state => state.userModule.user.imgUrl)
+    let userImgUrl = useSelector(state => state.userModule.user?.imgUrl)
     if (!userImgUrl) userImgUrl = 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg'
 
     const onOpenSelectMember = (type, ref) => {
@@ -30,11 +30,11 @@ export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
     }
 
     return (
-        <section className="members-filter filter">
+        <section className="members-filter filter" onClick={(ev) => ev.stopPropagation()}>
             <h3>Members</h3>
             <ul>
                 <li>
-                    <label htmlFor='no-members'>
+                    <label htmlFor="no-members">
                         <input
                             checked={filterBy?.members?.includes('no-members')}
                             className="checkbox"
@@ -52,7 +52,7 @@ export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
                         </div>
                     </label>
                 </li>
-                {user.username !== 'Guest' &&
+                {user?.username !== 'Guest' &&
                     <li>
                         <label htmlFor='me'>
                             <input
@@ -77,8 +77,8 @@ export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
                         </label>
                     </li>
                 }
-                <li>
-                    <label htmlFor='select-member'>
+                <li className="select-member-li">
+                    <label htmlFor="select-member">
                         <input
                             className="checkbox member-search"
                             type="checkbox"

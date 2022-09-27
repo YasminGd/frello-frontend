@@ -1,8 +1,9 @@
 .quick-edit {
   position: fixed;
-  // width: calc(100% + 240px);
+  width: 256px;
   z-index: 20;
   // top: 0;
+  height: 160px;
 
   textarea {
     min-height: 96px;

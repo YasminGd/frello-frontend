@@ -49,7 +49,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
 
   const onSaveLabel = (label) => {
     if (!board.labels.length) board.labels = []
-    if (!task.labelIds.length) task.labelsIds = []
+    if (!task.labelIds) task.labelIds = []
 
     if (label.id) {
       const labelIdx = board.labels.findIndex((label) => label.id === selectedLabel.id)

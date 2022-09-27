@@ -8,9 +8,9 @@ import { ActionModal } from "../../global/action-modal"
 export const LabelsFilter = ({ handleChange, filterBy, updateFilter }) => {
     const board = useSelector(state => state.boardModule.board)
     const [selectLabel, setSelectLabel] = useState(null)
-    
+
     const selectLabelRef = useRef()
-    
+
     const labels = board.labels
     const labelsForPreview = labels?.length > 3 ? labels.slice(0, 3) : labels
 
@@ -63,9 +63,9 @@ export const LabelsFilter = ({ handleChange, filterBy, updateFilter }) => {
                             />
                             <div className="label-container">
                                 <div class={`label-color ${label.class}`}>
-                                    <div class={`label-color-circle ${label.color}`}>
+                                    <div className={`label-color-circle ${label.color}`}>
                                     </div>
-                                    <span class="label-title">
+                                    <span className="label-title">
                                         {label.title}
                                     </span>
                                 </div>

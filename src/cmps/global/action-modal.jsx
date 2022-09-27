@@ -131,14 +131,19 @@ export const ActionModal = ({
   const title = getTitle()
 
   return (
-    <section className="action-modal" style={modalStyle} onClick={(ev) => ev.preventDefault()} ref={modalRef}>
+    <section className="action-modal" style={modalStyle} ref={modalRef}>
       {/* add stop propagation? */}
       {title && (
         <div className="title-container">
           <p>{title}</p>
           {isLabelsEdit && <IoChevronBack className="edit-go-back" onClick={onToggleLabelEdit} />}
           <span>
-            <IoCloseOutline onClick={() => setActionModal(null)} />
+            <IoCloseOutline
+              onClick={(ev) => {
+                ev.preventDefault()
+                setActionModal(null)
+              }}
+            />
           </span>
         </div>
       )}

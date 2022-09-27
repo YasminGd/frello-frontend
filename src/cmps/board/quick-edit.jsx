@@ -4,7 +4,6 @@ import { updateTask } from '../../store/actions/task.action'
 import { QuickEditButtons } from './quick-edit-buttons'
 
 export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
-
   const dispatch = useDispatch()
   const [taskTitle, setTaskTitle] = useState(task.title)
 
@@ -23,24 +22,29 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
   return (
     <React.Fragment>
       {/* <div className="backdrop" onClick={(ev) => { ev.preventDefault() }}></div> */}
-      <section className="quick-edit" style={modalStyle} onClick={(ev) => { ev.preventDefault() }}>
+      <section
+        className="quick-edit"
+        style={modalStyle}
+        onClick={(ev) => {
+          // ev.stopPropagation()
+          ev.preventDefault()
+        }}
+      >
         <section className="main-edit">
-          <textarea
-            value={taskTitle}
-            autoFocus
-            onFocus={(ev) => ev.target.select()}
-            onChange={handleChange}
-          >
-          </textarea>
-          <button onClick={saveTask} className="btn blue">Save</button>
+          <textarea value={taskTitle} autoFocus onFocus={(ev) => ev.target.select()} onChange={handleChange}></textarea>
+          <button onClick={saveTask} className="btn blue">
+            Save
+          </button>
         </section>
-        <QuickEditButtons
-          task={task}
-          groupId={groupId}
-          setQuickEdit={setQuickEdit}
-        />
+        <QuickEditButtons task={task} groupId={groupId} setQuickEdit={setQuickEdit} />
       </section>
-      <section className="screen-edit" onClick={(ev) => { ev.preventDefault(); setQuickEdit(null) }}></section>
+      <section
+        className="screen-edit"
+        onClick={(ev) => {
+          ev.preventDefault()
+          setQuickEdit(null)
+        }}
+      ></section>
     </React.Fragment>
   )
 }

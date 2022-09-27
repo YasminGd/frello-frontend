@@ -3,7 +3,7 @@ import { BsPerson } from 'react-icons/bs'
 import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
 import { ImAttachment } from 'react-icons/im'
 import { BsCardHeading } from 'react-icons/bs'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { GoArchive } from 'react-icons/go'
 import { removeTask, updateTask } from '../../store/actions/task.action'
 import { useDispatch } from 'react-redux'
@@ -13,6 +13,7 @@ import { utilService } from '../../services/util.service'
 
 export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
 
+  const location = useLocation()
   const dispatch = useDispatch()
   const [actionModal, setActionModal] = useState(null)
   const navigate = useNavigate()
@@ -66,16 +67,18 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
     setActionModal({ type, pos })
   }
 
+  const onOpenTaskDetails = () => {
+    setQuickEdit(null)
+    navigate(`${location.pathname}+/${groupId}/${task.id}`)
+  }
+
   return (
     <React.Fragment>
       <section className="quick-edit-buttons" >
-        <Link
-          to={`${groupId}/${task.id}`}>
-          <button onClick={() => { setQuickEdit(null) }} className="" key="Open card">
-            <BsCardHeading />
-            Open card
-          </button>
-        </Link>
+        <button onClick={onOpenTaskDetails} className="" key="Open card">
+          <BsCardHeading />
+          Open card
+        </button>
         {actionBtns.map((btn) => (
           <button className=""
             onClick={(ev) => onOpenActionModal(ev, btn.type, btn.ref)}

@@ -19,7 +19,7 @@ export const Board = () => {
   const board = useSelector((state) => state.boardModule.board)
   const [filterBy, setFilterBy] = useState({})
   const filteredBoard = boardService.getBoardForDisplay(board, filterBy)
-  
+
   const dispatch = useDispatch()
   const params = useParams()
   // for DND placeholder
@@ -81,7 +81,7 @@ export const Board = () => {
     const sourceIndex = event.source.index
     const { clientHeight, clientWidth } = draggedDOM
 
-    var clientX =
+    const clientX =
       parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
       [...draggedDOM.parentNode.children]
         .slice(0, sourceIndex)
@@ -140,7 +140,7 @@ export const Board = () => {
   //prettier-ignore
   const onDragEnd = (result) => {
     const { destination, source, type } = result
-    console.log(destination, source , type);
+    console.log(destination, source, type);
 
     if (!destination) return
     setPlaceholderProps({})
@@ -152,7 +152,7 @@ export const Board = () => {
 
     const newBoard = { ...board }
     let updatedBoard = boardService.handleDragEnd(newBoard, destination, source, type)
-    if(type === 'task' && (destination.droppableId !== source.droppableId)) {
+    if (type === 'task' && (destination.droppableId !== source.droppableId)) {
       const sourceGroup = updatedBoard.groups.find(group => group.id === source.droppableId)
       const destinationGroup = updatedBoard.groups.find(group => group.id === destination.droppableId)
       const task = destinationGroup.tasks[destination.index]
@@ -176,7 +176,7 @@ export const Board = () => {
         <Loader />
       ) : (
         <React.Fragment>
-          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} updateFilter={updateFilter} filterBy={filterBy}/>
+          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} updateFilter={updateFilter} filterBy={filterBy} />
           <DragDropContext
             onDragStart={onDragStart}
             onDragUpdate={onDragUpdate}

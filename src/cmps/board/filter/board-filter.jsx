@@ -1,6 +1,3 @@
-import { useRef, useState } from "react"
-import { useSelector } from "react-redux"
-import { boardService } from "../../../services/board.service"
 import { LabelsFilter } from "./labels-filter"
 import { MembersFilter } from "./members-filter"
 

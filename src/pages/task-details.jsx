@@ -14,6 +14,7 @@ import { TaskDetailsOverview } from '../cmps/task-details/task-details-overview'
 import { TaskDetailsHeader } from '../cmps/task-details/task-details-header'
 import { Activities } from '../cmps/activities/activities'
 import { utilService } from '../services/util.service'
+import { TaskLocation } from '../cmps/location/task-location'
 
 export const TaskDetails = () => {
   const navigate = useNavigate()
@@ -69,6 +70,7 @@ export const TaskDetails = () => {
 
                 <TaskDetailsOverview onOpenActionModal={onOpenActionModal} task={task} groupId={groupId} />
                 <TaskDescription task={task} groupId={groupId} />
+                {task.location && <TaskLocation task={task} groupId={groupId} onOpenActionModal={onOpenActionModal}/>}
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
                 {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
                 <Activities activities={activities} renderAddComments={true} task={task} />

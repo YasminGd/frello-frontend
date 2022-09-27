@@ -9,7 +9,7 @@ import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from '../global/action-modal'
 import { utilService } from '../../services/util.service'
 
-export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filterBy }) => {
+export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filterBy, isBackgroundDark }) => {
   const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
@@ -56,7 +56,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
     setActionModal({ type, pos })
   }
 
-  const rightStyle = actionModal ? 'open' : ''
+  const themeStyle = isBackgroundDark ? '' : 'dark'
 
   return (
     <section className="board-header">
@@ -69,8 +69,9 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           onKeyUp={resizeWidth}
           style={width}
           spellCheck="false"
+          className= {themeStyle}
         ></input>
-        <span className="star-container" onClick={toggleStarBoard}>
+        <span className={`star-container ${themeStyle}`} onClick={toggleStarBoard}>
           {!board.isStarred && <TiStarOutline />}
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
@@ -89,7 +90,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
             onOpenActionModal('Users', btnAddUserRef)
           }}
           ref={btnAddUserRef}
-          className="btn-share"
+          className={`btn-share ${themeStyle}`}
         >
           <BsPersonPlus className="person-icon" />
           <span>Share</span>
@@ -101,12 +102,13 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           onClick={() => {
             onOpenActionModal('Filter', filterRef)
           }}
+          className= {themeStyle}
         >
           <BsFilter />
           Filter
         </button>
         {!isSideMenuOpen && (
-          <button onClick={renderSideMenu}>
+          <button onClick={renderSideMenu} className= {themeStyle}>
             <BsThreeDots />
             Show menu
           </button>

@@ -14,6 +14,7 @@ import { MemberSelectList } from '../board/filter/member-select-list'
 import { AccountDetails } from '../board/account-details'
 import { CreateBoard } from '../workspace/create-board'
 import { LabelSelectList } from '../board/filter/label-select-list'
+import { Location } from '../location/location'
 
 export const ActionModal = ({
   data,
@@ -81,6 +82,9 @@ export const ActionModal = ({
       case 'Users':
         return <Users />
 
+      case 'Location':
+        return <Location task={task} groupId={groupId}/>
+
       case 'List actions':
         return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
 
@@ -118,6 +122,9 @@ export const ActionModal = ({
 
       case 'Users':
         return 'Invite to board'
+
+      case 'Location':
+        return 'Change location'
 
       case 'Select member':
       case 'Select label':

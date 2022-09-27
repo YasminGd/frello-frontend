@@ -26,6 +26,7 @@ export const Board = () => {
   const queryAttr = "data-rbd-drag-handle-draggable-id"
   const [placeholderProps, setPlaceholderProps] = useState({})
   // console.log('Board ~ placeholderProps', placeholderProps)
+  const isBackgroundDark = boardService.isBackgroundDark(board?.style?.backgroundColor)
 
   useEffect(() => {
     dispatch(getBoard(params.boardId))
@@ -176,13 +177,13 @@ export const Board = () => {
         <Loader />
       ) : (
         <React.Fragment>
-          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} updateFilter={updateFilter} filterBy={filterBy} />
+          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} updateFilter={updateFilter} filterBy={filterBy} isBackgroundDark={isBackgroundDark}/>
           <DragDropContext
             onDragStart={onDragStart}
             onDragUpdate={onDragUpdate}
             onDragEnd={onDragEnd}
           >
-            <GroupList placeholderProps={placeholderProps} board={filteredBoard} addItem={addItem} removeItem={removeItem} />
+            <GroupList placeholderProps={placeholderProps} board={filteredBoard} addItem={addItem} removeItem={removeItem} isBackgroundDark={isBackgroundDark}/>
           </DragDropContext>
           <Routes>
             <Route path=":groupId/:taskId" element={<TaskDetails />} />

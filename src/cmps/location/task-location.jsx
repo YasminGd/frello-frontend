@@ -24,11 +24,6 @@ export const TaskLocation = ({ task, groupId, onOpenActionModal }) => {
         dispatch(updateTask(groupId, task))
     }
 
-    const onRemoveLocation = () => {
-        task.location = null
-        dispatch(updateTask(groupId, task))
-    }
-
     return <section className="task-location">
         <div className="location-header">
             <IoLocationSharp />
@@ -42,7 +37,7 @@ export const TaskLocation = ({ task, groupId, onOpenActionModal }) => {
                     <p>{task.location.address}</p>
                 </section>
                 <section className="right">
-                <button ref={btnCloseRef} onClick={onRemoveLocation}>…</button>
+                <button ref={btnCloseRef} onClick={() => onOpenActionModal(name, btnCloseRef)}>…</button>
                 </section>
             </section>
         </section>

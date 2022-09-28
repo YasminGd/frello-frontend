@@ -37,6 +37,7 @@ export const TaskDetails = () => {
 
   const onOpenActionModal = (type, ref) => {
     const pos = utilService.getModalPosition(type, ref)
+    console.log(pos);
     setActionModal({ type, pos })
   }
 

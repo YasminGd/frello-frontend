@@ -7,7 +7,7 @@ import { locationService } from "../../services/location.service"
 import { updateTask } from "../../store/actions/task.action"
 import { LocationList } from "./location-list"
 
-export const Location = ({ task, groupId }) => {
+export const Location = ({ task, groupId, setActionModal }) => {
     const [search, setSearch] = useState('')
     const [locations, setLocations] = useState(null)
 
@@ -25,15 +25,13 @@ export const Location = ({ task, groupId }) => {
     const onSearch = async (ev) => {
         ev.preventDefault()
         const locations = await locationService.searchLocation(search)
-        console.log(locations);
         setLocations(locations)
     }
 
     const setLocation = (location) => {
-        console.log(location);
         task.location = location
-        console.log(task);
         dispatch(updateTask(groupId, task))
+        setActionModal(null)
     }
 
     return <section className="location">

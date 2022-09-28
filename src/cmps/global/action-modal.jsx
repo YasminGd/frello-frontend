@@ -15,6 +15,7 @@ import { AccountDetails } from '../board/account-details'
 import { CreateBoard } from '../workspace/create-board'
 import { LabelSelectList } from '../board/filter/label-select-list'
 import { Location } from '../location/location'
+import { LocationActions } from '../location/location-actions'
 
 export const ActionModal = ({
   data,
@@ -83,7 +84,7 @@ export const ActionModal = ({
         return <Users />
 
       case 'Location':
-        return <Location task={task} groupId={groupId}/>
+        return <Location task={task} groupId={groupId} setActionModal={setActionModal}/>
 
       case 'List actions':
         return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
@@ -104,7 +105,7 @@ export const ActionModal = ({
         return <CreateBoard setActionModal={setActionModal} />
 
       default:
-        break
+        return <LocationActions task={task} groupId={groupId}/>
     }
   }
 
@@ -124,7 +125,8 @@ export const ActionModal = ({
         return 'Invite to board'
 
       case 'Location':
-        return 'Change location'
+        if(task.location) return 'Change location'
+        return 'Add location'
 
       case 'Select member':
       case 'Select label':

@@ -5,12 +5,14 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { isEmpty } from 'lodash'
 
-export const GroupList = ({ board, addItem, removeItem, placeholderProps }) => {
+export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBackgroundDark }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
 
   const onToggleAdd = () => {
     setIsAddOpen(!isAddOpen)
   }
+
+  const themeStyle = isBackgroundDark ? '' : 'dark'
   return (
     <Droppable droppableId={board._id} direction="horizontal" type="group">
       {(provided, snapshot) => (
@@ -48,7 +50,7 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps }) => {
           {isAddOpen ? (
             <AddItem onToggleAdd={onToggleAdd} addItem={addItem} />
           ) : (
-            <button className="add-task-button" onClick={onToggleAdd}>
+            <button className={`add-task-button ${themeStyle}`} onClick={onToggleAdd}>
               <span>
                 <AiOutlinePlus />
                 Add another list

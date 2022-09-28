@@ -6,6 +6,7 @@ import { GoArchive } from 'react-icons/go'
 import { useDispatch } from 'react-redux'
 import { removeTask } from '../../store/actions/task.action'
 import { useNavigate } from 'react-router-dom'
+import { IoLocationSharp } from 'react-icons/io5'
 
 export const TaskDetailsSidebar = ({ onOpenActionModal, taskId, groupId }) => {
 
@@ -20,6 +21,7 @@ export const TaskDetailsSidebar = ({ onOpenActionModal, taskId, groupId }) => {
     const btnDatesRef = useRef()
     const btnCoverRef = useRef()
     const btnRemoveRef = useRef()
+    const btnLocationRef = useRef()
 
     const actionBtns = [
         {
@@ -47,7 +49,6 @@ export const TaskDetailsSidebar = ({ onOpenActionModal, taskId, groupId }) => {
             ref: btnAttachmentRef,
             iconCmp: <ImAttachment className="icon" />,
         },
-
         {
             type: 'Cover',
             ref: btnCoverRef,
@@ -59,6 +60,11 @@ export const TaskDetailsSidebar = ({ onOpenActionModal, taskId, groupId }) => {
                     }}
                 />
             ),
+        },
+        {
+            type: 'Location',
+            ref: btnLocationRef,
+            iconCmp: <IoLocationSharp className="icon" />,
         }
     ]
 

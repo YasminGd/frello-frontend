@@ -58,4 +58,13 @@
     height: 12px;
     border-bottom: 10px solid transparent;
   }
+
+  .dark {
+    color: #172b4d;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
 }

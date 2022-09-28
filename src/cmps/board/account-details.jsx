@@ -18,7 +18,10 @@ export const AccountDetails = ({ setActionModal }) => {
         <div className="user-img">
           <img referrerPolicy="no-referrer" src={user.imgUrl} alt="" />
         </div>
-        <p>{user.fullname}</p>
+        <div className="use-info">
+          <p>{user.fullname}</p>
+          <p className='username'>{user.username}</p>
+        </div>
       </div>
       <div className="seperator"></div>
       <div className="btn-container">

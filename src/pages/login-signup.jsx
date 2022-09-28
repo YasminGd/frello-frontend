@@ -41,6 +41,16 @@ export const LoginSignup = () => {
           console.log(err, 'cannot signup')
         }
       })()
+    } else if (status === 'login') {
+      ; (async () => {
+        try {
+          await dispatch(login(user, true))
+          navigate('/workspace')
+        }
+        catch (err) {
+          console.log(err, 'cannot login')
+        }
+      })()
     }
   }
 

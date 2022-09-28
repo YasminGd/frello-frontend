@@ -48,6 +48,10 @@ export const TaskDetailsSidebar = ({ onOpenActionModal, taskId, groupId }) => {
             type: 'Attachment',
             ref: btnAttachmentRef,
             iconCmp: <ImAttachment className="icon" />,
+        }, {
+            type: 'Location',
+            ref: btnLocationRef,
+            iconCmp: <IoLocationSharp className="icon" />,
         },
         {
             type: 'Cover',
@@ -60,11 +64,6 @@ export const TaskDetailsSidebar = ({ onOpenActionModal, taskId, groupId }) => {
                     }}
                 />
             ),
-        },
-        {
-            type: 'Location',
-            ref: btnLocationRef,
-            iconCmp: <IoLocationSharp className="icon" />,
         }
     ]
 

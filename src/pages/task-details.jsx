@@ -37,7 +37,6 @@ export const TaskDetails = () => {
 
   const onOpenActionModal = (type, ref) => {
     const pos = utilService.getModalPosition(type, ref)
-    console.log(pos);
     setActionModal({ type, pos })
   }
 
@@ -86,7 +85,8 @@ export const TaskDetails = () => {
           setActionModal={setActionModal}
           data={actionModal}
           task={task}
-          groupId={groupId} />}
+          groupId={groupId} 
+          />}
       </section>
     </Fragment>
   )

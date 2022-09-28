@@ -27,6 +27,7 @@ export const ActionModal = ({
   updateFilter,
   filterBy,
   handleChange,
+  onOpenActionModal
 }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
@@ -105,7 +106,7 @@ export const ActionModal = ({
         return <CreateBoard setActionModal={setActionModal} />
 
       default:
-        return <LocationActions task={task} groupId={groupId} />
+        return <LocationActions task={task} groupId={groupId} setActionModal={setActionModal} />
     }
   }
 

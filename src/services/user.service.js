@@ -12,9 +12,13 @@ export const userService = {
 const STORAGE_KEY_LOGGEDIN = 'loggedInUser'
 const BASE_URL = `user/`
 
-async function login(credentials) {
+async function login(credentials, isGoogleAuth) {
   try {
-    const user = await httpService.post('auth/login', credentials)
+    let user
+    if (isGoogleAuth) {
+      user = await httpService.post('google-auth/login', credentials)
+    } else user = await httpService.post('auth/login', credentials)
+
     if (user) sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
     return user
   } catch (err) {

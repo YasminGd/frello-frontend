@@ -37,7 +37,7 @@ export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging 
           groupId={group.id}
           style={textareaStyle}
         />
-        <button ref={btnCloseRef} onClick={() => onOpenActionModal('List actions', btnCloseRef)}>…</button>
+        <button className='btn-dots' ref={btnCloseRef} onClick={() => onOpenActionModal('List actions', btnCloseRef)}>…</button>
       </section>
       <TaskList
         tasks={group.tasks}

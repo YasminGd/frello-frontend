@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { unsplashService } from "../../services/unsplash.service"
 import { Loader } from "../global/loader"
+import { AiOutlineSearch } from 'react-icons/ai'
 
 export const SideMenuPhotos = ({ changeBackground }) => {
     const [photos, setPhotos] = useState(null)
@@ -30,7 +31,8 @@ export const SideMenuPhotos = ({ changeBackground }) => {
     return <section className="side-menu-photos main-layout">
         <form onSubmit={onSearchPhotos}>
             <div className="input-holder">
-                <input type="text" className="input" value={search} onChange={handleChange} />
+                <input placeholder="Photos" type="text" className="input" value={search} onChange={handleChange} />
+                <AiOutlineSearch className="icon" />
             </div>
         </form>
         {

@@ -39,11 +39,24 @@ $grayCustom: #ebecf0;
       letter-spacing: 1px;
     }
   }
+
+  .or {
+    margin: 8px auto 20px;
+    font-size: 13px;
+  }
+
+  .seperator {
+    height: 1px;
+    border-top: 1px solid hsl(0, 0%, 80%);
+    margin: 20px 0 14px;
+    padding: 0;
+  }
 }
 
 .wrong-credentials {
   border-radius: 3px;
-  box-shadow: rgb(9 30 66 / 28%) 0px 4px 8px -2px, rgb(9 30 66 / 30%) 0px 0px 1px;
+  box-shadow: rgb(9 30 66 / 28%) 0px 4px 8px -2px,
+    rgb(9 30 66 / 30%) 0px 0px 1px;
   color: rgb(37, 56, 88);
   font-size: 12px;
   line-height: 20px;
@@ -51,7 +64,8 @@ $grayCustom: #ebecf0;
   padding: 16px;
   transform: rotateX(0deg);
   transform-origin: 50% 0px;
-  transition-property: visibility, height, margin-bottom, opacity, transform, padding;
+  transition-property: visibility, height, margin-bottom, opacity, transform,
+    padding;
   transition-duration: 0s, 0.2s, 0.2s, 0.2s, 0.2s;
   transition-timing-function: ease-in-out;
 
@@ -134,7 +148,8 @@ $grayCustom: #ebecf0;
     font-weight: bold;
     margin-bottom: 1rem;
     display: inline-block;
-    transition: background-color 200ms ease-in-out, border 200ms ease-in-out, transform 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out, border 200ms ease-in-out,
+      transform 200ms ease-in-out;
   }
 
   .error {

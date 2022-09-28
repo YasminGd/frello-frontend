@@ -34,10 +34,10 @@ export function signup(credentials, isGoogleAuth) {
   }
 }
 
-export function login(credentials) {
+export function login(credentials, isGoogleAuth) {
   return async (dispatch) => {
     try {
-      const user = await userService.login(credentials)
+      const user = await userService.login(credentials, isGoogleAuth)
       dispatch({ type: 'SET_USER', user })
     } catch (err) {
       console.log('Cannot login', err)

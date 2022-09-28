@@ -41,6 +41,16 @@ export const LoginSignup = () => {
           console.log(err, 'cannot signup')
         }
       })()
+    } else if (status === 'login') {
+      ; (async () => {
+        try {
+          await dispatch(login(user, true))
+          navigate('/workspace')
+        }
+        catch (err) {
+          console.log(err, 'cannot login')
+        }
+      })()
     }
   }
 
@@ -129,7 +139,7 @@ export const LoginSignup = () => {
           onFocus={handleFocus}
           onBlur={formik.handleBlur}
           value={formik.values.username}
-          placeholder="Enter user name"
+          placeholder="Enter username"
         />
         {formik.touched.username && formik.errors.username ? (
           <span className="error">{formik.errors.username}</span>
@@ -152,6 +162,7 @@ export const LoginSignup = () => {
           <span>&nbsp;</span>
         )}
         <button type="submit">{formTxt}</button>
+        <p className='or'>OR</p>
         <div className="google-btn-container">
           <GoogleLogin
             onSuccess={handleGoogleAuth}
@@ -160,6 +171,7 @@ export const LoginSignup = () => {
             }}
           />
         </div>
+        <div className="seperator"></div>
         {status === 'login' && (
           <NavLink className="already-have-account" to={'/user/signup'}>
             Sign up for an account

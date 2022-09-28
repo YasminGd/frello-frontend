@@ -12,8 +12,8 @@
   }
 
   .group-title {
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue,
-      sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
+      Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
     color: #172b4d;
     padding-top: 10px;
     padding-left: 10px;
@@ -29,7 +29,7 @@
       border-radius: 3px;
       width: 32px;
       height: 32px;
-      font-size: 14px;
+      font-size: 18px;
       background-color: transparent;
       display: flex;
       justify-content: center;
@@ -38,6 +38,7 @@
       margin-bottom: 6px;
       display: flex;
       align-items: flex-start;
+      color: #6d788a;
 
       &:hover {
         background-color: #091e4214;

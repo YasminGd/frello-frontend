@@ -14,6 +14,7 @@ import { Loader } from '../cmps/global/loader.jsx'
 import { socketService } from '../services/socket.service.js'
 import { unsplashService } from '../services/unsplash.service.js'
 import { activityService } from '../services/activity.service.js'
+import { Dashboard } from '../cmps/board/dashboard.jsx'
 
 export const Board = () => {
   const board = useSelector((state) => state.boardModule.board)
@@ -171,16 +172,17 @@ export const Board = () => {
         <Loader />
       ) : (
         <React.Fragment>
-          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} updateFilter={updateFilter} filterBy={filterBy} isBackgroundDark={isBackgroundDark}/>
+          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} updateFilter={updateFilter} filterBy={filterBy} isBackgroundDark={isBackgroundDark} />
           <DragDropContext
             onDragStart={onDragStart}
             onDragUpdate={onDragUpdate}
             onDragEnd={onDragEnd}
           >
-            <GroupList placeholderProps={placeholderProps} board={filteredBoard} addItem={addItem} removeItem={removeItem} isBackgroundDark={isBackgroundDark}/>
+            <GroupList placeholderProps={placeholderProps} board={filteredBoard} addItem={addItem} removeItem={removeItem} isBackgroundDark={isBackgroundDark} />
           </DragDropContext>
           <Routes>
             <Route path=":groupId/:taskId" element={<TaskDetails />} />
+            <Route path="dashboard" element={<Dashboard />} />
           </Routes>
         </React.Fragment>
       )}

@@ -83,7 +83,7 @@ export const ActionModal = ({
         return <Users />
 
       case 'Location':
-        return <Location task={task} groupId={groupId}/>
+        return <Location task={task} groupId={groupId} />
 
       case 'List actions':
         return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
@@ -126,7 +126,8 @@ export const ActionModal = ({
       case 'Location':
         return 'Change location'
 
-      case 'Select member':
+      // case 'Select member':
+
       case 'Select label':
         return ''
 
@@ -139,7 +140,6 @@ export const ActionModal = ({
 
   return (
     <section className="action-modal" style={modalStyle} ref={modalRef}>
-      {/* add stop propagation? */}
       {title && (
         <div className="title-container">
           <p>{title}</p>

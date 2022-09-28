@@ -3,13 +3,16 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { updateBoard } from '../../store/actions/board.action'
-import { BsThreeDots, BsPersonPlus, BsFilter } from 'react-icons/bs'
+import { BsThreeDots, BsPersonPlus, BsFilter, BsGraphUp } from 'react-icons/bs'
 import { BoardSideMenu } from './board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from '../global/action-modal'
 import { utilService } from '../../services/util.service'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filterBy, isBackgroundDark }) => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
@@ -69,7 +72,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           onKeyUp={resizeWidth}
           style={width}
           spellCheck="false"
-          className= {themeStyle}
+          className={themeStyle}
         ></input>
         <span className={`star-container ${themeStyle}`} onClick={toggleStarBoard}>
           {!board.isStarred && <TiStarOutline />}
@@ -98,17 +101,27 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
       </section>
       <section className={`right ${isSideMenuOpen}`}>
         <button
+          onClick={() => {
+            if (location.pathname.includes('dashboard')) navigate(-1)
+            else navigate(`${location.pathname}/dashboard`)
+          }}
+          className={themeStyle}
+        >
+          <BsGraphUp />
+          Dashboard
+        </button>
+        <button
           ref={filterRef}
           onClick={() => {
             onOpenActionModal('Filter', filterRef)
           }}
-          className= {themeStyle}
+          className={themeStyle}
         >
           <BsFilter />
           Filter
         </button>
         {!isSideMenuOpen && (
-          <button onClick={renderSideMenu} className= {themeStyle}>
+          <button onClick={renderSideMenu} className={themeStyle}>
             <BsThreeDots />
             Show menu
           </button>

@@ -1,0 +1,29 @@
+.dashboard {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #000000c1;
+  z-index: 20;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+
+  .btn-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: transparent;
+    color: white;
+    font-size: 26px;
+    border-radius: 50%;
+    padding: 5px 6px;
+    @include flexAlign();
+    &:hover {
+      background-color: #0606069b;
+    }
+  }
+}

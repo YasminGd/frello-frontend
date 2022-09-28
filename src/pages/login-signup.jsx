@@ -54,6 +54,10 @@ export const LoginSignup = () => {
     }
   }
 
+  // const login = useGoogleLogin({
+  //   onSuccess: tokenResponse => console.log(tokenResponse),
+  // })
+
   const formik = useFormik({
     initialValues: {
       fullname: '',
@@ -171,6 +175,9 @@ export const LoginSignup = () => {
             }}
           />
         </div>
+        {/* <button onClick={() => login()}>
+          Sign in with Google 🚀{' '}
+        </button> */}
         <div className="seperator"></div>
         {status === 'login' && (
           <NavLink className="already-have-account" to={'/user/signup'}>

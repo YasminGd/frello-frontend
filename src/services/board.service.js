@@ -10,7 +10,8 @@ export const boardService = {
   remove,
   handleDragEnd,
   getBoardForDisplay,
-  isBackgroundDark
+  isBackgroundDark,
+  removeUserFromAllTasks
 }
 
 async function query(filterBy) {
@@ -181,4 +182,12 @@ function isBackgroundDark(color) {
 
     return true
   }
+}
+
+function removeUserFromAllTasks(groups, userId) {
+  groups.forEach(group =>
+    group.tasks = group.tasks.map(task => task.memberIds ?
+      { ...task, memberIds: task.memberIds.filter(memberId => memberId !== userId) }
+      : task))
+  return groups
 }

@@ -29,7 +29,6 @@ export const Members = ({ task, groupId }) => {
       if (task.memberIds) task.memberIds.push(memberId)
       else task.memberIds = [memberId]
     }
-
     dispatch(updateTask(groupId, task, activityTxt, member))
   }
 

@@ -26,6 +26,7 @@ export const TaskDetails = () => {
 
   const group = board.groups.find((group) => group.id === groupId)
   const task = group.tasks.find((task) => task.id === taskId)
+  console.log(task);
 
   const onUpdateTask = (task) => {
     dispatch(updateTask(groupId, task))

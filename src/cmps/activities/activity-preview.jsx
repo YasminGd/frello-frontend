@@ -15,12 +15,20 @@ export const ActivityPreview = ({ activity }) => {
             {
                 activity.comment ?
                     <React.Fragment>
-                        <p><span className="username">{activity.byMember.fullname}</span>{!taskId && ` ${activity.txt}`}  <span className="time">{timeSince}</span></p>
+                        <p>
+                            <span className="username">{activity.byMember.fullname}</span>
+                            {!taskId && activity.txt}
+                            <span className="time">{timeSince}</span>
+                        </p>
                         <div className="comment">{activity.comment}</div>
                     </React.Fragment>
                     :
                     <React.Fragment>
-                        <p><span className="username">{activity.byMember.fullname}</span>{` ${activity.txt}`}</p>
+                        <p>
+                            <span className="username">{activity.byMember.fullname}</span>
+                            {activity.txt.split(' ')[0]}
+                            <span className="activity-txt">{activity.txt.substring(activity.txt.indexOf(' '))}</span>
+                        </p>
                         <p className="time">{timeSince}</p>
                     </React.Fragment>
             }

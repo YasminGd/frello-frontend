@@ -2,15 +2,15 @@
   padding: 5px 0px 2px;
   display: flex;
   flex-direction: column;
-  // gap: 8px;
+  gap: 8px;
   margin: 0 4px;
   margin-bottom: 7px;
   max-height: calc(100vh - 44px - 52px - 108px);
   overflow-y: auto;
   position: relative;
-  & > *:not(:first-child) {
-    margin-top: 8px;
-  }
+  // & > *:not(:first-child) {
+  //   margin-top: 8px;
+  // }
 
   &.full {
     max-height: calc(100vh - 44px - 52px - 72px);

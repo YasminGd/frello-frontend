@@ -5,7 +5,7 @@ import { AddItem } from '../global/add-item.jsx'
 import { TaskPreview } from './task-preview.jsx'
 
 export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd, placeholderProps }) => {
-
+  console.log(tasks);
   return (
     <Droppable droppableId={groupId} type="task">
       {(provided, snapshot) => (

@@ -15,6 +15,8 @@ import {
     BarElement,
     Title,
 } from 'chart.js'
+import { boardService } from '../../services/board.service'
+import { FaLayerGroup, FaTasks, FaUser } from 'react-icons/fa'
 ChartJS.register(
     ArcElement,
     CategoryScale,
@@ -32,6 +34,9 @@ ChartJS.register(
 export const Dashboard = () => {
     const navigate = useNavigate()
     const board = useSelector((state) => state.boardModule.board)
+    const membersLength = board.members
+    const groupsLength = board.groups.length
+    const tasksLength = boardService.getNumberOfTasks(board.groups)
     const tasksByStatusData = dashboardService.getTasksByStatus(board.groups)
     const tasksByMember = dashboardService.getTasksByMember(board.groups, board.members)
     const tasksByGroupsData = dashboardService.getTasksByGroups(board.groups)
@@ -88,7 +93,29 @@ export const Dashboard = () => {
                 <IoCloseOutline />
             </button>
             <h1>{board.title}</h1>
-
+            <div className="statistics-container">
+                <div className="number-of-members statistic-box">
+                    <div className="svg-holder">
+                        <FaUser />
+                    </div>
+                    <span className="count">{membersLength ? membersLength.length : 0}</span>
+                    <p>Members</p>
+                </div>
+                <div className="number-of-tasks statistic-box">
+                    <div className="svg-holder">
+                        <FaTasks />
+                    </div>
+                    <span className="count">{tasksLength}</span>
+                    <p>Tasks</p>
+                </div>
+                <div className="number-of-lists statistic-box">
+                    <div className="svg-holder">
+                        <FaLayerGroup />
+                    </div>
+                    <span className="count">{groupsLength}</span>
+                    <p>Lists</p>
+                </div>
+            </div>
             <div className="charts-container">
                 <div className="task-by-status">
                     <h3>Tasks by status</h3>

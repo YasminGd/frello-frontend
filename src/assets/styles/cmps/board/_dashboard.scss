@@ -4,7 +4,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: #000000c1;
+  background-color: hsla(0, 0%, 0%, 0.90);
   z-index: 20;
   color: white;
   display: flex;
@@ -22,8 +22,74 @@
     border-radius: 50%;
     padding: 5px 6px;
     @include flexAlign();
+
     &:hover {
       background-color: #0606069b;
+    }
+  }
+
+  h1 {
+    margin-bottom: 48px;
+    font-weight: 600;
+  }
+
+  .statistics-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 41%;
+
+    .statistic-box {
+      border-radius: 3px;
+      height: 188px;
+      text-align: center;
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-top: 16px;
+    }
+
+    .number-of-members {
+      background-color: hwb(216 40% 4%);
+      color : hwb(216 40% 4%);
+    }
+
+    .number-of-tasks {
+      background-color: hwb(103 32% 27%);
+      color : hwb(103 32% 27%);
+    }
+
+    .number-of-lists {
+      background-color: hwb(8 24% 8%);
+      color : hwb(8 24% 8%);
+    }
+
+    .svg-holder {
+      background-color: #FEFCFE;
+      border-radius: 50%;
+      color: inherit;
+      font-size: 24px;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 8px;
+
+    }
+
+    .count {
+      font-size: 38px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 16px;
+      color: white;
+      opacity: 0.9;
     }
   }
 
@@ -31,13 +97,18 @@
     display: flex;
     margin-top: 70px;
 
-    & > * {
+    h3 {
+      font-weight: 600;
+    }
+
+    &>* {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     .task-by-status {
+     
     }
 
     .task-per-member {

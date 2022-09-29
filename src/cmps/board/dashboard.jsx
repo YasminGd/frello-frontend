@@ -15,6 +15,8 @@ import {
     BarElement,
     Title,
 } from 'chart.js'
+import { boardService } from '../../services/board.service'
+import { FaLayerGroup, FaTasks, FaUser } from 'react-icons/fa'
 import { useClickOutside } from '../hooks/is-clicked-outside'
 import { useRef } from 'react'
 ChartJS.register(
@@ -34,6 +36,9 @@ ChartJS.register(
 export const Dashboard = () => {
     const navigate = useNavigate()
     const board = useSelector((state) => state.boardModule.board)
+    const membersLength = board.members
+    const groupsLength = board.groups.length
+    const tasksLength = boardService.getNumberOfTasks(board.groups)
     const containerRef = useRef()
 
     const onGoBack = () => {
@@ -96,8 +101,30 @@ export const Dashboard = () => {
                 <IoCloseOutline />
             </button>
             <h1>{board.title}</h1>
-
-            <div className="charts-container" ref={containerRef}>
+            <div className="statistics-container">
+                <div className="number-of-members statistic-box">
+                    <div className="svg-holder">
+                        <FaUser />
+                    </div>
+                    <span className="count">{membersLength ? membersLength.length : 0}</span>
+                    <p>Members</p>
+                </div>
+                <div className="number-of-tasks statistic-box">
+                    <div className="svg-holder">
+                        <FaTasks />
+                    </div>
+                    <span className="count">{tasksLength}</span>
+                    <p>Tasks</p>
+                </div>
+                <div className="number-of-lists statistic-box">
+                    <div className="svg-holder">
+                        <FaLayerGroup />
+                    </div>
+                    <span className="count">{groupsLength}</span>
+                    <p>Lists</p>
+                </div>
+            </div>
+            <div className="charts-container">
                 <div className="task-by-status">
                     <h3>Tasks by status</h3>
                     <Doughnut options={doughnutOptions} data={tasksByStatusData} />
@@ -107,10 +134,10 @@ export const Dashboard = () => {
                     <Bar options={barOptions} data={tasksByMember} />
                 </div>
                 <div className="task-per-groups">
-                    <h3>Tasks per groups</h3>
+                    <h3>Tasks per list</h3>
                     <Line options={lineOptions} data={tasksByGroupsData} />
                 </div>
             </div>
-        </section >
+        </section>
     )
 }

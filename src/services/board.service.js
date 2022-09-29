@@ -9,7 +9,8 @@ export const boardService = {
   save,
   remove,
   getBoardForDisplay,
-  removeUserFromAllTasks
+  removeUserFromAllTasks,
+  getNumberOfTasks
 }
 
 async function query(filterBy) {
@@ -108,4 +109,10 @@ function removeUserFromAllTasks(groups, userId) {
       { ...task, memberIds: task.memberIds.filter(memberId => memberId !== userId) }
       : task))
   return groups
+}
+
+function getNumberOfTasks(groups) {
+  let tasksLength = 0
+  groups.forEach(group => group.tasks.forEach( task => tasksLength++))
+  return tasksLength
 }

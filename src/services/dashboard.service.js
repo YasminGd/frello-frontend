@@ -1,6 +1,7 @@
 
 export const dashboardService = {
-    getTasksByStatus
+    getTasksByStatus,
+    getTasksByMember
 }
 
 function getTasksByStatus(groups) {
@@ -41,4 +42,44 @@ function calcDueStatus(dueDate) {
     if (hoursBetweenDates < 0) return 'overdue'
     else if (hoursBetweenDates < 24) return 'dueSoon'
     else return 'onTime'
+}
+
+function getTasksByMember(groups, boardMembers) {
+    const data = { noMember: 0 }
+    groups.forEach(group => {
+        group.tasks.forEach(task => {
+            if (!task.memberIds || !task.memberIds.length) data.noMember += 1
+            else {
+                task.memberIds.forEach(memberId => {
+                    if (!data[memberId]) data[memberId] = 0
+                    data[memberId] += 1
+                })
+            }
+        })
+    })
+    let labels = Object.keys(data)
+    labels = labels.map(label => {
+        if (label === 'noMember') return 'No member'
+        else {
+            const memberIdx = boardMembers.findIndex(member => member._id === label)
+            return boardMembers[memberIdx]?.fullname
+        }
+    })
+
+
+    let dataValues = Object.values(data)
+    console.log('getTasksByMember ~ dataValues', dataValues)
+    // const element = dataValues.splice(0, 1)
+    // dataValues.push(...element)
+    console.log('getTasksByMember ~ dataValues', dataValues)
+
+    return {
+        labels: labels,
+        datasets: [{
+            label: 'Tasks Per Member',
+            backgroundColor: ['#EB5B46', '#EDD747', '#288fca', '#A0C2F6', '#78BB5d'],
+            borderColor: ['#F9FAFC'],
+            data: dataValues,
+        }]
+    }
 }

@@ -8,9 +8,7 @@ export const boardService = {
   getById,
   save,
   remove,
-  handleDragEnd,
   getBoardForDisplay,
-  isBackgroundDark
 }
 
 async function query(filterBy) {
@@ -49,49 +47,6 @@ async function save(board) {
   }
 }
 
-function handleDragEnd(newBoard, destination, source, type) {
-  const newBoardGroups = Array.from(newBoard.groups) // breaks pointer so we don't change the final object we send
-
-  // reorder groups in the group list
-  if (type === 'group') {
-    // relocating the group in the groups array and sends the new board with updated groups array
-    newBoardGroups.splice(source.index, 1)
-    newBoardGroups.splice(destination.index, 0, newBoard.groups[source.index])
-    newBoard.groups = newBoardGroups
-    return newBoard
-
-    // reorder tasks across the groups
-  } else if (type === 'task') {
-    const prevGroupIdx = newBoardGroups.findIndex((group) => group.id === source.droppableId)
-    const newGroupIdx = newBoardGroups.findIndex((group) => group.id === destination.droppableId)
-    const prevGroup = newBoardGroups[prevGroupIdx]
-    const newGroup = newBoardGroups[newGroupIdx]
-
-    // in case relocating task in the same group
-    if (prevGroupIdx === newGroupIdx) {
-      // in case the new task index is smaller
-      if (destination.index < source.index) {
-        newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
-        prevGroup.tasks.splice(source.index + 1, 1)
-
-        // in case the new task index is bigger
-      } else {
-        newGroup.tasks.splice(destination.index + 1, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
-        prevGroup.tasks.splice(source.index, 1)
-      }
-      // in case new task location is on different group
-    } else {
-      newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
-      prevGroup.tasks.splice(source.index, 1)
-    }
-
-    newBoard.groups[newGroupIdx] = newGroup
-    newBoard.groups[prevGroupIdx] = prevGroup
-    return newBoard
-  }
-}
-
-
 function getBoardForDisplay(board, filter) {
   let filteredBoard = structuredClone(board)
   let filterCopy = structuredClone(filter)
@@ -118,6 +73,7 @@ function getBoardForDisplay(board, filter) {
   return filteredBoard
 }
 
+//!! Do not delete, important for future filter improvments
 // function getBoardForDisplay(board, filter) {
 //   let filteredBoard = structuredClone(board)
 
@@ -144,41 +100,3 @@ function getBoardForDisplay(board, filter) {
 
 //   return filteredBoard
 // }
-
-function isBackgroundDark(color) {
-  if (!color) return
-
-  let r
-  let g
-  let b
-  if (color.match(/^rgb/)) {
-    color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/)
-
-    r = color[1]
-    g = color[2]
-    b = color[3]
-  }
-  else {
-
-    color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, '$&$&'))
-
-    r = color >> 16
-    g = color >> 8 & 255
-    b = color & 255
-  }
-
-  const hsp = Math.sqrt(
-    0.299 * (r * r) +
-    0.587 * (g * g) +
-    0.114 * (b * b)
-  )
-
-  if (hsp > 127.5) {
-
-    return false
-  }
-  else {
-
-    return true
-  }
-}

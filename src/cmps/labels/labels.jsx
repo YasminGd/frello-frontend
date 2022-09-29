@@ -5,6 +5,7 @@ import { updateBoard } from '../../store/actions/board.action'
 import React, { useEffect, useState } from 'react'
 import { EditLabel } from './edit-label'
 import { utilService } from '../../services/util.service'
+import { taskService } from '../../services/task.service'
 
 export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
   const dispatch = useDispatch()
@@ -66,7 +67,8 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
   const onRemoveLabel = (labelId) => {
     const labelsToSave = boardLabels.filter((currLabel) => currLabel.id !== labelId)
     board.labels = labelsToSave
-    dispatch(updateBoard(board))
+    const cleanBoard = taskService.cleanTasksLabelIds(board, labelId)
+    dispatch(updateBoard(cleanBoard))
   }
   return (
     <section className="labels">

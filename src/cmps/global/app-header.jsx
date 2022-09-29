@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import { ActionModal } from './action-modal'
 import { useRef, useState } from 'react'
 import { utilService } from '../../services/util.service'
-import { boardService } from '../../services/board.service'
 const logo = require('../../assets/img/logo-frello.png')
 
 export const AppHeader = () => {
@@ -34,7 +33,7 @@ export const AppHeader = () => {
 
   const styleClass = getStyleClass()
   const isDisplayUserImg = (user?.fullname === 'Guest') ? false : true
-  const themeStyle = board && !boardService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
+  const themeStyle = board && !utilService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
 
   return (
     <section className={`app-header ${styleClass}`} style={getStyleColor()}>

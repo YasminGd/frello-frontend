@@ -36,8 +36,9 @@ export const Dashboard = () => {
   const tasksByMember = dashboardService.getTasksByMember(board.groups, board.members)
   const tasksByGroupsData = dashboardService.getTasksByGroups(board.groups)
 
-  const options = {
+  const doughnutOptions = {
     responsive: true,
+    aspectRatio: 1,
     plugins: {
       legend: false,
       title: {
@@ -45,7 +46,36 @@ export const Dashboard = () => {
       },
     },
   }
-  const tasksByGroupsData = dashboardService.getTasksByGroups(board.groups)
+  const barOptions = {
+    responsive: true,
+    layout: {
+      padding: {
+        top: 4,
+      },
+    },
+    aspectRatio: 1,
+    plugins: {
+      legend: false,
+      title: {
+        display: true,
+      },
+    },
+  }
+  const lineOptions = {
+    responsive: true,
+    layout: {
+      padding: {
+        top: 4,
+      },
+    },
+    aspectRatio: 1,
+    plugins: {
+      legend: false,
+      title: {
+        display: true,
+      },
+    },
+  }
 
   return (
     <section className="dashboard">
@@ -62,15 +92,15 @@ export const Dashboard = () => {
       <div className="charts-container">
         <div className="task-by-status">
           <h3>Tasks by status</h3>
-          <Doughnut data={tasksByStatusData} />
+          <Doughnut options={doughnutOptions} data={tasksByStatusData} />
         </div>
         <div className="task-per-member">
           <h3>Tasks per member</h3>
-          <Bar options={options} data={tasksByMember} />
+          <Bar options={barOptions} data={tasksByMember} />
         </div>
         <div className="task-per-groups">
-          <h3>Tasks by groups</h3>
-          <Line data={tasksByGroupsData} />
+          <h3>Tasks per groups</h3>
+          <Line options={lineOptions} data={tasksByGroupsData} />
         </div>
       </div>
     </section>

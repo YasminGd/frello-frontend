@@ -7,6 +7,10 @@
   margin-bottom: 7px;
   max-height: calc(100vh - 44px - 52px - 108px);
   overflow-y: auto;
+  position: relative;
+  // & > *:not(:first-child) {
+  //   margin-top: 8px;
+  // }
 
   &.full {
     max-height: calc(100vh - 44px - 52px - 72px);

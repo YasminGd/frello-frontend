@@ -26,4 +26,15 @@
       background-color: #0606069b;
     }
   }
+
+  .charts-container {
+    display: flex;
+    margin-top: 70px;
+
+    .task-per-status {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }

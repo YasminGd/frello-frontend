@@ -76,30 +76,46 @@ export const Board = () => {
     return draggedDOM
   }
 
-  // Calculates the position of the dragged element placeholder
+  // Calculates the posit1ion of the dragged element placeholder
   const onDragStart = (event) => {
     const draggedDOM = getDraggedDom(event.draggableId)
     if (!draggedDOM) return
     const { clientHeight, clientWidth } = draggedDOM
     const sourceIndex = event.source.index
+    let clientX
+    let clientY
 
-    const clientX =
-      parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
-      [...draggedDOM.parentNode.children].slice(0, sourceIndex).reduce((total, curr) => {
-        return total + curr.clientWidth + 8
-      }, 0) -
-      draggedDOM.parentNode.scrollLeft
+    if (event.type === 'group') {
+      clientX =
+        parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
+        [...draggedDOM.parentNode.children].slice(0, sourceIndex).reduce((total, curr) => {
+          return total + curr.clientWidth + 8
+        }, 0) -
+        draggedDOM.parentNode.scrollLeft
+
+      clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
+
+    } else if (event.type === 'task') {
+      clientX = 4
+      clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) +
+        [...draggedDOM.parentNode.children].slice(0, sourceIndex).reduce((total, curr) => {
+          return total + curr.clientHeight + 8
+        }, 0) -
+        draggedDOM.parentNode.scrollTop - 8
+    }
 
     setPlaceholderProps({
       clientHeight,
       clientWidth,
       clientX,
-      clientY: parseFloat(window.getComputedStyle(draggedDOM.parentNode)),
+      clientY,
     })
+
   }
 
   // Calculates the updated position of the dragged element placeholder
   const onDragUpdate = (event) => {
+    console.log('onDragUpdate ~ event', event)
     if (!event.destination) return
     const draggedDOM = getDraggedDom(event.draggableId)
     if (!draggedDOM) return
@@ -107,28 +123,51 @@ export const Board = () => {
     const { clientHeight, clientWidth } = draggedDOM
     const destinationIndex = event.destination.index
     const sourceIndex = event.source.index
+    let clientX = 0
+    let clientY = 0
 
     const childrenArray = [...draggedDOM.parentNode.children]
     const movedItem = childrenArray[sourceIndex]
     childrenArray.splice(sourceIndex, 1)
 
-    const updatedArray = [
+    let updatedArray = [
       ...childrenArray.slice(0, destinationIndex),
       movedItem,
       ...childrenArray.slice(destinationIndex + 1),
     ]
 
-    var clientX =
-      parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
-      updatedArray.slice(0, destinationIndex).reduce((total, curr) => {
-        return total + curr.clientWidth + 8
-      }, 0) -
-      draggedDOM.parentNode.scrollLeft
+    if (event.type === 'group') {
+      clientX =
+        parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
+        updatedArray
+          .slice(0, destinationIndex)
+          .reduce((total, curr) => {
+            return total + curr.clientWidth + 8
+          }, 0) -
+        draggedDOM.parentNode.scrollLeft
+      clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
+
+    } else if (event.type === 'task') {
+      if (event.source.droppableId !== event.destination.droppableId) {
+        updatedArray = [...getDraggedDom(event.destination.droppableId).querySelector('.task-list').children]
+        clientY += -4
+      } else clientY += 4
+      clientX = 4
+      clientY +=
+        parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) +
+        updatedArray
+          .slice(0, destinationIndex)
+          .reduce((total, curr) => {
+            return total + curr.clientHeight + 8
+          }, 0) -
+        draggedDOM.parentNode.scrollTop - 8
+      // if (sourceIndex === 0) clientY -= 4
+    }
 
     setPlaceholderProps({
       clientHeight,
       clientWidth,
-      clientY: parseFloat(window.getComputedStyle(draggedDOM.parentNode)),
+      clientY,
       clientX,
     })
   }
@@ -136,7 +175,6 @@ export const Board = () => {
   //prettier-ignore
   const onDragEnd = (result) => {
     const { destination, source, type } = result
-    console.log(destination, source, type);
 
     if (!destination) return
     setPlaceholderProps({})

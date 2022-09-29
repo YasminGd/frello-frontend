@@ -12,7 +12,7 @@ export const SideMenuColors = ({ changeBackground }) => {
     return <section className="side-menu-colors main-layout">
         <section className="color-list display-grid">
             {
-                colors.map(backgroundColor => <div key={backgroundColor.name} className="display hover" style={{ backgroundColor }} onClick={() => changeBackground({ backgroundColor })}></div>)
+                colors.map(backgroundColor => <div key={backgroundColor} className="display hover" style={{ backgroundColor }} onClick={() => changeBackground({ backgroundColor })}></div>)
             }
         </section>
     </section>

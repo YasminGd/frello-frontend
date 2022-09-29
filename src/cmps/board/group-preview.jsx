@@ -6,7 +6,7 @@ import { ActionModal } from '../global/action-modal.jsx'
 import { utilService } from '../../services/util.service.js'
 
 //prettier-ignore
-export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging }) => {
+export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging, placeholderProps }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [actionModal, setActionModal] = useState(null)
   const btnCloseRef = useRef()
@@ -40,6 +40,7 @@ export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging 
         <button className='btn-dots' ref={btnCloseRef} onClick={() => onOpenActionModal('List actions', btnCloseRef)}>…</button>
       </section>
       <TaskList
+        placeholderProps={placeholderProps}
         tasks={group.tasks}
         groupId={group.id}
         removeItem={removeItem}

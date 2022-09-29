@@ -22,6 +22,7 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBack
             <Draggable draggableId={group.id} key={group.id} index={index}>
               {(provided, snapshot) => (
                 <GroupPreview
+                  placeholderProps={placeholderProps}
                   provided={provided}
                   key={group.id}
                   group={group}

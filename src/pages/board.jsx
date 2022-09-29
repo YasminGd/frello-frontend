@@ -94,14 +94,15 @@ export const Board = () => {
 
       clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
 
-    } else if (event.type === 'task') {
-      clientX = 4
-      clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) +
-        [...draggedDOM.parentNode.children].slice(0, sourceIndex).reduce((total, curr) => {
-          return total + curr.clientHeight + 8
-        }, 0) -
-        draggedDOM.parentNode.scrollTop - 8
     }
+    // else if (event.type === 'task') {
+    //   clientX = 4
+    //   clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) +
+    //     [...draggedDOM.parentNode.children].slice(0, sourceIndex).reduce((total, curr) => {
+    //       return total + curr.clientHeight + 8
+    //     }, 0) -
+    //     draggedDOM.parentNode.scrollTop - 8
+    // }
 
     setPlaceholderProps({
       clientHeight,
@@ -146,22 +147,23 @@ export const Board = () => {
         draggedDOM.parentNode.scrollLeft
       clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
 
-    } else if (event.type === 'task') {
-      if (event.source.droppableId !== event.destination.droppableId) {
-        updatedArray = [...getDraggedDom(event.destination.droppableId).querySelector('.task-list').children]
-        clientY += -4
-      } else clientY += 4
-      clientX = 4
-      clientY +=
-        parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) +
-        updatedArray
-          .slice(0, destinationIndex)
-          .reduce((total, curr) => {
-            return total + curr.clientHeight + 8
-          }, 0) -
-        draggedDOM.parentNode.scrollTop - 8
-      // if (sourceIndex === 0) clientY -= 4
     }
+    // else if (event.type === 'task') {
+    //   if (event.source.droppableId !== event.destination.droppableId) {
+    //     updatedArray = [...getDraggedDom(event.destination.droppableId).querySelector('.task-list').children]
+    //     clientY += -4
+    //   } else clientY += 4
+    //   clientX = 4
+    //   clientY +=
+    //     parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingTop) +
+    //     updatedArray
+    //       .slice(0, destinationIndex)
+    //       .reduce((total, curr) => {
+    //         return total + curr.clientHeight + 8
+    //       }, 0) -
+    //     draggedDOM.parentNode.scrollTop - 8
+    //   if (sourceIndex === 0) clientY -= 4
+    // }
 
     setPlaceholderProps({
       clientHeight,
@@ -177,7 +179,7 @@ export const Board = () => {
 
     if (!destination) return
     setPlaceholderProps({})
-    const draggedDOM = getDraggedDom(result.draggableId)
+    // const draggedDOM = getDraggedDom(result.draggableId)
 
     // if position is same as before return
     if (destination.droppableId === source.droppableId &&

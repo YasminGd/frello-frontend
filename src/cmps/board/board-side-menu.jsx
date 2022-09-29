@@ -23,6 +23,7 @@ export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBackground }) => 
             case ('Photos by'):
                 return <SideMenuPhotos changeBackground={changeBackground} />
 
+            default: return <section></section>
         }
     }
 
@@ -35,6 +36,8 @@ export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBackground }) => 
             case ('Photos by'):
                 setTitle('Change background')
                 break
+
+            default: return <section></section>
         }
     }
 
@@ -45,7 +48,7 @@ export const BoardSideMenu = ({ isOpen, onCloseSideMenu, changeBackground }) => 
             {title !== 'Menu' && <IoIosArrowBack className="go-back" onClick={onGoBack} />}
             <h3>{title === 'Photos by' ?
                 <Fragment>
-                    {title} <a href="https://unsplash.com/" target="_blank">Unsplash</a>
+                    {title} <a href="https://unsplash.com/" target="_blank" rel="noreferrer">Unsplash</a>
                 </Fragment>
                 :
                 title}

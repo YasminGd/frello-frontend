@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { BsPencil } from 'react-icons/bs'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { QuickEdit } from './quick-edit'
 import { TaskLabelsList } from '../labels/task-labels-list'
 import { TaskPreviewIcons } from './task-preview-icons'
@@ -9,8 +9,6 @@ import { utilService } from '../../services/util.service'
 
 export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
   const taskPreviewRef = useRef()
-  const navigate = useNavigate()
-  const location = useLocation()
 
   const [quickEdit, setQuickEdit] = useState(null)
   const getCoverStyle = () => {
@@ -36,18 +34,10 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
     setQuickEdit({ pos })
   }
 
-  const onOpenTaskDetails = (ev) => {
-    ev.preventDefault()
-    setTimeout(() => {
-      navigate(`${location.pathname}/${groupId}/${task.id}`)
-    }, 0)
-  }
-
   const toRender = renderOptions()
 
   return (
     <Link
-      // onClick={(ev) => { onOpenTaskDetails(ev) }}
       to={`${groupId}/${task.id}`}
       className={`task-preview ${isDragging ? 'dragging' : ''} 
       ${task?.style?.isFullyCovered ? 'full' : ''}`}
@@ -61,7 +51,7 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
             <div className="image-gradient">
               {!toRender && <p>{task.title}</p>}
             </div>
-            <img src={task.style.coverImg} />
+            <img src={task.style.coverImg} alt="cover" />
           </section>
         )}
 

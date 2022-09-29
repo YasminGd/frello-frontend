@@ -26,7 +26,6 @@ export const TaskDetails = () => {
 
   const group = board.groups.find((group) => group.id === groupId)
   const task = group.tasks.find((task) => task.id === taskId)
-  console.log(task);
 
   const onUpdateTask = (task) => {
     dispatch(updateTask(groupId, task))
@@ -71,7 +70,7 @@ export const TaskDetails = () => {
 
                 <TaskDetailsOverview onOpenActionModal={onOpenActionModal} task={task} groupId={groupId} />
                 <TaskDescription task={task} groupId={groupId} />
-                {task.location && <TaskLocation task={task} groupId={groupId} onOpenActionModal={onOpenActionModal}/>}
+                {task.location && <TaskLocation task={task} groupId={groupId} onOpenActionModal={onOpenActionModal} />}
                 {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
                 {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
                 <Activities activities={activities} renderAddComments={true} task={task} />
@@ -86,8 +85,8 @@ export const TaskDetails = () => {
           setActionModal={setActionModal}
           data={actionModal}
           task={task}
-          groupId={groupId} 
-          />}
+          groupId={groupId}
+        />}
       </section>
     </Fragment>
   )

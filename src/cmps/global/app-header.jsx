@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import { ActionModal } from './action-modal'
 import { useRef, useState } from 'react'
 import { utilService } from '../../services/util.service'
-const logo = require('../../assets/img/logo-frello.png')
 
 export const AppHeader = () => {
   const board = useSelector((state) => state.boardModule.board)
@@ -40,7 +39,6 @@ export const AppHeader = () => {
       <Link to="/workspace">
         <div className={`main-logo ${themeStyle}`}>
           <SiTrello />
-          {/* <img src={logo} alt="" /> */}
           <h1>Frello</h1>
         </div>
       </Link>

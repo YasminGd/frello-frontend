@@ -1,4 +1,3 @@
-import { MenuItem, Select } from "@material-ui/core"
 import { useRef } from "react"
 import { useState } from "react"
 import { BsPerson } from "react-icons/bs"
@@ -12,7 +11,6 @@ export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
     const members = board.members
     const [selectMember, setSelectMember] = useState(null)
     const selectMemberRef = useRef()
-    console.log(user);
 
     let userImgUrl = useSelector(state => state.userModule.user?.imgUrl)
     if (!userImgUrl) userImgUrl = 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg'

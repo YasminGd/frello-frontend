@@ -1,6 +1,5 @@
 import { useRef, useState } from "react"
 import { AiOutlineTag } from "react-icons/ai"
-import { BsPerson } from "react-icons/bs"
 import { FaChevronDown } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { ActionModal } from "../../global/action-modal"

@@ -41,7 +41,8 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
         style={{ backgroundImage: `url(${attachment.url})` }}
         href={attachment.url}
         target={'_blank'}
-      ></a>
+        rel="noreferrer"
+      > </a>
       <section className="attachment-details">
         <section className="attachment-name-and-options">
           <span className="attachment-name">{attachment.name}</span>

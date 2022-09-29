@@ -42,7 +42,7 @@ export const AddComment = ({ user, addComment }) => {
 
     return <section className="add-comment">
         <div className="member-img">
-            <img src={user?.imgUrl} />
+            <img src={user?.imgUrl} alt="member" />
         </div>
         <form onSubmit={onAddComment}>
             <textarea

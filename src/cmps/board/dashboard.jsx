@@ -15,6 +15,8 @@ import {
     BarElement,
     Title,
 } from 'chart.js'
+import { useClickOutside } from '../hooks/is-clicked-outside'
+import { useRef } from 'react'
 ChartJS.register(
     ArcElement,
     CategoryScale,
@@ -32,6 +34,14 @@ ChartJS.register(
 export const Dashboard = () => {
     const navigate = useNavigate()
     const board = useSelector((state) => state.boardModule.board)
+    const containerRef = useRef()
+
+    const onGoBack = () => {
+        navigate(-1)
+    }
+
+    useClickOutside(containerRef, onGoBack)
+
     const tasksByStatusData = dashboardService.getTasksByStatus(board.groups)
     const tasksByMember = dashboardService.getTasksByMember(board.groups, board.members)
     const tasksByGroupsData = dashboardService.getTasksByGroups(board.groups)
@@ -81,15 +91,13 @@ export const Dashboard = () => {
         <section className="dashboard">
             <button
                 className="btn-close"
-                onClick={() => {
-                    navigate(-1)
-                }}
+                onClick={onGoBack}
             >
                 <IoCloseOutline />
             </button>
             <h1>{board.title}</h1>
 
-            <div className="charts-container">
+            <div className="charts-container" ref={containerRef}>
                 <div className="task-by-status">
                     <h3>Tasks by status</h3>
                     <Doughnut options={doughnutOptions} data={tasksByStatusData} />
@@ -103,6 +111,6 @@ export const Dashboard = () => {
                     <Line options={lineOptions} data={tasksByGroupsData} />
                 </div>
             </div>
-        </section>
+        </section >
     )
 }

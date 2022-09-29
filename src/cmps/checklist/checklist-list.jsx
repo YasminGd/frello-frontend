@@ -1,12 +1,9 @@
-import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { updateTask, addNewTodo } from '../../store/actions/task.action'
 import { ChecklistPreview } from './checklist-preview'
 
 export const CheckListList = ({ task, groupId }) => {
   const dispatch = useDispatch()
-
-  const board = useSelector((state) => state.boardModule.board)
 
   const removeChecklist = (checklistId) => {
     const checklistTitle = task.checklists.find((checklist) => checklist.id === checklistId).title

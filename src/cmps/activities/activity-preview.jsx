@@ -9,7 +9,7 @@ export const ActivityPreview = ({ activity }) => {
     const timeSince = utilService.timeSince(activity.createdAt)
     return <section className="activity-preview">
         <div className="member-img">
-            <img src={activity.byMember.imgUrl} referrerPolicy="no-referrer" />
+            <img src={activity.byMember.imgUrl} referrerPolicy="no-referrer" alt="member" />
         </div>
         <section className="activity-description">
             {
@@ -26,8 +26,7 @@ export const ActivityPreview = ({ activity }) => {
                     <React.Fragment>
                         <p>
                             <span className="username">{activity.byMember.fullname}</span>
-                            {activity.txt.split(' ')[0]}
-                            <span className="activity-txt">{activity.txt.substring(activity.txt.indexOf(' '))}</span>
+                            <span className="activity-txt">{activity.txt}</span>
                         </p>
                         <p className="time">{timeSince}</p>
                     </React.Fragment>

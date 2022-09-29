@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
-import { GrClose } from 'react-icons/gr'
 import { EditTitle } from '../global/edit-title'
-import { EditTodo } from './edit-todo'
 
 export const TodoPreview = ({ todo, checkListId, updateTodo, removeTodo }) => {
   const [isEditTitleOpen, setIsEditTitleOpen] = useState(false)

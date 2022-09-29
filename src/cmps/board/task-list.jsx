@@ -1,11 +1,8 @@
-import { isEmpty } from 'lodash'
-import { useRef } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AddItem } from '../global/add-item.jsx'
 import { TaskPreview } from './task-preview.jsx'
 
 export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd, placeholderProps }) => {
-  console.log(tasks);
   return (
     <Droppable droppableId={groupId} type="task">
       {(provided, snapshot) => (

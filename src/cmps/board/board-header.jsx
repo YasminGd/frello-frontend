@@ -59,6 +59,12 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
     setActionModal({ type, pos })
   }
 
+  const onOpenDashboard = (ev) => {
+    ev.stopPropagation()
+    if (location.pathname.includes('dashboard')) navigate(-1)
+    else navigate(`${location.pathname}/dashboard`)
+  }
+
   const themeStyle = isBackgroundDark ? '' : 'dark'
 
   return (
@@ -101,10 +107,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
       </section>
       <section className={`right ${isSideMenuOpen}`}>
         <button
-          onClick={() => {
-            if (location.pathname.includes('dashboard')) navigate(-1)
-            else navigate(`${location.pathname}/dashboard`)
-          }}
+          onClick={onOpenDashboard}
           className={themeStyle}
         >
           <BsGraphUp />

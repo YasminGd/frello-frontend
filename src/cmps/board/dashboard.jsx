@@ -124,7 +124,7 @@ export const Dashboard = () => {
                     <p>Lists</p>
                 </div>
             </div>
-            <div className="charts-container">
+            <div className="charts-container" ref={containerRef}>
                 <div className="task-by-status">
                     <h3>Tasks by status</h3>
                     <Doughnut options={doughnutOptions} data={tasksByStatusData} />

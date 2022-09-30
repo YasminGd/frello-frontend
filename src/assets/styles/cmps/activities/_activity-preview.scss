@@ -22,10 +22,10 @@
 
     .username {
       font-weight: 700;
+      margin-inline-end: 3px;
     }
 
     .task-name {
-      text-decoration: underline;
     }
 
     .time {
@@ -37,7 +37,7 @@
     .comment {
       margin-top: 3px;
       width: 271px;
-      height: 36px;
+      min-height: 36px;
       border-radius: 3px;
       box-shadow: 0 1px 2px -1px #091e4240, 0 0 0 1px #091e4214;
       background-color: white;
@@ -47,7 +47,6 @@
 
     .activity-txt {
       text-decoration: underline;
-      margin-inline-start: 3px;
     }
   }
 }

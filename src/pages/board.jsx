@@ -32,6 +32,7 @@ export const Board = () => {
   const isBackgroundDark = utilService.isBackgroundDark(board?.style?.backgroundColor)
 
   useEffect(() => {
+    console.log(': board-useeffect-1')
     dispatch(getBoard(params.boardId))
     socketService.emit('join-board', params.boardId)
   }, [])
@@ -40,7 +41,7 @@ export const Board = () => {
     socketService.on('update-board', socketUpdateBoard)
   }, [])
 
-  const socketUpdateBoard = (updatedBoard) => {
+  function socketUpdateBoard(updatedBoard) {
     dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
   }
 

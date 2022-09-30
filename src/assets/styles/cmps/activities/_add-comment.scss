@@ -58,6 +58,22 @@
 
 // MEDIA QUERIES
 
+@media (min-width: 480px) {
+  .add-comment {
+    textarea {
+      width: 376px;
+    }
+  }
+}
+
+@media (min-width: 560px) {
+  .add-comment {
+    textarea {
+      width: 456px;
+    }
+  }
+}
+
 @include for-narrow-layout {
   .add-comment {
     textarea {

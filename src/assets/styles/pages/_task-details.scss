@@ -152,6 +152,18 @@
 
 // MEDIA QUERIES
 
+@media (min-width: 480px) {
+  .task-details {
+    max-width: 460px;
+  }
+}
+
+@media (min-width: 560px) {
+  .task-details {
+    max-width: 540px;
+  }
+}
+
 @include for-narrow-layout {
   .task-details {
     max-width: 600px;

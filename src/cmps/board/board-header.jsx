@@ -86,7 +86,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
         <span className={`divider ${themeStyle}`}></span>
-        {board.members && (
+        {board.members && board?.members?.length !==0 && (
           <div className="board-members">
             {board.members.map((member, index) => (
               <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>

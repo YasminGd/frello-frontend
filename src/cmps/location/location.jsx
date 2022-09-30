@@ -10,12 +10,7 @@ export const Location = ({ task, groupId, setActionModal }) => {
     const [search, setSearch] = useState('')
     const [locations, setLocations] = useState(null)
 
-    const inputRef = useRef()
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        inputRef.current.focus()
-    }, [])
 
     const handleChange = ({ target }) => {
         setSearch(target.value)
@@ -38,8 +33,8 @@ export const Location = ({ task, groupId, setActionModal }) => {
             <input
                 className="input"
                 placeholder="Search Google Maps"
-                ref={inputRef}
                 value={search}
+                autoFocus={window.innerWidth >= 1800}
                 onChange={handleChange} />
         </form>
         {

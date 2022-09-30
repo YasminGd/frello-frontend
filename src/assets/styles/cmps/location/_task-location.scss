@@ -1,6 +1,7 @@
 .task-location {
     margin-top: 16px;
     margin-bottom: 13px;
+
     .location-header {
         height: 32px;
         // padding: 0 14px;
@@ -25,23 +26,29 @@
         align-items: flex-end;
         flex-direction: column;
 
+        .map-inner-container {
+            width: 290px;
+        }
+
         a {
-            height: 160px;
+            height: 100%;
         }
 
         img {
-            width: auto;
+            // width: auto;
         }
 
         .map-details {
             height: 64px;
-            width: 512px;
+            width: 290px;
             background-color: #091e420a;
             padding: 8px 12px;
             display: flex;
             font-size: 14px;
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px;
+            margin-top: -4px;
+
 
             &:hover {
                 background-color: #091e4214;
@@ -56,14 +63,14 @@
 
                 input {
                     background-color: transparent;
-                    border: none;    
+                    border: none;
                     font-weight: 700;
-                    height: 28px;    
+                    height: 28px;
                     padding: 4px 8px;
                     margin-left: -8px;
                     border-radius: 3px;
                     transition-duration: 85ms;
-                    transition-property: background-color,border-color,box-shadow;
+                    transition-property: background-color, border-color, box-shadow;
                     transition-timing-function: ease;
 
                     &:focus {
@@ -90,9 +97,54 @@
                     line-height: 20px;
 
                     &:hover {
-                        background-color:#091e420a ;
+                        background-color: #091e420a;
                     }
                 }
+            }
+        }
+    }
+}
+
+// MEDIA QUERIES
+
+@media (min-width: 480px) {
+    .task-location {
+        .map-container {
+            .map-inner-container {
+                width: 376px;
+            }
+
+            .map-details {
+                width: 376px;
+                margin-top: -3px;
+            }
+        }
+    }
+}
+
+@media (min-width: 560px) {
+    .task-location {
+        .map-container {
+            .map-inner-container {
+                width: 456px;
+            }
+
+            .map-details {
+                width: 456px;
+            }
+        }
+    }
+}
+
+@include for-narrow-layout {
+    .task-location {
+        .map-container {
+            .map-inner-container {
+                width: 512px;
+            }
+
+            .map-details {
+                width: 512px;
             }
         }
     }

@@ -85,7 +85,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
             <input
               onClick={(ev) => { ev.preventDefault() }}
               onChange={handleChange}
-              autoFocus
+              autoFocus={window.innerWidth >= 1800}
               className="search-label"
               type="text"
               placeholder="Search labels…"

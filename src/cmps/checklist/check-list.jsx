@@ -28,7 +28,7 @@ export const CheckList = ({ setActionModal }) => {
             <form onSubmit={onAddChecklist}>
                 <label htmlFor="addTitle">Title</label>
                 <input
-                    autoFocus
+                    autoFocus={window.innerWidth >= 1800}
                     id="addTitle"
                     type="text"
                     value={title}

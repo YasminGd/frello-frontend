@@ -5,12 +5,6 @@ import { GrClose } from 'react-icons/gr'
 export const AddItem = ({ onToggleAdd, addItem, groupId }) => {
     const [title, setTitle] = useState('')
 
-    const inputRef = useRef()
-
-    useEffect(() => {
-        inputRef.current.focus()
-    }, [])
-
     const handleChange = ({ target }) => {
         setTitle(target.value)
     }
@@ -37,7 +31,7 @@ export const AddItem = ({ onToggleAdd, addItem, groupId }) => {
                     placeholder="Enter a title for this card..."
                     value={title}
                     onChange={handleChange}
-                    ref={inputRef}
+                    autoFocus={window.innerWidth >= 1200}
                     onKeyPress={handleUserKeyPress} />
                 <button>Add card</button>
                 <section className="svg-holder">

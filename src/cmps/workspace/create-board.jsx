@@ -106,10 +106,10 @@ export const CreateBoard = ({ setActionModal }) => {
               >
                 {backgroundImage ===
                   'https://images.unsplash.com/photo-1638201545793-480a67be5972?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjQwMzQyMDI&ixlib=rb-1.2.1&q=80&w=400' && (
-                  <div className="selected">
-                    <MdOutlineDone />
-                  </div>
-                )}
+                    <div className="selected">
+                      <MdOutlineDone />
+                    </div>
+                  )}
                 <div className="hover"></div>
               </button>
             </li>
@@ -130,10 +130,10 @@ export const CreateBoard = ({ setActionModal }) => {
               >
                 {backgroundImage ===
                   'https://images.unsplash.com/photo-1470723710355-95304d8aece4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHNlYXJjaHwyOHx8YnVpbGRpbmd8ZW58MHx8fHwxNjYzOTUyOTgw&ixlib=rb-1.2.1&q=80&w=400' && (
-                  <div className="selected">
-                    <MdOutlineDone />
-                  </div>
-                )}
+                    <div className="selected">
+                      <MdOutlineDone />
+                    </div>
+                  )}
                 <div className="hover"></div>
               </button>
             </li>
@@ -154,10 +154,10 @@ export const CreateBoard = ({ setActionModal }) => {
               >
                 {backgroundImage ===
                   'https://images.unsplash.com/photo-1502747812021-0ae746b6c23f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjQwMzM2NzE&ixlib=rb-1.2.1&q=80&w=400' && (
-                  <div className="selected">
-                    <MdOutlineDone />
-                  </div>
-                )}
+                    <div className="selected">
+                      <MdOutlineDone />
+                    </div>
+                  )}
                 <div className="hover"></div>
               </button>
             </li>
@@ -178,10 +178,10 @@ export const CreateBoard = ({ setActionModal }) => {
               >
                 {backgroundImage ===
                   'https://images.unsplash.com/photo-1589703558361-1da79df24402?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjU5OTZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NjQwMzI5OTU&ixlib=rb-1.2.1&q=80&w=400' && (
-                  <div className="selected">
-                    <MdOutlineDone />
-                  </div>
-                )}
+                    <div className="selected">
+                      <MdOutlineDone />
+                    </div>
+                  )}
                 <div className="hover"></div>
               </button>
             </li>
@@ -288,7 +288,12 @@ export const CreateBoard = ({ setActionModal }) => {
           <div className="input-container">
             <label htmlFor="boardTitle">
               <p>Board title</p>
-              <input autoFocus value={title} onChange={handleChange} id="boardTitle" type="text" />
+              <input 
+              autoFocus={window.innerWidth >= 1200}
+              value={title}
+              onChange={handleChange} 
+              id="boardTitle" 
+              type="text" />
             </label>
           </div>
 

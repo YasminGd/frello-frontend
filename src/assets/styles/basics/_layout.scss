@@ -1,0 +1,27 @@
+.main-layout {
+  > *.full {
+    width: 100%;
+  }
+
+  > *:not(.full) {
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @include for-narrow-layout {
+    max-width: $padded-break-narrow;
+  }
+
+  @include for-small-layout {
+    max-width: $padded-break-small;
+  }
+
+  @include for-normal-layout {
+    max-width: $padded-break-normal;
+  }
+
+  @include for-wide-layout {
+    max-width: $padded-break-wide;
+  }
+}

@@ -1,3 +1,18 @@
+// LAYOUT
+$layoutPadding: 20px;
+
+// LAYOUT BREAKPOINTS
+$break-narrow: 640px;
+$break-small: 780px;
+$break-normal: 980px;
+$break-wide: 1200px;
+
+$padded-break-narrow: $break-narrow + $layoutPadding * 2;
+$padded-break-small: $break-small + $layoutPadding * 2;
+$padded-break-normal: $break-normal + $layoutPadding * 2;
+$padded-break-wide: $break-wide + $layoutPadding * 2;
+
+// COLOR PALETTE
 $blue-main: #2a62f6;
 $blue-600: #3477ba;
 $blue-500: #0079bf;
@@ -5,7 +20,6 @@ $light-gray: #45526c;
 $background-gray: #ebecef;
 $bg-gray-strong: #e1e4e9;
 $blue-common: #172b4d;
-
 $green: #7bc86c;
 $yellow: #f5dd29;
 $orange: #ffaf3f;

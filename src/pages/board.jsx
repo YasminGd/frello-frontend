@@ -30,6 +30,7 @@ export const Board = () => {
   const queryAttr = 'data-rbd-drag-handle-draggable-id'
   const [placeholderProps, setPlaceholderProps] = useState({})
   const isBackgroundDark = utilService.isBackgroundDark(board?.style?.backgroundColor)
+  console.log(board?.style?.backgroundColor)
 
   useEffect(() => {
     console.log(': board-useeffect-1')

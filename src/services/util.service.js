@@ -11,7 +11,7 @@ export const utilService = {
   getModalPosition,
   getModalPositionOnTop,
   handleDragEnd,
-  isBackgroundDark
+  isBackgroundDark,
 }
 
 function makeId(length = 6) {
@@ -125,7 +125,10 @@ function getModalPosition(type, ref) {
   const pos = { bottom: rect.bottom + 8, left: rect.left }
   if (window.innerWidth - rect.right < 150) pos.left -= 130
   if (window.innerHeight - rect.bottom < 450) pos.bottom -= 200
-  if (type === 'Filter' || type === 'Account') { pos.right = 5; pos.bottom += 8 }
+  if (type === 'Filter' || type === 'Account') {
+    pos.right = 5
+    pos.bottom += 8
+  }
   return pos
 }
 
@@ -181,7 +184,6 @@ function handleDragEnd(newBoard, destination, source, type) {
 
 function isBackgroundDark(color) {
   if (!color) return
-  console.log(color);
 
   let r
   let g
@@ -192,29 +194,19 @@ function isBackgroundDark(color) {
     r = color[1]
     g = color[2]
     b = color[3]
-  }
-  else {
-
-    color = +("0x" + color.slice(1).replace(color.length < 5 && /./g, '$&$&'))
+  } else {
+    color = +('0x' + color.slice(1).replace(color.length < 5 && /./g, '$&$&'))
 
     r = color >> 16
     g = (color >> 8) & 255
     b = color & 255
   }
 
-  const hsp = Math.sqrt(
-    0.299 * (r * r) +
-    0.587 * (g * g) +
-    0.114 * (b * b)
-  )
-  console.log(hsp);
+  const hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b))
 
   if (hsp > 127.5) {
-
     return false
-  }
-  else {
-
+  } else {
     return true
   }
 }

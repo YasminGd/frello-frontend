@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { IoCloseOutline } from 'react-icons/io5'
 import { IoChevronBack } from 'react-icons/io5'
 import { Cover } from '../task-details/cover'

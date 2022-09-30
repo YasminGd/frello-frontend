@@ -6,7 +6,7 @@ import { ActionModal } from '../global/action-modal.jsx'
 import { utilService } from '../../services/util.service.js'
 
 //prettier-ignore
-export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging, placeholderProps }) => {
+export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging, placeholderProps, setQuickEdit, quickEdit }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [actionModal, setActionModal] = useState(null)
   const btnCloseRef = useRef()
@@ -47,6 +47,8 @@ export const GroupPreview = ({ group, addItem, removeItem, provided, isDragging,
         addItem={addItem}
         isAddOpen={isAddOpen}
         onToggleAdd={onToggleAdd}
+        quickEdit={quickEdit}
+        setQuickEdit={setQuickEdit}
       />
       {!isAddOpen &&
         <button className="add-task-button" onClick={onToggleAdd}>

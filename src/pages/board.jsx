@@ -15,10 +15,13 @@ import { socketService } from '../services/socket.service.js'
 import { activityService } from '../services/activity.service.js'
 import { Dashboard } from '../cmps/board/dashboard.jsx'
 import { utilService } from '../services/util.service.js'
+import { Fragment } from 'react'
+import { QuickEdit } from '../cmps/board/quick-edit.jsx'
 
 export const Board = () => {
   const board = useSelector((state) => state.boardModule.board)
   const [filterBy, setFilterBy] = useState({})
+  const [quickEdit, setQuickEdit] = useState(null)
   const filteredBoard = boardService.getBoardForDisplay(board, filterBy)
 
   const dispatch = useDispatch()
@@ -29,6 +32,7 @@ export const Board = () => {
   const isBackgroundDark = utilService.isBackgroundDark(board?.style?.backgroundColor)
 
   useEffect(() => {
+    console.log(': board-useeffect-1')
     dispatch(getBoard(params.boardId))
     socketService.emit('join-board', params.boardId)
   }, [])
@@ -37,7 +41,7 @@ export const Board = () => {
     socketService.on('update-board', socketUpdateBoard)
   }, [])
 
-  const socketUpdateBoard = (updatedBoard) => {
+  function socketUpdateBoard(updatedBoard) {
     dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
   }
 
@@ -204,25 +208,40 @@ export const Board = () => {
   const style = getBoardStyle()
 
   return (
-    <section className="board" style={style}>
-      {!board ? (
-        <Loader />
-      ) : (
-        <React.Fragment>
-          <BoardHeader changeBackground={changeBackground} changeTitle={changeTitle} updateFilter={updateFilter} filterBy={filterBy} isBackgroundDark={isBackgroundDark} />
-          <DragDropContext
-            onDragStart={onDragStart}
-            onDragUpdate={onDragUpdate}
-            onDragEnd={onDragEnd}
-          >
-            <GroupList placeholderProps={placeholderProps} board={filteredBoard} addItem={addItem} removeItem={removeItem} isBackgroundDark={isBackgroundDark} />
-          </DragDropContext>
-          <Routes>
-            <Route path=":groupId/:taskId" element={<TaskDetails />} />
-            <Route path="dashboard" element={<Dashboard />} />
-          </Routes>
-        </React.Fragment>
-      )}
-    </section>
+    <Fragment>
+      <section className="board" style={style}>
+        {!board ? (
+          <Loader />
+        ) : (
+          <React.Fragment>
+            <BoardHeader
+              changeBackground={changeBackground}
+              changeTitle={changeTitle}
+              updateFilter={updateFilter}
+              filterBy={filterBy}
+              isBackgroundDark={isBackgroundDark} />
+            <DragDropContext
+              onDragStart={onDragStart}
+              onDragUpdate={onDragUpdate}
+              onDragEnd={onDragEnd}
+            >
+              <GroupList
+                placeholderProps={placeholderProps}
+                board={filteredBoard}
+                addItem={addItem}
+                removeItem={removeItem}
+                quickEdit={quickEdit}
+                setQuickEdit={setQuickEdit}
+                isBackgroundDark={isBackgroundDark} />
+            </DragDropContext>
+            <Routes>
+              <Route path=":groupId/:taskId" element={<TaskDetails />} />
+              <Route path="dashboard" element={<Dashboard />} />
+            </Routes>
+          </React.Fragment>
+        )}
+      </section>
+      {quickEdit && <QuickEdit pos={quickEdit.pos} task={quickEdit.task} groupId={quickEdit.groupId} setQuickEdit={setQuickEdit} />}
+    </Fragment>
   )
 }

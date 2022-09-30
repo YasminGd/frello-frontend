@@ -2,7 +2,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AddItem } from '../global/add-item.jsx'
 import { TaskPreview } from './task-preview.jsx'
 
-export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd, placeholderProps }) => {
+export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd, placeholderProps, quickEdit, setQuickEdit }) => {
   return (
     <Droppable droppableId={groupId} type="task">
       {(provided, snapshot) => (
@@ -21,6 +21,8 @@ export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onTog
                   groupId={groupId}
                   removeItem={removeItem}
                   isDragging={snapshot.isDragging}
+                  quickEdit={quickEdit}
+                  setQuickEdit={setQuickEdit}
                 />
               )}
             </Draggable>

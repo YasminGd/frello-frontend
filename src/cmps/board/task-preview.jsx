@@ -1,16 +1,13 @@
-import { useState } from 'react'
 import { BsPencil } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-import { QuickEdit } from './quick-edit'
 import { TaskLabelsList } from '../labels/task-labels-list'
 import { TaskPreviewIcons } from './task-preview-icons'
 import { useRef } from 'react'
 import { utilService } from '../../services/util.service'
 
-export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
+export const TaskPreview = ({ task, groupId, provided, isDragging, quickEdit, setQuickEdit }) => {
   const taskPreviewRef = useRef()
 
-  const [quickEdit, setQuickEdit] = useState(null)
   const getCoverStyle = () => {
     if (task.style?.isFullyCovered && task.style.isFullyCovered) {
       return task.style.bgColor ? task.style.bgColor : ''
@@ -31,7 +28,7 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
     ev.stopPropagation()
     ev.preventDefault()
     const pos = utilService.getModalPositionOnTop(ref)
-    setQuickEdit({ pos })
+    setQuickEdit({ pos, task, groupId })
   }
 
   const toRender = renderOptions()
@@ -76,8 +73,6 @@ export const TaskPreview = ({ task, groupId, provided, isDragging }) => {
         >
           <BsPencil />
         </section>
-
-        {quickEdit && <QuickEdit pos={quickEdit.pos} task={task} groupId={groupId} setQuickEdit={setQuickEdit} />}
       </section>
     </Link>
   )

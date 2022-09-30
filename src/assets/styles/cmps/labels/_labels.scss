@@ -1,7 +1,8 @@
 .labels {
   padding: 0 12px 12px;
   max-height: 450px;
-  overflow: auto;
+  overflow-y: auto;
+  @include smallScrollBar();
 
   .search-label {
     padding: 8px 12px;

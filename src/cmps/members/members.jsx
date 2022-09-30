@@ -35,7 +35,13 @@ export const Members = ({ task, groupId }) => {
   return (
     <section className="members">
       <div className="">
-        <input onChange={handleChange} autoFocus className="search-member" type="text" placeholder="Search Members" />
+        <input
+          onChange={handleChange}
+          autoFocus={window.innerWidth > 1800}
+          className="search-member"
+          type="text"
+          placeholder="Search Members"
+        />
       </div>
       <p className="sub-header">Board members</p>
       <ul className="members-list">

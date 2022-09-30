@@ -46,7 +46,7 @@
       color: #172b4d;
 
       &:hover {
-      background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.2);
       }
     }
   }
@@ -62,11 +62,11 @@
     }
 
     & > * {
-      padding: 0px 22px;
+      padding: 0px 10px;
       height: 44px;
       display: flex;
       align-items: center;
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     .login {
@@ -122,4 +122,29 @@
       border-radius: 25em;
     }
   }
+}
+
+// MEDIA QUERIES
+
+//////////////////////////////////////////// 640px ////////////////////////////////////////////
+@include for-narrow-layout {
+  .app-header {
+    .home-nav {
+      & > * {
+        font-size: 1.2rem;
+        padding: 0px 22px;
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////// 780px ////////////////////////////////////////////
+@include for-small-layout {
+}
+
+//////////////////////////////////////////// 980px ////////////////////////////////////////////
+@include for-normal-layout {
+}
+
+@include for-wide-layout {
 }

@@ -66,7 +66,6 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
   }
 
   const themeStyle = isBackgroundDark ? '' : 'dark'
-  console.log(isBackgroundDark);
 
   return (
     <section className="board-header">
@@ -107,10 +106,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
         </button>
       </section>
       <section className={`right ${isSideMenuOpen}`}>
-        <button
-          onClick={onOpenDashboard}
-          className={themeStyle}
-        >
+        <button onClick={onOpenDashboard} className={themeStyle}>
           <BsGraphUp />
           Dashboard
         </button>

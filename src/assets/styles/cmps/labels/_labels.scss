@@ -1,5 +1,8 @@
 .labels {
   padding: 0 12px 12px;
+  max-height: 450px;
+  overflow: auto;
+
   .search-label {
     padding: 8px 12px;
     height: 36px;

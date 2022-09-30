@@ -16,6 +16,7 @@ import { CreateBoard } from '../workspace/create-board'
 import { LabelSelectList } from '../board/filter/label-select-list'
 import { Location } from '../location/location'
 import { LocationActions } from '../location/location-actions'
+import { useClickOutside } from '../hooks/is-clicked-outside'
 
 export const ActionModal = ({
   data,
@@ -31,22 +32,26 @@ export const ActionModal = ({
 }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
+  // useEffect(() => {
+  //   document.onmousedown = (ev) => {
+  //     handleClickOutside(ev)
+  //   }
+  //   return () => {
+  //     document.onmousedown = null
+  //   }
+  // }, [])
+
   const modalRef = useRef()
-
-  useEffect(() => {
-    document.onmousedown = (ev) => {
-      handleClickOutside(ev)
-    }
-    return () => {
-      document.onmousedown = null
-    }
-  }, [])
-
-  const handleClickOutside = (ev) => {
-    if (modalRef.current && !modalRef.current.contains(ev.target)) {
-      setActionModal(null)
-    }
+  const closeActionModal = () => {
+    setActionModal(null)
   }
+  useClickOutside(modalRef, closeActionModal)
+
+  // const handleClickOutside = (ev) => {
+  //   if (modalRef.current && !modalRef.current.contains(ev.target)) {
+  //     setActionModal(null)
+  //   }
+  // }
 
   const onToggleLabelEdit = () => {
     setIsLabelsEdit((prevState) => !prevState)

@@ -24,7 +24,7 @@
     @include flexAlign();
 
     &:hover {
-      background-color: #0606069b;
+      background-color: #2a2929d1;
     }
   }
 
@@ -40,8 +40,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    width:100%;
-    
+    width: 100%;
 
     .statistic-box {
       border-radius: 3px;

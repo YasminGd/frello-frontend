@@ -1,5 +1,27 @@
 .members {
   padding: 0 12px 12px;
+  max-height: 400px;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #bfc4ce;
+    border-radius: 3px;
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #dadbe2;
+    border-radius: 3px;
+    height: 12px;
+    margin-bottom: 8px;
+    border-bottom: 10px solid transparent;
+  }
+
   .search-member {
     padding: 8px 12px;
     height: 36px;

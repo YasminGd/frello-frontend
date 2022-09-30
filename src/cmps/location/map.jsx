@@ -5,7 +5,6 @@ import {
 } from 'react-static-google-map';
 
 export const Map = ({ location }) => {
-    console.log(location);
     return (
         // Important! Always set the container height explicitly
         <a href={`https://www.google.pl/maps/@${location.lat},${location.lng},18z`} target="_blank" rel="noreferrer">

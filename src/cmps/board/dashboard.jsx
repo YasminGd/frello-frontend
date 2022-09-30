@@ -94,10 +94,7 @@ export const Dashboard = () => {
 
     return (
         <section className="dashboard">
-            <button
-                className="btn-close"
-                onClick={onGoBack}
-            >
+            <button className="btn-close">
                 <IoCloseOutline />
             </button>
             <h1>{board.title}</h1>

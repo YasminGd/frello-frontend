@@ -18,7 +18,7 @@
 
   textarea {
     height: 36px;
-    width: 508px;
+    width: 290px;
     background-color: white;
     border-radius: 3px;
     padding: 8px 12px;
@@ -52,6 +52,16 @@
         background-color: #091e420a;
         color: #a5adba;
       }
+    }
+  }
+}
+
+// MEDIA QUERIES
+
+@include for-narrow-layout {
+  .add-comment {
+    textarea {
+      width: 508px;
     }
   }
 }

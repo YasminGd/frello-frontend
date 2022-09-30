@@ -81,7 +81,8 @@ export const TaskDetails = () => {
           </section>
         </section>
 
-        {actionModal && <ActionModal onUpdateTask={onUpdateTask}
+        {actionModal && <ActionModal
+          onUpdateTask={onUpdateTask}
           setActionModal={setActionModal}
           data={actionModal}
           task={task}

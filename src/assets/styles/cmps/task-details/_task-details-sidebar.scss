@@ -7,14 +7,18 @@
     width: 168px;
   }
 
-  h3 {
+  h3.sidebar-title {
+    color: #5e6c84;
     font-size: 12px;
-    color: #616d82;
+    margin-bottom: 5px;
+  }
+
+  & > *:not(:nth-child(1)):not(:nth-child(2)) {
+    margin-top: 9px;
   }
 
   .btn-sidebar {
     padding: 4px 9px;
-    margin-top: 9px;
     font-size: 14px;
     background-color: $background-gray;
     border: none;

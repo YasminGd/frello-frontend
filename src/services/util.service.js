@@ -181,6 +181,7 @@ function handleDragEnd(newBoard, destination, source, type) {
 
 function isBackgroundDark(color) {
   if (!color) return
+  console.log(color);
 
   let r
   let g
@@ -206,6 +207,7 @@ function isBackgroundDark(color) {
     0.587 * (g * g) +
     0.114 * (b * b)
   )
+  console.log(hsp);
 
   if (hsp > 127.5) {
 

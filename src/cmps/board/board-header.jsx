@@ -66,6 +66,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
   }
 
   const themeStyle = isBackgroundDark ? '' : 'dark'
+  console.log(isBackgroundDark);
 
   return (
     <section className="board-header">
@@ -84,7 +85,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           {!board.isStarred && <TiStarOutline />}
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
-        <span className="divider"></span>
+        <span className={`divider ${themeStyle}`}></span>
         {board.members && (
           <div className="board-members">
             {board.members.map((member, index) => (
@@ -113,6 +114,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           <BsGraphUp />
           Dashboard
         </button>
+        <div className={`divider ${themeStyle}`}></div>
         <button
           ref={filterRef}
           onClick={() => {
@@ -123,6 +125,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           <BsFilter />
           Filter
         </button>
+        <div className={`divider ${themeStyle}`}></div>
         {!isSideMenuOpen && (
           <button onClick={renderSideMenu} className={themeStyle}>
             <BsThreeDots />

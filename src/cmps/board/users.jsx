@@ -53,7 +53,7 @@ export const Users = () => {
   return (
     <section className="users">
       <div className="">
-        <input onChange={handleChange} autoFocus className="search-member" type="text" placeholder="Search Members" />
+        <input onChange={handleChange} autoFocus={window.innerWidth >= 1200} className="search-member" type="text" placeholder="Search Members" />
       </div>
       <p className="sub-header">Workspace members</p>
       <ul className="members-list">

@@ -118,7 +118,7 @@
   .charts-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    width: 80%;
+    // width: 80%;
     margin-top: 70px;
     gap: 40px;
 
@@ -136,6 +136,16 @@
       :last-child {
         justify-self: flex-end;
       }
+    }
+  }
+}
+
+//MEDIA QUERY
+
+@media (min-width: 460px) { 
+  .dashboard {
+    .charts-container {
+      width: 80%;
     }
   }
 }

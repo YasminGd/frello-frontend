@@ -5,7 +5,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { isEmpty } from 'lodash'
 
-export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBackgroundDark }) => {
+export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBackgroundDark, setQuickEdit, quickEdit }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
 
   const onToggleAdd = () => {
@@ -16,12 +16,13 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBack
   return (
     <Droppable droppableId={board._id} direction="horizontal" type="group">
       {(provided, snapshot) => (
-        // <div className="group-list-container">
         <section className="group-list" {...provided.droppableProps} ref={provided.innerRef}>
           {board.groups.map((group, index) => (
             <Draggable draggableId={group.id} key={group.id} index={index}>
               {(provided, snapshot) => (
                 <GroupPreview
+                  quickEdit={quickEdit}
+                  setQuickEdit={setQuickEdit}
                   placeholderProps={placeholderProps}
                   provided={provided}
                   key={group.id}

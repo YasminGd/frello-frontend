@@ -77,7 +77,7 @@
     align-items: center;
     max-width: 1600px;
     margin: auto;
-    height: 100vh;
+    margin-bottom: 50px;
     text-align: center;
     font-family: CharlieDisplay-regular;
 
@@ -102,7 +102,7 @@
     }
 
     img {
-      max-width: 950px;
+      max-width: 90%;
     }
 
     .desc-image {
@@ -113,6 +113,7 @@
 
 // MEDIA QUERIES
 
+//////////////////////////////////////////// 780px ////////////////////////////////////////////
 @include for-small-layout {
   .home {
     .main {
@@ -148,16 +149,20 @@
         margin-top: 80px;
         margin-bottom: 60px;
       }
+    }
+    .main-app-description {
+      h2 {
+        font-size: 3rem;
+      }
 
-      .main-app-description {
-        h2 {
-          font-size: 3rem;
-        }
+      img {
+        max-width: 950px;
       }
     }
   }
 }
 
+//////////////////////////////////////////// 980px ////////////////////////////////////////////
 @include for-normal-layout {
   .home {
     .main {

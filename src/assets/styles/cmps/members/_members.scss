@@ -1,5 +1,10 @@
 .members {
   padding: 0 12px 12px;
+  max-height: 400px;
+  overflow-y: scroll;
+
+  @include smallScrollBar();
+
   .search-member {
     padding: 8px 12px;
     height: 36px;

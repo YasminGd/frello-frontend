@@ -7,9 +7,11 @@ export const useClickOutside = (ref, callback) => {
         }
     }
     useEffect(() => {
-        document.addEventListener('click', handleClick)
+        document.onmousedown = (ev) => {
+            handleClick(ev)
+        }
         return () => {
-            document.removeEventListener('click', handleClick)
+            document.onmousedown = null
         }
     }, [])
 }

@@ -1,15 +1,15 @@
 .board-header {
-  min-height: 52px;
-  padding: 10px 4px 0 16px;
+  height: 52px;
+  padding: 6px 4px 8px 12px;
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 
   &>* {
-    margin-bottom: 10px;
-    min-height: 32px;
+    margin-bottom: 12px;
+    margin-top: 10px;
+    height: 32px;
   }
 
   .go-back {
@@ -25,9 +25,8 @@
 
   .left {
     display: flex;
-    flex-wrap: wrap;
 
-    & > * {
+    &>* {
       height: 32px;
     }
 
@@ -42,7 +41,7 @@
       text-align: center;
       border: none;
       background-color: transparent;
-      margin: 0 4px 0 0;
+      margin: 0 4px 4px 0;
       transition: all 0.15s;
 
       &:hover {
@@ -64,7 +63,7 @@
 
       &.dark {
         background-color: transparent;
-
+        
         &:focus {
           background-color: #fff;
         }
@@ -82,6 +81,13 @@
       color: #fff;
       background-color: #ffffff3d;
 
+      
+      @media (max-width:750px) {
+        & {
+          display: none;
+        }
+      }
+
       .yellow-star {
         color: #f2d600;
       }
@@ -90,7 +96,7 @@
         cursor: pointer;
         color: #f2d600;
 
-        & > * {
+        &>* {
           transform: scale(1.2);
         }
       }
@@ -99,13 +105,26 @@
     .divider {
       border-left: 2px solid #ffffff3d;
       height: 16px;
-      margin: 8px 8px 8px 8px;
+      margin: 8px 8px 12px 8px;
+
+      
+      @media (max-width:750px) {
+        & {
+          display: none;
+        }
+      }
     }
 
     .board-members {
       display: flex;
       justify-content: center;
       align-items: center;
+
+      @media (max-width:750px) {
+        & {
+          display: none;
+        }
+      }
 
       .member-img {
         margin-right: -3px;
@@ -127,11 +146,24 @@
       margin-left: 14px;
       padding: 6px 12px 6px 8px;
 
+      @media (max-width:750px) {
+        & {
+          display: none;
+        }
+      }
+      
+      // @media (max-width:750px) {
+      //   & {
+      //     margin-left: 2px;
+      //   }
+      // }
+      
+
       &:hover {
         background-color: rgba(255, 255, 255, 0.9);
       }
 
-      .person-icon {
+      .person-icon {  
         color: #42526e;
       }
 
@@ -142,14 +174,14 @@
 
       &.dark {
         color: white;
-        background-color: #0079bf;
+        background-color: #0079BF;
 
         .person-icon {
           color: white;
         }
-
+    
         &:hover {
-          background-color: #026aa7;
+        background-color: #026AA7;
         }
       }
     }
@@ -157,19 +189,27 @@
     .dark {
       color: #172b4d;
       background-color: rgba(0, 0, 0, 0.1);
-
+  
       &:hover {
-        background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.2);
       }
     }
   }
 
   .right {
+    margin-top: 10px;
     margin-right: 4px;
     transition: margin 0.12s ease-in;
     display: flex;
-    flex-wrap: wrap;
+    display: flex;
     gap: 14px;
+
+          
+    @media (max-width:750px) {
+      & {
+        gap: 2px;
+      }
+    }
 
     &.open {
       margin-right: 343px;
@@ -196,6 +236,7 @@
       padding: 0;
       padding-right: 12px;
       padding-left: 9px;
+      // margin-inline-end: 14px;
 
       &:hover {
         cursor: pointer;
@@ -206,9 +247,15 @@
     .dark {
       color: #172b4d;
       background-color: rgba(0, 0, 0, 0.1);
-
+  
       &:hover {
-        background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    @media (max-width: 750px){
+      .filter {
+        display: none;
       }
     }
   }
@@ -218,7 +265,24 @@
       max-height: 400px;
       overflow: auto;
 
-      @include smallScrollBar();
+      &::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #bfc4ce;
+        border-radius: 3px;
+        height: 12px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: #dadbe2;
+        border-radius: 3px;
+        height: 12px;
+        margin-bottom: 8px;
+        border-bottom: 10px solid transparent;
+      }
     }
 
     margin-top: -4px;

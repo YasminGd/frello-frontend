@@ -118,7 +118,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           onClick={() => {
             onOpenActionModal('Filter', filterRef)
           }}
-          className={themeStyle}
+          className={`filter ${themeStyle}`}
         >
           <BsFilter />
           Filter

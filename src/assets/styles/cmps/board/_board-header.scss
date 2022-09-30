@@ -1,15 +1,15 @@
 .board-header {
-  height: 52px;
-  padding: 6px 4px 8px 12px;
+  min-height: 52px;
+  padding: 10px 4px 0 16px;
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
 
-  & > * {
-    margin-bottom: 12px;
-    margin-top: 10px;
-    height: 32px;
+  &>* {
+    margin-bottom: 10px;
+    min-height: 32px;
   }
 
   .go-back {
@@ -25,6 +25,7 @@
 
   .left {
     display: flex;
+    flex-wrap: wrap;
 
     & > * {
       height: 32px;
@@ -41,7 +42,7 @@
       text-align: center;
       border: none;
       background-color: transparent;
-      margin: 0 4px 4px 0;
+      margin: 0 4px 0 0;
       transition: all 0.15s;
 
       &:hover {
@@ -98,7 +99,7 @@
     .divider {
       border-left: 2px solid #ffffff3d;
       height: 16px;
-      margin: 8px 8px 12px 8px;
+      margin: 8px 8px 8px 8px;
     }
 
     .board-members {
@@ -164,11 +165,10 @@
   }
 
   .right {
-    margin-top: 10px;
     margin-right: 4px;
     transition: margin 0.12s ease-in;
     display: flex;
-    display: flex;
+    flex-wrap: wrap;
     gap: 14px;
 
     &.open {

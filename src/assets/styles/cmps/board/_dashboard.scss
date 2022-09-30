@@ -11,6 +11,7 @@
   flex-direction: column;
   align-items: center;
   padding: 50px;
+  overflow-y: auto;
 
   .btn-close {
     position: absolute;
@@ -28,9 +29,27 @@
     }
   }
 
-  h1 {
+  .title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 48px;
-    font-weight: 600;
+    h1 {
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .star-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 25px;
+
+      .yellow-star {
+        color: #f2d600;
+      }
+    }
   }
 
   .statistics-container {

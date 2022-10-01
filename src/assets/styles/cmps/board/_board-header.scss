@@ -1,14 +1,12 @@
 .board-header {
-  height: 52px;
-  padding: 6px 4px 8px 4px;
+  padding: 8px 4px 7px 4px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
 
-  &>* {
-    margin-bottom: 12px;
-    margin-top: 10px;
+  & > * {
     height: 32px;
   }
 
@@ -25,8 +23,9 @@
 
   .left {
     display: flex;
+    margin-bottom: 5px;
 
-    &>* {
+    & > * {
       height: 32px;
     }
 
@@ -84,7 +83,6 @@
       border-radius: 3px;
       color: #fff;
       background-color: #ffffff3d;
-      display: none;
 
       .yellow-star {
         color: #f2d600;
@@ -94,7 +92,7 @@
         cursor: pointer;
         color: #f2d600;
 
-        &>* {
+        & > * {
           transform: scale(1.2);
         }
       }
@@ -104,7 +102,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      display: none;
       margin-right: 11px;
 
       .member-img {
@@ -124,16 +121,7 @@
       justify-content: center;
       align-items: center;
       height: 32px;
-      // margin-left: 14px;
       padding: 6px 12px 6px 8px;
-      display: none;
-
-      // @media (max-width:750px) {
-      //   & {
-      //     margin-left: 2px;
-      //   }
-      // }
-
 
       &:hover {
         background-color: rgba(255, 255, 255, 0.9);
@@ -150,14 +138,14 @@
 
       &.dark {
         color: white;
-        background-color: #0079BF;
+        background-color: #0079bf;
 
         .person-icon {
           color: white;
         }
 
         &:hover {
-          background-color: #026AA7;
+          background-color: #026aa7;
         }
       }
     }
@@ -173,12 +161,12 @@
   }
 
   .right {
-    margin-top: 10px;
-    margin-right: 4px;
+    margin: 0 4px 5px auto;
     transition: margin 0.12s ease-in;
     display: flex;
     display: flex;
-    gap: 4px;
+    // gap: 4px;
+    padding-inline-start: 5px;
 
     &.open {
       margin-right: 343px;
@@ -205,7 +193,6 @@
       padding: 0;
       padding-right: 12px;
       padding-left: 9px;
-      // margin-inline-end: 14px;
 
       &:hover {
         cursor: pointer;
@@ -220,10 +207,6 @@
       &:hover {
         background-color: rgba(0, 0, 0, 0.2);
       }
-    }
-
-    .filter {
-      display: none;
     }
 
     .divider {
@@ -265,15 +248,25 @@
     border-left: 1px solid #ffffff3d;
     height: 16px;
     margin: 8px 8px 12px 8px;
-    display: none;
 
     &.dark {
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  // MEDIA QUERIES
+
+  @media (max-width: 480px) {
+    & .left {
+      .board-members {
+        display: none;
+      }
     }
   }
 
   @media (min-width: 850px) {
-
     & {
       padding-left: 12px;
     }
@@ -300,12 +293,10 @@
 
     .right {
       gap: 0;
-      // gap: 17px;
 
       .filter {
         display: flex;
       }
     }
   }
-
 }

@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateTask } from '../../store/actions/task.action'
 import { QuickEditButtons } from './quick-edit-buttons'
+import { ActionModal } from '../global/action-modal'
 
 export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
   const dispatch = useDispatch()
   const [taskTitle, setTaskTitle] = useState(task.title)
+  const [actionModal, setActionModal] = useState(null)
 
   const handleChange = ({ target }) => {
     setTaskTitle(target.value)
@@ -14,6 +16,10 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
   const saveTask = () => {
     task.title = taskTitle
     setQuickEdit(null)
+    dispatch(updateTask(groupId, task))
+  }
+
+  const onUpdateTask = (task) => {
     dispatch(updateTask(groupId, task))
   }
 
@@ -37,7 +43,12 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
             Save
           </button>
         </section>
-        <QuickEditButtons task={task} groupId={groupId} setQuickEdit={setQuickEdit} />
+        <QuickEditButtons
+          task={task}
+          groupId={groupId}
+          setQuickEdit={setQuickEdit}
+          actionModal={actionModal}
+          setActionModal={setActionModal} />
       </section>
       <section
         className="screen-edit"
@@ -46,6 +57,15 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
           setQuickEdit(null)
         }}
       ></section>
+      {
+        actionModal && <ActionModal
+          setActionModal={setActionModal}
+          data={actionModal}
+          groupId={groupId}
+          task={task}
+          onUpdateTask={onUpdateTask}
+        />
+      }
     </React.Fragment>
   )
 }

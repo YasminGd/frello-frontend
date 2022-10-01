@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(194px, 194px));
+  // justify-content: center;
   gap: 17px;
   padding: 0 0 11px;
 
@@ -19,6 +22,17 @@
     &:hover {
       cursor: pointer;
       background-color: #091e4214;
+    }
+  }
+}
+
+// MEDIA QUERIES
+
+@media (max-width: 700px) {
+  .board-list {
+    gap: 8px;
+    .new-board {
+      width: 161px;
     }
   }
 }

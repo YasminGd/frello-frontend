@@ -1,10 +1,12 @@
 .group-preview {
+  display: flex;
+  flex-direction: column;
   background-color: #ebecf0;
   min-width: 272px;
   width: 272px;
   border-radius: 3px;
   font-size: 0.875rem;
-  max-height: 100%;
+  max-height: 98%;
   margin-inline-end: 8px;
 
   &.dragging {

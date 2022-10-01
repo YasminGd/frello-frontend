@@ -6,8 +6,6 @@ import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai'
 import { Loader } from '../cmps/global/loader'
 import { utilService } from '../services/util.service'
 import { ActionModal } from '../cmps/global/action-modal'
-import { Dates } from '../cmps/dates/dates'
-import { Labels } from '../cmps/labels/labels'
 
 export const Workspace = () => {
   const boards = useSelector((state) => state.boardModule.boards)
@@ -49,6 +47,7 @@ export const Workspace = () => {
               <h3>Starred boards</h3>
             </div>
             <div className="boards-container">
+              <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} />
             </div>
           </section>
           <section className="recent-boards">

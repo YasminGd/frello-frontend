@@ -1,6 +1,4 @@
-import { useEffect } from "react"
 import { useState } from "react"
-import { useRef } from "react"
 import { useDispatch } from "react-redux"
 import { locationService } from "../../services/location.service"
 import { updateTask } from "../../store/actions/task.action"

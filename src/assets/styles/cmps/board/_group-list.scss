@@ -2,7 +2,9 @@
   padding: 0 8px 0 14px;
   display: flex;
   flex-wrap: nowrap;
-  height: calc(100% - 52px);
+  // height: calc(100% - 52px);
+  max-height: 100%;
+  flex-grow: 1;
   align-items: flex-start;
   // gap: 8px;
   line-height: 20px;
@@ -62,14 +64,14 @@
     background-color: rgba(0, 0, 0, 0.1);
 
     &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.2);
     }
   }
 }
 
 //MEDIA QUERY
 
-@media (min-width: 750px) { 
+@media (min-width: 750px) {
   .group-list {
     padding: 0 22px;
   }

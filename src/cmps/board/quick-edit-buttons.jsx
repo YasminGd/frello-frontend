@@ -1,21 +1,18 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { BsPerson, BsSquareHalf } from 'react-icons/bs'
 import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
-import { ImAttachment } from 'react-icons/im'
 import { BsCardHeading } from 'react-icons/bs'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { GoArchive } from 'react-icons/go'
 import { removeTask, updateTask } from '../../store/actions/task.action'
 import { useDispatch } from 'react-redux'
 import React from 'react'
-import { ActionModal } from '../global/action-modal'
 import { utilService } from '../../services/util.service'
 
-export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
+export const QuickEditButtons = ({ setQuickEdit, groupId, task, actionModal, setActionModal }) => {
 
   const location = useLocation()
   const dispatch = useDispatch()
-  const [actionModal, setActionModal] = useState(null)
   const navigate = useNavigate()
 
   // Refs for action modal position calculation
@@ -61,10 +58,6 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
     setQuickEdit(null)
   }
 
-  const onUpdateTask = (task) => {
-    dispatch(updateTask(groupId, task))
-  }
-
   const onOpenActionModal = (ev, type, ref) => {
     ev.preventDefault()
     if (actionModal?.type === type) return setActionModal(null)
@@ -102,15 +95,6 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
           Delete
         </button>
       </section>
-      {
-        actionModal && <ActionModal
-          setActionModal={setActionModal}
-          data={actionModal}
-          groupId={groupId}
-          task={task}
-          onUpdateTask={onUpdateTask}
-        />
-      }
     </React.Fragment >
   )
 }

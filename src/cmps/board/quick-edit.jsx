@@ -29,7 +29,10 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
         }}
       >
         <section className="main-edit">
-          <textarea value={taskTitle} autoFocus onFocus={(ev) => ev.target.select()} onChange={handleChange}></textarea>
+          <textarea value={taskTitle}
+            autoFocus={window.innerWidth >= 1200}
+            onFocus={(ev) => ev.target.select()}
+            onChange={handleChange}></textarea>
           <button onClick={saveTask} className="btn blue">
             Save
           </button>

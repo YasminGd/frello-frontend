@@ -30,10 +30,8 @@ export const Board = () => {
   const queryAttr = 'data-rbd-drag-handle-draggable-id'
   const [placeholderProps, setPlaceholderProps] = useState({})
   const isBackgroundDark = utilService.isBackgroundDark(board?.style?.backgroundColor)
-  console.log(board?.style?.backgroundColor)
 
   useEffect(() => {
-    console.log(': board-useeffect-1')
     dispatch(getBoard(params.boardId))
     socketService.emit('join-board', params.boardId)
   }, [])
@@ -98,7 +96,6 @@ export const Board = () => {
         draggedDOM.parentNode.scrollLeft
 
       clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
-
     }
     // else if (event.type === 'task') {
     //   clientX = 4
@@ -115,12 +112,10 @@ export const Board = () => {
       clientX,
       clientY,
     })
-
   }
 
   // Calculates the updated position of the dragged element placeholder
   const onDragUpdate = (event) => {
-    console.log('onDragUpdate ~ event', event)
     if (!event.destination) return
     const draggedDOM = getDraggedDom(event.draggableId)
     if (!draggedDOM) return
@@ -144,14 +139,11 @@ export const Board = () => {
     if (event.type === 'group') {
       clientX =
         parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
-        updatedArray
-          .slice(0, destinationIndex)
-          .reduce((total, curr) => {
-            return total + curr.clientWidth + 8
-          }, 0) -
+        updatedArray.slice(0, destinationIndex).reduce((total, curr) => {
+          return total + curr.clientWidth + 8
+        }, 0) -
         draggedDOM.parentNode.scrollLeft
       clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
-
     }
     // else if (event.type === 'task') {
     //   if (event.source.droppableId !== event.destination.droppableId) {
@@ -203,7 +195,6 @@ export const Board = () => {
 
   const updateFilter = (filter) => {
     setFilterBy({ ...filter })
-    console.log(filter)
   }
 
   const style = getBoardStyle()
@@ -220,12 +211,9 @@ export const Board = () => {
               changeTitle={changeTitle}
               updateFilter={updateFilter}
               filterBy={filterBy}
-              isBackgroundDark={isBackgroundDark} />
-            <DragDropContext
-              onDragStart={onDragStart}
-              onDragUpdate={onDragUpdate}
-              onDragEnd={onDragEnd}
-            >
+              isBackgroundDark={isBackgroundDark}
+            />
+            <DragDropContext onDragStart={onDragStart} onDragUpdate={onDragUpdate} onDragEnd={onDragEnd}>
               <GroupList
                 placeholderProps={placeholderProps}
                 board={filteredBoard}
@@ -233,7 +221,8 @@ export const Board = () => {
                 removeItem={removeItem}
                 quickEdit={quickEdit}
                 setQuickEdit={setQuickEdit}
-                isBackgroundDark={isBackgroundDark} />
+                isBackgroundDark={isBackgroundDark}
+              />
             </DragDropContext>
             <Routes>
               <Route path=":groupId/:taskId" element={<TaskDetails />} />
@@ -242,7 +231,9 @@ export const Board = () => {
           </React.Fragment>
         )}
       </section>
-      {quickEdit && <QuickEdit pos={quickEdit.pos} task={quickEdit.task} groupId={quickEdit.groupId} setQuickEdit={setQuickEdit} />}
+      {quickEdit && (
+        <QuickEdit pos={quickEdit.pos} task={quickEdit.task} groupId={quickEdit.groupId} setQuickEdit={setQuickEdit} />
+      )}
     </Fragment>
   )
 }

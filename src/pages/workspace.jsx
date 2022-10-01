@@ -30,7 +30,6 @@ export const Workspace = () => {
   }
 
   const onOpenActionModal = (type, ref) => {
-    console.log('hello')
     if (actionModal?.type === type) return setActionModal(null)
     const pos = utilService.getModalPosition(type, ref)
     setActionModal({ type, pos })

@@ -30,6 +30,10 @@
       height: 32px;
     }
 
+    .divider {
+      margin-right: 12px;
+    }
+
     input {
       color: white;
       font-size: 18px;
@@ -101,6 +105,7 @@
       justify-content: center;
       align-items: center;
       display: none;
+      margin-right: 11px;
 
       .member-img {
         margin-right: -3px;
@@ -119,7 +124,7 @@
       justify-content: center;
       align-items: center;
       height: 32px;
-      margin-left: 14px;
+      // margin-left: 14px;
       padding: 6px 12px 6px 8px;
       display: none;
 
@@ -267,7 +272,7 @@
     }
   }
 
-  @media (min-width: 750px) {
+  @media (min-width: 850px) {
 
     & {
       padding-left: 12px;

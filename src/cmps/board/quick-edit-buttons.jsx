@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { BsPerson } from 'react-icons/bs'
+import { BsPerson, BsSquareHalf } from 'react-icons/bs'
 import { AiOutlineTag, AiOutlineClockCircle } from 'react-icons/ai'
 import { ImAttachment } from 'react-icons/im'
 import { BsCardHeading } from 'react-icons/bs'
@@ -41,7 +41,12 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task }) => {
       type: 'Cover',
       txt: 'Change cover',
       ref: btnCoverRef,
-      iconCmp: <ImAttachment className="icon" />,
+      iconCmp: <BsSquareHalf
+        className="icon"
+        style={{
+          transform: 'rotate(0.25turn) translateY(-5%) translateX(10%)',
+        }}
+      />
     },
     {
       type: 'Dates',

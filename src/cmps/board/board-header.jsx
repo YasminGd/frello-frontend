@@ -66,7 +66,6 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
   }
 
   const themeStyle = isBackgroundDark ? '' : 'dark'
-  console.log(isBackgroundDark);
 
   return (
     <section className="board-header">
@@ -86,7 +85,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
         <span className={`divider ${themeStyle}`}></span>
-        {board.members && (
+        {board.members && board?.members?.length !==0 && (
           <div className="board-members">
             {board.members.map((member, index) => (
               <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>
@@ -107,10 +106,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
         </button>
       </section>
       <section className={`right ${isSideMenuOpen}`}>
-        <button
-          onClick={onOpenDashboard}
-          className={themeStyle}
-        >
+        <button onClick={onOpenDashboard} className={themeStyle}>
           <BsGraphUp />
           Dashboard
         </button>

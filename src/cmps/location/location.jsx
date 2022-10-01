@@ -32,7 +32,7 @@ export const Location = ({ task, groupId, setActionModal }) => {
                 className="input"
                 placeholder="Search Google Maps"
                 value={search}
-                autoFocus={window.innerWidth >= 1800}
+                autoFocus={window.innerWidth >= 1200}
                 onChange={handleChange} />
         </form>
         {

@@ -36,7 +36,9 @@ export const Attachment = ({ task, groupId, setActionModal }) => {
   return (
     <section className="attachment">
       {isAdding ? (
-        <Loader />
+        <section className="loader-container">
+          <Loader />
+        </section>
       ) : (
         <React.Fragment>
           <input type="file" accept="image/*" onChange={onUploadImg} />

@@ -12,7 +12,7 @@ const onDragStart = (event) => {
         [...draggedDOM.parentNode.children] // Array of groups
             .slice(0, sourceIndex)
             .reduce((total, curr) => { // Adds up all siblings width & margin
-                return total + curr.clientWidth + 8
+                return total + curr.clientWidth + parseFloat(getComputedStyle(curr).marginRight)
             }, 0) -
         draggedDOM.parentNode.scrollLeft
 

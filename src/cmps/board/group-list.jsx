@@ -4,6 +4,7 @@ import { GroupPreview } from './group-preview.jsx'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { isEmpty } from 'lodash'
+import { BsChatFill } from 'react-icons/bs'
 
 export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBackgroundDark, setQuickEdit, quickEdit }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
@@ -59,6 +60,9 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBack
               </span>
             </button>
           )}
+          <div className="chat">
+          <BsChatFill />
+          </div>
         </section>
 
       )}

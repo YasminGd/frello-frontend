@@ -67,6 +67,21 @@
       background-color: rgba(0, 0, 0, 0.2);
     }
   }
+
+  .chat {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+  }
 }
 
 //MEDIA QUERY

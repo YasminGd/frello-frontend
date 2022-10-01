@@ -12,9 +12,9 @@
     width: 50px;
 
     //! Lee's code to try fix the bug on getting photos - doesn't work everywhere
-    // position: absolute;
-    // left: 50%;
-    // top: 50%;
-    // translate: -50% -50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
   }
 }

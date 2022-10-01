@@ -32,9 +32,10 @@ export const Board = () => {
   const isBackgroundDark = utilService.isBackgroundDark(board?.style?.backgroundColor)
 
   useEffect(() => {
+    if (board) dispatch({ type: 'SET_BOARD', boardId: null })
     dispatch(getBoard(params.boardId))
     socketService.emit('join-board', params.boardId)
-  }, [])
+  }, [params.boardId])
 
   useEffect(() => {
     socketService.on('update-board', socketUpdateBoard)
@@ -90,9 +91,11 @@ export const Board = () => {
     if (event.type === 'group') {
       clientX =
         parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
-        [...draggedDOM.parentNode.children].slice(0, sourceIndex).reduce((total, curr) => {
-          return total + curr.clientWidth + 8
-        }, 0) -
+        [...draggedDOM.parentNode.children]
+          .slice(0, sourceIndex)
+          .reduce((total, curr) => {
+            return total + curr.clientWidth + parseFloat(getComputedStyle(curr).marginRight)
+          }, 0) -
         draggedDOM.parentNode.scrollLeft
 
       clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))

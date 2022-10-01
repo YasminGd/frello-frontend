@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 import { ActionModal } from './action-modal'
 import { useRef, useState } from 'react'
 import { utilService } from '../../services/util.service'
+import { IoIosArrowDown } from 'react-icons/io'
+import { MdKeyboardArrowDown } from 'react-icons/md'
 
 export const AppHeader = () => {
   const board = useSelector((state) => state.boardModule.board)
@@ -12,6 +14,7 @@ export const AppHeader = () => {
   const [actionModal, setActionModal] = useState(null)
   const location = useLocation()
   const userImgRef = useRef()
+  const boardsRef = useRef()
 
   const getStyleClass = () => {
     let styleClass
@@ -36,12 +39,24 @@ export const AppHeader = () => {
 
   return (
     <section className={`app-header ${styleClass}`} style={getStyleColor()}>
-      <Link to="/workspace">
-        <div className={`main-logo ${themeStyle}`}>
-          <SiTrello />
-          <h1>Frello</h1>
+      <section className="left">
+        <Link to="/workspace">
+          <div className={`main-logo ${themeStyle}`}>
+            <SiTrello />
+            <h1>Frello</h1>
+          </div>
+        </Link>
+        <div className={`boards ${themeStyle}`}
+          onClick={() => onOpenActionModal('Boards', boardsRef)}
+          ref={boardsRef}
+        >
+          <p>Workspaces</p>
+          <div className="svg-container">
+            <MdKeyboardArrowDown />
+          </div>
         </div>
-      </Link>
+      </section>
+
       <nav className={`home-nav ${styleClass ? '' : 'none'}`}>
         <Link className="login" to={'user/login'}>
           Log in

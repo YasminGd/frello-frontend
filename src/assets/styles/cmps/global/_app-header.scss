@@ -18,38 +18,76 @@
     position: fixed;
   }
 
-  .main-logo {
-    border-radius: 3px;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-    }
-
-    h1 {
-      margin-left: 6px;
-      font-size: 1.4rem;
-      line-height: 30px;
-    }
-
-    img {
-      margin-right: 7px;
-      width: 22px;
-    }
-
-    font-family: CharlieDisplay-bold;
+  .left {
     display: flex;
-    align-items: center;
-    padding: 0 6px;
-    margin-left: 6px;
 
-    &.dark {
-      color: #172b4d;
+    .main-logo {
+      border-radius: 3px;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      h1 {
+        margin-left: 6px;
+        font-size: 1.4rem;
+        line-height: 30px;
+      }
+
+      img {
+        margin-right: 7px;
+        width: 22px;
+      }
+
+      font-family: CharlieDisplay-bold;
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      margin-left: 6px;
+
+      &.dark {
+        color: #172b4d;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    .boards {
+      height: 30px;
+      border-radius: 3px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      display: flex;
+      align-items: center;
+      padding: 8px 32px 6px 12px;      
+      margin-left: 6px;
+      font-size: 14px;
+      position: relative;
+
+      .svg-container {
+        position: absolute;
+        right: 8px;
+        top: 6px;
+        font-size: 20px;
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+      }
+
+      &.dark {
+        color: #172b4d;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
       }
     }
   }
+
+
 
   .home-nav {
     font-size: 1.25em;
@@ -61,7 +99,7 @@
       display: none;
     }
 
-    & > * {
+    &>* {
       padding: 0px 10px;
       height: 44px;
       display: flex;
@@ -86,7 +124,7 @@
   &.home-header {
     background-color: #fff;
 
-    .home-nav > * {
+    .home-nav>* {
       height: 60px;
     }
 
@@ -130,7 +168,7 @@
 @include for-narrow-layout {
   .app-header {
     .home-nav {
-      & > * {
+      &>* {
         font-size: 1.2rem;
         padding: 0px 22px;
       }
@@ -139,12 +177,9 @@
 }
 
 //////////////////////////////////////////// 780px ////////////////////////////////////////////
-@include for-small-layout {
-}
+@include for-small-layout {}
 
 //////////////////////////////////////////// 980px ////////////////////////////////////////////
-@include for-normal-layout {
-}
+@include for-normal-layout {}
 
-@include for-wide-layout {
-}
+@include for-wide-layout {}

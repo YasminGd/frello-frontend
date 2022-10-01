@@ -17,6 +17,7 @@ import { LabelSelectList } from '../board/filter/label-select-list'
 import { Location } from '../location/location'
 import { LocationActions } from '../location/location-actions'
 import { useClickOutside } from '../hooks/is-clicked-outside'
+import { HeaderBoards } from './header-boards'
 
 export const ActionModal = ({
   data,
@@ -28,7 +29,6 @@ export const ActionModal = ({
   updateFilter,
   filterBy,
   handleChange,
-  onOpenActionModal
 }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
@@ -109,6 +109,9 @@ export const ActionModal = ({
 
       case 'Create board':
         return <CreateBoard setActionModal={setActionModal} />
+
+      case 'Boards':
+        return <HeaderBoards setActionModal={setActionModal} />
 
       default:
         return <LocationActions task={task} groupId={groupId} setActionModal={setActionModal} />

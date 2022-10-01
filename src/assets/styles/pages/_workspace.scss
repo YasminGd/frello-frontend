@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  max-width: 1140px;
   margin: auto;
-  padding: 40px;
+  padding: 40px 0;
   padding-top: 47px;
   min-height: calc(100vh - 44px);
+  max-width: 330px;
 
   .title {
     display: flex;
@@ -30,8 +30,38 @@
 
 // MEDIA QUERIES
 
-@media (max-width: 700px) {
+@media (max-width: 330px) {
   .workspace {
-    padding: 15px;
+    max-width: 180px;
+  }
+}
+
+@media (min-width: 525px) {
+  .workspace {
+    max-width: 499px;
+  }
+}
+
+@media (min-width: 600px) {
+  .workspace {
+    max-width: 499px;
+  }
+}
+
+@media (min-width: 701px) {
+  .workspace {
+    max-width: 616px;
+  }
+}
+
+@media (min-width: 860px) {
+  .workspace {
+    max-width: 827px;
+  }
+}
+
+@media (min-width: 1118px) {
+  .workspace {
+    max-width: 1038px;
   }
 }

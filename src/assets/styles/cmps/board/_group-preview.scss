@@ -1,4 +1,6 @@
 .group-preview {
+  display: flex;
+  flex-direction: column;
   background-color: #ebecf0;
   min-width: 272px;
   width: 272px;

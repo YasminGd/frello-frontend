@@ -15,6 +15,7 @@ export const AppHeader = () => {
   const location = useLocation()
   const userImgRef = useRef()
   const boardsRef = useRef()
+  const starredRef = useRef()
 
   const getStyleClass = () => {
     let styleClass
@@ -34,7 +35,7 @@ export const AppHeader = () => {
   }
 
   const styleClass = getStyleClass()
-  const isDisplayUserImg = (user?.fullname === 'Guest') ? false : true
+  const isDisplayUserImg = user?.fullname === 'Guest' ? false : true
   const themeStyle = board && !utilService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
 
   return (
@@ -46,11 +47,18 @@ export const AppHeader = () => {
             <h1>Frello</h1>
           </div>
         </Link>
-        <div className={`boards ${themeStyle}`}
-          onClick={() => onOpenActionModal('Boards', boardsRef)}
-          ref={boardsRef}
+        <div className={`boards ${themeStyle}`} onClick={() => onOpenActionModal('Boards', boardsRef)} ref={boardsRef}>
+          <p>Boards</p>
+          <div className="svg-container">
+            <MdKeyboardArrowDown />
+          </div>
+        </div>
+        <div
+          className={`boards ${themeStyle}`}
+          onClick={() => onOpenActionModal('Starred boards', starredRef)}
+          ref={starredRef}
         >
-          <p>Workspaces</p>
+          <p>Starred</p>
           <div className="svg-container">
             <MdKeyboardArrowDown />
           </div>
@@ -69,9 +77,13 @@ export const AppHeader = () => {
         <div className="user-img">
           <img
             referrerPolicy="no-referrer"
-            src={user.imgUrl} alt=""
+            src={user.imgUrl}
+            alt=""
             ref={userImgRef}
-            onClick={() => { onOpenActionModal('Account', userImgRef) }} />
+            onClick={() => {
+              onOpenActionModal('Account', userImgRef)
+            }}
+          />
         </div>
       )}
       {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}

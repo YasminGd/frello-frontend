@@ -18,6 +18,7 @@ import { Location } from '../location/location'
 import { LocationActions } from '../location/location-actions'
 import { useClickOutside } from '../hooks/is-clicked-outside'
 import { HeaderBoards } from './header-boards'
+import { HeaderStarredBoards } from './header-starred-boards'
 
 export const ActionModal = ({
   data,
@@ -112,6 +113,9 @@ export const ActionModal = ({
 
       case 'Boards':
         return <HeaderBoards setActionModal={setActionModal} />
+
+      case 'Starred boards':
+        return <HeaderStarredBoards setActionModal={setActionModal} />
 
       default:
         return <LocationActions task={task} groupId={groupId} setActionModal={setActionModal} />

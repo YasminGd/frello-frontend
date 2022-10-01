@@ -90,9 +90,11 @@ export const Board = () => {
     if (event.type === 'group') {
       clientX =
         parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
-        [...draggedDOM.parentNode.children].slice(0, sourceIndex).reduce((total, curr) => {
-          return total + curr.clientWidth + 8
-        }, 0) -
+        [...draggedDOM.parentNode.children]
+          .slice(0, sourceIndex)
+          .reduce((total, curr) => {
+            return total + curr.clientWidth + parseFloat(getComputedStyle(curr).marginRight)
+          }, 0) -
         draggedDOM.parentNode.scrollLeft
 
       clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))

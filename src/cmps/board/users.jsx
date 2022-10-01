@@ -49,7 +49,7 @@ export const Users = () => {
     const boardWithActivities = activityService.addActivity(activityTxt, null, board)
     dispatch(updateBoard(boardWithActivities))
   }
-  if (!usersToRender) return <Loader />
+  if (!usersToRender) return <section className="loader-container"><Loader /></section>
   return (
     <section className="users">
       <div className="">

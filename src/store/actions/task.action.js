@@ -1,14 +1,18 @@
+import { boardService } from '../../services/board.service'
 import { taskService } from '../../services/task.service'
 import { getActionUpdateBoard } from './board.action'
 
 export function updateTask(groupId, task, activityTxt, boardMember) {
   return async (dispatch, getState) => {
+    const prevBoard = getState().boardModule.board
+    const board = structuredClone(prevBoard)
+    const updatedBoard = taskService.update(board, groupId, task, activityTxt, boardMember)
+    dispatch(getActionUpdateBoard(updatedBoard))
     try {
-      const board = getState().boardModule.board
-      const savedBoard = await taskService.update(board, groupId, task, activityTxt, boardMember)
-      dispatch(getActionUpdateBoard({ ...savedBoard }))
+      await boardService.save(updatedBoard)
     }
     catch (err) {
+      dispatch(getActionUpdateBoard({ ...prevBoard }))
       console.log('Cannot update task', err)
     }
   }

@@ -5,6 +5,7 @@ import { updateTask } from '../../store/actions/task.action'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
 export const TaskDatesOverview = ({ task, groupId, onOpenActionModal }) => {
+  task = structuredClone(task)
   const dispatch = useDispatch()
   const btnDatesRef = useRef()
 

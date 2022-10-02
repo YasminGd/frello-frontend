@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { BiCheck } from 'react-icons/bi'
 
 export const Members = ({ task, groupId }) => {
+  task = structuredClone(task)
   const dispatch = useDispatch()
   const boardMembers = useSelector((state) => state.boardModule.board.members)
   const [membersToRender, setMembersToRender] = useState(boardMembers || [])

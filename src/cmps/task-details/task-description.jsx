@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { updateTask } from '../../store/actions/task.action'
 
 export const TaskDescription = ({ task, groupId }) => {
+  task = structuredClone(task)
   const dispatch = useDispatch()
   const [isBtnsDesc, setIsBtnsDesc] = useState(false)
   const [descTxt, setDescTxt] = useState(task.description)

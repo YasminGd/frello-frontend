@@ -40,7 +40,7 @@ async function remove(boardId) {
 async function save(board) {
   if (board._id) {
     console.log('INSIDE PUT')
-    return httpService.put(BASE_URL + board._id, board)
+    return httpService.put('BASE_URL' + board._id, board)
     // return await storageService.put(STORAGE_KEY, board)
   } else {
     console.log('INSIDE POST')
@@ -75,6 +75,21 @@ function getBoardForDisplay(board, filter) {
   return filteredBoard
 }
 
+function removeUserFromAllTasks(groups, userId) {
+  groups.forEach(group =>
+    group.tasks = group.tasks.map(task => task.memberIds ?
+      { ...task, memberIds: task.memberIds.filter(memberId => memberId !== userId) }
+      : task))
+  return groups
+}
+
+//! move to dashboard service
+function getNumberOfTasks(groups) {
+  let tasksLength = 0
+  groups.forEach(group => group.tasks.forEach(task => tasksLength++))
+  return tasksLength
+}
+
 //!! Do not delete, important for future filter improvments
 // function getBoardForDisplay(board, filter) {
 //   let filteredBoard = structuredClone(board)
@@ -102,17 +117,3 @@ function getBoardForDisplay(board, filter) {
 
 //   return filteredBoard
 // }
-
-function removeUserFromAllTasks(groups, userId) {
-  groups.forEach(group =>
-    group.tasks = group.tasks.map(task => task.memberIds ?
-      { ...task, memberIds: task.memberIds.filter(memberId => memberId !== userId) }
-      : task))
-  return groups
-}
-
-function getNumberOfTasks(groups) {
-  let tasksLength = 0
-  groups.forEach(group => group.tasks.forEach(task => tasksLength++))
-  return tasksLength
-}

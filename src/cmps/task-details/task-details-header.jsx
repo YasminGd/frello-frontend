@@ -5,7 +5,7 @@ import { updateTask } from "../../store/actions/task.action"
 
 
 export const TaskDetailsHeader = ({ task, groupId, groupTitle }) => {
-
+    task = structuredClone(task)
     const [titleTxt, setTitleTxt] = useState(task.title)
     const dispatch = useDispatch()
 

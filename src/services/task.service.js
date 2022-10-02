@@ -14,22 +14,13 @@ export const taskService = {
   cleanTasksLabelIds
 }
 
-async function update(board, groupId, task, activityTxt, user) {
+function update(board, groupId, task, activityTxt, user) {
   const groupIdx = board.groups.findIndex((group) => group.id === groupId)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => currTask.id === task.id)
   board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
+  if (activityTxt) board = activityService.addActivity(activityTxt, task, board, null, user)
 
-  if (activityTxt) {
-    board = activityService.addActivity(activityTxt, task, board, null, user)
-  }
-
-  try {
-    return httpService.put(BASE_URL + board._id, board)
-    // return await storageService.put(STORAGE_KEY, board)
-  }
-  catch (err) {
-    console.log('cannot update task', err)
-  }
+  return board
 }
 
 async function add(title, groupId, board, user) {

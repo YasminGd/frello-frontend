@@ -8,6 +8,7 @@ import { utilService } from '../../services/util.service'
 import { taskService } from '../../services/task.service'
 
 export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
+  task = structuredClone(task)
   const dispatch = useDispatch()
   let board = useSelector((state) => state.boardModule.board)
   let boardLabelsState = useSelector((state) => state.boardModule.board.labels || [])

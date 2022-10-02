@@ -25,7 +25,8 @@ export const TaskDetails = () => {
   const screenRef = useRef()
 
   const group = board.groups.find((group) => group.id === groupId)
-  const task = group.tasks.find((task) => task.id === taskId)
+  let task = group.tasks.find((task) => task.id === taskId)
+  task = structuredClone(task)
 
   const onUpdateTask = (task) => {
     dispatch(updateTask(groupId, task))

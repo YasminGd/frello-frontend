@@ -1,6 +1,6 @@
 .checklist-preview {
   margin-bottom: 40px;
-  width: 552px;
+  width: 330px;
   height: auto;
 
   button {
@@ -57,7 +57,7 @@
       margin-right: 2px;
     }
 
-    & > * {
+    &>* {
       display: flex;
       align-items: center;
     }
@@ -75,7 +75,7 @@
     }
 
     .completion-bar {
-      width: 512px;
+      width: 290px;
       height: 8px;
       background-color: #091e4214;
       border-radius: 4px;
@@ -100,5 +100,40 @@
   .add-todo-button {
     margin-top: 20px;
     margin-left: 40px;
+  }
+}
+
+// MEDIA QUERIES
+
+@media (min-width: 480px) {
+  .checklist-preview {
+    width: 416px;
+
+    .checklist-status .completion-bar {
+      width: 376px;
+    }
+  }
+
+}
+
+@media (min-width: 560px) {
+  .checklist-preview {
+    width: 496px;
+
+    .checklist-status .completion-bar {
+      width: 456px;
+    }
+  }
+
+
+}
+
+@include for-narrow-layout {
+  .checklist-preview {
+    width: 552px;
+
+    .checklist-status .completion-bar {
+      width: 512px;
+    }
   }
 }

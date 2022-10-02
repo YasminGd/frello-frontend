@@ -30,29 +30,15 @@ export const ActionModal = ({
   updateFilter,
   filterBy,
   handleChange,
+  setQuickEdit
 }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
-  // useEffect(() => {
-  //   document.onmousedown = (ev) => {
-  //     handleClickOutside(ev)
-  //   }
-  //   return () => {
-  //     document.onmousedown = null
-  //   }
-  // }, [])
-
   const modalRef = useRef()
   const closeActionModal = () => {
-    setActionModal(null)
+    setTimeout(() => setActionModal(null), 0)
   }
   useClickOutside(modalRef, closeActionModal)
-
-  // const handleClickOutside = (ev) => {
-  //   if (modalRef.current && !modalRef.current.contains(ev.target)) {
-  //     setActionModal(null)
-  //   }
-  // }
 
   const onToggleLabelEdit = () => {
     setIsLabelsEdit((prevState) => !prevState)
@@ -85,7 +71,7 @@ export const ActionModal = ({
         return <Dates task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
 
       case 'Members':
-        return <Members task={task} groupId={groupId} setActionModal={setActionModal} />
+        return <Members task={task} groupId={groupId} setActionModal={setActionModal} setQuickEdit={setQuickEdit} />
 
       case 'Users':
         return <Users />

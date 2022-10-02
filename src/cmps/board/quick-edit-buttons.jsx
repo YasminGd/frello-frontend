@@ -67,7 +67,7 @@ export const QuickEditButtons = ({ setQuickEdit, groupId, task, actionModal, set
 
   const onOpenTaskDetails = () => {
     setQuickEdit(null)
-    navigate(`${location.pathname}+/${groupId}/${task.id}`)
+    navigate(`${location.pathname}/${groupId}/${task.id}`)
   }
 
   return (

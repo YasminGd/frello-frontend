@@ -8,8 +8,10 @@ import { utilService } from '../../services/util.service'
 import { taskService } from '../../services/task.service'
 
 export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
+  task = structuredClone(task)
   const dispatch = useDispatch()
   let board = useSelector((state) => state.boardModule.board)
+  board = structuredClone(board)
   let boardLabelsState = useSelector((state) => state.boardModule.board.labels || [])
 
   const [selectedLabel, setSelectedLabel] = useState()
@@ -59,6 +61,10 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
       label.id = utilService.makeId()
       task.labelIds.push(label.id)
       board.labels.push(label)
+      const updatedBoard = taskService.update(board, groupId, task)
+      setSelectedLabel(null)
+      dispatch(updateBoard(updatedBoard))
+      return
     }
     setSelectedLabel(null)
     dispatch(updateBoard(board))

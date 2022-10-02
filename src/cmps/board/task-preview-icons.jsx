@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux'
 import { IoChatbubbleOutline } from 'react-icons/io5'
 
 export const TaskPreviewIcons = ({ task, groupId }) => {
+  task = structuredClone(task)
   const dispatch = useDispatch()
   const board = useSelector((state) => state.boardModule.board)
   const boardMembers = board.members

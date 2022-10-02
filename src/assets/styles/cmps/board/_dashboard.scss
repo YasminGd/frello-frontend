@@ -98,7 +98,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 15px;
     }
 
     .count {
@@ -142,7 +142,7 @@
 
 //MEDIA QUERY
 
-@media (min-width: 460px) { 
+@media (min-width: 460px) {
   .dashboard {
     .charts-container {
       width: 80%;

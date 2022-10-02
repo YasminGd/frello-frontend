@@ -13,9 +13,9 @@ export const HeaderBoards = ({ setActionModal }) => {
         if (!boards || !boards.length) dispatch(loadBoards())
     }, [])
 
-    if (!boards || !boards.length) return <Loader />
+    if (!boards || !boards.length) return <section className="loader-container"><Loader /></section>
     return <section className="header-boards">
         <p>Your Boards</p>
-        <HeaderBoardList boards={boards} setActionModal={setActionModal}/>
+        <HeaderBoardList boards={boards} setActionModal={setActionModal} />
     </section>
 }

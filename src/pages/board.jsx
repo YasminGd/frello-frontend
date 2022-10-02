@@ -22,6 +22,7 @@ export const Board = () => {
   const board = useSelector((state) => state.boardModule.board)
   const [filterBy, setFilterBy] = useState({})
   const [quickEdit, setQuickEdit] = useState(null)
+  // console.log('Board ~ quickEdit', quickEdit)
   const filteredBoard = boardService.getBoardForDisplay(board, filterBy)
 
   const dispatch = useDispatch()

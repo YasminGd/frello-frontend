@@ -1,8 +1,5 @@
 import { activityService } from './activity.service'
-import { httpService } from './http.service'
 import { utilService } from './util.service'
-// const STORAGE_KEY = 'board'
-const BASE_URL = `board/`
 
 export const taskService = {
   update,
@@ -14,54 +11,29 @@ export const taskService = {
   cleanTasksLabelIds
 }
 
-async function update(board, groupId, task, activityTxt, user) {
+function update(board, groupId, task, activityTxt) {
   const groupIdx = board.groups.findIndex((group) => group.id === groupId)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => currTask.id === task.id)
   board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
+  if (activityTxt) board = activityService.addActivity(activityTxt, task, board, null)
 
-  if (activityTxt) {
-    board = activityService.addActivity(activityTxt, task, board, null, user)
-  }
-
-  try {
-    return httpService.put(BASE_URL + board._id, board)
-    // return await storageService.put(STORAGE_KEY, board)
-  }
-  catch (err) {
-    console.log('cannot update task', err)
-  }
+  return board
 }
 
-async function add(title, groupId, board, user) {
+function add(title, groupId, board) {
   const group = board.groups.find((group) => group.id === groupId)
   group.tasks.push({ title, id: utilService.makeId() })
-  const boardWithActivities = activityService.addActivity(`added ${title} to ${group.title}`, null, board)
-
-  try {
-    return httpService.put(BASE_URL + board._id, boardWithActivities)
-    // return await storageService.put(STORAGE_KEY, boardWithActivities)
-  }
-  catch (err) {
-    console.log('cannot add task', err)
-  }
+  return activityService.addActivity(`added ${title} to ${group.title}`, null, board)
 }
 
-async function remove(groupId, taskId, board, user) {
+function remove(groupId, taskId, board) {
   const group = board.groups.find((group) => group.id === groupId)
   const task = group.tasks.find((task) => task.id === taskId)
   group.tasks = group.tasks.filter((task) => task.id !== taskId)
-  const boardWithActivities = activityService.addActivity(`removed ${task.title}`, null, board)
-
-  try {
-    return await httpService.put(BASE_URL + board._id, boardWithActivities)
-    // return await storageService.put(STORAGE_KEY, boardWithActivities)
-  }
-  catch (err) {
-    console.log('cannot delete task', err)
-  }
+  return activityService.addActivity(`removed ${task.title}`, null, board)
 }
 
-async function addImg(imgUrl, task, groupId, board, user) {
+function addImg(imgUrl, task, groupId, board) {
   const attachmentImage = {
     id: utilService.makeId(),
     createdAt: Date.now(),
@@ -76,18 +48,10 @@ async function addImg(imgUrl, task, groupId, board, user) {
   board.groups[groupIdx].tasks[taskIdx].attachments.push(attachmentImage)
 
   const urlName = attachmentImage.url.split('/').pop()
-  const boardWithActivities = activityService.addActivity(`attached ${urlName} to ${task.title}`, null, board)
-
-  try {
-    return httpService.put(BASE_URL + board._id, boardWithActivities)
-    // return await storageService.put(STORAGE_KEY, boardWithActivities)
-  }
-  catch (err) {
-    console.log('cannot add img', err)
-  }
+  return activityService.addActivity(`attached ${urlName} to ${task.title}`, null, board)
 }
 
-async function addChecklist(title, taskId, groupId, board, user) {
+function addChecklist(title, taskId, groupId, board) {
   const checklist = {
     id: utilService.makeId(),
     todos: [],
@@ -98,18 +62,11 @@ async function addChecklist(title, taskId, groupId, board, user) {
   const task = group.tasks.find(task => task.id === taskId)
   if (task.checklists) task.checklists.push(checklist)
   else task.checklists = [checklist]
-  const boardWithActivities = activityService.addActivity(`added ${title} to ${task.title}`, task, board)
 
-  try {
-    return httpService.put(BASE_URL + board._id, boardWithActivities)
-    // return await storageService.put(STORAGE_KEY, boardWithActivities)
-  }
-  catch (err) {
-    console.log('cannot add checklist', err)
-  }
+  return activityService.addActivity(`added ${title} to ${task.title}`, task, board)
 }
 
-async function addTodo(title, checkListId, groupId, taskId, board) {
+function addTodo(title, checkListId, groupId, taskId, board) {
   const todo = {
     id: utilService.makeId(),
     isDone: false,
@@ -121,13 +78,7 @@ async function addTodo(title, checkListId, groupId, taskId, board) {
   const checklist = task.checklists.find(checklist => checklist.id === checkListId)
   checklist.todos.push(todo)
 
-  try {
-    return httpService.put(BASE_URL + board._id, board)
-    // return await storageService.put(STORAGE_KEY, board)
-  }
-  catch (err) {
-    console.log('cannot add checklist', err)
-  }
+  return board
 }
 
 function cleanTasksLabelIds(board, labelId) {

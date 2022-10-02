@@ -40,7 +40,7 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
         <h3 className="title">Keyword</h3>
         <input
           onChange={handleChange}
-          autoFocus
+          autoFocus={window.innerWidth >= 1200}
           className="search-filter"
           type="text"
           placeholder="Enter a keyword..."

@@ -38,7 +38,7 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
         className="label-title"
         onChange={handleChange}
         type="text"
-        autoFocus
+        autoFocus={window.innerWidth >= 1200}
         onClick={(ev) => { ev.preventDefault() }}
         value={labelTitle} />
       <p className="sub-header">Select a color</p>

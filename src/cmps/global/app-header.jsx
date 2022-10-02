@@ -7,6 +7,8 @@ import { useRef, useState } from 'react'
 import { utilService } from '../../services/util.service'
 import { IoIosArrowDown } from 'react-icons/io'
 import { MdKeyboardArrowDown } from 'react-icons/md'
+import { includes } from 'lodash'
+import { Fragment } from 'react'
 
 export const AppHeader = () => {
   const board = useSelector((state) => state.boardModule.board)
@@ -37,6 +39,7 @@ export const AppHeader = () => {
   const styleClass = getStyleClass()
   const isDisplayUserImg = user?.fullname === 'Guest' ? false : true
   const themeStyle = board && !utilService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
+  const isBoardPage = (location.pathname.includes('/board')) ? true : false
 
   return (
     <section className={`app-header ${styleClass}`} style={getStyleColor()}>
@@ -47,22 +50,26 @@ export const AppHeader = () => {
             <h1>Frello</h1>
           </div>
         </Link>
-        <div className={`boards ${themeStyle}`} onClick={() => onOpenActionModal('Boards', boardsRef)} ref={boardsRef}>
-          <p>Boards</p>
-          <div className="svg-container">
-            <MdKeyboardArrowDown />
-          </div>
-        </div>
-        <div
-          className={`boards ${themeStyle}`}
-          onClick={() => onOpenActionModal('Starred boards', starredRef)}
-          ref={starredRef}
-        >
-          <p>Starred</p>
-          <div className="svg-container">
-            <MdKeyboardArrowDown />
-          </div>
-        </div>
+        {isBoardPage &&
+          <Fragment>
+            <div className={`boards ${themeStyle}`} onClick={() => onOpenActionModal('Boards', boardsRef)} ref={boardsRef}>
+              <p>Boards</p>
+              <div className="svg-container">
+                <MdKeyboardArrowDown />
+              </div>
+            </div>
+            <div
+              className={`boards ${themeStyle}`}
+              onClick={() => onOpenActionModal('Starred boards', starredRef)}
+              ref={starredRef}
+            >
+              <p>Starred</p>
+              <div className="svg-container">
+                <MdKeyboardArrowDown />
+              </div>
+            </div>
+          </Fragment>
+        }
       </section>
 
       <nav className={`home-nav ${styleClass ? '' : 'none'}`}>

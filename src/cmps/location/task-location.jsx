@@ -7,13 +7,14 @@ import { updateTask } from "../../store/actions/task.action"
 import { Map } from "./map"
 
 export const TaskLocation = ({ task, groupId, onOpenActionModal }) => {
+    task = structuredClone(task)
     const [name, setName] = useState(task.location.name)
     const dispatch = useDispatch()
     const btnCloseRef = useRef()
 
     useEffect(() => {
         setName(task.location.name)
-    },[task])
+    }, [task])
 
     const handleChange = ({ target }) => {
         setName(target.value)
@@ -37,7 +38,7 @@ export const TaskLocation = ({ task, groupId, onOpenActionModal }) => {
                     <p>{task.location.address}</p>
                 </section>
                 <section className="right">
-                <button ref={btnCloseRef} onClick={() => onOpenActionModal(name, btnCloseRef)}>…</button>
+                    <button ref={btnCloseRef} onClick={() => onOpenActionModal(name, btnCloseRef)}>…</button>
                 </section>
             </section>
         </section>

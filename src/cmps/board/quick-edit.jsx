@@ -5,6 +5,7 @@ import { QuickEditButtons } from './quick-edit-buttons'
 import { ActionModal } from '../global/action-modal'
 
 export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
+  task = structuredClone(task)
   const dispatch = useDispatch()
   const [taskTitle, setTaskTitle] = useState(task.title)
   const [actionModal, setActionModal] = useState(null)
@@ -64,6 +65,7 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
           groupId={groupId}
           task={task}
           onUpdateTask={onUpdateTask}
+          setQuickEdit={setQuickEdit}
         />
       }
     </React.Fragment>

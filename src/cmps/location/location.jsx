@@ -5,6 +5,7 @@ import { updateTask } from "../../store/actions/task.action"
 import { LocationList } from "./location-list"
 
 export const Location = ({ task, groupId, setActionModal }) => {
+    task = structuredClone(task)
     const [search, setSearch] = useState('')
     const [locations, setLocations] = useState(null)
 

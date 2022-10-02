@@ -3,7 +3,8 @@ import { updateTask } from '../../store/actions/task.action'
 import React, { useState } from 'react'
 import { BiCheck } from 'react-icons/bi'
 
-export const Members = ({ task, groupId }) => {
+export const Members = ({ task, groupId, setQuickEdit }) => {
+  // task = structuredClone(task)
   const dispatch = useDispatch()
   const boardMembers = useSelector((state) => state.boardModule.board.members)
   const [membersToRender, setMembersToRender] = useState(boardMembers || [])
@@ -29,6 +30,7 @@ export const Members = ({ task, groupId }) => {
       if (task.memberIds) task.memberIds.push(memberId)
       else task.memberIds = [memberId]
     }
+    setQuickEdit(prevState => ({ ...prevState, task }))
     dispatch(updateTask(groupId, task, activityTxt, member))
   }
 
@@ -37,7 +39,7 @@ export const Members = ({ task, groupId }) => {
       <div className="">
         <input
           onChange={handleChange}
-          autoFocus={window.innerWidth > 1800}
+          autoFocus={window.innerWidth >= 1200}
           className="search-member"
           type="text"
           placeholder="Search Members"

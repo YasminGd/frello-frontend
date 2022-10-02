@@ -101,7 +101,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
           <ul>
             {boardLabels.map((label) => (
               <li key={label.id}>
-                <label htmlFor={label.id}>
+                <label htmlFor={label.id} className="checkbox-container">
                   <input
                     onChange={(ev) => {
                       handleChange(ev, label.id)
@@ -111,6 +111,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
                     type="checkbox"
                     id={label.id}
                   />
+                  <span class="checkmark"></span>
                   <div className="label-container">
                     <div className={`label-color ${label.class}`}>
                       <div className={`label-color-circle ${label.color}`}></div>

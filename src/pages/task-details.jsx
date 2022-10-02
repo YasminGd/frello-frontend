@@ -26,6 +26,7 @@ export const TaskDetails = () => {
 
   const group = board.groups.find((group) => group.id === groupId)
   let task = group.tasks.find((task) => task.id === taskId)
+  if (!task) return
   task = structuredClone(task)
 
   const onUpdateTask = (task) => {

@@ -40,7 +40,7 @@ async function remove(boardId) {
 async function save(board) {
   if (board._id) {
     console.log('INSIDE PUT')
-    return httpService.put('BASE_URL' + board._id, board)
+    return httpService.put(BASE_URL + board._id, board)
     // return await storageService.put(STORAGE_KEY, board)
   } else {
     console.log('INSIDE POST')

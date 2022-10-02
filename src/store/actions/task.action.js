@@ -20,27 +20,50 @@ export function updateTask(groupId, task, activityTxt, boardMember) {
 
 export function addTask(title, groupId) {
   return async (dispatch, getState) => {
+    const prevBoard = getState().boardModule.board
+    const board = structuredClone(prevBoard)
+    const updatedBoard = taskService.add(title, groupId, board)
+    dispatch(getActionUpdateBoard(updatedBoard))
+
     try {
-      const board = getState().boardModule.board
-      const user = getState().userModule.user
-      const savedBoard = await taskService.add(title, groupId, board, user)
-      dispatch(getActionUpdateBoard({ ...savedBoard }))
+      await boardService.save(updatedBoard)
     }
     catch (err) {
+      dispatch(getActionUpdateBoard({ ...prevBoard }))
       console.log('Cannot add task', err)
+    }
+  }
+}
+
+export function removeTask(groupId, taskId) {
+  return async (dispatch, getState) => {
+    const prevBoard = getState().boardModule.board
+    const board = structuredClone(prevBoard)
+    const updatedBoard = taskService.remove(groupId, taskId, board)
+    dispatch(getActionUpdateBoard(updatedBoard))
+
+    try {
+      await boardService.save(updatedBoard)
+    }
+    catch (err) {
+      dispatch(getActionUpdateBoard({ ...prevBoard }))
+      console.log('Cannot remove task', err)
     }
   }
 }
 
 export function addImg(imgUrl, task, groupId) {
   return async (dispatch, getState) => {
+    const prevBoard = getState().boardModule.board
+    const board = structuredClone(prevBoard)
+    const updatedBoard = taskService.addImg(imgUrl, task, groupId, board)
+    dispatch(getActionUpdateBoard(updatedBoard))
+
     try {
-      const board = getState().boardModule.board
-      const user = getState().userModule.user
-      const savedBoard = await taskService.addImg(imgUrl, task, groupId, board, user)
-      dispatch(getActionUpdateBoard({ ...savedBoard }))
+      await boardService.save(updatedBoard)
     }
     catch (err) {
+      dispatch(getActionUpdateBoard({ ...prevBoard }))
       console.log('Cannot add image', err)
     }
   }
@@ -48,36 +71,33 @@ export function addImg(imgUrl, task, groupId) {
 
 export function addChecklist(title, taskId, groupId) {
   return async (dispatch, getState) => {
-    try {
-      const board = getState().boardModule.board
-      const user = getState().userModule.user
-      const savedBoard = await taskService.addChecklist(title, taskId, groupId, board, user)
-      dispatch(getActionUpdateBoard({ ...savedBoard }))
-    } catch (err) {
-      console.log('Cannot add checklist', err)
-    }
-  }
-}
+    const prevBoard = getState().boardModule.board
+    const board = structuredClone(prevBoard)
+    const updatedBoard = taskService.addChecklist(title, taskId, groupId, board)
+    dispatch(getActionUpdateBoard(updatedBoard))
 
-export function removeTask(groupId, taskId) {
-  return async (dispatch, getState) => {
     try {
-      const board = getState().boardModule.board
-      const savedBoard = await taskService.remove(groupId, taskId, board)
-      dispatch(getActionUpdateBoard({ ...savedBoard }))
-    } catch (err) {
-      console.log('Cannot remove task', err)
+      await boardService.save(updatedBoard)
+    }
+    catch (err) {
+      dispatch(getActionUpdateBoard({ ...prevBoard }))
+      console.log('Cannot add checklist', err)
     }
   }
 }
 
 export function addNewTodo(title, checkListId, taskId, groupId) {
   return async (dispatch, getState) => {
+    const prevBoard = getState().boardModule.board
+    const board = structuredClone(prevBoard)
+    const updatedBoard = taskService.addTodo(title, checkListId, groupId, taskId, board)
+    dispatch(getActionUpdateBoard(updatedBoard))
+
     try {
-      const board = getState().boardModule.board
-      const savedBoard = await taskService.addTodo(title, checkListId, groupId, taskId, board)
-      dispatch(getActionUpdateBoard({ ...savedBoard }))
-    } catch (err) {
+      await boardService.save(updatedBoard)
+    }
+    catch (err) {
+      dispatch(getActionUpdateBoard({ ...prevBoard }))
       console.log('Cannot add todo', err)
     }
   }

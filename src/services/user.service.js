@@ -38,12 +38,16 @@ async function logout() {
 
 async function signup(credentials, isGoogleAuth) {
   try {
-    if (isGoogleAuth) await httpService.post('google-auth/signup', credentials)
-    else await httpService.post('auth/signup', credentials)
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(credentials))
-    return credentials
-  }
-  catch (err) {
+    let user
+    if (isGoogleAuth) {
+      user = await httpService.post('google-auth/signup', credentials)
+    } else {
+      credentials.imgUrl = 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg'
+      user = await httpService.post('auth/signup', credentials)
+    }
+    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(user))
+    return user
+  } catch (err) {
     console.log('Cannot signup', err)
     throw err
   }

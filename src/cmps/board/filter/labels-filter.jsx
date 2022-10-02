@@ -61,7 +61,7 @@ export const LabelsFilter = ({ handleChange, filterBy, updateFilter }) => {
                                 onChange={handleChange}
                             />
                             <div className="label-container">
-                                <div class={`label-color ${label.class}`}>
+                                <div className={`label-color ${label.class}`}>
                                     <div className={`label-color-circle ${label.color}`}>
                                     </div>
                                     <span className="label-title">

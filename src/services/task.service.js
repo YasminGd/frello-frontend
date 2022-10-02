@@ -1,8 +1,5 @@
 import { activityService } from './activity.service'
-import { httpService } from './http.service'
 import { utilService } from './util.service'
-// const STORAGE_KEY = 'board'
-const BASE_URL = `board/`
 
 export const taskService = {
   update,
@@ -14,11 +11,11 @@ export const taskService = {
   cleanTasksLabelIds
 }
 
-function update(board, groupId, task, activityTxt, user) {
+function update(board, groupId, task, activityTxt) {
   const groupIdx = board.groups.findIndex((group) => group.id === groupId)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => currTask.id === task.id)
   board.groups[groupIdx].tasks.splice(taskIdx, 1, task)
-  if (activityTxt) board = activityService.addActivity(activityTxt, task, board, null, user)
+  if (activityTxt) board = activityService.addActivity(activityTxt, task, board, null)
 
   return board
 }
@@ -29,7 +26,7 @@ function add(title, groupId, board) {
   return activityService.addActivity(`added ${title} to ${group.title}`, null, board)
 }
 
-function remove(groupId, taskId, board, user) {
+function remove(groupId, taskId, board) {
   const group = board.groups.find((group) => group.id === groupId)
   const task = group.tasks.find((task) => task.id === taskId)
   group.tasks = group.tasks.filter((task) => task.id !== taskId)

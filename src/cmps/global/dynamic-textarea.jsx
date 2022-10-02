@@ -1,11 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateGroupTitle } from '../../store/actions/group.action'
 import { updateTask } from '../../store/actions/task.action'
 
 export const DynamicTextarea = ({ type, entity, style, groupId }) => {
-  const [txt, setTxt] = useState(entity.title)
+  const [txt, setTxt] = useState()
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    setTxt(entity.title)
+  }, [entity.title])
 
   const handleChange = ({ target }) => {
     const { value } = target

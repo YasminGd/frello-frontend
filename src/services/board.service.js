@@ -113,6 +113,6 @@ function removeUserFromAllTasks(groups, userId) {
 
 function getNumberOfTasks(groups) {
   let tasksLength = 0
-  groups.forEach(group => group.tasks.forEach( task => tasksLength++))
+  groups.forEach(group => group.tasks.forEach(task => tasksLength++))
   return tasksLength
 }

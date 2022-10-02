@@ -65,6 +65,7 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
           groupId={groupId}
           task={task}
           onUpdateTask={onUpdateTask}
+          setQuickEdit={setQuickEdit}
         />
       }
     </React.Fragment>

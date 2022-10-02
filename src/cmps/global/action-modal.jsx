@@ -30,6 +30,7 @@ export const ActionModal = ({
   updateFilter,
   filterBy,
   handleChange,
+  setQuickEdit
 }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
@@ -70,7 +71,7 @@ export const ActionModal = ({
         return <Dates task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
 
       case 'Members':
-        return <Members task={task} groupId={groupId} setActionModal={setActionModal} />
+        return <Members task={task} groupId={groupId} setActionModal={setActionModal} setQuickEdit={setQuickEdit} />
 
       case 'Users':
         return <Users />

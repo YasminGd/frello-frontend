@@ -3,8 +3,8 @@ import { updateTask } from '../../store/actions/task.action'
 import React, { useState } from 'react'
 import { BiCheck } from 'react-icons/bi'
 
-export const Members = ({ task, groupId }) => {
-  task = structuredClone(task)
+export const Members = ({ task, groupId, setQuickEdit }) => {
+  // task = structuredClone(task)
   const dispatch = useDispatch()
   const boardMembers = useSelector((state) => state.boardModule.board.members)
   const [membersToRender, setMembersToRender] = useState(boardMembers || [])
@@ -30,6 +30,7 @@ export const Members = ({ task, groupId }) => {
       if (task.memberIds) task.memberIds.push(memberId)
       else task.memberIds = [memberId]
     }
+    setQuickEdit(prevState => ({ ...prevState, task }))
     dispatch(updateTask(groupId, task, activityTxt, member))
   }
 

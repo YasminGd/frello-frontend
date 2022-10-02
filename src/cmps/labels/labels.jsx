@@ -7,7 +7,7 @@ import { EditLabel } from './edit-label'
 import { utilService } from '../../services/util.service'
 import { taskService } from '../../services/task.service'
 
-export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
+export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuickEdit }) => {
   task = structuredClone(task)
   const dispatch = useDispatch()
   let board = useSelector((state) => state.boardModule.board)
@@ -35,6 +35,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
         const labelIdx = task.labelIds.findIndex((currLabelId) => currLabelId === labelId)
         task.labelIds.splice(labelIdx, 1)
       }
+      if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
       dispatch(updateTask(groupId, task))
 
     } else if (target.type === 'text') {
@@ -63,6 +64,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit }) => {
       board.labels.push(label)
       const updatedBoard = taskService.update(board, groupId, task)
       setSelectedLabel(null)
+      if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
       dispatch(updateBoard(updatedBoard))
       return
     }

@@ -11,6 +11,8 @@
   transition-timing-function: ease-in;
   flex-wrap: wrap;
 
+  @include checkboxSmall();
+
   &:hover {
     background-color: #091e420a;
   }

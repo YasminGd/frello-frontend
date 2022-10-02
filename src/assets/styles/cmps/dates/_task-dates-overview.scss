@@ -11,6 +11,8 @@
     flex-direction: row;
     margin: 0 8px 8px 0;
 
+    @include checkboxSmall();
+
     .checkbox {
       height: 14px;
       width: 14px;

@@ -81,3 +81,67 @@
     border-bottom: 10px solid transparent;
   }
 }
+
+@mixin checkboxSmall() {
+  .checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 33px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-radius: 5px;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .checkmark {
+      position: absolute;
+      top: -6px;
+      left: 0;
+      height: 13px;
+      width: 13px;
+      background-color: white;
+      outline: 2px solid #dfe1e5;
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: none;
+      }
+    }
+
+    &:hover input ~ .checkmark {
+      background-color: #ccc;
+    }
+
+    & input:checked ~ .checkmark {
+      outline: none;
+      background-color: #2196f3;
+    }
+
+    & input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    & .checkmark:after {
+      left: 4.5px;
+      top: 0.6px;
+      width: 2.5px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+}

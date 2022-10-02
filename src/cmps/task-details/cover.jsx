@@ -1,4 +1,4 @@
-export const Cover = ({ task, onUpdateTask }) => {
+export const Cover = ({ task, onUpdateTask, setQuickEdit }) => {
   const selectedColor = task.style ? task.style.bgColor : ''
   const selectedImg = task.style ? task.style.coverImg : ''
   const selectedCover = task.style ? task.style.isFullyCovered : false
@@ -43,6 +43,7 @@ export const Cover = ({ task, onUpdateTask }) => {
       task.style.coverImg = null
       if (!color) task.style.isFullyCovered = false
     } else task.style = { bgColor: color }
+    if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
     onUpdateTask(task)
   }
 
@@ -51,6 +52,7 @@ export const Cover = ({ task, onUpdateTask }) => {
     if (selectedCover === coverOption || (!selectedImg && !selectedColor)) return
     if (task.style) task.style.isFullyCovered = coverOption
     else task.style = { isFullyCovered: coverOption }
+    if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
     onUpdateTask(task)
   }
 
@@ -68,9 +70,8 @@ export const Cover = ({ task, onUpdateTask }) => {
         <p className="title">Size</p>
         <section className="visual-options">
           <div
-            className={`not-covered-visual-option ${isThereBorderOnCoverOption(false)} ${
-              selectedColor || selectedImg ? '' : 'disabled'
-            }`}
+            className={`not-covered-visual-option ${isThereBorderOnCoverOption(false)} ${selectedColor || selectedImg ? '' : 'disabled'
+              }`}
             style={{ background: getCoverOptionsBackgroundColor(false) }}
             onClick={() => onUpdateCoverStyle(false)}
           >
@@ -93,9 +94,8 @@ export const Cover = ({ task, onUpdateTask }) => {
             </div>
           </div>
           <div
-            className={`covered-visual-option ${isThereBorderOnCoverOption(true)} ${
-              selectedColor || selectedImg ? '' : 'disabled'
-            }`}
+            className={`covered-visual-option ${isThereBorderOnCoverOption(true)} ${selectedColor || selectedImg ? '' : 'disabled'
+              }`}
             style={{ background: getCoverOptionsBackgroundColor(true) }}
             onClick={() => onUpdateCoverStyle(true)}
           >

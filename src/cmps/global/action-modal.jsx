@@ -57,11 +57,11 @@ export const ActionModal = ({
         return <Attachment task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
 
       case 'Cover':
-        return <Cover task={task} onUpdateTask={onUpdateTask} />
+        return <Cover task={task} onUpdateTask={onUpdateTask} setQuickEdit={setQuickEdit} />
 
       case 'Labels':
         return (
-          <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} />
+          <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} setQuickEdit={setQuickEdit} />
         )
 
       case 'Checklist':

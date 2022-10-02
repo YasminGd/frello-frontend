@@ -42,7 +42,10 @@ export const TaskDatesOverview = ({ task, groupId, onOpenActionModal }) => {
     <div className="task-dates-overview">
       <h3 className="task-dates-overview-title">Due Date</h3>
       <div className="due-date-badge">
-        <input type="checkbox" onChange={handleChange} checked={task.dueDate.isDone} className="checkbox" />
+        <label htmlFor="date-overview" className="checkbox-container">
+          <input id="date-overview" type="checkbox" onChange={handleChange} checked={task.dueDate.isDone} className="checkbox" />
+          <span className="checkmark"></span>
+        </label>
         <div className="due-date-container">
           <button onClick={() => onOpenActionModal('Dates', btnDatesRef)} ref={btnDatesRef}>
             <span>{utilService.dueDateTimeFormat(task.dueDate.date)}</span>

@@ -37,7 +37,7 @@ export const Members = ({ task, groupId }) => {
       <div className="">
         <input
           onChange={handleChange}
-          autoFocus={window.innerWidth > 1800}
+          autoFocus={window.innerWidth >= 1200}
           className="search-member"
           type="text"
           placeholder="Search Members"

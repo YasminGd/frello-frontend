@@ -5,6 +5,9 @@
 
   &:hover {
     background-color: rgba(9, 30, 66, 0.08);
+    .img-container {
+      opacity: 0.5;
+    }
   }
 
   a {

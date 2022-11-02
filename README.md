@@ -104,11 +104,8 @@ The menu on the right which is opened by the pressing the "Show menu" button ena
 
 ### Some mobile!
 Just a taste of the mobile experience. We used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
-The layout we have built from the very first moment enabled us to make the website responsive without a lot of effort.
-
-<img src="frontend/src/assets/imgs/readme/login-mobile.png" width="25%" style="float: left"/><img src="frontend/src/assets/imgs/readme/workspace-mobile.png" width="25%" style="float: left;"/><img src="frontend/src/assets/imgs/readme/sidemenu-mobile.png" width="25%" style="float: left;"/><img src="frontend/src/assets/imgs/readme/details-mobile.png" width="25%" style="float: left;"/>
 
 ### Authors
- - [Ori Ben Amram](https://github.com/OriBenAmram)
- - [Daniel Shaked](https://github.com/DanielShaked)
- - [Yuval shai](https://github.com/yuvalshai95)
+ - [Yasmin Gudha](https://github.com/YasminGd)
+ - [Bar Ohayon](https://github.com/OhayoNB)
+ - [Lee Sharon](https://github.com/leesharon)

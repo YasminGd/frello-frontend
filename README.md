@@ -98,9 +98,9 @@ Here the user can edit their tasks and to watch it happens live, in this page an
 
 
 ### Side menu
-The menu on the right which is opened by the pressing the "Show menu" button enables the user to filter members by labels / name, change the board background with unsplash Images, watch the archived tasks (and bring it back to the board) and watch the activity of the board (who did what and when, and to navigate to those tasks).
+The menu on the right which is opened by the pressing the "Show menu" button enables the user to change the board background with unsplash Images and watch the activity of the board (who did what and when, and to navigate to those tasks).
 
-![Sidemenu image](frontend/src/assets/imgs/readme/sidemenu.png "side-menu-image")
+<img src="src/assets/img/read-me/side-menu-activities.png" width="25%" style="float: left"/><img src="frontend/src/assets/imgs/readme/side-menu-photos.png" width="25%" style="float: right;"/>
 
 ### Some mobile!
 Just a taste of the mobile experience. We used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 

@@ -106,8 +106,8 @@ The menu on the right which is opened by the pressing the "Show menu" button ena
 Just a taste of the mobile experience. We used different **mixins**, **conditional rendering**, and the **"mobile first"** approach. 
 
 
-<img src="src/assets/img/read-me/mobile-home-page.png" width="25%" style="float: left"/><img src="src/assets/img/read-me/mobile-boards.png" width="25%" style="float: left;"/>
-<img src="src/assets/img/read-me/mobile-board.png" width="25%" style="float: left"/><img src="src/assets/img/read-me/mobile-task-details.png" width="25%" style="float: left;"/>
+<img src="src/assets/img/read-me/mobile-home-page.png" width="24%" style="float: left"/><img src="src/assets/img/read-me/mobile-boards.png" width="24%" style="float: left;"/>
+<img src="src/assets/img/read-me/mobile-board.png" width="24%" style="float: left"/><img src="src/assets/img/read-me/mobile-task-details.png" width="24%" style="float: left;"/>
 
 ### Authors
  - [Yasmin Gudha](https://github.com/YasminGd)

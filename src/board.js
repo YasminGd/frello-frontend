@@ -1,6 +1,5 @@
-import { utilService } from './services/util.service'
-
 //prettier-ignore
+// demo data board
 export var board = {
   _id: 'b101',
   title: 'Demo Data',

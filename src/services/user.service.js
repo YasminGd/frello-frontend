@@ -7,6 +7,7 @@ export const userService = {
     logout,
     signup,
     getLoggedInUser,
+    removeUserFromAllTasks
 }
 
 const STORAGE_KEY_LOGGEDIN = "loggedInUser"
@@ -72,4 +73,21 @@ async function getUsers() {
     } catch (err) {
         console.log("Cannot get users ", err)
     }
+}
+
+function removeUserFromAllTasks(groups, userId) {
+   groups.forEach(
+      group =>
+         (group.tasks = group.tasks.map(task =>
+            task.memberIds
+               ? {
+                    ...task,
+                    memberIds: task.memberIds.filter(
+                       memberId => memberId !== userId
+                    ),
+                 }
+               : task
+         ))
+   )
+   return groups
 }

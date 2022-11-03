@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { updateBoard } from '../../store/actions/board.action'
 import { BsThreeDots, BsPersonPlus, BsFilter, BsGraphUp } from 'react-icons/bs'
-import { BoardSideMenu } from './board-side-menu'
+import { BoardSideMenu } from './side-menu/board-side-menu'
 import { TiStarOutline, TiStarFullOutline } from 'react-icons/ti'
 import { ActionModal } from '../global/action-modal'
 import { utilService } from '../../services/util.service'
@@ -85,7 +85,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
         <span className={`divider ${themeStyle}`}></span>
-        {board.members && board?.members?.length !==0 && (
+        {board.members && board?.members?.length !== 0 && (
           <div className="board-members">
             {board.members.map((member, index) => (
               <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>

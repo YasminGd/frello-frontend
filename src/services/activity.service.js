@@ -8,12 +8,7 @@ export const activityService = {
 function addActivity(txt, task, board, comment, user) {
   const miniUser = user || userService.getLoggedInUser()
 
-  const miniTask = task
-    ? {
-      id: task.id,
-      title: task.title,
-    }
-    : null
+  const miniTask = task ? { id: task.id, title: task.title,} : null
 
   const activity = {
     id: utilService.makeId(),

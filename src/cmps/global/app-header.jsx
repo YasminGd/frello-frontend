@@ -5,9 +5,7 @@ import { useSelector } from 'react-redux'
 import { ActionModal } from './action-modal'
 import { useRef, useState } from 'react'
 import { utilService } from '../../services/util.service'
-import { IoIosArrowDown } from 'react-icons/io'
 import { MdKeyboardArrowDown } from 'react-icons/md'
-import { includes } from 'lodash'
 import { Fragment } from 'react'
 
 export const AppHeader = () => {

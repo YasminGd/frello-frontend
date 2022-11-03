@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { GrClose } from 'react-icons/gr'
 
 export const AddItem = ({ onToggleAdd, addItem, groupId }) => {

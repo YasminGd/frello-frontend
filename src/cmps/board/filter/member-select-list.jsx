@@ -14,10 +14,10 @@ export const MemberSelectList = ({ handleChange, filterBy }) => {
                                 className="checkbox"
                                 type="checkbox"
                                 id={member._id}
-                                name="members"
+                                name="member"
                                 value={member._id}
                                 onChange={handleChange}
-                                checked={filterBy?.members?.includes(member._id)}
+                                checked={filterBy.member?.memberIds?.includes(member._id)}
                             />
                             <div className="option-container">
                                 <div className="member-img img">

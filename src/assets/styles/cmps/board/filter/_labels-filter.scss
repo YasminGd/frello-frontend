@@ -1,6 +1,7 @@
 .labels-filter {
 
     &.filter {
+        margin-bottom: 0;
         ul {
             margin-top: 8px;
             margin-bottom: 0;
@@ -32,7 +33,7 @@
                     margin-top: 4px;
                 }
 
-                label {
+                .label-for-select-labels {
                     padding-bottom: 0;
                 }
 

@@ -8,6 +8,7 @@
 
 
   &.filter {
+    margin-bottom: 15px;
     ul {
       margin: 0;
 
@@ -35,13 +36,9 @@
         }
       }
 
-      .select-member-li {
-        label {
-          
-          padding-bottom: 0;
-        }
+      .select-member-label {
+        padding-bottom: 0;
       }
     }
   }
-
 }

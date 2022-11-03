@@ -16,7 +16,6 @@ import {
   BarElement,
   Title,
 } from 'chart.js'
-import { boardService } from '../../services/board.service'
 import { FaLayerGroup, FaTasks, FaUser } from 'react-icons/fa'
 import { useClickOutside } from '../hooks/is-clicked-outside'
 import { useRef } from 'react'
@@ -39,7 +38,7 @@ export const Dashboard = () => {
   const board = useSelector((state) => state.boardModule.board)
   const membersLength = board.members
   const groupsLength = board.groups.length
-  const tasksLength = boardService.getNumberOfTasks(board.groups)
+  const tasksLength = dashboardService.getNumberOfTasks(board.groups)
   const containerRef = useRef()
 
   const onGoBack = () => {

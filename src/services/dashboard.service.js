@@ -2,6 +2,7 @@ export const dashboardService = {
     getTasksByStatus,
     getTasksByGroups,
     getTasksByMember,
+    getNumberOfTasks
 }
 
 function getTasksByStatus(groups) {
@@ -91,4 +92,10 @@ function getTasksByMember(groups, boardMembers) {
             },
         ],
     }
+}
+
+function getNumberOfTasks(groups) {
+   let tasksLength = 0
+   groups.forEach(group => group.tasks.forEach(task => tasksLength++))
+   return tasksLength
 }

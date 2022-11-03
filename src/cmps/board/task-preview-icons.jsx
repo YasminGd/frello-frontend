@@ -67,7 +67,6 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
   }
 
   const todoDetails = todosPreview()
-  // console.log(todoDetails)
 
   return (
     <section className="task-preview-icons">

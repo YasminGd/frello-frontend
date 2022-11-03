@@ -8,7 +8,6 @@ import { MessageList } from "./message-list"
 export const Chat = ({ setIsChatOpen }) => {
     const user = useSelector(state => state.userModule.user)
     let board = useSelector(state => state.boardModule.board)
-    console.log('Chat ~ board', board)
     const [message, setMessage] = useState("")
     const dispatch = useDispatch()
 

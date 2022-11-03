@@ -198,6 +198,7 @@ export const Board = () => {
   }
 
   const updateFilter = (filter) => {
+    console.log(filter);
     setFilterBy({ ...filter })
   }
 

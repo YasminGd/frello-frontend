@@ -1,6 +1,6 @@
 # Frello - Project management app inspired by trello.com
 
-[Here's a link to my project](https://frello-urbc.onrender.com/ "Frello link").
+[Here's a link to our project](https://frello-urbc.onrender.com/ "Frello link").
 
 ![Main board image](src/assets/img/read-me/main-board.png "Board-main-page")
 

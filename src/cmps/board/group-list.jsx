@@ -5,7 +5,7 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { isEmpty } from 'lodash'
 import { BsChatFill } from 'react-icons/bs'
-import { Chat } from './chat.jsx'
+import { Chat } from './chat/chat.jsx'
 
 export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBackgroundDark, setQuickEdit, quickEdit }) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
@@ -65,7 +65,7 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBack
           <div className="chat-btn" onClick={() => setIsChatOpen(true)}>
             <BsChatFill />
           </div>
-          {isChatOpen && <Chat setIsChatOpen={setIsChatOpen}/>}
+          {isChatOpen && <Chat setIsChatOpen={setIsChatOpen} />}
         </section>
       )}
     </Droppable>

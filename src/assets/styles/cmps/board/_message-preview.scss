@@ -1,5 +1,4 @@
-.massage-preview {
-    // height: 36px;
+.message-preview {
     display: flex;
     gap: 8px;
 
@@ -19,14 +18,12 @@
     .body {
         flex-grow: 1;
         border-radius: 10px;
-        // border-radius: 6px;
         border-bottom-left-radius: 0;
         padding: 4px 12px;
         padding-top: 2px;
         padding-bottom: 6px;
         background-color: #ebecf0;
         box-shadow: 0 1px 0 rgb(9 30 66 / 25%);
-        // max-width: 100%;
         word-wrap: break-word;
         max-width: 228px;
 

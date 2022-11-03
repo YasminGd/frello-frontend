@@ -37,30 +37,30 @@
 
 // BOARD
 @import 'cmps/board/board-header';
-@import 'cmps/board/board-side-menu';
 @import 'cmps/board/filter/board-filter';
 @import 'cmps/board/filter/members-filter';
 @import 'cmps/board/filter/member-select-list';
 @import 'cmps/board/filter/labels-filter';
 @import 'cmps/board/filter/label-select-list';
-@import 'cmps/board/group-list';
-@import 'cmps/board/group-preview';
-@import 'cmps/board/task-list';
-@import 'cmps/board/task-preview';
-@import 'cmps/board/side-menu-background-options';
-@import 'cmps/board/side-menu-colors';
-@import 'cmps/board/side-menu-photos';
-@import 'cmps/board/side-menu-main-display';
-@import 'cmps/board/quick-edit';
-@import 'cmps/board/quick-edit-buttons';
+@import 'cmps/board/group/group-list';
+@import 'cmps/board/group/group-preview';
+@import 'cmps/board/group/list-actions';
+@import 'cmps/board/task/task-list';
+@import 'cmps/board/task/task-preview';
+@import 'cmps/board/task/task-preview-icons';
+@import 'cmps/board/side-menu/board-side-menu';
+@import 'cmps/board/side-menu/side-menu-background-options';
+@import 'cmps/board/side-menu/side-menu-colors';
+@import 'cmps/board/side-menu/side-menu-photos';
+@import 'cmps/board/side-menu/side-menu-main-display';
+@import 'cmps/board/quick-edit/quick-edit';
+@import 'cmps/board/quick-edit/quick-edit-buttons';
 @import 'cmps/board/users';
 @import 'cmps/board/account-details';
-@import 'cmps/board/list-actions';
-@import 'cmps/board/task-preview-icons';
 @import 'cmps/board/dashboard';
-@import 'cmps/board/chat';
-@import 'cmps/board/message-list';
-@import 'cmps/board/message-preview';
+@import 'cmps/board/chat/chat';
+@import 'cmps/board/chat/message-list';
+@import 'cmps/board/chat/message-preview';
 
 // TASK DETAILS
 @import 'cmps/task-details/task-details-header';

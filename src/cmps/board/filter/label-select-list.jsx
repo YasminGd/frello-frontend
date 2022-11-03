@@ -13,10 +13,10 @@ export const LabelSelectList = ({ handleChange, filterBy }) => {
                 className="checkbox"
                 type="checkbox"
                 id={label.id}
-                name="labels"
+                name="label"
                 value={label.id}
                 onChange={handleChange}
-                checked={filterBy?.labels?.includes(label.id)}
+                checked={filterBy?.label?.labelIds?.includes(label.id)}
               />
               <div className="label-container">
                 <div class={`label-color ${label.class}`}>

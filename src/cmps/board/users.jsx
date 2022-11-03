@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import { BiCheck } from 'react-icons/bi'
-import { updateBoard } from '../../store/actions/board.action'
-import { activityService } from '../../services/activity.service'
-import { userService } from '../../services/user.service'
+import { updateBoard } from 'store/actions/board.action'
+import { activityService } from 'services/activity.service'
+import { userService } from 'services/user.service'
 import { Loader } from '../global/loader'
-import { boardService } from '../../services/board.service'
 
 export const Users = () => {
   const dispatch = useDispatch()
@@ -38,7 +37,7 @@ export const Users = () => {
     if (board.members?.some((member) => member._id === userId)) {
       const index = board.members.findIndex((member) => member._id === userId)
       board.members.splice(index, 1)
-      board.groups = boardService.removeUserFromAllTasks(board.groups, userId)
+      board.groups = userService.removeUserFromAllTasks(board.groups, userId)
       activityTxt = `removed ${user.fullname} from this board`
     } else {
       activityTxt = `added ${user.fullname} to this board`

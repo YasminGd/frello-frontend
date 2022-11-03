@@ -28,7 +28,7 @@ export const TodoPreview = ({ todo, checkListId, updateTodo, removeTodo }) => {
     <section className="todo-preview">
       <label htmlFor={todo.id} className="checkbox-container">
         <input className='checkbox' id={todo.id} type="checkbox" checked={todo.isDone} onChange={onChangeTodoDone} />
-        <span class="checkmark"></span>
+        <span className="checkmark"></span>
       </label>
 
       {isEditTitleOpen ? (

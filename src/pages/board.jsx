@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { TaskDetails } from './task-details.jsx'
 import { BoardHeader } from '../cmps/board/board-header.jsx'
-import { GroupList } from '../cmps/board/group-list.jsx'
+import { GroupList } from '../cmps/board/group/group-list.jsx'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -16,7 +16,7 @@ import { activityService } from '../services/activity.service.js'
 import { Dashboard } from '../cmps/board/dashboard.jsx'
 import { utilService } from '../services/util.service.js'
 import { Fragment } from 'react'
-import { QuickEdit } from '../cmps/board/quick-edit.jsx'
+import { QuickEdit } from 'cmps/board/quick-edit/quick-edit.jsx'
 
 export const Board = () => {
   const board = useSelector((state) => state.boardModule.board)
@@ -198,6 +198,7 @@ export const Board = () => {
   }
 
   const updateFilter = (filter) => {
+    console.log(filter);
     setFilterBy({ ...filter })
   }
 

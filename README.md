@@ -114,8 +114,8 @@ Just a taste of the mobile experience. We used different **mixins**, **condition
 <img src="src/assets/img/read-me/mobile-board.png" width="24%" /><img src="src/assets/img/read-me/mobile-task-details.png" width="24%" />
 </p>
 
-<!-- <img src="src/assets/img/read-me/mobile-home-page.png" width="24%" style="float: left"/><img src="src/assets/img/read-me/mobile-boards.png" width="24%" style="float: left;"/>
-<img src="src/assets/img/read-me/mobile-board.png" width="24%" style="float: left"/><img src="src/assets/img/read-me/mobile-task-details.png" width="24%" style="float: left;"/> -->
+<!-- <img src="src/assets/img/read-me/mobile-home-page.png" width="25%" style="float: left"/><img src="src/assets/img/read-me/mobile-boards.png" width="25%" style="float: left;"/>
+<img src="src/assets/img/read-me/mobile-board.png" width="25%" style="float: left"/><img src="src/assets/img/read-me/mobile-task-details.png" width="25%" style="float: left;"/> -->
 
 ### Authors
  - [Yasmin Gudha](https://github.com/YasminGd)

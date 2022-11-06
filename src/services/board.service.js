@@ -1,6 +1,5 @@
 import { httpService } from './http.service.js'
 
-// const STORAGE_KEY = 'board'
 const BASE_URL = `board/`
 
 export const boardService = {
@@ -12,11 +11,7 @@ export const boardService = {
 }
 
 async function query(filterBy) {
-   try {
-      return httpService.get(BASE_URL, filterBy)
-   } catch (err) {
-      console.log('err: Cannot get boards ', err)
-   }
+   return httpService.get(BASE_URL, filterBy)
 }
 
 async function getById(boardId) {

@@ -26,7 +26,6 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBack
                 <GroupPreview
                   quickEdit={quickEdit}
                   setQuickEdit={setQuickEdit}
-                  placeholderProps={placeholderProps}
                   provided={provided}
                   key={group.id}
                   group={group}

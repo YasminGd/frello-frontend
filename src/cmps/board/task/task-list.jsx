@@ -2,10 +2,10 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { AddItem } from '../../global/add-item.jsx'
 import { TaskPreview } from './task-preview.jsx'
 
-export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd, placeholderProps, quickEdit, setQuickEdit }) => {
+export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onToggleAdd, quickEdit, setQuickEdit }) => {
   return (
     <Droppable droppableId={groupId} type="task">
-      {(provided, snapshot) => (
+      {(provided) => (
         <section
           className={`task-list ${isAddOpen ? 'full' : ''}`}
           {...provided.droppableProps}
@@ -28,21 +28,6 @@ export const TaskList = ({ tasks, groupId, removeItem, addItem, isAddOpen, onTog
             </Draggable>
           ))}
           {provided.placeholder}
-          {/* {!isEmpty(placeholderProps) && snapshot.isDraggingOver && (
-            <div
-              className="placeholder"
-              style={{
-                position: 'absolute',
-                top: placeholderProps.clientY,
-                left: placeholderProps.clientX,
-                height: placeholderProps.clientHeight,
-                width: placeholderProps.clientWidth,
-                backgroundColor: '#000',
-                // backgroundColor: '#E3E4E9',
-                borderRadius: '3px',
-              }}
-            />
-          )} */}
           {isAddOpen && <AddItem addItem={addItem} onToggleAdd={onToggleAdd} groupId={groupId} />}
         </section>
       )}

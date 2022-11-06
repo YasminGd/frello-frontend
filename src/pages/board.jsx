@@ -83,30 +83,8 @@ export const Board = () => {
   const onDragStart = (event) => {
     const draggedDOM = getDraggedDom(event.draggableId)
     if (!draggedDOM) return
-    const { clientHeight, clientWidth } = draggedDOM
-    const sourceIndex = event.source.index
-    let clientX
-    let clientY
-
-    if (event.type === 'group') {
-      clientX =
-        parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
-        [...draggedDOM.parentNode.children]
-          .slice(0, sourceIndex)
-          .reduce((total, curr) => {
-            return total + curr.clientWidth + parseFloat(getComputedStyle(curr).marginRight)
-          }, 0) -
-        draggedDOM.parentNode.scrollLeft
-
-      clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
-    }
-
-    setPlaceholderProps({
-      clientHeight,
-      clientWidth,
-      clientX,
-      clientY,
-    })
+    const placeholderProps = utilService.handleDragStart(event, draggedDOM)
+    setPlaceholderProps(placeholderProps)
   }
 
   // Calculates the updated position of the dragged element placeholder
@@ -114,39 +92,8 @@ export const Board = () => {
     if (!event.destination) return
     const draggedDOM = getDraggedDom(event.draggableId)
     if (!draggedDOM) return
-
-    const { clientHeight, clientWidth } = draggedDOM
-    const destinationIndex = event.destination.index
-    const sourceIndex = event.source.index
-    let clientX = 0
-    let clientY = 0
-
-    const childrenArray = [...draggedDOM.parentNode.children]
-    const movedItem = childrenArray[sourceIndex]
-    childrenArray.splice(sourceIndex, 1)
-
-    let updatedArray = [
-      ...childrenArray.slice(0, destinationIndex),
-      movedItem,
-      ...childrenArray.slice(destinationIndex + 1),
-    ]
-
-    if (event.type === 'group') {
-      clientX =
-        parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
-        updatedArray.slice(0, destinationIndex).reduce((total, curr) => {
-          return total + curr.clientWidth + 8
-        }, 0) -
-        draggedDOM.parentNode.scrollLeft
-      clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
-    }
-
-    setPlaceholderProps({
-      clientHeight,
-      clientWidth,
-      clientY,
-      clientX,
-    })
+    const placeholderProps = utilService.handleDragUpdate(event, draggedDOM)
+    setPlaceholderProps(placeholderProps)
   }
 
   //prettier-ignore
@@ -211,7 +158,12 @@ export const Board = () => {
         )}
       </section>
       {quickEdit && (
-        <QuickEdit pos={quickEdit.pos} task={quickEdit.task} groupId={quickEdit.groupId} setQuickEdit={setQuickEdit} />
+        <QuickEdit
+          pos={quickEdit.pos}
+          task={quickEdit.task}
+          groupId={quickEdit.groupId}
+          setQuickEdit={setQuickEdit}
+        />
       )}
     </Fragment>
   )

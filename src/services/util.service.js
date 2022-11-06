@@ -10,6 +10,8 @@ export const utilService = {
   dueDateFormat,
   getModalPosition,
   getModalPositionOnTop,
+  handleDragStart,
+  handleDragUpdate,
   handleDragEnd,
   isBackgroundDark,
 }
@@ -138,6 +140,63 @@ function getModalPositionOnTop(ref) {
   // if (window.innerWidth - rect.right < 150) pos.left -= 130
   // if (window.innerHeight - rect.bottom < 450) pos.bottom -= 200
   return pos
+}
+
+function handleDragStart(event, draggedDOM) {
+  const { clientHeight, clientWidth } = draggedDOM
+  const sourceIndex = event.source.index
+  let clientX
+  let clientY
+
+  if (event.type === 'group') {
+    clientX =
+      parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
+      [...draggedDOM.parentNode.children]
+        .slice(0, sourceIndex)
+        .reduce((total, curr) => {
+          return total + curr.clientWidth + parseFloat(getComputedStyle(curr).marginRight)
+        }, 0) -
+      draggedDOM.parentNode.scrollLeft
+
+    clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
+  }
+
+  return {
+    clientHeight,
+    clientWidth,
+    clientX,
+    clientY,
+  }
+}
+
+function handleDragUpdate(event, draggedDOM) {
+  const { clientHeight, clientWidth } = draggedDOM
+  const destinationIndex = event.destination.index
+  const sourceIndex = event.source.index
+  let clientX = 0
+  let clientY = 0
+
+  const childrenArray = [...draggedDOM.parentNode.children]
+  const movedItem = childrenArray[sourceIndex]
+  childrenArray.splice(sourceIndex, 1)
+
+  let updatedArray = [
+    ...childrenArray.slice(0, destinationIndex),
+    movedItem,
+    ...childrenArray.slice(destinationIndex + 1),
+  ]
+
+  if (event.type === 'group') {
+    clientX =
+      parseFloat(window.getComputedStyle(draggedDOM.parentNode).paddingLeft) +
+      updatedArray.slice(0, destinationIndex).reduce((total, curr) => {
+        return total + curr.clientWidth + 8
+      }, 0) -
+      draggedDOM.parentNode.scrollLeft
+    clientY = parseFloat(window.getComputedStyle(draggedDOM.parentNode))
+  }
+
+  return { clientHeight, clientWidth, clientX, clientY }
 }
 
 function handleDragEnd(newBoard, destination, source, type) {

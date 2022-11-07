@@ -12,11 +12,15 @@ export function boardReducer(state = initialState, action) {
       state = { ...state, boards: action.boards }
       break
 
+    //TODO: change name and check if lines 17-23 are neccessary
     case 'SET_BOARD':
-      let board
-      if (!action.boardId) board = null
-      board = state.boards.find((boardInState) => boardInState._id === action.boardId) || null
-      state = { ...state, board }
+      // let board
+      // if (!action.boardId) board = null
+      // board =
+      //   state.boards.find(
+      //     (boardInState) => boardInState._id === action.boardId
+      //   ) || null
+      state = { ...state, board: null }
       break
 
     case 'SET_BOARD_FROM_BACK':
@@ -33,20 +37,15 @@ export function boardReducer(state = initialState, action) {
       break
 
     case 'UPDATE_BOARD':
-      // let boardTest = structuredClone(action.board)
       state = { ...state, board: action.board }
       break
 
     case 'UPDATE_BOARDS':
-      boards = state.boards.map((board) => (board._id === action.board._id ? action.board : board))
+      boards = state.boards.map((board) =>
+        board._id === action.board._id ? action.board : board
+      )
       state = { ...state, boards }
       break
-
-    // case 'UNDO_REMOVE_BOARD':
-    //   if (state.lastRemovedBoard) {
-    //     state = { ...state, boards: [...state.boards, state.lastRemovedBoard] }
-    //   }
-    //   break
 
     default:
       return state

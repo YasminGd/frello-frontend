@@ -16,7 +16,7 @@ import { CreateBoard } from '../workspace/create-board'
 import { LabelSelectList } from '../board/filter/label-select-list'
 import { Location } from '../location/location'
 import { LocationActions } from '../location/location-actions'
-import { useClickOutside } from '../hooks/is-clicked-outside'
+import { useClickOutside } from '../../hooks/is-clicked-outside'
 import { HeaderBoards } from './header-boards'
 import { HeaderStarredBoards } from './header-starred-boards'
 
@@ -30,7 +30,7 @@ export const ActionModal = ({
   updateFilter,
   filterBy,
   handleChange,
-  setQuickEdit
+  setQuickEdit,
 }) => {
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
@@ -54,42 +54,91 @@ export const ActionModal = ({
   const getActionCmp = (type) => {
     switch (type) {
       case 'Attachment':
-        return <Attachment task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
+        return (
+          <Attachment
+            task={task}
+            setActionModal={setActionModal}
+            onUpdateTask={onUpdateTask}
+            groupId={groupId}
+          />
+        )
 
       case 'Cover':
-        return <Cover task={task} onUpdateTask={onUpdateTask} setQuickEdit={setQuickEdit} />
+        return (
+          <Cover
+            task={task}
+            onUpdateTask={onUpdateTask}
+            setQuickEdit={setQuickEdit}
+          />
+        )
 
       case 'Labels':
         return (
-          <Labels task={task} groupId={groupId} onToggleLabelEdit={onToggleLabelEdit} isLabelsEdit={isLabelsEdit} setQuickEdit={setQuickEdit} />
+          <Labels
+            task={task}
+            groupId={groupId}
+            onToggleLabelEdit={onToggleLabelEdit}
+            isLabelsEdit={isLabelsEdit}
+            setQuickEdit={setQuickEdit}
+          />
         )
 
       case 'Checklist':
         return <CheckList setActionModal={setActionModal} />
 
       case 'Dates':
-        return <Dates task={task} setActionModal={setActionModal} onUpdateTask={onUpdateTask} groupId={groupId} />
+        return (
+          <Dates
+            task={task}
+            setActionModal={setActionModal}
+            onUpdateTask={onUpdateTask}
+            groupId={groupId}
+          />
+        )
 
       case 'Members':
-        return <Members task={task} groupId={groupId} setActionModal={setActionModal} setQuickEdit={setQuickEdit} />
+        return (
+          <Members
+            task={task}
+            groupId={groupId}
+            setActionModal={setActionModal}
+            setQuickEdit={setQuickEdit}
+          />
+        )
 
       case 'Users':
         return <Users />
 
       case 'Location':
-        return <Location task={task} groupId={groupId} setActionModal={setActionModal} />
+        return (
+          <Location
+            task={task}
+            groupId={groupId}
+            setActionModal={setActionModal}
+          />
+        )
 
       case 'List actions':
-        return <ListActions groupId={groupId} removeItem={removeItem} setActionModal={setActionModal} />
+        return (
+          <ListActions
+            groupId={groupId}
+            removeItem={removeItem}
+            setActionModal={setActionModal}
+          />
+        )
 
       case 'Filter':
         return <BoardFilter updateFilter={updateFilter} filterBy={filterBy} />
 
       case 'Select member':
-        return <MemberSelectList handleChange={handleChange} filterBy={filterBy} />
+        return (
+          <MemberSelectList handleChange={handleChange} filterBy={filterBy} />
+        )
 
       case 'Select label':
-        return <LabelSelectList handleChange={handleChange} filterBy={filterBy} />
+        return (
+          <LabelSelectList handleChange={handleChange} filterBy={filterBy} />
+        )
 
       case 'Account':
         return <AccountDetails setActionModal={setActionModal} />
@@ -104,7 +153,13 @@ export const ActionModal = ({
         return <HeaderStarredBoards setActionModal={setActionModal} />
 
       default:
-        return <LocationActions task={task} groupId={groupId} setActionModal={setActionModal} />
+        return (
+          <LocationActions
+            task={task}
+            groupId={groupId}
+            setActionModal={setActionModal}
+          />
+        )
     }
   }
 
@@ -142,7 +197,12 @@ export const ActionModal = ({
       {title && (
         <div className="title-container">
           <p>{title}</p>
-          {isLabelsEdit && <IoChevronBack className="edit-go-back" onClick={onToggleLabelEdit} />}
+          {isLabelsEdit && (
+            <IoChevronBack
+              className="edit-go-back"
+              onClick={onToggleLabelEdit}
+            />
+          )}
           <span>
             <IoCloseOutline
               onClick={(ev) => {

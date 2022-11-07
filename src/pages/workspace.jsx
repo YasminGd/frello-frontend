@@ -47,7 +47,10 @@ export const Workspace = () => {
               <h3>Starred boards</h3>
             </div>
             <div className="boards-container">
-              <BoardList boards={getStarredBoards()} onToggleStarred={onToggleStarred} />
+              <BoardList
+                boards={getStarredBoards()}
+                onToggleStarred={onToggleStarred}
+              />
             </div>
           </section>
           <section className="recent-boards">
@@ -58,7 +61,7 @@ export const Workspace = () => {
             <div className="boards-container">
               <BoardList
                 onOpenActionModal={onOpenActionModal}
-                newBoard={true}
+                newBoardPlaceholder={true}
                 boards={boards}
                 onToggleStarred={onToggleStarred}
               />
@@ -66,7 +69,9 @@ export const Workspace = () => {
           </section>
         </section>
       )}
-      {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}
+      {actionModal && (
+        <ActionModal setActionModal={setActionModal} data={actionModal} />
+      )}
     </section>
   )
 }

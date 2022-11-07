@@ -7,7 +7,15 @@ import { isEmpty } from 'lodash'
 import { BsChatFill } from 'react-icons/bs'
 import { Chat } from '../chat/chat.jsx'
 
-export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBackgroundDark, setQuickEdit, quickEdit }) => {
+export const GroupList = ({
+  board,
+  addItem,
+  removeItem,
+  placeholderProps,
+  isBackgroundDark,
+  setQuickEdit,
+  quickEdit,
+}) => {
   const [isAddOpen, setIsAddOpen] = useState(false)
   const [isChatOpen, setIsChatOpen] = useState(false)
 
@@ -19,7 +27,11 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBack
   return (
     <Droppable droppableId={board._id} direction="horizontal" type="group">
       {(provided, snapshot) => (
-        <section className="group-list" {...provided.droppableProps} ref={provided.innerRef}>
+        <section
+          className="group-list"
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+        >
           {board.groups.map((group, index) => (
             <Draggable draggableId={group.id} key={group.id} index={index}>
               {(provided, snapshot) => (
@@ -54,7 +66,10 @@ export const GroupList = ({ board, addItem, removeItem, placeholderProps, isBack
           {isAddOpen ? (
             <AddItem onToggleAdd={onToggleAdd} addItem={addItem} />
           ) : (
-            <button className={`add-task-button ${themeStyle}`} onClick={onToggleAdd}>
+            <button
+              className={`add-task-button ${themeStyle}`}
+              onClick={onToggleAdd}
+            >
               <span>
                 <AiOutlinePlus />
                 Add another list

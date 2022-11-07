@@ -5,22 +5,31 @@ import { TaskPreviewIcons } from './task-preview-icons'
 import { useRef } from 'react'
 import { utilService } from 'services/util.service'
 
-export const TaskPreview = ({ task, groupId, provided, isDragging, quickEdit, setQuickEdit }) => {
+export const TaskPreview = ({
+  task,
+  groupId,
+  provided,
+  isDragging,
+  quickEdit,
+  setQuickEdit,
+}) => {
   const taskPreviewRef = useRef()
 
   const getCoverStyle = () => {
-    if (task.style?.isFullyCovered && task.style.isFullyCovered) {
+    if (task.style?.isFullyCovered) {
       return task.style.bgColor ? task.style.bgColor : ''
     }
     return ''
   }
 
   const renderOptions = () => {
-    return !task.style || (task.style && !task.style.isFullyCovered)
+    // Return true only if there is style AND task style isn't fully covered
+    return task.style && !task.style.isFullyCovered
   }
 
   const isRenderLabels = () => {
-    if (task.labelIds && task.labelIds.length && task.labelIds !== 0) return true
+    if (task.labelIds && task.labelIds.length && task.labelIds !== 0)
+      return true
   }
 
   const toggleEditModal = (ev, ref) => {
@@ -53,17 +62,24 @@ export const TaskPreview = ({ task, groupId, provided, isDragging, quickEdit, se
         )}
 
         {task.style?.bgColor && (
-          <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}>
+          <section
+            className="cover-color"
+            style={{ backgroundColor: task.style.bgColor }}
+          >
             {!toRender && <p>{task.title}</p>}
           </section>
         )}
 
-        {toRender && <section className={`task-body`} style={{ backgroundColor: getCoverStyle() }}>
-          {isRenderLabels() && <TaskLabelsList labelIds={task.labelIds} />}
-          <p>{task.title}</p>
-          <TaskPreviewIcons groupId={groupId} task={task} />
-        </section>}
-
+        {toRender && (
+          <section
+            className={`task-body`}
+            style={{ backgroundColor: getCoverStyle() }}
+          >
+            {isRenderLabels() && <TaskLabelsList labelIds={task.labelIds} />}
+            <p>{task.title}</p>
+            <TaskPreviewIcons groupId={groupId} task={task} />
+          </section>
+        )}
 
         <section
           className="quick-edit-icon"

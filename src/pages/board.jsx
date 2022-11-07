@@ -29,9 +29,12 @@ export const Board = () => {
   // for DND placeholder
   const queryAttr = 'data-rbd-drag-handle-draggable-id'
   const [placeholderProps, setPlaceholderProps] = useState({})
-  const isBackgroundDark = utilService.isBackgroundDark(board?.style?.backgroundColor)
+  const isBackgroundDark = utilService.isBackgroundDark(
+    board?.style?.backgroundColor
+  )
 
   useEffect(() => {
+    // TODO: If line 38 commented, change between boards wont render title
     if (board) dispatch({ type: 'SET_BOARD', boardId: null })
     dispatch(getBoard(params.boardId))
     socketService.emit('join-board', params.boardId)
@@ -47,8 +50,13 @@ export const Board = () => {
 
   const getBoardStyle = () => {
     if (!board) return
-    if (board?.style.background) return { background: `url('${board.style.background}') center center / cover` }
-    else if (board?.style.backgroundColor) return { backgroundColor: `${board.style.backgroundColor}` }
+    if (board?.style.background)
+      return {
+        background: `url('${board.style.background}') center center / cover`,
+      }
+    else if (board?.style.backgroundColor)
+      return { backgroundColor: `${board.style.backgroundColor}` }
+    // In case there are no background image and color
     return { backgroundColor: `pink` }
   }
 
@@ -79,7 +87,7 @@ export const Board = () => {
     return draggedDOM
   }
 
-  // Calculates the posit1ion of the dragged element placeholder
+  // Calculates the position of the dragged element placeholder
   const onDragStart = (event) => {
     const draggedDOM = getDraggedDom(event.draggableId)
     if (!draggedDOM) return
@@ -119,7 +127,6 @@ export const Board = () => {
   }
 
   const updateFilter = (filter) => {
-    console.log(filter);
     setFilterBy({ ...filter })
   }
 
@@ -139,7 +146,11 @@ export const Board = () => {
               filterBy={filterBy}
               isBackgroundDark={isBackgroundDark}
             />
-            <DragDropContext onDragStart={onDragStart} onDragUpdate={onDragUpdate} onDragEnd={onDragEnd}>
+            <DragDropContext
+              onDragStart={onDragStart}
+              onDragUpdate={onDragUpdate}
+              onDragEnd={onDragEnd}
+            >
               <GroupList
                 placeholderProps={placeholderProps}
                 board={filteredBoard}

@@ -18,7 +18,8 @@ export const utilService = {
 
 function makeId(length = 6) {
   var txt = ''
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  var possible =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
   for (var i = 0; i < length; i++) {
     txt += possible.charAt(Math.floor(Math.random() * possible.length))
@@ -95,7 +96,9 @@ function hexToRgbA(hex) {
       c = [c[0], c[0], c[1], c[1], c[2], c[2]]
     }
     c = '0x' + c.join('')
-    return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',0.5)'
+    return (
+      'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ',0.5)'
+    )
   }
   throw new Error('Bad Hex')
 }
@@ -105,12 +108,18 @@ function dueDateTimeFormat(dueDate) {
   const dueYear = new Date(dueDate).getFullYear()
   let strDate = ''
   strDate += `${new Date(dueDate).toLocaleString('en-US', { day: 'numeric' })} `
-  strDate += `${new Date(dueDate).toLocaleString('en-US', { month: 'short' })} at `
+  strDate += `${new Date(dueDate).toLocaleString('en-US', {
+    month: 'short',
+  })} at `
   if (dueYear !== currYear) {
     strDate += `${dueYear} `
   }
   strDate += `${new Date(dueDate)
-    .toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    .toLocaleString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    })
     .toLocaleUpperCase()}`
   return strDate
 }
@@ -124,9 +133,11 @@ function dueDateFormat(dueDate) {
 
 function getModalPosition(type, ref) {
   const rect = ref.current.getBoundingClientRect()
+  console.log(rect)
   const pos = { bottom: rect.bottom + 8, left: rect.left }
   if (window.innerWidth - rect.right < 150) pos.left -= 130
   if (window.innerHeight - rect.bottom < 450) pos.bottom -= 200
+  // Position is different for the filter and account modals
   if (type === 'Filter' || type === 'Account') {
     pos.right = 5
     pos.bottom += 8
@@ -137,8 +148,6 @@ function getModalPosition(type, ref) {
 function getModalPositionOnTop(ref) {
   const rect = ref.current.getBoundingClientRect()
   const pos = { top: rect.top - 8, left: rect.left - 2.5 }
-  // if (window.innerWidth - rect.right < 150) pos.left -= 130
-  // if (window.innerHeight - rect.bottom < 450) pos.bottom -= 200
   return pos
 }
 
@@ -154,7 +163,11 @@ function handleDragStart(event, draggedDOM) {
       [...draggedDOM.parentNode.children]
         .slice(0, sourceIndex)
         .reduce((total, curr) => {
-          return total + curr.clientWidth + parseFloat(getComputedStyle(curr).marginRight)
+          return (
+            total +
+            curr.clientWidth +
+            parseFloat(getComputedStyle(curr).marginRight)
+          )
         }, 0) -
       draggedDOM.parentNode.scrollLeft
 
@@ -212,8 +225,12 @@ function handleDragEnd(newBoard, destination, source, type) {
 
     // reorder tasks across the groups
   } else if (type === 'task') {
-    const prevGroupIdx = newBoardGroups.findIndex((group) => group.id === source.droppableId)
-    const newGroupIdx = newBoardGroups.findIndex((group) => group.id === destination.droppableId)
+    const prevGroupIdx = newBoardGroups.findIndex(
+      (group) => group.id === source.droppableId
+    )
+    const newGroupIdx = newBoardGroups.findIndex(
+      (group) => group.id === destination.droppableId
+    )
     const prevGroup = newBoardGroups[prevGroupIdx]
     const newGroup = newBoardGroups[newGroupIdx]
 
@@ -221,17 +238,29 @@ function handleDragEnd(newBoard, destination, source, type) {
     if (prevGroupIdx === newGroupIdx) {
       // in case the new task index is smaller
       if (destination.index < source.index) {
-        newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+        newGroup.tasks.splice(
+          destination.index,
+          0,
+          newBoard.groups[prevGroupIdx].tasks[source.index]
+        )
         prevGroup.tasks.splice(source.index + 1, 1)
 
         // in case the new task index is bigger
       } else {
-        newGroup.tasks.splice(destination.index + 1, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+        newGroup.tasks.splice(
+          destination.index + 1,
+          0,
+          newBoard.groups[prevGroupIdx].tasks[source.index]
+        )
         prevGroup.tasks.splice(source.index, 1)
       }
       // in case new task location is on different group
     } else {
-      newGroup.tasks.splice(destination.index, 0, newBoard.groups[prevGroupIdx].tasks[source.index])
+      newGroup.tasks.splice(
+        destination.index,
+        0,
+        newBoard.groups[prevGroupIdx].tasks[source.index]
+      )
       prevGroup.tasks.splice(source.index, 1)
     }
 
@@ -248,7 +277,9 @@ function isBackgroundDark(color) {
   let g
   let b
   if (color.match(/^rgb/)) {
-    color = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/)
+    color = color.match(
+      /^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$/
+    )
 
     r = color[1]
     g = color[2]

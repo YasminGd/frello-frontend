@@ -17,7 +17,7 @@ import {
   Title,
 } from 'chart.js'
 import { FaLayerGroup, FaTasks, FaUser } from 'react-icons/fa'
-import { useClickOutside } from '../hooks/is-clicked-outside'
+import { useClickOutside } from '../../hooks/is-clicked-outside'
 import { useRef } from 'react'
 ChartJS.register(
   ArcElement,
@@ -48,7 +48,10 @@ export const Dashboard = () => {
   useClickOutside(containerRef, onGoBack)
 
   const tasksByStatusData = dashboardService.getTasksByStatus(board.groups)
-  const tasksByMember = dashboardService.getTasksByMember(board.groups, board.members)
+  const tasksByMember = dashboardService.getTasksByMember(
+    board.groups,
+    board.members
+  )
   const tasksByGroupsData = dashboardService.getTasksByGroups(board.groups)
 
   const doughnutOptions = {
@@ -110,7 +113,9 @@ export const Dashboard = () => {
           <div className="svg-holder">
             <FaUser />
           </div>
-          <span className="count">{membersLength ? membersLength.length : 0}</span>
+          <span className="count">
+            {membersLength ? membersLength.length : 0}
+          </span>
           <p>Members</p>
         </div>
         <div className="number-of-tasks statistic-box">

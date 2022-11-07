@@ -1,12 +1,17 @@
 import { useRef } from 'react'
 import { BoardPreview } from './board-preview'
 
-export const BoardList = ({ boards, onToggleStarred, newBoard, onOpenActionModal }) => {
+export const BoardList = ({
+  boards,
+  onToggleStarred,
+  newBoardPlaceholder,
+  onOpenActionModal,
+}) => {
   const btnAddBoardRef = useRef()
 
   return (
     <section className="board-list">
-      {newBoard && (
+      {newBoardPlaceholder && (
         <div
           ref={btnAddBoardRef}
           onClick={() => {
@@ -18,7 +23,11 @@ export const BoardList = ({ boards, onToggleStarred, newBoard, onOpenActionModal
         </div>
       )}
       {boards.map((board) => (
-        <BoardPreview key={board._id} board={board} onToggleStarred={onToggleStarred} />
+        <BoardPreview
+          key={board._id}
+          board={board}
+          onToggleStarred={onToggleStarred}
+        />
       ))}
     </section>
   )

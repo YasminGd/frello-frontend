@@ -17,15 +17,21 @@ export const AppHeader = () => {
   const boardsRef = useRef()
   const starredRef = useRef()
 
-  const getStyleClass = () => {
+  // TODO: add state for header status
+  const getHeaderStyleClass = () => {
     let styleClass
     if (location.pathname === '/') styleClass = 'home-header fixed'
-    else if (location.pathname === '/user/login' || location.pathname === '/user/signup') styleClass = 'login-header'
+    else if (
+      location.pathname === '/user/login' ||
+      location.pathname === '/user/signup'
+    )
+      styleClass = 'login-header'
     return styleClass
   }
 
   const getStyleColor = () => {
-    return board?.style?.backgroundColor ? { backgroundColor: board.style.backgroundColor } : {}
+    const backgroundColor = board?.style?.backgroundColor
+    return backgroundColor ? { backgroundColor } : {}
   }
 
   const onOpenActionModal = (type, ref) => {
@@ -34,10 +40,15 @@ export const AppHeader = () => {
     setActionModal({ type, pos })
   }
 
-  const styleClass = getStyleClass()
-  const isDisplayUserImg = user?.fullname === 'Guest' ? false : true
-  const themeStyle = board && !utilService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
-  const isBoardPage = (location.pathname.includes('/board')) ? true : false
+  const styleClass = getHeaderStyleClass()
+  const isUserImgDisplayed = user?.fullname !== 'Guest'
+
+  // TODO: change themeStyle name and rewrite this function
+  const themeStyle =
+    board && !utilService.isBackgroundDark(board?.style?.backgroundColor)
+      ? 'dark'
+      : ''
+  const isBoardPage = location.pathname.includes('/board') ? true : false
 
   return (
     <section className={`app-header ${styleClass}`} style={getStyleColor()}>
@@ -48,9 +59,13 @@ export const AppHeader = () => {
             <h1>Frello</h1>
           </div>
         </Link>
-        {isBoardPage &&
+        {isBoardPage && (
           <Fragment>
-            <div className={`boards ${themeStyle}`} onClick={() => onOpenActionModal('Boards', boardsRef)} ref={boardsRef}>
+            <div
+              className={`boards ${themeStyle}`}
+              onClick={() => onOpenActionModal('Boards', boardsRef)}
+              ref={boardsRef}
+            >
               <p>Boards</p>
               <div className="svg-container">
                 <MdKeyboardArrowDown />
@@ -67,7 +82,7 @@ export const AppHeader = () => {
               </div>
             </div>
           </Fragment>
-        }
+        )}
       </section>
 
       <nav className={`home-nav ${styleClass ? '' : 'none'}`}>
@@ -78,7 +93,8 @@ export const AppHeader = () => {
           Get Frello for free
         </Link>
       </nav>
-      {!styleClass && user && isDisplayUserImg && (
+      {/*  */}
+      {!styleClass && user && isUserImgDisplayed && (
         <div className="user-img">
           <img
             referrerPolicy="no-referrer"
@@ -91,7 +107,9 @@ export const AppHeader = () => {
           />
         </div>
       )}
-      {actionModal && <ActionModal setActionModal={setActionModal} data={actionModal} />}
+      {actionModal && (
+        <ActionModal setActionModal={setActionModal} data={actionModal} />
+      )}
     </section>
   )
 }

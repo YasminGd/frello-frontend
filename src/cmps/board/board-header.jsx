@@ -10,18 +10,23 @@ import { ActionModal } from '../global/action-modal'
 import { utilService } from '../../services/util.service'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filterBy, isBackgroundDark }) => {
+export const BoardHeader = ({
+  changeBackground,
+  changeTitle,
+  updateFilter,
+  filterBy,
+  isBackgroundDark,
+}) => {
   const location = useLocation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
   const [actionModal, setActionModal] = useState(null)
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState('')
+  const [sideMenuClass, setSideMenuClass] = useState('')
   const btnAddUserRef = useRef()
   const filterRef = useRef()
-
-  const dispatch = useDispatch()
 
   const handleChange = ({ target }) => {
     const { value } = target
@@ -32,20 +37,19 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
     setWidth(displayTextWidth(boardTitle))
   }
 
-  function displayTextWidth(
-    text,
-    font = `700 18px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif`
-  ) {
-    const canvas = displayTextWidth.canvas || (displayTextWidth.canvas = document.createElement('canvas'))
+  function displayTextWidth(text) {
+    const canvas =
+      displayTextWidth.canvas ||
+      (displayTextWidth.canvas = document.createElement('canvas'))
     const context = canvas.getContext('2d')
-    context.font = font
+    context.font = `700 18px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif`
     const metrics = context.measureText(text)
     const metricsObj = { width: `${metrics.width + 20}px` }
     return metricsObj
   }
 
   const renderSideMenu = () => {
-    setIsSideMenuOpen(isSideMenuOpen === '' ? 'open' : '')
+    setSideMenuClass(sideMenuClass === '' ? 'open' : '')
   }
 
   const toggleStarBoard = () => {
@@ -59,6 +63,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
     setActionModal({ type, pos })
   }
 
+  // TODO: check if line 69 is necessary
   const onOpenDashboard = (ev) => {
     ev.stopPropagation()
     if (location.pathname.includes('dashboard')) navigate(-1)
@@ -80,7 +85,10 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           spellCheck="false"
           className={themeStyle}
         ></input>
-        <span className={`star-container ${themeStyle}`} onClick={toggleStarBoard}>
+        <span
+          className={`star-container ${themeStyle}`}
+          onClick={toggleStarBoard}
+        >
           {!board.isStarred && <TiStarOutline />}
           {board.isStarred && <TiStarFullOutline className="yellow-star" />}
         </span>
@@ -88,7 +96,11 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
         {board.members && board?.members?.length !== 0 && (
           <div className="board-members">
             {board.members.map((member, index) => (
-              <div className="member-img" key={member._id} style={{ zIndex: `${board.members.length - index}` }}>
+              <div
+                className="member-img"
+                key={member._id}
+                style={{ zIndex: `${board.members.length - index}` }}
+              >
                 <img src={member.imgUrl} alt="" referrerPolicy="no-referrer" />
               </div>
             ))}
@@ -105,7 +117,7 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           <span>Share</span>
         </button>
       </section>
-      <section className={`right ${isSideMenuOpen}`}>
+      <section className={`right ${sideMenuClass}`}>
         <button onClick={onOpenDashboard} className={themeStyle}>
           <BsGraphUp />
           Dashboard
@@ -122,14 +134,18 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
           Filter
         </button>
         <div className={`divider ${themeStyle}`}></div>
-        {!isSideMenuOpen && (
+        {!sideMenuClass && (
           <button onClick={renderSideMenu} className={themeStyle}>
             <BsThreeDots />
             Show menu
           </button>
         )}
       </section>
-      <BoardSideMenu isOpen={isSideMenuOpen} onCloseSideMenu={renderSideMenu} changeBackground={changeBackground} />
+      <BoardSideMenu
+        isOpen={sideMenuClass}
+        onCloseSideMenu={renderSideMenu}
+        changeBackground={changeBackground}
+      />
       {actionModal && (
         <ActionModal
           setActionModal={setActionModal}

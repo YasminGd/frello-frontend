@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { AppHeader } from './cmps/global/app-header.jsx'
 import { Home } from './pages/home'
 import { Workspace } from './pages/workspace'
-import './assets/styles/main.scss'
+import 'assets/styles/main.scss'
 import { Board } from './pages/board'
 import { LoginSignup } from './pages/login-signup.jsx'
 

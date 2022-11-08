@@ -5,6 +5,7 @@ import { updateTask } from '../../store/actions/task.action'
 
 export const AttachmentPreview = ({ task, attachment, groupId }) => {
   const dispatch = useDispatch()
+  //TODO: Check if structuredClone is necessary
   task = structuredClone(task)
 
   const onDeleteAttachment = () => {
@@ -17,21 +18,22 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
         (attachment) => attachment.id !== id
       ),
     }
-    dispatch(updateTask(groupId, taskToUpdate, `deleted the Screenshot from ${attachmentTitle} attachment from ${task.title}`))
+    //prettier-ignore
+    dispatch(updateTask(groupId, taskToUpdate, `deleted the screenshot from ${attachmentTitle} attachment from ${task.title}`)
+    )
   }
 
-  const onMakeCover = () => {
-    if (task.style) {
-      if (task.style.coverImg === attachment.url) {
-        task.style.coverImg = null
-        task.style.isFullyCovered = false
+  const onToggleTaskCover = () => {
+    const taskStyle = task.style
+    if (taskStyle) {
+      if (taskStyle.coverImg === attachment.url) {
+        taskStyle.coverImg = null
+        taskStyle.isFullyCovered = false
+      } else {
+        taskStyle.coverImg = attachment.url
+        taskStyle.bgColor = null
       }
-      else {
-        task.style.coverImg = attachment.url
-        task.style.bgColor = null
-      }
-    }
-    else task.style = { coverImg: attachment.url }
+    } else task.style = { coverImg: attachment.url }
     dispatch(updateTask(groupId, task))
   }
 
@@ -43,7 +45,9 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
         href={attachment.url}
         target={'_blank'}
         rel="noreferrer"
-      > </a>
+      >
+        {' '}
+      </a>
       <section className="attachment-details">
         <section className="attachment-name-and-options">
           <span className="attachment-name">{attachment.name}</span>
@@ -54,15 +58,18 @@ export const AttachmentPreview = ({ task, attachment, groupId }) => {
           </span>
         </section>
         <span className="attachment-options">
-          <span onClick={onMakeCover} className="make-attachment-cover">
+          <span onClick={onToggleTaskCover} className="make-attachment-cover">
             <section className="svg-holder">
               <BsSquareHalf
                 className="icon"
                 style={{
-                  transform: 'rotate(0.75turn) translateY(-20%) translateX(22%)',
+                  transform:
+                    'rotate(0.75turn) translateY(-20%) translateX(22%)',
                 }}
               />
-              {task.style?.coverImg === attachment.url ? 'Remove cover' : 'Make cover'}
+              {task.style?.coverImg === attachment.url
+                ? 'Remove cover'
+                : 'Make cover'}
             </section>
           </span>
         </span>

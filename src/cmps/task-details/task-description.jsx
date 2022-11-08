@@ -4,33 +4,35 @@ import { useDispatch } from 'react-redux'
 import { updateTask } from '../../store/actions/task.action'
 
 export const TaskDescription = ({ task, groupId }) => {
+  //TODO: Check if structuredClone is necessary
   task = structuredClone(task)
   const dispatch = useDispatch()
-  const [isBtnsDesc, setIsBtnsDesc] = useState(false)
-  const [descTxt, setDescTxt] = useState(task.description)
-  const [modalHeight, setModalHeight] = useState({ height: '56px' })
-  const initialDesc = useRef(task.description)
+  const [isDescriptionFocused, setIsDescriptionFocused] = useState(false)
+  const [descriptionTxt, setDescriptionTxt] = useState(task.description)
+  const [textareaHeight, setTextareaHeight] = useState({ height: '56px' })
+  const initialDescription = useRef(task.description)
 
   const handleChange = ({ target }) => {
     const { value } = target
-    setDescTxt(value)
+    setDescriptionTxt(value)
   }
 
   const setTaskDesc = (isCancel) => {
-    task.description = descTxt
+    task.description = descriptionTxt
 
     if (isCancel) {
-      task.description = initialDesc['current']
-      setDescTxt(task.description)
+      task.description = initialDescription.current
+      setDescriptionTxt(task.description)
     }
 
     dispatch(updateTask(groupId, task))
   }
 
+  // TODO: IMPORTANT! Check why there are two handleChanges
   const handleDescChange = (ev, isCancel) => {
     setTimeout(() => {
-      setIsBtnsDesc(false)
-      setModalHeight({ height: '56px' })
+      setIsDescriptionFocused(false)
+      setTextareaHeight({ height: '56px' })
     }, 150)
     setTaskDesc(isCancel)
   }
@@ -44,20 +46,23 @@ export const TaskDescription = ({ task, groupId }) => {
       </div>
       <div className="description-body">
         <textarea
-          style={{ ...bgStyle, ...modalHeight }}
+          style={{ ...bgStyle, ...textareaHeight }}
           placeholder="Add a more detailed description..."
           onFocus={() => {
-            setModalHeight({ height: '108px' })
-            setIsBtnsDesc(true)
+            setTextareaHeight({ height: '108px' })
+            setIsDescriptionFocused(true)
           }}
           onBlur={handleDescChange}
           onChange={handleChange}
-          value={descTxt}
+          value={descriptionTxt}
         ></textarea>
-        {isBtnsDesc && (
+        {isDescriptionFocused && (
           <div className="btns-container">
             <button className="btn-save">Save</button>
-            <button onClick={(ev) => handleDescChange(ev, true)} className="btn-cancel">
+            <button
+              onClick={(ev) => handleDescChange(ev, true)}
+              className="btn-cancel"
+            >
               Cancel
             </button>
           </div>

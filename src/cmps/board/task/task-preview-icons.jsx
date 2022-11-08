@@ -12,27 +12,30 @@ import { useSelector } from 'react-redux'
 import { IoChatbubbleOutline } from 'react-icons/io5'
 
 export const TaskPreviewIcons = ({ task, groupId }) => {
+  //TODO: check if neccessary
   task = structuredClone(task)
   const dispatch = useDispatch()
   const board = useSelector((state) => state.boardModule.board)
-  const boardMembers = board.members
-  const taskComments =
-    board?.activities.filter((activity) => activity?.task?.id === task.id && activity?.comment) || null
+  const boardMembers = board.members || []
+  const taskComments = board?.activities.filter(
+    (activity) => activity?.task?.id === task.id && activity?.comment
+  )
 
-  const membersToRender = boardMembers ? boardMembers.filter((member) => task.memberIds?.includes(member._id)) : []
+  const membersToRender = boardMembers.filter((member) =>
+    task.memberIds?.includes(member._id)
+  )
 
   const todosPreview = () => {
     if (!task.checklists || task.checklists.length === 0) return
 
     const todosLength = task.checklists.reduce((a, b) => a + b.todos.length, 0)
-    const doneTodosLength = task.checklists.reduce((a, b) => a + b.todos.filter((todo) => todo.isDone).length, 0)
+    const doneTodosLength = task.checklists.reduce(
+      (a, b) => a + b.todos.filter((todo) => todo.isDone).length,
+      0
+    )
 
     return { doneTodosLength, todosLength }
   }
-
-  // const getCommentsLength = () => {
-  //   if()
-  // }
 
   const getDateClass = (task) => {
     if (task?.dueDate?.isDone) {
@@ -52,12 +55,15 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
     }
   }
 
-  const geMembersClass = () => {
-    return task.dueDate || task.description ||
+  // Changing margin when members icons appear on task preview
+  const getMembersMarginClass = () => {
+    return task.dueDate ||
+      task.description ||
       (taskComments && taskComments.length !== 0) ||
       (task.attachments && task.attachments.length !== 0) ||
-      (task.checklists && task.checklists.length !== 0) ?
-      'larger-margin' : ''
+      (task.checklists && task.checklists.length !== 0)
+      ? 'larger-margin'
+      : ''
   }
 
   const onToggleIsDone = (ev, task) => {
@@ -72,7 +78,10 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
     <section className="task-preview-icons">
       <section className="left-icons">
         {task.dueDate && (
-          <section className={`date-container ${getDateClass(task)}`} onClick={(ev) => onToggleIsDone(ev, task)}>
+          <section
+            className={`date-container ${getDateClass(task)}`}
+            onClick={(ev) => onToggleIsDone(ev, task)}
+          >
             <span className="clock-icon">
               <AiOutlineClockCircle />
             </span>
@@ -104,9 +113,14 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
         )}
         {task.checklists &&
           task.checklists.length !== 0 &&
-          (todoDetails.doneTodosLength !== 0 || todoDetails.todosLength !== 0) && (
+          (todoDetails.doneTodosLength !== 0 ||
+            todoDetails.todosLength !== 0) && (
             <section
-              className={`attachments-icon ${todoDetails.doneTodosLength === todoDetails.todosLength ? 'done' : ''}`}
+              className={`attachments-icon ${
+                todoDetails.doneTodosLength === todoDetails.todosLength
+                  ? 'done'
+                  : ''
+              }`}
             >
               <BsCheck2Square />
               {`${todoDetails.doneTodosLength}/${todoDetails.todosLength}`}
@@ -114,7 +128,7 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
           )}
       </section>
       {task.memberIds && task.memberIds.length !== 0 && (
-        <section className={`members-img ${geMembersClass()}`}>
+        <section className={`members-img ${getMembersMarginClass()}`}>
           {membersToRender.map((member) => (
             <div className="member-img" key={member._id}>
               <img src={member.imgUrl} alt="" referrerPolicy="no-referrer" />

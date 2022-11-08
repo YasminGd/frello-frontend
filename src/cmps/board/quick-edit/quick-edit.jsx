@@ -5,6 +5,7 @@ import { QuickEditButtons } from './quick-edit-buttons'
 import { ActionModal } from '../../global/action-modal'
 
 export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
+  //TODO: Check if structuredClone is neccessary
   task = structuredClone(task)
   const dispatch = useDispatch()
   const [taskTitle, setTaskTitle] = useState(task.title)
@@ -36,10 +37,12 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
         }}
       >
         <section className="main-edit">
-          <textarea value={taskTitle}
+          <textarea
+            value={taskTitle}
             autoFocus={window.innerWidth >= 1200}
             onFocus={(ev) => ev.target.select()}
-            onChange={handleChange}></textarea>
+            onChange={handleChange}
+          ></textarea>
           <button onClick={saveTask} className="btn blue">
             Save
           </button>
@@ -49,7 +52,8 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
           groupId={groupId}
           setQuickEdit={setQuickEdit}
           actionModal={actionModal}
-          setActionModal={setActionModal} />
+          setActionModal={setActionModal}
+        />
       </section>
       <section
         className="screen-edit"
@@ -58,8 +62,8 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
           setQuickEdit(null)
         }}
       ></section>
-      {
-        actionModal && <ActionModal
+      {actionModal && (
+        <ActionModal
           setActionModal={setActionModal}
           data={actionModal}
           groupId={groupId}
@@ -67,7 +71,7 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
           onUpdateTask={onUpdateTask}
           setQuickEdit={setQuickEdit}
         />
-      }
+      )}
     </React.Fragment>
   )
 }

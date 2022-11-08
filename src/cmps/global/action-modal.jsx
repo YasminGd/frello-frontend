@@ -20,6 +20,7 @@ import { useClickOutside } from '../../hooks/is-clicked-outside'
 import { HeaderBoards } from './header-boards'
 import { HeaderStarredBoards } from './header-starred-boards'
 
+// TODO: Update ActionModal switch cases to send type instead of titles
 export const ActionModal = ({
   data,
   task,

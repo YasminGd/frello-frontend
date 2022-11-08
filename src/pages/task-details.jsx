@@ -53,43 +53,84 @@ export const TaskDetails = () => {
 
   const btnCloseStyle = task.style?.bgColor ? 'on-cover' : ''
 
-  //prettier-ignore
   return (
     <Fragment>
       <section className="screen">
         <div onClick={onGoBack} className="backdrop"></div>
-        <section className="task-details-container" >
-          <section ref={screenRef} className="task-details" onClick={(ev) => ev.stopPropagation()}>
-            <button className={`close-task-details ${btnCloseStyle}`} onClick={onGoBack}><IoCloseOutline /></button>
-            {task.style?.coverImg && <section className="cover-color img">
-              <img src={task.style.coverImg} alt="Background cover" />
-            </section>}
-            {task.style?.bgColor && <section className="cover-color" style={{ backgroundColor: task.style.bgColor }}></section>}
+        <section className="task-details-container">
+          <section
+            ref={screenRef}
+            className="task-details"
+            onClick={(ev) => ev.stopPropagation()}
+          >
+            <button
+              className={`close-task-details ${btnCloseStyle}`}
+              onClick={onGoBack}
+            >
+              <IoCloseOutline />
+            </button>
+            {task.style?.coverImg && (
+              <section className="cover-color img">
+                <img src={task.style.coverImg} alt="Background cover" />
+              </section>
+            )}
+            {task.style?.bgColor && (
+              <section
+                className="cover-color"
+                style={{ backgroundColor: task.style.bgColor }}
+              ></section>
+            )}
 
-            <TaskDetailsHeader task={task} groupId={groupId} groupTitle={group.title} />
+            <TaskDetailsHeader
+              task={task}
+              groupId={groupId}
+              groupTitle={group.title}
+            />
             <div className="task-body">
               <section className="task-content">
-
-                <TaskDetailsOverview onOpenActionModal={onOpenActionModal} task={task} groupId={groupId} />
+                <TaskDetailsOverview
+                  onOpenActionModal={onOpenActionModal}
+                  task={task}
+                  groupId={groupId}
+                />
                 <TaskDescription task={task} groupId={groupId} />
-                {task.location && <TaskLocation task={task} groupId={groupId} onOpenActionModal={onOpenActionModal} />}
-                {task.attachments?.length > 0 && <TaskAttachments task={task} groupId={groupId} />}
-                {task.checklists?.length > 0 && <CheckListList task={task} groupId={groupId} />}
-                <Activities activities={activities} renderAddComments={true} task={task} />
-
+                {task.location && (
+                  <TaskLocation
+                    task={task}
+                    groupId={groupId}
+                    onOpenActionModal={onOpenActionModal}
+                  />
+                )}
+                {task.attachments?.length > 0 && (
+                  <TaskAttachments task={task} groupId={groupId} />
+                )}
+                {task.checklists?.length > 0 && (
+                  <CheckListList task={task} groupId={groupId} />
+                )}
+                <Activities
+                  activities={activities}
+                  renderAddComments={true}
+                  task={task}
+                />
               </section>
-              <TaskDetailsSidebar onOpenActionModal={onOpenActionModal} taskId={task.id} groupId={groupId} />
+              <TaskDetailsSidebar
+                onOpenActionModal={onOpenActionModal}
+                taskId={task.id}
+                groupId={groupId}
+              />
             </div>
           </section>
         </section>
 
-        {actionModal && <ActionModal
-          onUpdateTask={onUpdateTask}
-          setActionModal={setActionModal}
-          data={actionModal}
-          task={task}
-          groupId={groupId}
-        />}
+        {actionModal && (
+          <ActionModal
+            onUpdateTask={onUpdateTask}
+            setActionModal={setActionModal}
+            data={actionModal}
+            task={task}
+            groupId={groupId}
+          />
+        )}
       </section>
     </Fragment>
   )

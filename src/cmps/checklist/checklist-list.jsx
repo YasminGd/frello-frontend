@@ -4,13 +4,20 @@ import { ChecklistPreview } from './checklist-preview'
 
 export const CheckListList = ({ task, groupId }) => {
   const dispatch = useDispatch()
+  //TODO: Check if structuredClone is necessary
   task = structuredClone(task)
 
   const removeChecklist = (checklistId) => {
-    const checklistTitle = task.checklists.find((checklist) => checklist.id === checklistId).title
+    const checklistTitle = task.checklists.find(
+      (checklist) => checklist.id === checklistId
+    ).title
     const taskTitle = task.title
-    task.checklists = task.checklists.filter((checklist) => checklist.id !== checklistId)
-    dispatch(updateTask(groupId, task, `removed ${checklistTitle} from ${taskTitle}`))
+    task.checklists = task.checklists.filter(
+      (checklist) => checklist.id !== checklistId
+    )
+    dispatch(
+      updateTask(groupId, task, `removed ${checklistTitle} from ${taskTitle}`)
+    )
   }
 
   const updateChecklist = (editedChecklist) => {
@@ -25,13 +32,19 @@ export const CheckListList = ({ task, groupId }) => {
   }
 
   const updateTodo = (editedTodo, checkListId) => {
-    const checkList = task.checklists.find((checkList) => checkList.id === checkListId)
-    checkList.todos = checkList.todos.filter((todo) => (todo.id === editedTodo.id ? editedTodo : todo))
+    const checkList = task.checklists.find(
+      (checkList) => checkList.id === checkListId
+    )
+    checkList.todos = checkList.todos.filter((todo) =>
+      todo.id === editedTodo.id ? editedTodo : todo
+    )
     dispatch(updateTask(groupId, task))
   }
 
   const removeTodo = (todoId, checkListId) => {
-    const checkList = task.checklists.find((checkList) => checkList.id === checkListId)
+    const checkList = task.checklists.find(
+      (checkList) => checkList.id === checkListId
+    )
     checkList.todos = checkList.todos.filter((todo) => todo.id !== todoId)
     dispatch(updateTask(groupId, task))
   }

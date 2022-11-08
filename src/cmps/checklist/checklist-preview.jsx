@@ -4,7 +4,14 @@ import { AddTodo } from './add-todo'
 import { EditTitle } from '../global/edit-title'
 import { TodoList } from './todo-list'
 
-export const ChecklistPreview = ({ checkList, updateTodo, removeChecklist, addTodo, updateChecklist, removeTodo }) => {
+export const ChecklistPreview = ({
+  checkList,
+  updateTodo,
+  removeChecklist,
+  addTodo,
+  updateChecklist,
+  removeTodo,
+}) => {
   const [isAddTodoOpen, setIsAddTodoOpen] = useState(false)
   const [isEditTitleOpen, setIsEditTitleOpen] = useState(false)
 
@@ -24,7 +31,9 @@ export const ChecklistPreview = ({ checkList, updateTodo, removeChecklist, addTo
   const getCompletionPercentage = () => {
     const todosLength = checkList.todos.length
     if (todosLength === 0) return 0
-    const completedTodosLength = checkList.todos.filter((todo) => todo.isDone).length
+    const completedTodosLength = checkList.todos.filter(
+      (todo) => todo.isDone
+    ).length
 
     return ((completedTodosLength * 100) / todosLength).toFixed(0)
   }
@@ -35,18 +44,23 @@ export const ChecklistPreview = ({ checkList, updateTodo, removeChecklist, addTo
     <section className="checklist-preview">
       <section className="checklist-header">
         <section className="left">
-          {/* <div className="svg-holder"> */}
           <BsCheck2Square />
-          {/* </div> */}
           {isEditTitleOpen ? (
-            <EditTitle editTitle={editTitle} itemTitle={checkList.title} toggleTitleEdit={toggleTitleEdit} />
+            <EditTitle
+              editTitle={editTitle}
+              itemTitle={checkList.title}
+              toggleTitleEdit={toggleTitleEdit}
+            />
           ) : (
             <h3 onClick={toggleTitleEdit}>{checkList.title}</h3>
           )}
         </section>
         {!isEditTitleOpen && (
           <section className="right">
-            <button className="button-link" onClick={() => removeChecklist(checkList.id)}>
+            <button
+              className="button-link"
+              onClick={() => removeChecklist(checkList.id)}
+            >
               Delete
             </button>
           </section>
@@ -56,17 +70,28 @@ export const ChecklistPreview = ({ checkList, updateTodo, removeChecklist, addTo
         <p>{`${completionPercentage}%`}</p>
         <div className="completion-bar">
           <div
-            className={`percentage-bar ${completionPercentage === '100' ? 'done' : ''}`}
+            className={`percentage-bar ${
+              completionPercentage === '100' ? 'done' : ''
+            }`}
             style={{ width: `${completionPercentage}%` }}
           ></div>
         </div>
       </section>
       {checkList.todos && checkList.todos.length > 0 && (
-        <TodoList todos={checkList.todos} checkListId={checkList.id} updateTodo={updateTodo} removeTodo={removeTodo} />
+        <TodoList
+          todos={checkList.todos}
+          checkListId={checkList.id}
+          updateTodo={updateTodo}
+          removeTodo={removeTodo}
+        />
       )}
       <section className="add-todo-option">
         {isAddTodoOpen ? (
-          <AddTodo addTodo={addTodo} checkListId={checkList.id} closeModal={onAddTodo} />
+          <AddTodo
+            addTodo={addTodo}
+            checkListId={checkList.id}
+            closeModal={onAddTodo}
+          />
         ) : (
           <button className="add-todo-button" onClick={onAddTodo}>
             Add an item

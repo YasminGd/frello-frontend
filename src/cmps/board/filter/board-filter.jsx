@@ -1,12 +1,12 @@
-import { LabelsFilter } from './labels-filter'
-import { MembersFilter } from './members-filter'
+import { LabelsFilter } from "./labels-filter"
+import { MembersFilter } from "./members-filter"
 
 export const BoardFilter = ({ updateFilter, filterBy }) => {
   const handleChange = ({ target }) => {
     const { value, name, checked } = target
-    if (target.type === 'checkbox') {
+    if (target.type === "checkbox") {
       //if the filter is to include no members and no labels
-      if (target.name === 'no-members')
+      if (target.name === "no-members")
         filterBy.member
           ? (filterBy.member.includeNoMembers = checked)
           : (filterBy.member = { includeNoMembers: checked })
@@ -19,7 +19,7 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
       basically what this does is
       var name = 'dog'
       filterBy[name][`${name}Id`]
-      filterBy[dogs][`$dogIds`] = [...filterBy[dog][`$dogIds`], value]
+      filterBy[dog][`$dogIds`] = [...filterBy[dog][`$dogIds`], value]
        */
       // prettier-ignore 
       else {
@@ -33,7 +33,8 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
                 [`${name}Ids`]: [...filterBy[name][`${name}Ids`], value],
               },
             }
-            //TODO: else if for filterBy name ! filterBy[name][`${name}Ids`]
+          } else if(filterBy[name]) {
+            filterBy = { ...filterBy, [name]: { ...filterBy[name], [`${name}Ids`]: [value] } }
           } else {
             filterBy = { ...filterBy, [name]: { [`${name}Ids`]: [value] } }
           }
@@ -58,20 +59,20 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
   }
 
   return (
-    <section className="board-filter">
-      <div className="filter-container">
-        <h3 className="title">Keyword</h3>
+    <section className='board-filter'>
+      <div className='filter-container'>
+        <h3 className='title'>Keyword</h3>
         <input
           onChange={handleChange}
           autoFocus={window.innerWidth >= 1200}
-          className="search-filter"
-          type="text"
-          placeholder="Enter a keyword..."
+          className='search-filter'
+          type='text'
+          placeholder='Enter a keyword...'
           value={filterBy.txt}
-          name="txt"
-          autoComplete="off"
+          name='txt'
+          autoComplete='off'
         />
-        <p className="search-label">Search cards, members, labels, and more.</p>
+        <p className='search-label'>Search cards, members, labels, and more.</p>
         <MembersFilter
           handleChange={handleChange}
           filterBy={filterBy}

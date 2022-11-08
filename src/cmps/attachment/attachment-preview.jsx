@@ -5,8 +5,6 @@ import { updateTask } from '../../store/actions/task.action'
 
 export const AttachmentPreview = ({ task, attachment, groupId }) => {
   const dispatch = useDispatch()
-  //TODO: Check if structuredClone is necessary
-  task = structuredClone(task)
 
   const onDeleteAttachment = () => {
     if (task.style?.coverImg === attachment.url) task.style.coverImg = null

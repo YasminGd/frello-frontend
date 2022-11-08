@@ -1,16 +1,18 @@
 import { GrTextAlignFull } from 'react-icons/gr'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateTask } from '../../store/actions/task.action'
 
 export const TaskDescription = ({ task, groupId }) => {
-  //TODO: Check if structuredClone is necessary
-  task = structuredClone(task)
   const dispatch = useDispatch()
   const [isDescriptionFocused, setIsDescriptionFocused] = useState(false)
-  const [descriptionTxt, setDescriptionTxt] = useState(task.description)
+  const [descriptionTxt, setDescriptionTxt] = useState()
   const [textareaHeight, setTextareaHeight] = useState({ height: '56px' })
   const initialDescription = useRef(task.description)
+
+  useEffect(() => {
+    setDescriptionTxt(task.description || '')
+  }, [task])
 
   const handleChange = ({ target }) => {
     const { value } = target

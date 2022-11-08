@@ -24,6 +24,7 @@ async function remove(boardId) {
 
 async function save(board) {
   if (board._id) {
+    throw new Error('asd')
     return httpService.put(BASE_URL + board._id, board)
   } else {
     return httpService.post(BASE_URL, board)

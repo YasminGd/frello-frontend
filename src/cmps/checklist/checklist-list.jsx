@@ -4,8 +4,6 @@ import { ChecklistPreview } from './checklist-preview'
 
 export const CheckListList = ({ task, groupId }) => {
   const dispatch = useDispatch()
-  //TODO: Check if structuredClone is necessary
-  task = structuredClone(task)
 
   const removeChecklist = (checklistId) => {
     const checklistTitle = task.checklists.find(

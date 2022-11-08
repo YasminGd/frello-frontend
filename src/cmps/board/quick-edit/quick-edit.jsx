@@ -5,8 +5,6 @@ import { QuickEditButtons } from './quick-edit-buttons'
 import { ActionModal } from '../../global/action-modal'
 
 export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
-  //TODO: Check if structuredClone is neccessary
-  task = structuredClone(task)
   const dispatch = useDispatch()
   const [taskTitle, setTaskTitle] = useState(task.title)
   const [actionModal, setActionModal] = useState(null)

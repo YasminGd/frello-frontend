@@ -6,7 +6,6 @@ import { updateTask } from '../../store/actions/task.action'
 import { utilService } from '../../services/util.service'
 
 export const Dates = ({ task, groupId, setActionModal }) => {
-  task = structuredClone(task)
   const dispatch = useDispatch()
   const [selectedDate, handleDateChange] = useState(new Date())
 

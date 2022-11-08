@@ -1,12 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GrCreditCard } from 'react-icons/gr'
 import { useDispatch } from 'react-redux'
 import { updateTask } from '../../store/actions/task.action'
 
 export const TaskDetailsHeader = ({ task, groupId, groupTitle }) => {
-  //TODO: Check if structuredClone is necessary
-  task = structuredClone(task)
-  const [titleTxt, setTitleTxt] = useState(task.title)
+  const [titleTxt, setTitleTxt] = useState()
+  useEffect(() => {
+    setTitleTxt(task.title)
+  }, [task])
+
   const dispatch = useDispatch()
 
   const handleChange = ({ target }) => {

@@ -8,7 +8,6 @@ import { utilService } from '../../services/util.service'
 import { taskService } from '../../services/task.service'
 
 export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuickEdit }) => {
-  task = structuredClone(task)
   const dispatch = useDispatch()
   let board = useSelector((state) => state.boardModule.board)
   board = structuredClone(board)
@@ -22,7 +21,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
     return () => {
       setSelectedLabel(null)
     }
-  }, [boardLabelsState])
+  }, [boardLabelsState, task])
 
   const handleChange = (ev, labelId) => {
     const { target } = ev
@@ -113,7 +112,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
                     type="checkbox"
                     id={label.id}
                   />
-                  <span class="checkmark"></span>
+                  <span className="checkmark"></span>
                   <div className="label-container">
                     <div className={`label-color ${label.class}`}>
                       <div className={`label-color-circle ${label.color}`}></div>

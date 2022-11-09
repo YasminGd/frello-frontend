@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux"
 import { updateTask } from '../../store/actions/task.action'
 
 export const LocationActions = ({ groupId, task, setActionModal }) => {
-    task = structuredClone(task)
     const dispatch = useDispatch()
 
     const onRemoveLocation = () => {

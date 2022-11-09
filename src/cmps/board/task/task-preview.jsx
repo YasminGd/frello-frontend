@@ -5,14 +5,8 @@ import { TaskPreviewIcons } from './task-preview-icons'
 import { useRef } from 'react'
 import { utilService } from 'services/util.service'
 
-export const TaskPreview = ({
-  task,
-  groupId,
-  provided,
-  isDragging,
-  quickEdit,
-  setQuickEdit,
-}) => {
+export const TaskPreview = ({ task, groupId, provided, isDragging, quickEdit, setQuickEdit, }) => {
+
   const taskPreviewRef = useRef()
 
   const getCoverStyle = () => {

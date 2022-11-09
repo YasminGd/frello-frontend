@@ -5,8 +5,6 @@ import { updateTask } from '../../store/actions/task.action'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 
 export const TaskDatesOverview = ({ task, groupId, onOpenActionModal }) => {
-  //TODO: Check if structuredClone is necessary
-  task = structuredClone(task)
   const dispatch = useDispatch()
   const btnDatesRef = useRef()
 
@@ -34,9 +32,8 @@ export const TaskDatesOverview = ({ task, groupId, onOpenActionModal }) => {
       else if (!target.checked) {
         task.dueDate.isDone = false
       }
-      const activityTxt = `marked the due date on ${task.title} ${
-        task.dueDate.isDone ? 'complete' : 'incomplete'
-      }`
+      const activityTxt = `marked the due date on ${task.title} ${task.dueDate.isDone ? 'complete' : 'incomplete'
+        }`
       dispatch(updateTask(groupId, task, activityTxt))
     }
   }

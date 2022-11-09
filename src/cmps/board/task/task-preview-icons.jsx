@@ -1,4 +1,3 @@
-import React from 'react'
 import { FiPaperclip } from 'react-icons/fi'
 import { GrTextAlignFull } from 'react-icons/gr'
 import { AiOutlineClockCircle } from 'react-icons/ai'
@@ -12,18 +11,15 @@ import { useSelector } from 'react-redux'
 import { IoChatbubbleOutline } from 'react-icons/io5'
 
 export const TaskPreviewIcons = ({ task, groupId }) => {
-  //TODO: check if neccessary
-  task = structuredClone(task)
+
   const dispatch = useDispatch()
   const board = useSelector((state) => state.boardModule.board)
   const boardMembers = board.members || []
   const taskComments = board?.activities.filter(
-    (activity) => activity?.task?.id === task.id && activity?.comment
+    (activity) => activity?.task?.id === task?.id && activity?.comment
   )
 
-  const membersToRender = boardMembers.filter((member) =>
-    task.memberIds?.includes(member._id)
-  )
+  const membersToRender = boardMembers.filter((member) => task.memberIds?.includes(member._id))
 
   const todosPreview = () => {
     if (!task.checklists || task.checklists.length === 0) return
@@ -116,11 +112,10 @@ export const TaskPreviewIcons = ({ task, groupId }) => {
           (todoDetails.doneTodosLength !== 0 ||
             todoDetails.todosLength !== 0) && (
             <section
-              className={`attachments-icon ${
-                todoDetails.doneTodosLength === todoDetails.todosLength
-                  ? 'done'
-                  : ''
-              }`}
+              className={`attachments-icon ${todoDetails.doneTodosLength === todoDetails.todosLength
+                ? 'done'
+                : ''
+                }`}
             >
               <BsCheck2Square />
               {`${todoDetails.doneTodosLength}/${todoDetails.todosLength}`}

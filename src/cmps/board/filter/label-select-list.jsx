@@ -19,9 +19,9 @@ export const LabelSelectList = ({ handleChange, filterBy }) => {
                 checked={filterBy?.label?.labelIds?.includes(label.id)}
               />
               <div className="label-container">
-                <div class={`label-color ${label.class}`}>
-                  <div class={`label-color-circle ${label.color}`}></div>
-                  <span class="label-title">{label.title}</span>
+                <div className={`label-color ${label.class}`}>
+                  <div className={`label-color-circle ${label.color}`}></div>
+                  <span className="label-title">{label.title}</span>
                 </div>
               </div>
             </label>

@@ -7,8 +7,6 @@ import { updateTask } from '../../store/actions/task.action'
 import { Map } from './map'
 
 export const TaskLocation = ({ task, groupId, onOpenActionModal }) => {
-  //TODO: Check if structuredClone is necessary
-  task = structuredClone(task)
   const [name, setName] = useState(task.location.name)
   const dispatch = useDispatch()
   const btnCloseRef = useRef()

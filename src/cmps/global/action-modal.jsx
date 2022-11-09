@@ -21,18 +21,9 @@ import { HeaderBoards } from './header-boards'
 import { HeaderStarredBoards } from './header-starred-boards'
 
 // TODO: Update ActionModal switch cases to send type instead of titles
-export const ActionModal = ({
-  data,
-  task,
-  onUpdateTask,
-  setActionModal,
-  groupId,
-  removeItem,
-  updateFilter,
-  filterBy,
-  handleChange,
-  setQuickEdit,
-}) => {
+//prettier-ignore
+export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem, updateFilter, filterBy, handleChange, setQuickEdit, }) => {
+
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
   const modalRef = useRef()

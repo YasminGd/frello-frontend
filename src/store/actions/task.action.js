@@ -8,6 +8,7 @@ export function updateTask(groupId, task, activityTxt, boardMember) {
     const board = structuredClone(prevBoard)
     const updatedBoard = taskService.update(board, groupId, task, activityTxt, boardMember)
     dispatch(getActionUpdateBoard(updatedBoard))
+
     try {
       await boardService.save(updatedBoard)
     }

@@ -3,11 +3,19 @@ import { useDispatch } from 'react-redux'
 import { updateTask } from 'store/actions/task.action'
 import { QuickEditButtons } from './quick-edit-buttons'
 import { ActionModal } from '../../global/action-modal'
+import { useSelector } from 'react-redux'
 
 export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
   const dispatch = useDispatch()
   const [taskTitle, setTaskTitle] = useState(task.title)
   const [actionModal, setActionModal] = useState(null)
+
+  // Need to work on task from store so components will rerender at all changes.
+  // especially on optimistic errors
+  const taskId = task.id
+  let board = useSelector((state) => state.boardModule.board)
+  board = structuredClone(board)
+  task = board.groups.find(group => group.id === groupId).tasks.find(task => task.id === taskId)
 
   const handleChange = ({ target }) => {
     setTaskTitle(target.value)
@@ -20,7 +28,8 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
   }
 
   const onUpdateTask = (task) => {
-    dispatch(updateTask(groupId, task))
+    setQuickEdit(task)
+    dispatch(updateTask(groupId, task, undefined, undefined))
   }
 
   const modalStyle = { top: pos.top + 'px', left: pos.left + 'px' }

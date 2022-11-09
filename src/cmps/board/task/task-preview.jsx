@@ -2,7 +2,7 @@ import { BsPencil } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { TaskLabelsList } from '../../labels/task-labels-list'
 import { TaskPreviewIcons } from './task-preview-icons'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { utilService } from 'services/util.service'
 
 export const TaskPreview = ({ task, groupId, provided, isDragging, quickEdit, setQuickEdit, }) => {

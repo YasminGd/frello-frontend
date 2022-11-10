@@ -3,12 +3,13 @@ import { useLocation } from 'react-router-dom'
 import { SiTrello } from 'react-icons/si'
 import { useSelector } from 'react-redux'
 import { ActionModal } from './action-modal'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { utilService } from '../../services/util.service'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { Fragment } from 'react'
 
 export const AppHeader = () => {
+  const [headerStatus, setHeaderStatus] = useState()
   const board = useSelector((state) => state.boardModule.board)
   const user = useSelector((state) => state.userModule.user)
   const [actionModal, setActionModal] = useState(null)
@@ -17,15 +18,31 @@ export const AppHeader = () => {
   const boardsRef = useRef()
   const starredRef = useRef()
 
+  useEffect(() => {
+    let status
+    if (location.pathname === '/') status = 'home'
+    else if (location.pathname === '/user/login' || location.pathname === '/user/signup')
+      status = 'auth'
+    else if (location.pathname.includes('/board')) status = 'board'
+    setHeaderStatus(status)
+  }, [location.pathname])
+
   // TODO: add state for header status
   const getHeaderStyleClass = () => {
     let styleClass
-    if (location.pathname === '/') styleClass = 'home-header fixed'
-    else if (
-      location.pathname === '/user/login' ||
-      location.pathname === '/user/signup'
-    )
-      styleClass = 'login-header'
+
+    switch (headerStatus) {
+      case 'home':
+        styleClass = 'home-header fixed'
+        break;
+
+      case 'auth':
+        styleClass = 'login-header'
+        break;
+
+      default:
+        break;
+    }
     return styleClass
   }
 
@@ -43,26 +60,21 @@ export const AppHeader = () => {
   const styleClass = getHeaderStyleClass()
   const isUserImgDisplayed = user?.fullname !== 'Guest'
 
-  // TODO: change themeStyle name and rewrite this function
-  const themeStyle =
-    board && !utilService.isBackgroundDark(board?.style?.backgroundColor)
-      ? 'dark'
-      : ''
-  const isBoardPage = location.pathname.includes('/board') ? true : false
+  const fontColor = !utilService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
 
   return (
     <section className={`app-header ${styleClass}`} style={getStyleColor()}>
       <section className="left">
         <Link to="/workspace">
-          <div className={`main-logo ${themeStyle}`}>
+          <div className={`main-logo ${fontColor}`}>
             <SiTrello />
             <h1>Frello</h1>
           </div>
         </Link>
-        {isBoardPage && (
+        {(headerStatus === 'board') && (
           <Fragment>
             <div
-              className={`boards ${themeStyle}`}
+              className={`boards ${fontColor}`}
               onClick={() => onOpenActionModal('Boards', boardsRef)}
               ref={boardsRef}
             >
@@ -72,7 +84,7 @@ export const AppHeader = () => {
               </div>
             </div>
             <div
-              className={`boards ${themeStyle}`}
+              className={`boards ${fontColor}`}
               onClick={() => onOpenActionModal('Starred boards', starredRef)}
               ref={starredRef}
             >

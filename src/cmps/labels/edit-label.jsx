@@ -23,7 +23,7 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
     onToggleLabelEdit(null)
   }
 
-  const onRemoveButton = (ev) => {
+  const onRemoveLabelBtn = (ev) => {
     ev.preventDefault()
     onToggleLabelEdit(null)
     onRemoveLabel(label.id)
@@ -59,7 +59,7 @@ export const EditLabel = ({ onToggleLabelEdit, label, onSaveLabel, onRemoveLabel
           {btnTxt}
         </button>
         {label && (
-          <button onClick={(ev) => { onRemoveButton(ev) }} className="btn-remove">
+          <button onClick={(ev) => { onRemoveLabelBtn(ev) }} className="btn-remove">
             Delete
           </button>
         )}

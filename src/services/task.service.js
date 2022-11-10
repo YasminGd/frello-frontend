@@ -41,7 +41,6 @@ function addImg(imgUrl, task, groupId, board) {
     name: 'Attachment Image',
   }
 
-  // Check if can be merged to updateTask function !!
   const groupIdx = board.groups.findIndex((group) => group.id === groupId)
   const taskIdx = board.groups[groupIdx].tasks.findIndex((currTask) => currTask.id === task.id)
   if (!board.groups[groupIdx].tasks[taskIdx].attachments) board.groups[groupIdx].tasks[taskIdx].attachments = []

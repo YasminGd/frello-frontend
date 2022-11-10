@@ -120,16 +120,22 @@ export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId,
         )
 
       case 'Filter':
-        return <BoardFilter updateFilter={updateFilter} filterBy={filterBy} />
+        return <BoardFilter
+          updateFilter={updateFilter}
+          filterBy={filterBy} />
 
       case 'Select member':
         return (
-          <MemberSelectList handleChange={handleChange} filterBy={filterBy} />
+          <MemberSelectList
+            handleChange={handleChange}
+            filterBy={filterBy} />
         )
 
       case 'Select label':
         return (
-          <LabelSelectList handleChange={handleChange} filterBy={filterBy} />
+          <LabelSelectList
+            handleChange={handleChange}
+            filterBy={filterBy} />
         )
 
       case 'Account':

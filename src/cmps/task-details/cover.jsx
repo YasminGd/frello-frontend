@@ -1,7 +1,7 @@
 export const Cover = ({ task, onUpdateTask, setQuickEdit }) => {
-  const selectedColor = task.style ? task.style.bgColor : ''
-  const selectedImg = task.style ? task.style.coverImg : ''
-  const selectedCover = task.style ? task.style.isFullyCovered : false
+  const selectedColor = task.style?.bgColor || ''
+  const selectedImg = task.style?.coverImg || ''
+  const selectedCover = task.style?.isFullyCovered || false
 
   const colors = [
     '#7BC86C',
@@ -16,53 +16,57 @@ export const Cover = ({ task, onUpdateTask, setQuickEdit }) => {
     '#172B4D',
   ]
 
-  //main background color for the cover options
-  const getCoverOptionsBackgroundColor = (coverOption) => {
-    if (selectedImg && coverOption)
+  // Main background color for the cover options
+  const getCoverPreviewBackground = (isBgDark) => {
+    if (selectedImg && isBgDark)
       return `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${selectedImg}") center center / cover`
-    else if (selectedImg && !coverOption) return `url("${selectedImg}") center center / cover`
+    else if (selectedImg && !isBgDark) return `url("${selectedImg}") center center / cover`
     return selectedColor ? selectedColor : '#5e6c844d'
   }
 
-  //get line colors for the not fully covered option div
-  const getNotCoveredItemsColor = () => {
+  // Gets line colors for the cover previews
+  const getNoCoverLineColor = () => {
     if (selectedColor || selectedImg) return '#091e4299'
     return '#5e6c844d'
   }
 
-  //get line colors for the fully covered option div
-  const getCoveredItemsColor = () => {
+  // Get line colors for the fully covered option div
+  // Returns white for dark blue only
+  const getCoverPreviewLineColor = () => {
     return selectedColor && selectedColor !== '#172B4D' ? '#091e4299' : '#ffffff'
   }
 
-  //when updating cover color
+  // When updating cover color
   const onUpdateCoverColor = (color) => {
+    // TODO check if both checks are necessary
     if (selectedColor === color && selectedColor !== null) return
     if (task.style) {
       task.style.bgColor = color
       task.style.coverImg = null
       if (!color) task.style.isFullyCovered = false
     } else task.style = { bgColor: color }
+    // TODO check why app crushes on quick edit
     if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
     onUpdateTask(task)
   }
 
-  //when updating cover style
+  // When updating cover style (fully covered or not)
   const onUpdateCoverStyle = (coverOption) => {
     if (selectedCover === coverOption || (!selectedImg && !selectedColor)) return
-    if (task.style) task.style.isFullyCovered = coverOption
-    else task.style = { isFullyCovered: coverOption }
+    // TODO make sure it works with new tasks
+    if (!task.style) task.style = {}
+    task.style.isFullyCovered = coverOption
     if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
     onUpdateTask(task)
   }
 
-  //render border on cover option
-  const isThereBorderOnCoverOption = (coverOption) => {
-    return selectedCover === coverOption && (selectedColor || selectedImg) ? 'border' : ''
+  // Render border on selected cover option
+  const getSelectedCoverBorder = (coverOption) => {
+    return (selectedCover === coverOption && (selectedColor || selectedImg)) ? 'border' : ''
   }
 
-  const notCoveredItemsColor = getNotCoveredItemsColor()
-  const coveredItemsColor = getCoveredItemsColor()
+  const noCoverLineColor = getNoCoverLineColor()
+  const coverLineColor = getCoverPreviewLineColor()
 
   return (
     <section className="cover">
@@ -70,39 +74,39 @@ export const Cover = ({ task, onUpdateTask, setQuickEdit }) => {
         <p className="title">Size</p>
         <section className="visual-options">
           <div
-            className={`not-covered-visual-option ${isThereBorderOnCoverOption(false)} ${selectedColor || selectedImg ? '' : 'disabled'
+            className={`not-covered-visual-option ${getSelectedCoverBorder(false)} ${selectedColor || selectedImg ? '' : 'disabled'
               }`}
-            style={{ background: getCoverOptionsBackgroundColor(false) }}
+            style={{ background: getCoverPreviewBackground() }}
             onClick={() => onUpdateCoverStyle(false)}
           >
             <div className="bottom-main">
-              <div className={`bottom-title`} style={{ background: notCoveredItemsColor }}>
+              <div className={`bottom-title`} style={{ background: noCoverLineColor }}>
                 {' '}
               </div>
-              <div className={`bottom-paragraph`} style={{ background: notCoveredItemsColor }}>
+              <div className={`bottom-paragraph`} style={{ background: noCoverLineColor }}>
                 {' '}
               </div>
-              <div className={`bottom-label first`} style={{ background: notCoveredItemsColor }}>
+              <div className={`bottom-label first`} style={{ background: noCoverLineColor }}>
                 {' '}
               </div>
-              <div className={`bottom-label second`} style={{ background: notCoveredItemsColor }}>
+              <div className={`bottom-label second`} style={{ background: noCoverLineColor }}>
                 {' '}
               </div>
-              <div className={`bottom-circle`} style={{ background: notCoveredItemsColor }}>
+              <div className={`bottom-circle`} style={{ background: noCoverLineColor }}>
                 {' '}
               </div>
             </div>
           </div>
           <div
-            className={`covered-visual-option ${isThereBorderOnCoverOption(true)} ${selectedColor || selectedImg ? '' : 'disabled'
+            className={`covered-visual-option ${getSelectedCoverBorder(true)} ${selectedColor || selectedImg ? '' : 'disabled'
               }`}
-            style={{ background: getCoverOptionsBackgroundColor(true) }}
+            style={{ background: getCoverPreviewBackground(true) }}
             onClick={() => onUpdateCoverStyle(true)}
           >
-            <div className={`bottom-title`} style={{ backgroundColor: coveredItemsColor }}>
+            <div className={`bottom-title`} style={{ backgroundColor: coverLineColor }}>
               {' '}
             </div>
-            <div className={`bottom-paragraph`} style={{ backgroundColor: coveredItemsColor }}>
+            <div className={`bottom-paragraph`} style={{ backgroundColor: coverLineColor }}>
               {' '}
             </div>
           </div>

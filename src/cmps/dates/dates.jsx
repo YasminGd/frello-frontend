@@ -7,9 +7,9 @@ import { utilService } from '../../services/util.service'
 
 export const Dates = ({ task, groupId, setActionModal }) => {
   const dispatch = useDispatch()
-  const [selectedDate, handleDateChange] = useState(new Date())
+  const [selectedDate, setSelectedDate] = useState(new Date())
 
-  const onAddDueDate = (ev) => {
+  const onAddDueDate = () => {
     const dueDate = new Date(selectedDate).getTime()
 
     let activityTxt
@@ -38,7 +38,7 @@ export const Dates = ({ task, groupId, setActionModal }) => {
   return (
     <section className="dates">
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <DatePicker disableToolbar variant="static" margin="normal" value={selectedDate} onChange={handleDateChange} />
+        <DatePicker disableToolbar variant="static" margin="normal" value={selectedDate} onChange={setSelectedDate} />
       </MuiPickersUtilsProvider>
 
       <button onClick={onAddDueDate} className="action-btn save-btn">

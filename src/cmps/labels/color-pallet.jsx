@@ -31,9 +31,10 @@ export const ColorPallet = ({ setSelectedColor, selectedColor }) => {
     'dark-pink-hoverable',
     'dark-black-hoverable',
   ]
-
+  // TODO make all the color changes with function instead of classes
   const onSelectColor = (ev, colorClass) => {
     ev.preventDefault()
+    // Gets the color class without the 'hoverable'
     colorClass = colorClass.slice(0, -10)
     setSelectedColor(colorClass)
   }

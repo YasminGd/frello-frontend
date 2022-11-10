@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { GrClose } from 'react-icons/gr'
 
+// TODO check why new tasks are not rendered with title
 export const AddItem = ({ onToggleAdd, addItem, groupId }) => {
   const [title, setTitle] = useState('')
 

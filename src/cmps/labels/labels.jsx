@@ -11,29 +11,32 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
   const dispatch = useDispatch()
   let board = useSelector((state) => state.boardModule.board)
   board = structuredClone(board)
-  let boardLabelsState = useSelector((state) => state.boardModule.board.labels || [])
+  // TODO check if you can bring labels from the board in line 13
+  let boardLabelsStore = useSelector((state) => state.boardModule.board.labels || [])
 
   const [selectedLabel, setSelectedLabel] = useState()
-  const [boardLabels, setBoardLabels] = useState(boardLabelsState)
+  const [boardLabels, setBoardLabels] = useState(boardLabelsStore)
 
   useEffect(() => {
-    setBoardLabels(boardLabelsState)
+    setBoardLabels(boardLabelsStore)
     return () => {
       setSelectedLabel(null)
     }
-  }, [boardLabelsState, task])
+  }, [boardLabelsStore, task])
 
   const handleChange = (ev, labelId) => {
     const { target } = ev
     if (target.type === 'checkbox') {
-
       if (!task.labelIds) task.labelIds = []
-      if (target.checked) task.labelIds.push(labelId)
 
-      else if (!target.checked) {
+      if (target.checked) task.labelIds.push(labelId)
+      else {
         const labelIdx = task.labelIds.findIndex((currLabelId) => currLabelId === labelId)
         task.labelIds.splice(labelIdx, 1)
+        // TODO makes sure  line 37 works and switch it
+        // task.labelIds.splice(task.labelIds.indexOf(labelId), 1)
       }
+
       if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
       dispatch(updateTask(groupId, task))
 
@@ -51,7 +54,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
   }
 
   const onSaveLabel = (label) => {
-    if (!board.labels.length) board.labels = []
+    if (!board.labels) board.labels = []
     if (!task.labelIds) task.labelIds = []
 
     if (label.id) {
@@ -61,12 +64,14 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
       label.id = utilService.makeId()
       task.labelIds.push(label.id)
       board.labels.push(label)
+      // TODO check if can update the board in the task action
       const updatedBoard = taskService.update(board, groupId, task)
       setSelectedLabel(null)
       if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
       dispatch(updateBoard(updatedBoard))
       return
     }
+    // TODO check if can merge for both situations
     setSelectedLabel(null)
     dispatch(updateBoard(board))
   }
@@ -74,6 +79,8 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
   const onRemoveLabel = (labelId) => {
     const labelsToSave = boardLabels.filter((currLabel) => currLabel.id !== labelId)
     board.labels = labelsToSave
+    // TODO check if line 83 works good on delete labels
+    // Removes the labelId from all tasks across board
     const cleanBoard = taskService.cleanTasksLabelIds(board, labelId)
     dispatch(updateBoard(cleanBoard))
   }

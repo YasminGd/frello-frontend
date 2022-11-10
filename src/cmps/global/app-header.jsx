@@ -10,9 +10,11 @@ import { Fragment } from 'react'
 
 export const AppHeader = () => {
   const [headerStatus, setHeaderStatus] = useState()
+  const [actionModal, setActionModal] = useState(null)
+
   const board = useSelector((state) => state.boardModule.board)
   const user = useSelector((state) => state.userModule.user)
-  const [actionModal, setActionModal] = useState(null)
+
   const location = useLocation()
   const userImgRef = useRef()
   const boardsRef = useRef()
@@ -27,7 +29,6 @@ export const AppHeader = () => {
     setHeaderStatus(status)
   }, [location.pathname])
 
-  // TODO: add state for header status
   const getHeaderStyleClass = () => {
     let styleClass
 
@@ -59,7 +60,6 @@ export const AppHeader = () => {
 
   const styleClass = getHeaderStyleClass()
   const isUserImgDisplayed = user?.fullname !== 'Guest'
-
   const fontColor = !utilService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
 
   return (

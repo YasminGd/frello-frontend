@@ -38,20 +38,21 @@ export const Cover = ({ task, onUpdateTask, setQuickEdit }) => {
 
   // When updating cover color
   const onUpdateCoverColor = (color) => {
-    // TODO check if both checks are necessary
-    if (selectedColor === color && selectedColor !== null) return
+    if (selectedColor === color) return
+
     if (task.style) {
       task.style.bgColor = color
       task.style.coverImg = null
       if (!color) task.style.isFullyCovered = false
+
     } else task.style = { bgColor: color }
+
     onUpdateTask(task)
   }
 
   // When updating cover style (fully covered or not)
   const onUpdateCoverStyle = (coverOption) => {
     if (selectedCover === coverOption || (!selectedImg && !selectedColor)) return
-    // TODO make sure it works with new tasks
     if (!task.style) task.style = {}
     task.style.isFullyCovered = coverOption
     onUpdateTask(task)

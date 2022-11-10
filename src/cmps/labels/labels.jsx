@@ -79,7 +79,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
   const onRemoveLabel = (labelId) => {
     const labelsToSave = boardLabels.filter((currLabel) => currLabel.id !== labelId)
     board.labels = labelsToSave
-    // TODO check if line 83 works good on delete labels
+    // TODO check if line 84 works good on delete labels
     // Removes the labelId from all tasks across board
     const cleanBoard = taskService.cleanTasksLabelIds(board, labelId)
     dispatch(updateBoard(cleanBoard))

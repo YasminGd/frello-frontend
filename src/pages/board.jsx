@@ -34,11 +34,9 @@ export const Board = () => {
     )
 
     useEffect(() => {
-        // TODO: If line 38 commented, change between boards wont render title
-        if (board) dispatch({ type: 'SET_BOARD', boardId: null })
         dispatch(getBoard(params.boardId))
         socketService.emit('join-board', params.boardId)
-    }, [params.boardId])
+    }, [params.boardId, dispatch])
 
     useEffect(() => {
         socketService.on('update-board', socketUpdateBoard)
@@ -145,6 +143,7 @@ export const Board = () => {
                             updateFilter={updateFilter}
                             filterBy={filterBy}
                             isBackgroundDark={isBackgroundDark}
+                            board={board}
                         />
                         <DragDropContext
                             onDragStart={onDragStart}

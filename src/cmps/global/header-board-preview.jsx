@@ -7,6 +7,11 @@ export const HeaderBoardPreview = ({ board, setActionModal }) => {
       ? { backgroundImage: `url(${board.style.thumbnail})` }
       : { backgroundColor: board.style.backgroundColor }
   }
+
+  // const onChangeBoard = () => {
+
+  // }
+
   return (
     <Link key={board._id} to={`/board/${board._id}`} onClick={() => setActionModal(null)}>
       <section className="header-board-preview">

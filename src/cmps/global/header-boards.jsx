@@ -11,7 +11,7 @@ export const HeaderBoards = ({ setActionModal }) => {
 
     useEffect(() => {
         if (!boards || !boards.length) dispatch(loadBoards())
-    }, [])
+    }, [boards, dispatch])
 
     if (!boards || !boards.length) return <div className="loader-container"><Loader /></div>
     return <section className="header-boards">

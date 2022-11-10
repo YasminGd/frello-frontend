@@ -28,7 +28,9 @@ export const AddItem = ({ onToggleAdd, addItem, groupId }) => {
       <form onSubmit={onAdd}>
         <textarea
           type="text"
-          placeholder={groupId ? 'Enter a title for this card...' : 'Enter list title...'}
+          placeholder={
+            groupId ? 'Enter a title for this card...' : 'Enter list title...'
+          }
           value={title}
           onChange={handleChange}
           autoFocus={window.innerWidth >= 1200}

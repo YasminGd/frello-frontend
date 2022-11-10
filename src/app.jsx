@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
-import { AppHeader } from './cmps/global/app-header.jsx'
-import { Home } from './pages/home'
-import { Workspace } from './pages/workspace'
+import { AppHeader } from './components/global/app-header.jsx'
+import { Home } from './views/home'
+import { Workspace } from './views/workspace'
 import 'assets/styles/main.scss'
-import { Board } from './pages/board'
-import { LoginSignup } from './pages/login-signup.jsx'
+import { Board } from './views/board'
+import { LoginSignup } from './views/login-signup.jsx'
 
 function App() {
   return (

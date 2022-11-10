@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadBoards, updateBoard } from '../store/actions/board.action'
-import { BoardList } from '../cmps/workspace/board-list'
+import { BoardList } from '../components/workspace/board-list'
 import { AiOutlineStar, AiOutlineClockCircle } from 'react-icons/ai'
-import { Loader } from '../cmps/global/loader'
+import { Loader } from '../components/global/loader'
 import { utilService } from '../services/util.service'
-import { ActionModal } from '../cmps/global/action-modal'
+import { ActionModal } from '../components/global/action-modal'
 
 export const Workspace = () => {
   const boards = useSelector((state) => state.boardModule.boards)

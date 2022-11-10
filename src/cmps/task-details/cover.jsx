@@ -45,8 +45,6 @@ export const Cover = ({ task, onUpdateTask, setQuickEdit }) => {
       task.style.coverImg = null
       if (!color) task.style.isFullyCovered = false
     } else task.style = { bgColor: color }
-    // TODO check why app crushes on quick edit
-    if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
     onUpdateTask(task)
   }
 
@@ -56,7 +54,6 @@ export const Cover = ({ task, onUpdateTask, setQuickEdit }) => {
     // TODO make sure it works with new tasks
     if (!task.style) task.style = {}
     task.style.isFullyCovered = coverOption
-    if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
     onUpdateTask(task)
   }
 

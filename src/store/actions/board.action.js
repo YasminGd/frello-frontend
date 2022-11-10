@@ -2,13 +2,6 @@ import { activityService } from '../../services/activity.service.js'
 import { boardService } from '../../services/board.service.js'
 
 // Action Creators:
-export function getActionRemoveBoard(boardId) {
-  return {
-    type: 'REMOVE_BOARD',
-    boardId,
-  }
-}
-
 export function getActionAddBoard(board) {
   return {
     type: 'ADD_BOARD',
@@ -37,18 +30,6 @@ export function loadBoards() {
   }
 }
 
-export function removeBoard(boardId) {
-  return async (dispatch) => {
-    try {
-      await boardService.remove(boardId)
-      console.log('Deleted Succesfully!')
-      dispatch(getActionRemoveBoard(boardId))
-    } catch (err) {
-      console.log('Cannot remove board', err)
-    }
-  }
-}
-
 export function addBoard(board) {
   return async (dispatch) => {
     try {
@@ -64,7 +45,7 @@ export function getBoard(boardId) {
   return async (dispatch) => {
     try {
       const board = await boardService.getById(boardId)
-      dispatch({ type: 'SET_BOARD_FROM_BACK', board: { ...board } })
+      dispatch({ type: 'SET_BOARD', board: { ...board } })
     } catch (err) {
       console.log(`cannot add board:`, err)
     }

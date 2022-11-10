@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
@@ -10,23 +10,34 @@ import { ActionModal } from '../global/action-modal'
 import { utilService } from '../../services/util.service'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-export const BoardHeader = ({
-  changeBackground,
-  changeTitle,
-  updateFilter,
-  filterBy,
-  isBackgroundDark,
-}) => {
+export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filterBy, isBackgroundDark, board }) => {
+  const displayTextWidth = useCallback(
+    (text) => {
+      const canvas =
+        displayTextWidth.canvas ||
+        (displayTextWidth.canvas = document.createElement('canvas'))
+      const context = canvas.getContext('2d')
+      context.font = `700 18px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif`
+      const metrics = context.measureText(text)
+      const metricsObj = { width: `${metrics.width + 20}px` }
+      return metricsObj
+    }, []
+  )
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const board = useSelector((state) => state.boardModule.board)
+  // const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
   const [actionModal, setActionModal] = useState(null)
   const [sideMenuClass, setSideMenuClass] = useState('')
   const btnAddUserRef = useRef()
   const filterRef = useRef()
+
+  useEffect(() => {
+    setBoardTitle(board.title)
+    setWidth(displayTextWidth(board.title))
+  }, [board, displayTextWidth])
 
   const handleChange = ({ target }) => {
     const { value } = target
@@ -35,17 +46,6 @@ export const BoardHeader = ({
 
   const resizeWidth = (ev) => {
     setWidth(displayTextWidth(boardTitle))
-  }
-
-  function displayTextWidth(text) {
-    const canvas =
-      displayTextWidth.canvas ||
-      (displayTextWidth.canvas = document.createElement('canvas'))
-    const context = canvas.getContext('2d')
-    context.font = `700 18px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif`
-    const metrics = context.measureText(text)
-    const metricsObj = { width: `${metrics.width + 20}px` }
-    return metricsObj
   }
 
   const renderSideMenu = () => {
@@ -63,11 +63,9 @@ export const BoardHeader = ({
     setActionModal({ type, pos })
   }
 
-  // TODO: check if line 69 is necessary
   const onOpenDashboard = (ev) => {
     ev.stopPropagation()
-    if (location.pathname.includes('dashboard')) navigate(-1)
-    else navigate(`${location.pathname}/dashboard`)
+    navigate(`${location.pathname}/dashboard`)
   }
 
   const themeStyle = isBackgroundDark ? '' : 'dark'

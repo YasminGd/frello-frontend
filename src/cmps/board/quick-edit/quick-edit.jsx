@@ -28,7 +28,7 @@ export const QuickEdit = ({ task, groupId, setQuickEdit, pos }) => {
   }
 
   const onUpdateTask = (task) => {
-    setQuickEdit(task)
+    setQuickEdit(prevState => ({ ...prevState, task }))
     dispatch(updateTask(groupId, task, undefined, undefined))
   }
 

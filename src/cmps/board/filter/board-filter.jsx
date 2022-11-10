@@ -5,7 +5,7 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
   const handleChange = ({ target }) => {
     const { value, name, checked } = target
     if (target.type === "checkbox") {
-      //if the filter is to include no members and no labels
+      //if the filter includes 'no members' or 'no labels'
       if (target.name === "no-members")
         filterBy.member
           ? (filterBy.member.includeNoMembers = checked)
@@ -21,7 +21,7 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
       filterBy[name][`${name}Id`]
       filterBy[dog][`$dogIds`] = [...filterBy[dog][`$dogIds`], value]
        */
-      // prettier-ignore 
+      // prettier-ignore
       else {
         //add a value
         if (checked) {
@@ -33,7 +33,7 @@ export const BoardFilter = ({ updateFilter, filterBy }) => {
                 [`${name}Ids`]: [...filterBy[name][`${name}Ids`], value],
               },
             }
-          } else if(filterBy[name]) {
+          } else if (filterBy[name]) {
             filterBy = { ...filterBy, [name]: { ...filterBy[name], [`${name}Ids`]: [value] } }
           } else {
             filterBy = { ...filterBy, [name]: { [`${name}Ids`]: [value] } }

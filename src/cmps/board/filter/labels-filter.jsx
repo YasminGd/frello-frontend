@@ -19,7 +19,7 @@ export const LabelsFilter = ({ handleChange, filterBy, updateFilter }) => {
     setSelectLabel({ type, pos })
   }
 
-  const changeFilter = ({ target }) => {
+  const handleLabelChange = ({ target }) => {
     if (!target.checked)
       filterBy = { ...filterBy, label: { ...filterBy.label, labelIds: [] } }
     else
@@ -86,9 +86,9 @@ export const LabelsFilter = ({ handleChange, filterBy, updateFilter }) => {
               type='checkbox'
               id='select-label'
               checked={
-                filterBy?.label?.labelIds?.length 
+                filterBy?.label?.labelIds?.length
               }
-              onChange={changeFilter}
+              onChange={handleLabelChange}
             />
             <div className='option-container'>
               <input
@@ -100,13 +100,11 @@ export const LabelsFilter = ({ handleChange, filterBy, updateFilter }) => {
                 type='text'
                 placeholder={
                   filterBy?.label?.labelIds?.length
-                    ? `${
-                        filterBy?.label?.labelIds?.length
-                      } ${
-                        filterBy?.label?.labelIds?.length === 1
-                          ? `label`
-                          : `labels`
-                      } selected`
+                    ? `${filterBy?.label?.labelIds?.length
+                    } ${filterBy?.label?.labelIds?.length === 1
+                      ? `label`
+                      : `labels`
+                    } selected`
                     : "Select labels"
                 }
               />

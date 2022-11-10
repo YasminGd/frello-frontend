@@ -168,6 +168,7 @@ export const Board = () => {
                     </React.Fragment>
                 )}
             </section>
+            {/* // TODO check if maybe it's better to put the quick edit state in the global store */}
             {quickEdit && (
                 <QuickEdit
                     pos={quickEdit.pos}

@@ -43,6 +43,7 @@ export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
     >
       <h3>Members</h3>
       <ul>
+        {/* No members filter list item */}
         <li>
           <label htmlFor="no-members">
             <input
@@ -64,6 +65,7 @@ export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
             </div>
           </label>
         </li>
+        {/* filter user own tasks list item */}
         {user?.username !== "Guest" && (
           <li>
             <label htmlFor="me">
@@ -89,6 +91,7 @@ export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
             </label>
           </li>
         )}
+        {/* select member to filter list item */}
         <li className="select-member-li">
           <label htmlFor="select-member" className="select-member-label">
             <input
@@ -108,11 +111,10 @@ export const MembersFilter = ({ handleChange, filterBy, updateFilter }) => {
                 type="text"
                 placeholder={
                   filterBy.member?.memberIds?.length
-                    ? `${filterBy.member?.memberIds?.length} ${
-                        filterBy.member?.memberIds?.length === 1
-                          ? `member`
-                          : `members`
-                      } selected`
+                    ? `${filterBy.member?.memberIds?.length} ${filterBy.member?.memberIds?.length === 1
+                      ? `member`
+                      : `members`
+                    } selected`
                     : "Select members"
                 }
               />

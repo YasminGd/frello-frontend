@@ -4,16 +4,15 @@ import React, { useState } from 'react'
 import { BiCheck } from 'react-icons/bi'
 
 export const Members = ({ task, groupId, setQuickEdit }) => {
+
   const dispatch = useDispatch()
   const boardMembers = useSelector((state) => state.boardModule.board.members)
   const [membersToRender, setMembersToRender] = useState(boardMembers || [])
 
   const handleChange = ({ target }) => {
-    if (target.type === 'text') {
-      const regex = new RegExp(target.value, 'i')
-      const filteredMembers = boardMembers.filter((member) => regex.test(member.fullname))
-      setMembersToRender(filteredMembers)
-    }
+    const regex = new RegExp(target.value, 'i')
+    const filteredMembers = boardMembers.filter((member) => regex.test(member.fullname))
+    setMembersToRender(filteredMembers)
   }
 
   const onToggleMember = (memberId) => {

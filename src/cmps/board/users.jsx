@@ -10,29 +10,26 @@ export const Users = () => {
   const dispatch = useDispatch()
   const board = useSelector((state) => state.boardModule.board)
   const [workspaceUsers, setWorkspaceUsers] = useState()
-  const [usersToRender, setUsersToRender] = useState(workspaceUsers)
+  const [usersToDisplay, setUsersToDisplay] = useState(workspaceUsers)
 
   useEffect(() => {
     ; (async () => {
       const users = await userService.getUsers()
       setWorkspaceUsers(users)
-      setUsersToRender(users)
+      setUsersToDisplay(users)
     })()
   }, [])
 
   const handleChange = ({ target }) => {
-    if (target.type === 'text') {
-      const regex = new RegExp(target.value, 'i')
-      const filteredUsers = workspaceUsers.filter((user) => regex.test(user.fullname))
-      setUsersToRender(filteredUsers)
-    }
+    const regex = new RegExp(target.value, 'i')
+    const filteredUsers = workspaceUsers.filter((user) => regex.test(user.fullname))
+    setUsersToDisplay(filteredUsers)
   }
 
+  // Adds a new user from the workspace users to the board members
   const onToggleUser = (userId) => {
     let user = workspaceUsers.find((user) => user._id === userId)
     let activityTxt
-    delete user.createdAt
-    delete user.username
 
     if (board.members?.some((member) => member._id === userId)) {
       const index = board.members.findIndex((member) => member._id === userId)
@@ -48,7 +45,8 @@ export const Users = () => {
     const boardWithActivities = activityService.addActivity(activityTxt, null, board)
     dispatch(updateBoard(boardWithActivities))
   }
-  if (!usersToRender) return <section className="loader-container"><Loader /></section>
+
+  if (!usersToDisplay) return <section className="loader-container"><Loader /></section>
   return (
     <section className="users">
       <div className="">
@@ -56,7 +54,7 @@ export const Users = () => {
       </div>
       <p className="sub-header">Workspace members</p>
       <ul className="members-list">
-        {usersToRender.map((user) => (
+        {usersToDisplay.map((user) => (
           <li key={user._id}>
             {user && (
               <div className="member-container" onClick={() => onToggleUser(user._id)}>

@@ -13,16 +13,13 @@ export const Dates = ({ task, groupId, setActionModal }) => {
     const dueDate = new Date(selectedDate).getTime()
 
     let activityTxt
-    const dueString = utilService.dueDateTimeFormat(dueDate)
+    const dueTxt = utilService.dueDateTimeFormat(dueDate)
     if (task.dueDate) {
       task.dueDate.date = dueDate
-      activityTxt = `set ${task.title} to be due ${dueString}`
+      activityTxt = `set ${task.title} to be due ${dueTxt}`
     } else {
-      task.dueDate = {
-        date: dueDate,
-        isDone: false,
-      }
-      activityTxt = `changed the due date of ${task.title} to ${dueString}`
+      task.dueDate = { date: dueDate, isDone: false }
+      activityTxt = `changed the due date of ${task.title} to ${dueTxt}`
     }
 
     dispatch(updateTask(groupId, task, activityTxt))

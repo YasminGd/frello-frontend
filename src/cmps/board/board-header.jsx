@@ -63,11 +63,9 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
     setActionModal({ type, pos })
   }
 
-  // TODO: check if line 69 is necessary
   const onOpenDashboard = (ev) => {
     ev.stopPropagation()
-    if (location.pathname.includes('dashboard')) navigate(-1)
-    else navigate(`${location.pathname}/dashboard`)
+    navigate(`${location.pathname}/dashboard`)
   }
 
   const themeStyle = isBackgroundDark ? '' : 'dark'

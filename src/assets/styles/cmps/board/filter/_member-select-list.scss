@@ -11,9 +11,15 @@
       li {
         padding-inline-start: 42px;
         position: relative;
+        height: 36px;
 
         label {
-          padding: 6px 42px 6px 0;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          padding: 6px 6px 6px 42px;
         }
 
         &:hover {

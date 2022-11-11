@@ -142,6 +142,10 @@ function getModalPosition(type, ref) {
     pos.right = 5
     pos.bottom += 8
   }
+  if (type === 'Location preview actions') {
+    pos.bottom +=198
+    pos.right += 5
+  }
   return pos
 }
 

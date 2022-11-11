@@ -4,7 +4,7 @@ export const locationService = {
     searchLocation,
 }
 
-const API_KEY = "AIzaSyARPKA9DEEozpiVxh1VOPNsWveWnSlqZQI"
+const API_KEY = "AIzaSyC2yfNJWgZ-aU8kxmkHfL5bIRyLP5PgcpA"
 
 async function searchLocation(name) {
     let locations

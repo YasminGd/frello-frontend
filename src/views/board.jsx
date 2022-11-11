@@ -36,10 +36,6 @@ export const Board = () => {
     useEffect(() => {
         dispatch(getBoard(params.boardId))
         socketService.emit('join-board', params.boardId)
-
-        return () => {
-            dispatch({ type: 'SET_BOARD', boardId: null })
-        }
     }, [params.boardId, dispatch])
 
     useEffect(() => {

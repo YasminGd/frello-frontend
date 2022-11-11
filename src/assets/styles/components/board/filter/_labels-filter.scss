@@ -1,0 +1,87 @@
+.labels-filter {
+
+    &.filter {
+        margin-bottom: 0;
+        ul {
+            margin-top: 8px;
+            margin-bottom: 0;
+
+            li {
+                label {
+                    padding: 2px 0 6px 8px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    gap: 10px;
+
+                    p {
+                        letter-spacing: 0.1px;
+                        font-size: 14px;
+                    }
+
+                }
+            }
+
+            .select-label-li {
+                margin-top: -8px;
+
+                input[type='checkbox']:first-of-type {
+                    margin-top: 8px;
+                }
+                
+                input[type='checkbox'] {
+                    margin-top: 4px;
+                }
+
+                .label-for-select-labels {
+                    padding-bottom: 0;
+                }
+
+
+                // padding: 2px 0 6px 8px;
+            }
+        }
+    }
+
+    .label-container {
+        height: 32px;
+        position: relative;
+        width: 100%;
+
+        .label-color {
+            height: 32px;
+            position: absolute;
+            left: 0;
+            display: flex;
+            align-items: center;
+            width: 321px;
+            border-radius: 3px;
+            margin-left: 1px;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+
+            .label-color-circle {
+                opacity: 1;
+                z-index: 10;
+                height: 16px;
+                width: 16px;
+                border-radius: 50%;
+                margin-inline-start: 7px;
+                margin-right: 8px;
+            }
+        }
+    }
+
+    .icon-open {
+        right: 10px;
+        top: 18px;
+    }
+
+    .option-container {
+        position: relative;
+        
+        .search-label {
+            margin-bottom: 0;
+        }
+    }
+}

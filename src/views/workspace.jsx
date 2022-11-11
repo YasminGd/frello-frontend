@@ -14,8 +14,9 @@ export const Workspace = () => {
   const [actionModal, setActionModal] = useState(null)
 
   useEffect(() => {
+    if (board) dispatch({ type: 'SET_BOARD', boardId: null })
     dispatch(loadBoards())
-  }, [dispatch, board])
+  }, [])
 
   const onToggleStarred = (ev, boardId) => {
     ev.preventDefault()

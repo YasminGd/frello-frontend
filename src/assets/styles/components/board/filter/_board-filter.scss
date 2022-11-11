@@ -1,0 +1,139 @@
+.board-filter {
+  width: 384px;
+  padding: 0 12px 12px;
+  color: #5e6c84;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  .filter-container {
+    position: relative;
+    padding-top: 16px;
+
+    .title {
+      margin-bottom: 9px;
+    }
+
+    p {
+      letter-spacing: -0.2px;
+    }
+
+    .search-label {
+      margin-bottom: 18px;
+    }
+  }
+
+  h3 {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  // h3:first-of-type {
+  //   margin: 24px 0 8px;
+  // }
+
+  .search-filter {
+    height: 36px;
+    @include inputFocus();
+  }
+
+  .search-label {
+    margin: 8px 0 4px;
+    font-size: 11.7px;
+  }
+
+  ul {
+    // margin-inline-start: 8px;
+  }
+
+  .filter {
+    label {
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .checkbox {
+        position: absolute;
+        left: 8px;
+        height: 16px;
+        width: 16px;
+        cursor: pointer;
+        border-color: #dee1e5;
+        border-radius: 3px;
+
+        &:checked {
+          accent-color: #5ba4cf;
+        }
+
+        &:hover {
+          color: #5e6c84;
+        }
+      }
+
+      .option-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        margin-left: 1px;
+      }
+    }
+
+    .search {
+      height: 36px;
+      width: 100%;
+      cursor: pointer;
+      border-color: rgb(179, 179, 179);
+      
+      @include inputFocus();
+      background-color: #f4f5f7;
+      outline: 0;
+      box-shadow: none;
+
+      &:focus {
+        &:hover {
+          background-color: white;
+        }
+      }
+
+      &:hover {
+        background-color: #ebecf0;
+      }
+
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+
+    .no-img {
+      background-color: #ebecf0;
+      border-radius: 50%;
+      font-size: 16px;
+
+      span {
+        @include flexAlign();
+      }
+    }
+
+    .img {
+      margin-right: -3px;
+      height: 24px;
+      object-fit: cover;
+      width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        border-radius: 25em;
+      }
+    }
+
+    .icon-open {
+      position: absolute;
+      right: 12px;
+      cursor: pointer;
+    }
+  }
+}

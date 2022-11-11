@@ -1,0 +1,72 @@
+.edit-label {
+  max-width: 300px;
+  .sub-title {
+    @include subHeader;
+    margin-bottom: 8px;
+  }
+
+  .label-title {
+    @include inputFocus;
+  }
+
+  .sub-header {
+    @include subHeader;
+    margin-bottom: 8px;
+  }
+
+  .btn-container {
+    border-bottom: 1px solid rgba(9, 30, 66, 0.1294117647);
+  }
+
+  .btn-remove-color {
+    background-color: #f6f6f7;
+    width: 100%;
+    height: 32px;
+    padding: 6px 12px;
+    margin-bottom: 8px;
+    color: #172b4d;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    margin-bottom: 25.5px;
+    @include flexAlign;
+
+    &:hover {
+      background-color: #ecedf0;
+    }
+
+    .icon-close {
+      font-size: 18px;
+      margin-inline-end: 5px;
+    }
+  }
+
+  .save-remove {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+
+    & > * {
+      padding: 6px 12px;
+      color: #fdfcfc;
+      font-size: 14px;
+      height: 32px;
+    }
+
+    .btn-save {
+      background-color: #3477ba;
+      &:hover {
+        background-color: #046aa7;
+      }
+    }
+
+    .btn-remove {
+      background-color: #a44d39;
+      &:hover {
+        background-color: #933b26;
+      }
+    }
+  }
+}

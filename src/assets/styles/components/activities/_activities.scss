@@ -1,0 +1,24 @@
+.activities {
+  padding: 8px 0px;
+
+  .header {
+    height: 32px;
+    padding: 0 14px;
+    margin: 0 12px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+
+    &:hover {
+      background-color: #091e4214;
+    }
+
+    svg {
+      font-size: 17px;
+    }
+  }
+}

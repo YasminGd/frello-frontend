@@ -1,0 +1,184 @@
+.home {
+  font-family: CharlieDisplay-regular;
+  background: linear-gradient(rgb(234, 230, 255), rgb(255, 255, 255)) no-repeat;
+  width: 100%;
+  overflow: auto;
+
+  .link-container {
+    width: 130px;
+  }
+
+  a {
+    background-color: #0065ff;
+    font-family: CharlieText-regular;
+    padding: 0.9rem 1rem;
+    border-radius: 4.8px;
+    color: #fff;
+    transition: background-color 250ms ease-out;
+    @include flexAlign();
+
+    &:hover {
+      background-color: #0056d9;
+      cursor: pointer;
+    }
+  }
+
+  .main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px 10px 0;
+
+    .main-content {
+      max-width: 650px;
+      align-self: center;
+      text-align: center;
+
+      h1 {
+        font-size: 2rem;
+        line-height: 1.25;
+        font-family: CharlieDisplay-semibold;
+        margin-block-end: 8px;
+      }
+
+      p {
+        font-size: 1.25rem;
+        line-height: 1.875rem;
+        font-family: CharlieText-regular;
+        margin-block-end: 24px;
+      }
+
+      .link-container {
+        margin: auto;
+      }
+    }
+
+    .main-img {
+      min-width: 230px;
+      align-self: center;
+      width: 230px;
+      margin-bottom: 30px;
+      order: -1;
+    }
+  }
+
+  .separator {
+    background-color: #e1e4e8;
+    height: 1px;
+    max-width: 1100px;
+    margin: 40px 20px;
+  }
+
+  .main-app-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 1600px;
+    margin: auto;
+    margin-bottom: 50px;
+    text-align: center;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 7px;
+      letter-spacing: 0.35px;
+      line-height: 48px;
+      font-weight: 900;
+    }
+
+    p {
+      font-family: CharlieText-regular;
+      max-width: 1200px;
+      font-size: 20px;
+      margin-bottom: 24px;
+      line-height: 30px;
+    }
+
+    a {
+      margin-bottom: 32px;
+    }
+
+    img {
+      max-width: 90%;
+    }
+
+    .desc-image {
+      box-shadow: 0px 7px 20px 0px #bebebe;
+    }
+  }
+}
+
+// MEDIA QUERIES
+
+//////////////////////////////////////////// 780px ////////////////////////////////////////////
+@include for-small-layout {
+  .home {
+    .main {
+      flex-direction: row;
+      margin: 140px 50px 50px;
+
+      .main-content {
+        text-align: unset;
+        align-self: center;
+
+        .link-container {
+          margin: unset;
+        }
+
+        h1 {
+          font-size: 3rem;
+        }
+
+        p {
+          margin-block-end: 64px;
+        }
+      }
+
+      .main-img {
+        order: unset;
+        align-self: flex-end;
+        margin-top: 50px;
+        min-width: 280px;
+      }
+    }
+
+    .separator {
+      // margin: auto;
+      // margin-top: 80px;
+      // margin-bottom: 60px;
+      margin: 40px auto;
+    }
+
+    .main-app-description {
+      h2 {
+        font-size: 3rem;
+      }
+
+      img {
+        max-width: 950px;
+      }
+    }
+  }
+}
+
+//////////////////////////////////////////// 980px ////////////////////////////////////////////
+@include for-normal-layout {
+  .home {
+    .main {
+      .main-img {
+        margin-left: 120px;
+      }
+    }
+  }
+}
+
+@include for-wide-layout {
+  .home {
+    .main {
+      .main-img {
+        width: 350px;
+      }
+    }
+  }
+}

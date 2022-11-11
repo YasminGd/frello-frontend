@@ -1,0 +1,61 @@
+.edit-title {
+  margin-bottom: 10px;
+
+  .input {
+    margin-left: 1px;
+    margin-top: -2px;
+    width: 290px;
+    height: 54px;
+    background: #091e420a;
+    border-color: #091e4221;
+    box-shadow: inset 0 0 0 1px #091e4221;
+    margin-bottom: 1px;
+    padding-top: 8px;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+
+    &:focus {
+      background-color: #091e420a;
+    }
+  }
+
+  .options {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 1px;
+    gap: 11px;
+
+    svg {
+      font-size: 16px;
+    }
+  }
+}
+
+// MEDIA QUERIES
+
+@media (min-width: 480px) {
+  .edit-title {
+    .input {
+      width: 376px;
+    }
+  }
+}
+
+@media (min-width: 560px) {
+  .edit-title {
+    .input {
+      width: 456px;
+    }
+  }
+}
+
+@include for-narrow-layout {
+  .edit-title {
+    .input {
+      width: 512px;
+    }
+  }
+}

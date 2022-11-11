@@ -1,0 +1,56 @@
+.task-attachments {
+  margin-inline-start: 40px;
+
+  .attachments-header {
+    padding-top: 15px;
+  }
+
+  .attachments-body {
+    textarea {
+      width: 100%;
+      cursor: pointer;
+      background-color: $background-gray;
+      padding: 8px 12px;
+      margin-bottom: 4px;
+      height: 56px;
+      font-size: 14px;
+      &:hover {
+        background-color: #e1e4e9;
+      }
+      &:focus {
+        background-color: white;
+        box-shadow: inset 0 0 0 2px $blue-500;
+        height: 108px;
+      }
+      &:hover:focus {
+        cursor: text;
+      }
+    }
+    ::placeholder {
+      color: #091e42;
+    }
+
+    .btns-container {
+      font-size: 14px;
+      button {
+        padding: 8px 12px;
+        margin-right: 4px;
+        border-radius: 3px;
+        transition: background-color 0.1s;
+      }
+      .btn-save {
+        background-color: $blue-600;
+        color: white;
+        &:hover {
+          background-color: #046aa7;
+        }
+      }
+      .btn-cancel {
+        background-color: transparent;
+        &:hover {
+          background-color: $bg-gray-strong;
+        }
+      }
+    }
+  }
+}

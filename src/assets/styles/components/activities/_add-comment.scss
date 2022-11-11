@@ -1,0 +1,83 @@
+.add-comment {
+  position: relative;
+  display: flex;
+  margin-top: 12px;
+  gap: 8px;
+  padding-right: 4px;
+
+  .member-img {
+    height: 32px;
+    width: 32px;
+    object-fit: cover;
+
+    img {
+      width: 100%;
+      border-radius: 25em;
+    }
+  }
+
+  textarea {
+    height: 36px;
+    width: 290px;
+    background-color: white;
+    border-radius: 3px;
+    padding: 8px 12px;
+    flex: 1;
+    box-shadow: 0 1px 2px -1px #091e4240, 0 0 0 1px #091e4214;
+    transition-duration: 85ms;
+    transition-property: height, box-shadow;
+    transition-timing-function: ease;
+
+    &:focus {
+      box-shadow: 0 4px 8px -2px #091e4240, 0 0 0 1px #091e4214;
+    }
+
+    &::placeholder {
+      color: #5e6c84;
+    }
+  }
+
+  button {
+    height: 32px;
+    position: absolute;
+    bottom: 12px;
+    left: 52px;
+
+    &:disabled {
+      background-color: #091e420a;
+      color: #a5adba;
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: #091e420a;
+        color: #a5adba;
+      }
+    }
+  }
+}
+
+// MEDIA QUERIES
+
+@media (min-width: 480px) {
+  .add-comment {
+    textarea {
+      width: 376px;
+    }
+  }
+}
+
+@media (min-width: 560px) {
+  .add-comment {
+    textarea {
+      width: 456px;
+    }
+  }
+}
+
+@include for-narrow-layout {
+  .add-comment {
+    textarea {
+      width: 508px;
+    }
+  }
+}

@@ -24,18 +24,12 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
     }
   }, [boardLabelsStore, task])
 
-  const handleChange = (ev, labelId) => {
-    const { target } = ev
+  const handleChange = ({ target }, labelId) => {
     if (target.type === 'checkbox') {
       if (!task.labelIds) task.labelIds = []
 
       if (target.checked) task.labelIds.push(labelId)
-      else {
-        const labelIdx = task.labelIds.findIndex((currLabelId) => currLabelId === labelId)
-        task.labelIds.splice(labelIdx, 1)
-        // TODO makes sure  line 37 works and switch it
-        // task.labelIds.splice(task.labelIds.indexOf(labelId), 1)
-      }
+      else task.labelIds.splice(task.labelIds.indexOf(labelId), 1)
 
       if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
       dispatch(updateTask(groupId, task))
@@ -57,21 +51,19 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
     if (!board.labels) board.labels = []
     if (!task.labelIds) task.labelIds = []
 
-    if (label.id) {
+    if (label.id) { // Edit label
       const labelIdx = board.labels.findIndex((label) => label.id === selectedLabel.id)
       board.labels.splice(labelIdx, 1, label)
-    } else {
+
+    } else { // Create label
       label.id = utilService.makeId()
       task.labelIds.push(label.id)
       board.labels.push(label)
       // TODO check if can update the board in the task action
-      const updatedBoard = taskService.update(board, groupId, task)
-      setSelectedLabel(null)
-      if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
-      dispatch(updateBoard(updatedBoard))
-      return
+      board = taskService.update(board, groupId, task)
     }
-    // TODO check if can merge for both situations
+
+    if (setQuickEdit) setQuickEdit(prevState => ({ ...prevState, task }))
     setSelectedLabel(null)
     dispatch(updateBoard(board))
   }
@@ -79,7 +71,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
   const onRemoveLabel = (labelId) => {
     const labelsToSave = boardLabels.filter((currLabel) => currLabel.id !== labelId)
     board.labels = labelsToSave
-    // TODO check if line 84 works good on delete labels
+
     // Removes the labelId from all tasks across board
     const cleanBoard = taskService.cleanTasksLabelIds(board, labelId)
     dispatch(updateBoard(cleanBoard))

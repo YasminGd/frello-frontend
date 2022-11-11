@@ -104,10 +104,9 @@ function cleanTasksLabelIds(board, labelId) {
   board.groups.forEach((group) => {
     group.tasks.forEach((task) => {
       if (!task.labelIds || !task.labelIds.length) return
-      const labelIdIdx = task.labelIds?.findIndex(
-        (currLabelId) => currLabelId === labelId
-      )
-      if (labelIdIdx === 0 || labelIdIdx) task.labelIds.splice(labelIdIdx, 1)
+      const labelIdIdx = task.labelIds.indexOf(labelId)
+      if (labelIdIdx === -1) return
+      task.labelIds.splice(labelIdIdx, 1)
     })
   })
   return board

@@ -274,7 +274,7 @@ function handleDragEnd(newBoard, destination, source, type) {
 }
 
 function isBackgroundDark(color) {
-  if (!color) return
+  if (!color) return true
 
   let r
   let g

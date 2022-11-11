@@ -1,24 +1,28 @@
-import { useRef, useState } from 'react'
-import { IoCloseOutline } from 'react-icons/io5'
-import { IoChevronBack } from 'react-icons/io5'
-import { Cover } from '../task-details/cover'
-import { Attachment } from '../attachment/attachment'
-import { CheckList } from '../checklist/check-list'
-import { Dates } from '../dates/dates'
-import { Labels } from '../labels/labels'
-import { Members } from '../members/members'
-import { Users } from '../board/users'
-import { ListActions } from '../board/group/list-actions'
-import { BoardFilter } from '../board/filter/board-filter'
-import { MemberSelectList } from '../board/filter/member-select-list'
-import { AccountDetails } from '../board/account-details'
-import { CreateBoard } from '../workspace/create-board'
-import { LabelSelectList } from '../board/filter/label-select-list'
-import { Location } from '../location/location'
-import { LocationActions } from '../location/location-actions'
-import { useClickOutside } from '../../hooks/is-clicked-outside'
-import { HeaderBoards } from './header-boards'
-import { HeaderStarredBoards } from './header-starred-boards'
+import { useRef, useState } from "react"
+import { IoCloseOutline } from "react-icons/io5"
+import { IoChevronBack } from "react-icons/io5"
+import { Cover } from "../task-details/cover"
+import { Attachment } from "../attachment/attachment"
+import { CheckList } from "../checklist/check-list"
+import { Dates } from "../dates/dates"
+import { Labels } from "../labels/labels"
+import { Members } from "../members/members"
+import { Users } from "../board/users"
+import { ListActions } from "../board/group/list-actions"
+import { BoardFilter } from "../board/filter/board-filter"
+import { MemberSelectList } from "../board/filter/member-select-list"
+import { AccountDetails } from "../board/account-details"
+import { CreateBoard } from "../workspace/create-board"
+import { LabelSelectList } from "../board/filter/label-select-list"
+import { Location } from "../location/location"
+import { LocationActions } from "../location/location-actions"
+import { useClickOutside } from "../../hooks/is-clicked-outside"
+import { HeaderBoards } from "./header-boards"
+import { HeaderStarredBoards } from "./header-starred-boards"
+
+// TODO: Update ActionModal switch cases to send type instead of titles
+//prettier-ignore
+export const ActionModal = ({ data, task, onUpdateTask, setActionModal, groupId, removeItem, updateFilter, filterBy, handleChange, setQuickEdit, }) => {
 
   const [isLabelsEdit, setIsLabelsEdit] = useState(null)
 
@@ -115,10 +119,8 @@ import { HeaderStarredBoards } from './header-starred-boards'
           />
         )
 
-      case "Filter":
-        return <BoardFilter
-          updateFilter={updateFilter}
-          filterBy={filterBy} />
+      case 'Filter':
+        return <BoardFilter updateFilter={updateFilter} filterBy={filterBy} />
 
       case "Select member":
         return (

@@ -15,10 +15,10 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
   let boardLabelsStore = useSelector((state) => state.boardModule.board.labels || [])
 
   const [selectedLabel, setSelectedLabel] = useState()
-  const [boardLabels, setBoardLabels] = useState(boardLabelsStore)
+  const [labelsToDisplay, setLabelsToDisplay] = useState(boardLabelsStore)
 
   useEffect(() => {
-    setBoardLabels(boardLabelsStore)
+    setLabelsToDisplay(boardLabelsStore)
     return () => {
       setSelectedLabel(null)
     }
@@ -37,7 +37,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
     } else if (target.type === 'text') {
       const regex = new RegExp(target.value, 'i')
       const filteredLabels = board.labels.filter((label) => regex.test(label.title))
-      setBoardLabels(filteredLabels)
+      setLabelsToDisplay(filteredLabels)
     }
   }
 
@@ -51,15 +51,12 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
     if (!board.labels) board.labels = []
     if (!task.labelIds) task.labelIds = []
 
-    if (label.id) { // Edit label
-      const labelIdx = board.labels.findIndex((label) => label.id === selectedLabel.id)
-      board.labels.splice(labelIdx, 1, label)
-
-    } else { // Create label
+    if (label.id)  // Edit label
+      board.labels.splice(board.labels.indexOf(label.id), 1, label)
+    else { // Create label
       label.id = utilService.makeId()
       task.labelIds.push(label.id)
       board.labels.push(label)
-      // TODO check if can update the board in the task action
       board = taskService.update(board, groupId, task)
     }
 
@@ -69,7 +66,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
   }
 
   const onRemoveLabel = (labelId) => {
-    const labelsToSave = boardLabels.filter((currLabel) => currLabel.id !== labelId)
+    const labelsToSave = labelsToDisplay.filter((currLabel) => currLabel.id !== labelId)
     board.labels = labelsToSave
 
     // Removes the labelId from all tasks across board
@@ -99,7 +96,7 @@ export const Labels = ({ task, groupId, onToggleLabelEdit, isLabelsEdit, setQuic
           </div>
           <p className="sub-header">Labels</p>
           <ul>
-            {boardLabels.map((label) => (
+            {labelsToDisplay.map((label) => (
               <li key={label.id}>
                 <label htmlFor={label.id} className="checkbox-container">
                   <input

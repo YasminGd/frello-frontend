@@ -2,6 +2,8 @@
   .label-select-list {
     width: 321px;
     margin-bottom: 8px;
+    max-height: 240px;
+    overflow-y: auto;
 
     ul {
       position: relative;
@@ -27,7 +29,7 @@
         }
 
         .checkbox {
-          top: 8px;
+          top: 6px;
           left: 12px;
         }
       }

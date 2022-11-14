@@ -62,3 +62,8 @@ a {
 .loader-container {
   margin-top: 40px;
 }
+
+// Fixes bug on overflow for the div with this ID
+#g_a11y_announcement {
+  right: unset;
+}

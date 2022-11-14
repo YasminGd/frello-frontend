@@ -48,8 +48,10 @@ export const AppHeader = () => {
   }
 
   const getStyleColor = () => {
-    const backgroundColor = board?.style?.backgroundColor
-    return backgroundColor ? { backgroundColor } : {}
+    if (headerStatus === 'board') {
+      const backgroundColor = board?.style?.backgroundColor
+      return backgroundColor ? { backgroundColor } : {}
+    }
   }
 
   const onOpenActionModal = (type, ref) => {
@@ -58,9 +60,15 @@ export const AppHeader = () => {
     setActionModal({ type, pos })
   }
 
+  const getFontColor = () => {
+    if (headerStatus === 'board') {
+      return !utilService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
+    }
+  }
+
   const styleClass = getHeaderStyleClass()
   const isUserImgDisplayed = user?.fullname !== 'Guest'
-  const fontColor = !utilService.isBackgroundDark(board?.style?.backgroundColor) ? 'dark' : ''
+  const fontColor = getFontColor()
 
   return (
     <section className={`app-header ${styleClass}`} style={getStyleColor()}>

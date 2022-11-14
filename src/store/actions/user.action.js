@@ -1,28 +1,5 @@
 import { userService } from '../../services/user.service'
 
-export function loadUsers() {
-  return async (dispatch) => {
-    try {
-      const users = await userService.getUsers()
-      dispatch({ type: 'SET_USERS', users })
-    } catch (err) {
-      console.log('Cannot load users', err)
-    }
-  }
-}
-
-export function loadUser() {
-  return async (dispatch) => {
-    try {
-      const loggedInUser = await userService.getLoggedInUser()
-      //TODO: change type to SET_USER and check if it works
-      dispatch({ type: 'SET_LOGGEDIN_USER', loggedInUser })
-    } catch (err) {
-      console.log('Cannot get loggedInUser', err)
-    }
-  }
-}
-
 export function signup(credentials, isGoogleAuth) {
   return async (dispatch) => {
     try {
@@ -55,12 +32,5 @@ export function logout() {
     } catch (err) {
       console.log('Cannot login', err)
     }
-  }
-}
-
-export function getLoggedInUser() {
-  return async (dispatch) => {
-    const user = await userService.getLoggedInUser()
-    dispatch({ type: 'SET_USER', user })
   }
 }

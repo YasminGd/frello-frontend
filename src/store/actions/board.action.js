@@ -1,4 +1,3 @@
-import { activityService } from '../../services/activity.service.js'
 import { boardService } from '../../services/board.service.js'
 
 // Action Creators:
@@ -54,8 +53,7 @@ export function getBoard(boardId) {
 
 export function updateBoard(board) {
   return async (dispatch, getState) => {
-    //TODO Check if spread is necessary
-    const prevBoard = { ...getState().boardModule.board }
+    const prevBoard = getState().boardModule.board
     dispatch(getActionUpdateBoard({ ...board }))
 
     try {

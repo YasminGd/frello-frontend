@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
 import { updateBoard } from '../../store/actions/board.action'
 import { BsThreeDots, BsPersonPlus, BsFilter, BsGraphUp } from 'react-icons/bs'
 import { BoardSideMenu } from './side-menu/board-side-menu'
@@ -26,7 +25,6 @@ export const BoardHeader = ({ changeBackground, changeTitle, updateFilter, filte
   const location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  // const board = useSelector((state) => state.boardModule.board)
   const [boardTitle, setBoardTitle] = useState(board.title)
   const [width, setWidth] = useState(displayTextWidth(boardTitle))
   const [actionModal, setActionModal] = useState(null)

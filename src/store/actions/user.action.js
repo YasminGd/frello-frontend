@@ -15,6 +15,7 @@ export function loadUser() {
   return async (dispatch) => {
     try {
       const loggedInUser = await userService.getLoggedInUser()
+      //TODO: change type to SET_USER and check if it works
       dispatch({ type: 'SET_LOGGEDIN_USER', loggedInUser })
     } catch (err) {
       console.log('Cannot get loggedInUser', err)

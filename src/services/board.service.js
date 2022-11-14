@@ -10,8 +10,8 @@ export const boardService = {
   getBoardForDisplay,
 }
 
-async function query(filterBy) {
-  return httpService.get(BASE_URL, filterBy)
+async function query() {
+  return httpService.get(BASE_URL)
 }
 
 async function getById(boardId) {

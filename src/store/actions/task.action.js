@@ -1,3 +1,4 @@
+import { activityService } from 'services/activity.service'
 import { boardService } from '../../services/board.service'
 import { taskService } from '../../services/task.service'
 import { getActionUpdateBoard } from './board.action'
@@ -99,6 +100,22 @@ export function addNewTodo(title, checkListId, taskId, groupId) {
       taskId,
       board
     )
+    dispatch(getActionUpdateBoard(updatedBoard))
+
+    try {
+      await boardService.save(updatedBoard)
+    } catch (err) {
+      dispatch(getActionUpdateBoard({ ...prevBoard }))
+      console.log('Cannot add todo', err)
+    }
+  }
+}
+
+export function addNewComment(txt, task, comment) {
+  return async (dispatch, getState) => {
+    const prevBoard = getState().boardModule.board
+    const board = structuredClone(prevBoard)
+    const updatedBoard = activityService.addActivity(txt, task, board, comment)
     dispatch(getActionUpdateBoard(updatedBoard))
 
     try {

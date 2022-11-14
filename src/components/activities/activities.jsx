@@ -1,7 +1,7 @@
 import { GrSort } from 'react-icons/gr'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { addNewComment } from '../../store/actions/board.action'
+import { addNewComment } from 'store/actions/task.action'
 import { ActivityList } from './activity-list'
 import { AddComment } from './add-comment'
 
@@ -14,7 +14,8 @@ export const Activities = ({ activities, renderAddComments, task }) => {
       ? user
       : {
           fullname: 'Guest',
-          imgUrl: 'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg',
+          imgUrl:
+            'http://res.cloudinary.com/frello/image/upload/v1663584273/u9nkwkywyxv8mogk9q2b.jpg',
         }
   }
 
@@ -29,8 +30,12 @@ export const Activities = ({ activities, renderAddComments, task }) => {
         <GrSort />
         <p>Activity</p>
       </section>
-      {renderAddComments && <AddComment user={getUser()} addComment={addComment} />}
-      {board.activities && board.activities.length !== 0 && <ActivityList activities={activities} />}
+      {renderAddComments && (
+        <AddComment user={getUser()} addComment={addComment} />
+      )}
+      {board.activities && board.activities.length !== 0 && (
+        <ActivityList activities={activities} />
+      )}
     </section>
   )
 }

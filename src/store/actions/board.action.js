@@ -54,6 +54,7 @@ export function getBoard(boardId) {
 
 export function updateBoard(board) {
   return async (dispatch, getState) => {
+    //TODO Check if spread is necessary
     const prevBoard = { ...getState().boardModule.board }
     dispatch(getActionUpdateBoard({ ...board }))
 
@@ -62,22 +63,6 @@ export function updateBoard(board) {
     } catch (err) {
       dispatch(getActionUpdateBoard(prevBoard))
       console.log('Cannot update board', err)
-    }
-  }
-}
-
-export function addNewComment(txt, task, comment) {
-  return async (dispatch, getState) => {
-    const prevBoard = getState().boardModule.board
-    const board = structuredClone(prevBoard)
-    const updatedBoard = activityService.addActivity(txt, task, board, comment)
-    dispatch(getActionUpdateBoard(updatedBoard))
-
-    try {
-      await boardService.save(updatedBoard)
-    } catch (err) {
-      dispatch(getActionUpdateBoard({ ...prevBoard }))
-      console.log('Cannot add todo', err)
     }
   }
 }

@@ -13,7 +13,7 @@ export const Users = () => {
   const [usersToDisplay, setUsersToDisplay] = useState(workspaceUsers)
 
   useEffect(() => {
-    ; (async () => {
+    ;(async () => {
       const users = await userService.getUsers()
       setWorkspaceUsers(users)
       setUsersToDisplay(users)
@@ -22,7 +22,9 @@ export const Users = () => {
 
   const handleChange = ({ target }) => {
     const regex = new RegExp(target.value, 'i')
-    const filteredUsers = workspaceUsers.filter((user) => regex.test(user.fullname))
+    const filteredUsers = workspaceUsers.filter((user) =>
+      regex.test(user.fullname)
+    )
     setUsersToDisplay(filteredUsers)
   }
 
@@ -34,7 +36,7 @@ export const Users = () => {
     if (board.members?.some((member) => member._id === userId)) {
       const index = board.members.findIndex((member) => member._id === userId)
       board.members.splice(index, 1)
-      board.groups = userService.removeUserFromAllTasks(board.groups, userId)
+      board.groups = userService.removeUserFromTasks(board.groups, userId)
       activityTxt = `removed ${user.fullname} from this board`
     } else {
       activityTxt = `added ${user.fullname} to this board`
@@ -42,22 +44,40 @@ export const Users = () => {
       else board.members = [user]
     }
 
-    const boardWithActivities = activityService.addActivity(activityTxt, null, board)
+    const boardWithActivities = activityService.addActivity(
+      activityTxt,
+      null,
+      board
+    )
     dispatch(updateBoard(boardWithActivities))
   }
 
-  if (!usersToDisplay) return <section className="loader-container"><Loader /></section>
+  if (!usersToDisplay)
+    return (
+      <section className="loader-container">
+        <Loader />
+      </section>
+    )
   return (
     <section className="users">
       <div className="">
-        <input onChange={handleChange} autoFocus={window.innerWidth >= 1200} className="search-member" type="text" placeholder="Search Members" />
+        <input
+          onChange={handleChange}
+          autoFocus={window.innerWidth >= 1200}
+          className="search-member"
+          type="text"
+          placeholder="Search Members"
+        />
       </div>
       <p className="sub-header">Workspace members</p>
       <ul className="members-list">
         {usersToDisplay.map((user) => (
           <li key={user._id}>
             {user && (
-              <div className="member-container" onClick={() => onToggleUser(user._id)}>
+              <div
+                className="member-container"
+                onClick={() => onToggleUser(user._id)}
+              >
                 <div className="member-img">
                   <img src={user.imgUrl} alt="" referrerPolicy="no-referrer" />
                 </div>

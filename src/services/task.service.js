@@ -8,7 +8,7 @@ export const taskService = {
   addImg,
   addChecklist,
   addTodo,
-  cleanTasksLabelIds,
+  removeLabelIdFromTasks,
 }
 
 function update(board, groupId, task, activityTxt) {
@@ -52,9 +52,10 @@ function addImg(imgUrl, task, groupId, board) {
   const taskIdx = board.groups[groupIdx].tasks.findIndex(
     (currTask) => currTask.id === task.id
   )
-  if (!board.groups[groupIdx].tasks[taskIdx].attachments)
-    board.groups[groupIdx].tasks[taskIdx].attachments = []
-  board.groups[groupIdx].tasks[taskIdx].attachments.push(attachmentImage)
+  const tasks = board.groups[groupIdx].tasks[taskIdx]
+
+  if (!tasks.attachments) tasks.attachments = []
+  tasks.attachments.push(attachmentImage)
 
   const urlName = attachmentImage.url.split('/').pop()
   return activityService.addActivity(
@@ -100,13 +101,13 @@ function addTodo(title, checkListId, groupId, taskId, board) {
   return board
 }
 
-function cleanTasksLabelIds(board, labelId) {
+function removeLabelIdFromTasks(board, labelId) {
   board.groups.forEach((group) => {
     group.tasks.forEach((task) => {
       if (!task.labelIds || !task.labelIds.length) return
-      const labelIdIdx = task.labelIds.indexOf(labelId)
-      if (labelIdIdx === -1) return
-      task.labelIds.splice(labelIdIdx, 1)
+      const labelIdIndex = task.labelIds.indexOf(labelId)
+      if (labelIdIndex === -1) return
+      task.labelIds.splice(labelIdIndex, 1)
     })
   })
   return board

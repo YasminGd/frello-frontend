@@ -23,21 +23,20 @@
     }
 
     .location-list {
-        // padding-top: 12px;
         font-size: 14px;
-
 
         section:first-child {
             background-color: #091e420a;
         }
 
         .location-preview {
-        display: flex;
+            display: flex;
 
             justify-content: flex-start;
             align-items: center;
-            height: 32px;    
+            height: 32px;
             padding: 6px 12px;
+
             &:hover {
                 cursor: pointer;
             }

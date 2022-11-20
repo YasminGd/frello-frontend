@@ -4,7 +4,6 @@ import { locationService } from "../../services/location.service"
 import { updateTask } from "../../store/actions/task.action"
 import { LocationList } from "./location-list"
 
-// TODO check why the api calls doesn't work
 export const Location = ({ task, groupId, setActionModal }) => {
     const [search, setSearch] = useState('')
     const [locations, setLocations] = useState(null)

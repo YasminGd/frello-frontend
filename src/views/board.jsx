@@ -17,6 +17,7 @@ import { Dashboard } from '../components/board/dashboard.jsx'
 import { utilService } from '../services/util.service.js'
 import { Fragment } from 'react'
 import { QuickEdit } from 'components/board/quick-edit/quick-edit.jsx'
+import { useCallback } from 'react'
 
 export const Board = () => {
     const board = useSelector((state) => state.boardModule.board)
@@ -33,6 +34,10 @@ export const Board = () => {
         board?.style?.backgroundColor
     )
 
+    const socketUpdateBoard = useCallback((updatedBoard) => {
+        dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
+    }, [dispatch])
+
     useEffect(() => {
         dispatch(getBoard(params.boardId))
         socketService.emit('join-board', params.boardId)
@@ -40,11 +45,7 @@ export const Board = () => {
 
     useEffect(() => {
         socketService.on('update-board', socketUpdateBoard)
-    }, [])
-
-    function socketUpdateBoard(updatedBoard) {
-        dispatch({ type: 'UPDATE_BOARD', board: updatedBoard })
-    }
+    }, [socketUpdateBoard])
 
     const getBoardStyle = () => {
         if (!board) return
